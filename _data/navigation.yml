@@ -17,16 +17,16 @@ main:
     
 archive-sub:
   - title: 2021년
-    url: #year-archive-2021
+    url: year-archive-2021
     children:
       - title: "1분기"
-        url: /year-archive-2021-1q
+        url: /year-archive-2021/year-archive-2021-1q
       - title: "2분기"
-        url: /year-archive-2021-2q
+        url: /year-archive-2021/year-archive-2021-2q
       - title: "3분기"
-        url: /year-archive-2021-3q
+        url: /year-archive-2021/year-archive-2021-3q
       - title: "4분기"
-        url: /year-archive-2021-4q
+        url: /year-archive-2021/year-archive-2021-4q
   - title: 2020년
     url: /year-archive-2020
   - title: 2019년
