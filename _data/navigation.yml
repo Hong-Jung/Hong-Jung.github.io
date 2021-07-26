@@ -5,11 +5,11 @@ main:
   - title: "About"
     url: /about/
   - title: "Archive"
-    url: /year-archive/
+    url: /archive/
   - title: "Tag"
-    url: /tags/
+    url: /tag/
   - title: "Category"
-    url: /categories/
+    url: /category/
 #  - title: "Sample Collections"
 #    url: /collection-archive/
 #  - title: "Sitemap"
