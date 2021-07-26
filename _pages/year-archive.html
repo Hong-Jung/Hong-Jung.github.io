@@ -4,7 +4,7 @@ permalink: /year-archive/
 title: "Posts by Year"
 author_profile: true
 sidebar:
-  nav: "main"
+  nav: "doc"
 ---
 
 {% assign postsByYear = site.posts | group_by_exp:"post", "post.date | date: '%Y'"  %}
