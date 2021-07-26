@@ -27,7 +27,7 @@ repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-m
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : #"/assets/images/online_profile_image.jpg"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
-# breadcrumbs            : false # true, false (default)
+breadcrumbs              : true # true, false (default)
 words_per_minute         : 200
 comments:
   provider               : # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
@@ -102,9 +102,9 @@ analytics:
 # Site Author
 author:
   name             : "Hong, Jung"
-  avatar           : "/assets/images/online_profile_image.jpg"
+  avatar           : "/assets/images/profile/online_profile_image.jpg"
   bio              : "I am an **amazing** person."
-  location         : "Somewhere"
+  location         : "Republic of Korea"
   email            : "jh3010@gmail.com"
   links:
   #  - label: "Email"
@@ -278,12 +278,19 @@ compress_html:
 defaults:
   # _posts
   - scope:
-      path: ""
+      path: "_posts"
       type: posts
     values:
       layout: single
       author_profile: true
       read_time: true
-      comments: # true
+      comments: true # true
       share: true
       related: true
+  # _pages                      : 해당 하단 영역이 새로 추가되었습니다.
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true
