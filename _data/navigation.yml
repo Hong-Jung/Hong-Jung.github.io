@@ -16,8 +16,15 @@ main:
 #    url: /sitemap/
     
 docs:
-  - title: Getting Started
-    url: /year-archive/
+  - title: 2021
+    url: /year-archive-2021
+    children:
+      - title: "1Q"
+        url: /year-archive-2021-1q
+  - title: 2020
+    url: /year-archive-2020
+  - title: 2019
+    url: /year-archive-2019
 #    children:
 #      - title: "Quick-Start Guide"
 #        url: /docs/quick-start-guide/
