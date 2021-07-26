@@ -1,0 +1,16 @@
+---
+layout: archive
+permalink: /year-archive/
+title: "Posts by Year(2021Y 3Q)"
+author_profile: true
+sidebar:
+  nav: "archive-sub"
+---
+
+{% assign postsByYear = site.posts | group_by_exp:"post", "post.date | date: '%Y'"  %}
+{% for year in postsByYear %}
+  <h2 id="{{ year.name | slugify }}" class="archive__subtitle">{{ year.name }}</h2>
+  {% for post in year.items %}
+    {% include archive-single.html %}
+  {% endfor %}
+{% endfor %}
