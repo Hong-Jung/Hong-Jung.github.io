@@ -6,20 +6,58 @@ author_profile: true
 breadcrumb: true
 
 feature_row:
-  - image_path: /assets/images/unsplash-gallery-image-1.jpg
+  - image_path: /assets/images/feature/about/unsplash-gallery-image-1.jpg
     alt: "placeholder image 1"
-    title: "Placeholder 1"
-    excerpt: "This is some sample content that goes here with **Markdown** formatting."
-  - image_path: /assets/images/unsplash-gallery-image-2.jpg
-    alt: "placeholder image 2"
-    title: "Placeholder 2"
+    title: "Life"
     excerpt: "This is some sample content that goes here with **Markdown** formatting."
     url: "#test-link"
     btn_label: "Read More"
     btn_class: "btn--inverse"
-  - image_path: /assets/images/unsplash-gallery-image-3.jpg
-    title: "Placeholder 3"
+
+  - image_path: /assets/images/feature/about/unsplash-gallery-image-2.jpg
+    alt: "placeholder image 2"
+    title: "Work"
     excerpt: "This is some sample content that goes here with **Markdown** formatting."
+    url: "#test-link"
+    btn_label: "Read More"
+    btn_class: "btn--inverse"
+
+  - image_path: /assets/images/feature/about/unsplash-gallery-image-3.jpg
+    alt: "placeholder image 3"
+    title: "Future"
+    excerpt: "This is some sample content that goes here with **Markdown** formatting."
+    url: "#test-link"
+    btn_label: "Read More"
+    btn_class: "btn--inverse"
 ---
 
 {% include feature_row %}
+
+<p>If you have any <b>questions</b> about me, please do not hesitate to <b>contact me</b>.</p>
+
+<form name="sentMessage" id="contactForm" novalidate action="https://formspree.io/f/mbjqabro" method="post">
+    <input type="hidden" name="_subject" value="<hong-jung.github.io>에서 새로운 연락이 왔습니다." />
+    <input type="text" name="_gotcha" style="display:none" />
+    <div class="control-group">
+        <div class="form-group floating-label-form-group controls">
+          <label>Your Name</label>
+          <input type="text" class="form-control" placeholder="enter your name." id="name" name="name" required data-validation-required-message="">
+          <div class="help-block text-danger"></div>
+        </div>
+        <div class="form-group floating-label-form-group controls">
+          <label>Your E-mail Address</label>
+          <input type="email" class="form-control" placeholder="enter your e-mail address." id="email" name="email" required data-validation-validemail-message="" data-validation-required-message="">
+          <div class="help-block text-danger"></div>
+        </div>
+        <div class="form-group floating-label-form-group controls">
+          <label>Context</label>
+          <textarea rows="5" class="form-control" placeholder="enter context." id="message" name="message" required data-validation-required-message=""></textarea>
+          <div class="help-block text-danger"></div>
+        </div>
+    </div>
+    <br>
+    <div id="success"></div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" id="sendMessageButton">Send to Walter</button>
+    </div>
+</form>
