@@ -1,5 +1,5 @@
 ---
-title:  "Draft A"
+title:  "Draft B"
 excerpt: "임시 문서 입니다."
 comments: true
 header:
