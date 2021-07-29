@@ -1,20 +1,21 @@
 ---
-title:  "[Jekyll] 블로그 포스팅하는 방법"
+title:  "Logistics Project 게시글 입니다."
 excerpt: "md 파일에 마크다운 문법으로 작성하여 Github 원격 저장소에 업로드 해보자. 에디터는 Visual Studio code 사용! 로컬 서버에서 확인도 해보자. "
+comments: true
 header:
-  teaser: /assets/images/teaser/photo-1627001191081-34bc12604d24.jpg
+  teaser: 
 
 categories:
-  - Blog
+  - Logistics-Project
 tags:
-  - [Blog, jekyll, Github, Git]
+  - [Blog]
 
 toc: true
 toc_sticky: false
 toc_label: "페이지 주요 목차"
  
-date: 2021-07-01
-last_modified_at: 2021-07-26
+date: 2021-07-24
+last_modified_at: 2021-07-24
 ---
 
 ## 1. 최신 기술 공부하기

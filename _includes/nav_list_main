@@ -1,6 +1,13 @@
 <!--전체 글 수를 세기 위한 연산. sum 변수에 전체 글 수 저장-->
 
 {% assign sum = site.posts | size %}
+{% assign sum_life = 0 %}
+
+{% for post in site.posts %}
+    {% if post.category[1] == "architecture" %}
+        {% assign sum_life = sum_life | plus: 1 %}
+    {% endif %}
+{% endfor %}
 
 <nav class="nav__list">
   <input id="ac-toc" name="accordion-toc" type="checkbox" />
@@ -8,47 +15,97 @@
   <ul class="nav__items" id="category_tag_menu">
       <!--전체 글 수-->
       <li>
-            📂 Total {{sum}}개
+            <!--📂 Total {{sum}}개-->
+            Total : <b style="color:lightgray;">{{sum}}</b>
       </li>
       <li>
-        <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
-        <span class="nav__sub-title">C/C++/C#</span>
+
+        <!-- Life 카테고리 -->
+        <span class="nav__sub-title">Life {{ site.categories.Hobby-Interest | size }}</span>
             <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
             <ul>
-                <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
                 <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
                 {% for category in site.categories %}
-                    {% if category[0] == "cpp" %}
-                        <li><a href="/categories/cpp" class="">C ++ ({{category[1].size}})</a></li>
+                    {% if category[0] == "Hobby-Interest" %}
+                        <li><a href="/categories/Hobby-Interest" class="">Hobby & Interest (<span style="color:hotpink;">{{category[1].size}}</span>)</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "stl" %}
-                        <li><a href="/categories/stl" class="">C++ STL & 표준 ({{category[1].size}})</a></li>
+                    {% if category[0] == "architecture" %}
+                        <li><a href="/categories/architecture" class="">Architecture (<span style="color:hotpink;">{{category[1].size}}</span>)</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+
+
+        <!-- Work 카테고리 -->
+        <span class="nav__sub-title">Work</span>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "maritime" %}
+                        <li><a href="/categories/maritime" class="">Maritime (<span style="color:tomato;">{{category[1].size}}</span>)</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "csharp" %}
-                        <li><a href="/categories/csharp" class="">C# ({{category[1].size}})</a></li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-        <span class="nav__sub-title">Coding Test</span>
-            <ul>
-                {% for category in site.categories %}
-                    {% if category[0] == "algorithm" %}
-                        <li><a href="/categories/algorithm" class="">알고리즘 구현 (with C++) ({{category[1].size}})</a></li>
+                    {% if category[0] == "net" %}
+                        <li><a href="/categories/net" class="">.Net (<span style="color:tomato;">{{category[1].size}}</span>)</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "programmers" %}
-                        <li><a href="/categories/programmers" class="">프로그래머스 ({{category[1].size}})</a></li>
+                    {% if category[0] == "web" %}
+                        <li><a href="/categories/web" class="">Web (<span style="color:tomato;">{{category[1].size}}</span>)</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "mobile" %}
+                        <li><a href="/categories/mobile" class="">Mobile (<span style="color:tomato;">{{category[1].size}}</span>)</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "technology" %}
+                        <li><a href="/categories/technology" class="">Technology (<span style="color:tomato;">{{category[1].size}}</span>)</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+
+
+        <!-- Future 카테고리 -->
+        <span class="nav__sub-title">Future</span>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Framework-Pattern" %}
+                        <li><a href="/categories/Framework-Pattern" class="">Framework & Pattern (<span style="color:dodgerblue;">{{category[1].size}}</span>)</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Maru-Project" %}
+                        <li><a href="/categories/Maru-Project" class="">Maru Project (<span style="color:dodgerblue;">{{category[1].size}}</span>)</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Bloom-Project" %}
+                        <li><a href="/categories/Bloom-Project" class="">Bloom Project (<span style="color:dodgerblue;">{{category[1].size}}</span>)</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "Logistics-Project" %}
+                        <li><a href="/categories/Logistics-Project" class="">Logistics Project (<span style="color:dodgerblue;">{{category[1].size}}</span>)</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
