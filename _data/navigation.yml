@@ -15,22 +15,22 @@ main:
 #  - title: "Sitemap"
 #    url: /sitemap/
     
-archive-sub:
-  - title: 2021년
-    url: year-archive-2021
-    children:
-      - title: "1분기"
-        url: /year-archive-2021/year-archive-2021-1q
-      - title: "2분기"
-        url: /year-archive-2021/year-archive-2021-2q
-      - title: "3분기"
-        url: /year-archive-2021/year-archive-2021-3q
-      - title: "4분기"
-        url: /year-archive-2021/year-archive-2021-4q
-  - title: 2020년
-    url: /year-archive-2020
-  - title: 2019년
-    url: /year-archive-2019
+#archive-sub:
+#  - title: 2021년
+#    url: year-archive-2021
+#    children:
+#      - title: "1분기"
+#        url: /year-archive-2021/year-archive-2021-1q
+#      - title: "2분기"
+#        url: /year-archive-2021/year-archive-2021-2q
+#      - title: "3분기"
+#        url: /year-archive-2021/year-archive-2021-3q
+#      - title: "4분기"
+#        url: /year-archive-2021/year-archive-2021-4q
+#  - title: 2020년
+#    url: /year-archive-2020
+#  - title: 2019년
+#    url: /year-archive-2019
 #    children:
 #      - title: "Quick-Start Guide"
 #        url: /docs/quick-start-guide/

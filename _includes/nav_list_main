@@ -1,62 +1,9 @@
 <!--전체 글 수를 세기 위한 연산. sum 변수에 전체 글 수 저장-->
 
 {% assign sum = site.posts | size %}
-{% assign sum_life = 0 %}
-{% assign sum_work = 0 %}
-{% assign sum_future = 0 %}
-
-{% for post in site.categories %}
-    <!-- LIFE 카테고리 전체 카운트 설정 -->
-    {% if post[0] == "Hobby-Interest" %}
-        <!--{% assign sum_life = sum_life | plus: 1 %}-->
-        {% assign sum_life = sum_life + post[1].size %}
-    {% endif %}
-    {% if post[0] == "architecture" %}
-        <!--{% assign sum_life = sum_life | plus: 1 %}-->
-        {% assign sum_life = sum_life + post[1].size %}
-    {% endif %}
-    
-    <!-- WORK 카테고리 전체 카운트 설정 -->
-    {% if post[0] == "maritime" %}
-        <!--{% assign sum_work = sum_work | plus: 1 %}-->
-        {% assign sum_work = sum_work + post[1].size %}
-    {% endif %}
-    {% if post[0] == "net" %}
-        <!--{% assign sum_work = sum_work | plus: 1 %}-->
-        {% assign sum_work = sum_work + post[1].size %}
-    {% endif %}
-    {% if post[0] == "web" %}
-        <!--{% assign sum_work = sum_work | plus: 1 %}-->
-        {% assign sum_work = sum_work + post[1].size %}
-    {% endif %}
-    {% if post[0] == "mobile" %}
-        <!--{% assign sum_work = sum_work | plus: 1 %}-->
-        {% assign sum_work = sum_work + post[1].size %}
-    {% endif %}
-    {% if post[0] == "technology" %}
-        <!--{% assign sum_work = sum_work | plus: 1 %}-->
-        {% assign sum_work = sum_work + post[1].size %}
-    {% endif %}
-    
-
-    <!-- FUTURE 카테고리 전체 카운트 설정 -->
-    {% if post[0] == "Framework-Pattern" %}
-        <!--{% assign sum_future = sum_future | plus: 1 %}-->
-        {% assign sum_future = sum_future + post[1].size %}
-    {% endif %}
-    {% if post[0] == "Maru-Project" %}
-        <!--{% assign sum_future = sum_future | plus: 1 %}-->
-        {% assign sum_future = sum_future + post[1].size %}
-    {% endif %}
-    {% if post[0] == "Bloom-Project" %}
-        <!--{% assign sum_future = sum_future | plus: 1 %}-->
-        {% assign sum_future = sum_future + post[1].size %}
-    {% endif %}
-    {% if post[0] == "Logistics-Project" %}
-        <!--{% assign sum_future = sum_future | plus: 1 %}-->
-        {% assign sum_future = sum_future + post[1].size %}
-    {% endif %}
-{% endfor %}
+{% assign sum_life = site.categories.architecture.size | plus: site.categories.Hobby-Interest.size %}
+{% assign sum_work = site.categories.maritime.size | plus: site.categories.net.size | plus: site.categories.web.size | plus: site.categories.mobile.size | plus: site.categories.technology.size %}
+{% assign sum_future = site.categories.Framework-Pattern.size | plus: site.categories.Maru-Project.size | plus: site.categories.Bloom-Project.size | plus: site.categories.Logistics-Project.size %}
 
 <nav class="nav__list">
   <input id="ac-toc" name="accordion-toc" type="checkbox" />
@@ -67,7 +14,7 @@
       <li>
 
         <!-- Life 카테고리 -->
-        <span class="nav__sub-title">Life <span style="color:Chartreuse;">{{ sum_life }}</span></span>
+        <span class="nav__sub-title">Life (<span style="color:Chartreuse;">{{ sum_life }}</span>)</span>
             <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
             <ul>
                 <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
@@ -87,7 +34,7 @@
 
 
         <!-- Work 카테고리 -->
-        <span class="nav__sub-title">Work <span style="color:Chartreuse;">{{ sum_work }}</span></span>
+        <span class="nav__sub-title">Work (<span style="color:Chartreuse;">{{ sum_work }}</span>)</span>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "maritime" %}
@@ -126,7 +73,7 @@
 
 
         <!-- Future 카테고리 -->
-        <span class="nav__sub-title">Future <span style="color:Chartreuse;">{{ sum_future }}</span></span>
+        <span class="nav__sub-title">Future (<span style="color:Chartreuse;">{{ sum_future }}</span>)</span>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "Framework-Pattern" %}
