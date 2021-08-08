@@ -8,7 +8,7 @@ header:
 categories:
   - Hobby-Interest
 tags:
-  - [Blog]
+  - [Book]
 
 toc: true
 toc_sticky: false
