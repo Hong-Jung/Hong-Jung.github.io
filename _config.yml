@@ -20,13 +20,13 @@ title                    : "Mr. Walter"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Hong, Jung"
-description              : "An amazing website."
+description              : #"I dream of becoming a humanities engineer."
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "Hong-Jung/hong-jung.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : #"/assets/images/online_profile_image.jpg"
-masthead_title           : "Walter" # overrides the website title displayed in the masthead, use " " for no title
+masthead_title           : #"Mr. Walter" # overrides the website title displayed in the masthead, use " " for no title
 breadcrumbs              : true # true, false (default)
 words_per_minute         : 200
 comments:
@@ -103,18 +103,18 @@ analytics:
 author:
   name             : "Hong, Jung"
   avatar           : "/assets/images/profile/profile-2.png"
-  bio              : "I am an **amazing** person."
-  location         : "Republic of Korea"
+  bio              : "**Humanities Engineer**"
+  location         : #"Republic of Korea"
   email            : "jh3010@gmail.com"
   links:
-  #  - label: "Email"
-  #    icon: "fas fa-fw fa-envelope-square"
-  #    url: "mailto:jh3010@gmail.com"
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      url: "https://hong-jung.github.io"
-#    - label: "Twitter"
-#      icon: "fab fa-fw fa-twitter-square"
+#  - label: "Email"
+#     icon: "fas fa-fw fa-envelope-square"
+#      url: "mailto:jh3010@gmail.com"
+#  - label: "Website"
+#     icon: "fas fa-fw fa-link"
+#      url: "https://hong-jung.github.io"
+#  - label: "Twitter"
+#     icon: "fab fa-fw fa-twitter-square"
 #      url: "https://twitter.com/"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
