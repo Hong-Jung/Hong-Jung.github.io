@@ -3,7 +3,7 @@ title:  "소프트웨어 장인"
 excerpt: "로버트 C.마틴 시리즈 | 산드로 만쿠소 지음, 권오인 옮김"
 comments: true
 header:
-  teaser: /assets/images/teaser/software_master_teaser.png
+  teaser: #/assets/images/teaser/software_master_teaser.png
 
 categories:
   - Hobby-Interest
@@ -18,7 +18,7 @@ date: 2021-08-08
 last_modified_at: 2021-08-08
 ---
 
-![소프트웨어 장인](../assets/images/teaser/software_master_teaser.png){{:class="img-responsive"}
+![소프트웨어 장인](../assets/images/teaser/software_master_teaser.png){:class="img-responsive"}
 
 ## 1. 최신 기술 공부하기
 ### 1.1 테스트 
