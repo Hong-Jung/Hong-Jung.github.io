@@ -8,10 +8,12 @@
 {% for post in site.categories %}
     <!-- LIFE 카테고리 전체 카운트 설정 -->
     {% if post[0] == "Hobby-Interest" %}
-        {% assign sum_life = sum_life | plus: 1 %}
+        <!--{% assign sum_life = sum_life | plus: 1 %}-->
+        {% assign sum_life = sum_life | plus: post[1].size %}
     {% endif %}
     {% if post[0] == "architecture" %}
-        {% assign sum_life = sum_life | plus: 1 %}
+        <!--{% assign sum_life = sum_life | plus: 1 %}-->
+        {% assign sum_life = sum_life | plus: post[1].size %}
     {% endif %}
     
     <!-- WORK 카테고리 전체 카운트 설정 -->
