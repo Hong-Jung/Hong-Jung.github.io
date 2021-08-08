@@ -1,9 +1,9 @@
 ---
 title:  "소프트웨어 장인"
-excerpt: "로버트 C.마틴 시리즈 | 산드로 만쿠소 지음, 권오인 옮김"
+excerpt: "로버트 C.마틴 시리즈 / 산드로 만쿠소 지음, 권오인 옮김 / 프로페셔널리즘, 실용주의, 자부심 / 어떻게 하면 더 나은 프로그래머가 될 수 있을까? / '오늘 정말 멋지게 일 했어'라고 스스로 읊조리는 그럼 프로그래머라면 이 책은 당신을 위한 책이다 / 더 나은 개발자가 되어 더 좋은 코드를 전달하고 싶은 당신을 위하여..."
 comments: true
 header:
-  teaser: #/assets/images/teaser/software_master_teaser.png
+  teaser: /assets/images/teaser/software_master_teaser.png
 
 categories:
   - Hobby-Interest
