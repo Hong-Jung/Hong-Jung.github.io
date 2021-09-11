@@ -8,7 +8,7 @@ header:
 categories:
   - web
 tags:
-  - [Blog]
+  - [Blog, Vue]
 
 toc: true
 toc_sticky: false
