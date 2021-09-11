@@ -12,7 +12,7 @@ tags:
 
 toc: true
 toc_sticky: false
-toc_label: "페이지 주요 목차"
+toc_label: "페이지 주요 목차" 
  
 date: 2021-09-11
 last_modified_at: 2021-09-11
