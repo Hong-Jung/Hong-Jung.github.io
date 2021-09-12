@@ -23,7 +23,7 @@ last_modified_at: 2021-09-11
 ### 1.1 Vue ??
   
   * 내용 입력<br/>
-  <img src="/web/images/vue-2-1.png" width="60%" height="30%" title="Vue 구조" alt="툴팁"/>
+  <img src="../_posts_img/web/vue-intermediate/vue-2-1.png" width="60%" height="30%" title="Vue 구조" alt="툴팁"/>
 
 ```html
 <!--watch 샘플-->
