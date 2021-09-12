@@ -45,7 +45,7 @@ Chrome > F12 > Vue 개발자 도구 활용
 
 ### 3.1 Vue
   * MVVM 패턴의 뷰모델(VieModel) 레이어에 해당하는 화면(View)단 라이브러리<br/>
-  <img src="./../assets/images/posts/vue-beginner/vue-1-1.png" width="60%" height="30%" title="Vue 구조" alt="툴팁"/>
+  <img src="../../assets/images/posts/vue-beginner/vue-1-1.png" width="60%" height="30%" title="Vue 구조" alt="툴팁"/>
 
 ### 3.2 Reactivity
   * Reactivity ([Object.defineProperty() API 문서 링크](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)) 객체의 동장을 재정의하는 API
@@ -57,21 +57,21 @@ Chrome > F12 > Vue 개발자 도구 활용
 
 ### 3.4 콤포넌트
   * 화면의 영역을 구분하여 개발 가능, 재사용성 올라가고 빠르게 화면을 제작 가능<br/>
-  <img src="./../assets/images/posts/vue-beginner/vue-1-3.png" width="50%" height="30%" title="뷰 콤포넌트" alt="툴팁"/>
+  <img src="../../assets/images/posts/vue-beginner/vue-1-3.png" width="50%" height="30%" title="뷰 콤포넌트" alt="툴팁"/>
   * 전역 콤포넌트, 지역 콤포넌트<br/>
-  <img src="./../assets/images/posts/vue-beginner/vue-1-4.png" width="40%" height="30%" title="뷰 콤포넌트" alt="툴팁"/>
+  <img src="../../assets/images/posts/vue-beginner/vue-1-4.png" width="40%" height="30%" title="뷰 콤포넌트" alt="툴팁"/>
   * Component 통신(Props, Event)
   * Component 통신은 하기와 같이 부모->자식(Props), 자식->부모(Emit Event)로 처리 된다.(Vue : One-way Data Flow)
     * 부모->자식(Props)
       * Props 옵션을 통하여 데이터 전달
     * 자식->부모(Emit Events)
       * Evnet 구현을 통하여 데이터 전달<br/>
-    <img src="./../assets/images/posts/vue-beginner/vue-1-5.png" width="100%" height="100%" title="Props & Evnet Emit" alt="툴팁"/>
+    <img src="../../assets/images/posts/vue-beginner/vue-1-5.png" width="100%" height="100%" title="Props & Evnet Emit" alt="툴팁"/>
   * 'this' 키워드 관련
     * 오브젝트가 속해있는 Scope에서의 참조.
     * [The JavaScript this Keyword](https://www.w3schools.com/js/js_this.asp), [Understanding the “this” Keyword in JavaScript](https://betterprogramming.pub/understanding-the-this-keyword-in-javascript-cb76d4c7c5e8)
   * 동일 레벨의 Component간의 통신 방법<br/>
-  <img src="./../assets/images/posts/vue-beginner/vue-1-6.png" width="60%" height="600%" title="콤포넌트간 통신" alt="툴팁"/>
+  <img src="../../assets/images/posts/vue-beginner/vue-1-6.png" width="60%" height="600%" title="콤포넌트간 통신" alt="툴팁"/>
   * 동일 레벨의 ‘콤포넌트간 통신’은 부모<->자식간 통신의 규칙을 준수
 
 ### 3.5 뷰 라우터
@@ -84,7 +84,7 @@ Chrome > F12 > Vue 개발자 도구 활용
   * javascript 비동기 처리 패턴
     * callback > promise > promise + generator > async & await
   * [Ajaxd위키백과 링크](https://ko.wikipedia.org/wiki/Ajax), [Vue Resource 깃헙 주소](https://github.com/pagekit/vue-resourc), [Axios 깃헙 주소](https://github.com/axios/axios), [자바스크립트 비동기 처리와 콜백 함수](https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/), [자바스크립트 Promise 이해하기](https://joshua1988.github.io/web-development/javascript/promise-for-beginners/), [자바스크립트 async와 await](https://joshua1988.github.io/web-development/javascript/js-async-await/), [jsonplaceholder 사이트 링크](https://jsonplaceholder.typicode.com/), [자바스크립트 동작 원리](https://joshua1988.github.io/web-development/translation/javascript/how-js-works-inside-engine/)<br/>
-  <img src="./../assets/images/posts/vue-beginner/vue-1-7.png" width="60%" height="600%" title="HTTP 통신 패턴" alt="툴팁"/>
+  <img src="../../assets/images/posts/vue-beginner/vue-1-7.png" width="60%" height="600%" title="HTTP 통신 패턴" alt="툴팁"/>
   * 크롬 개발자 도구 네트워크 패널 보는 방법
     * [프런트엔드 개발자가 알아야 하는 HTTP 프로토콜](https://joshua1988.github.io/web-development/http-part1/)
     * [구글 크롬 개발자 도구 공식 문서](https://developer.chrome.com/docs/devtools/)
@@ -208,9 +208,9 @@ D:\SOURCE\PILOT\Vue\vuejslearn1\vue-cli>npm run serve
 ```
 
   * 템플릿 구조 간략 설명(index.html → mail.js → App.vue)<br/>
-  <img src="./../assets/images/posts/vue-beginner/vue-1-8.png" width="30%" height="60%" title="CLI 템플릿 구조" alt="툴팁"/>
+  <img src="../../assets/images/posts/vue-beginner/vue-1-8.png" width="30%" height="60%" title="CLI 템플릿 구조" alt="툴팁"/>
   * *.vue 파일의 ‘기본 템플릿’ 포맷으로 코드를 생성하기 위해서는 ‘<vue>’ 입력<br/>
-  <img src="./../assets/images/posts/vue-beginner/vue-1-9.png" width="60%" height="60%" title="Vue 스케폴드" alt="툴팁"/>
+  <img src="../../assets/images/posts/vue-beginner/vue-1-9.png" width="60%" height="60%" title="Vue 스케폴드" alt="툴팁"/>
 
 ### 3.9 싱글 파일 컴포넌트
 
@@ -222,7 +222,7 @@ D:\SOURCE\PILOT\Vue\vuejslearn1\vue-cli>npm run serve
   * [NPM 소개 강좌](https://www.inflearn.com/course/%ED%94%84%EB%9F%B0%ED%8A%B8%EC%97%94%EB%93%9C-%EC%9B%B9%ED%8C%A9/lecture/37370?tab=curriculum)
   * [NPM 소개 문서](https://joshua1988.github.io/webpack-guide/build/node-npm.html)
   * [이벤트 버블링과 캡쳐링 블로그 글](https://joshua1988.github.io/web-development/javascript/event-propagation-delegation/)<br/>
-  <img src="./../assets/images/posts/vue-beginner/vue-1-10.png" width="80%" height="60%" title="ESLint 오류 팁" alt="툴팁"/>
+  <img src="../../assets/images/posts/vue-beginner/vue-1-10.png" width="80%" height="60%" title="ESLint 오류 팁" alt="툴팁"/>
 
 ### 3.11 마무리
 
