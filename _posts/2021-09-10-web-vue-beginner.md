@@ -24,7 +24,7 @@ last_modified_at: 2021-09-11
   * Vue(/vjuː/ 로 발음, view 와 발음이 같습니다.)는 사용자 인터페이스를 만들기 위한 프로그레시브 프레임워크이다.<br/>다른 단일형 프레임워크와 달리 Vue는 점진적으로 채택할 수 있도록 설계 가능하다.<br/>핵심 라이브러리는 뷰 레이어만 초점을 맞추어 다른 라이브러리나 기존 프로젝트와의 통합이 매우 쉽고고 Vue는 현대적 도구 및 지원하는 라이브러리와 함께 사용한다면 정교한 단일 페이지 응용프로그램을 완벽하게 지원할 수 있다.(출저 : [Vue](https://kr.vuejs.org/v2/guide/index.html)) 
 
 ### 1.2 Vue & React & Angular & Blazor & Node<br/>
-<a href="https://www.ifourtechnolab.com/blog/comparative-analysis-of-blazor-angular-react-vue-and-node-for-web-development"><img src="../_posts_img/web/vue-beginner/vue-1-2.png" width="100%" height="30%" title="COMPARATIVE ANALYSIS OF BLAZOR, ANGULAR, REACT, VUE AND NODE FOR WEB DEVELOPMENT" alt="툴팁"/></a>
+<a href="https://www.ifourtechnolab.com/blog/comparative-analysis-of-blazor-angular-react-vue-and-node-for-web-development"><img src="../../images/web/vue-beginner/vue-1-2.png" width="100%" height="30%" title="COMPARATIVE ANALYSIS OF BLAZOR, ANGULAR, REACT, VUE AND NODE FOR WEB DEVELOPMENT" alt="툴팁"/></a>
 
 
 ## 2. 개발 환경 설정
