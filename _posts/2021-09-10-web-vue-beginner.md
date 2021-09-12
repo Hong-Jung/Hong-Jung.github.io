@@ -186,7 +186,7 @@ Chrome > F12 > Vue 개발자 도구 활용
   * **<u>‘computed’ 속성을 더 많이 사용하며, validation 또는 텍스트 연산 등의 로직에 사용한다. (내부적으로 튜닝이나 최적화가 많이 되어 있음, 사용 추천)</u>**
 
 
-### 3.8 CLI(Command Line Interface)
+### 3.8 CLI(Command Line Interface) 
 
   * 설치 및 확인 사항
     * Visual Studio Code > 터미널
