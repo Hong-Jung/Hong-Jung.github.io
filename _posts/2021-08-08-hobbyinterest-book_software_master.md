@@ -20,7 +20,7 @@ last_modified_at: 2021-09-11
 
 |책||
 |:---:||
-|![소프트웨어 장인](../images/software_master_teaser.png){:class="img-responsive"}{: width="300px"}|제목 : 소프트웨어 장인<br/>지은이 : 산드로 만쿠소(권오인 옮김)<br/>출판사 : 길벗<br/>초판발행 : 2015년09월25일<br/>점수 : ⭐️⭐️⭐️⭐️☆|
+|![소프트웨어 장인](../_posts_img/hobby-interest/software-master/software_master_teaser.png){:class="img-responsive"}{: width="300px"}|제목 : 소프트웨어 장인<br/>지은이 : 산드로 만쿠소(권오인 옮김)<br/>출판사 : 길벗<br/>초판발행 : 2015년09월25일<br/>점수 : ⭐️⭐️⭐️⭐️☆|
 
 ### 1. 총평
 스스로 마스터라고 생각한 적은 없지만, 마스터를 꿈꾸며 하루하루 최선을 다 한다. 뒤를 돌아보고 앞을 고민하게하는 좋은 책이다.
