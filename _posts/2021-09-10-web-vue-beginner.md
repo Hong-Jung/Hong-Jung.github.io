@@ -31,7 +31,7 @@ last_modified_at: 2021-09-11
 
 ### 2.1 필수 설치
   * [Chrome Brower](https://www.google.com/intl/ko/chrome/), [Visual Studio Code](https://code.visualstudio.com/), [Node.Js/npm 포함](https://nodejs.org/en/), [devtools for google Chrome](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd), [git](https://git-scm.com/downloads), [github](https://github.com/), [TortoiseGit](https://tortoisegit.org/)
-  * Visual Studio Code Extension : Vetur, Material Icon Theme, Night Owl, Live Server
+  * Visual Studio Code Extension : Vetur, Material Icon Theme, Night Owl, Live Server, TSLint
  
 ### 2.2 강의 소스
   * [소스](https://github.com/LabofDev/Vue.git)
