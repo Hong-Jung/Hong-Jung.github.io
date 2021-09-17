@@ -29,6 +29,7 @@ last_modified_at: 2021-09-11
   <img src="../../assets/images/posts/vue-intermediate/vue-2-4(변경app).png" width="60%" height="30%" title="Vue 구조" alt="툴팁"/>
   <img src="../../assets/images/posts/vue-intermediate/vue-2-4(변경app).png" width="60%" height="30%" title="Vue 구조" alt="툴팁"/>
   <img src="../../assets/images/posts/vue-intermediate/vue-2-4(변경app).png" width="60%" height="30%" title="Vue 구조" alt="툴팁"/>
+  * 내용 입력
 
 ```html
 <!--watch 샘플-->
