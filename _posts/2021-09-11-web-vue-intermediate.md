@@ -15,63 +15,11 @@ toc_sticky: false
 toc_label: "페이지 주요 목차" 
  
 date: 2021-09-11
-last_modified_at: 2021-09-11
+last_modified_at: 2021-10-03
 ---
 
-## 1. What is 'Vue'
+# 1. *Study Agenda*
 
-### 1.1 Vue ??
-  
-  * 내용 입력<br/>
-  <img src="../../assets/images/posts/vue-intermediate/vue-2-1.png" width="60%" height="30%" title="Vue 구조" alt="툴팁"/>
-  <img src="../../assets/images/posts/vue-intermediate/vue-2-2(vuelifecycle).png" width="60%" height="30%" title="Vue 구조" alt="툴팁"/>
-  <img src="../../assets/images/posts/vue-intermediate/vue-2-3(기존app).png" width="60%" height="30%" title="Vue 구조" alt="툴팁"/>
-  <img src="../../assets/images/posts/vue-intermediate/vue-2-4(변경app).png" width="60%" height="30%" title="Vue 구조" alt="툴팁"/>
-  <img src="../../assets/images/posts/vue-intermediate/vue-2-4(변경app).png" width="60%" height="30%" title="Vue 구조" alt="툴팁"/>
-  <img src="../../assets/images/posts/vue-intermediate/vue-2-4(변경app).png" width="60%" height="30%" title="Vue 구조" alt="툴팁"/>
-  * 내용 입력
+# 8. 출처
 
-```html
-<!--watch 샘플-->
-<div id="app">
-    {{ num }}
-    <button v-on:click="addNum">increase</button>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script>
-    new Vue({
-        el: '#app',
-        data: {
-            num: 10
-        },
-        watch: {
-            num: function(val, oldVal) {
-                this.logText(val, oldVal);
-            }
-        },
-        methods: {
-            addNum: function() {
-                this.num = this.num + 1;
-            },
-            logText: function(val, oldVal) {
-                console.log('new: %s, old: %s', val, oldVal);
-            }
-        }
-    });
-</script>
-```
-
-## 4. 참고 사항
-
-### 4.1 Troubleshooting
-
-  * GitHub 싱크후 ‘npm run serve’시 명령어 인식 불가할 경우 하기와 같이 명령서 실행
-  
-```
-npm i @vue/cli-service
-```
-
-### 4.2 출처
-
-  * [인프런](https://www.inflearn.com/course/Age-of-Vuejs)
+  * [인프런](https://www.inflearn.com/course/%ED%94%84%EB%9F%B0%ED%8A%B8%EC%97%94%EB%93%9C-%EC%9B%B9%ED%8C%A9/dashboard)
