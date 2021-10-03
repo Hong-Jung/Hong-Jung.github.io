@@ -18,7 +18,7 @@ date: 2021-10-03
 last_modified_at: 2021-10-03
 ---
 
-# 1. *Study Agenda*
+## 1. *Study Agenda*
   - 프런트앤드 빌드 시스템
   - https://joshua1988.github.io/webpack-guide/guide.html)
     - NPM, Webpack
@@ -27,7 +27,7 @@ last_modified_at: 2021-10-03
   - 웹팩 주요 속성 4가지
   - 배포 환경에서 알고 있어야 할 웹팩 특징과 설정 등<br/><br/>
 
-# 2. *개발 환경 설정*
+## 2. *개발 환경 설정*
   > Chrome<br/>
   > Git<br/>
   > Visual Studio Code<br/>
@@ -35,14 +35,14 @@ last_modified_at: 2021-10-03
   
 <br/>
 
-## 2.1 *VSCode 유용한 플러그인 목록*
+### 2.1 *VSCode 유용한 플러그인 목록*
   - 색 테마 : Night Owl
   - 파일 아이콘 테마 : Material Icon Theme
   - 문법 검사 : ESLint, TSLint
   - 실습 환경 보조 : Live Server
   - 기타 : Prettier, Project Manager, Auto Close Tag, GitLens, Atom Keymap, Jetbrains IDE Keymap 등<br/><br/>
 
-# 3. *초기 설치 명령어*
+## 3. *초기 설치 명령어*
 ```
 node -v // node 버전 확인
 npm -v // node package manager 버전 확인
@@ -61,7 +61,7 @@ npm uninstall gulp --global
 npm i vue -D // 'npm install vue --save-dev'와 동일하다
 ```
 
-## 3.1 *참고 사항*
+### 3.1 *참고 사항*
   - git branch 변경 main -> master 이후 git 명령어
 ```
 git branch -m main master
@@ -71,7 +71,7 @@ git remote set-head origin -a
 ```
 <br/>
 
-# 4. *Webpack*
+## 4. *Webpack*
   - 최신 FrontEnd 프레임워크에서 가장 많이 사용되는 모듈 번들러(Module Bundler)이다. 
   - Module Bundler : HTML, CSS, Javascript, Images와 같이 애플리케이션을 구성하는 자원을 하나의 결과물로 만들어내는 도구
   - Getting Start
@@ -98,7 +98,7 @@ npm run build
 ```
 <br/>
 
-## 4.1 *참고 사이트*
+### 4.1 *참고 사이트*
   - [node apth](https://nodejs.org/api/path.html)
   - [gulp](https://gulpjs.com/)
   - [lodash join() API 문서](https://lodash.com/docs/4.17.15#join)
@@ -107,19 +107,19 @@ npm run build
 
 <br/>
   
-## 4.2 *Webpack의 사용하는 이유 3가지*
+### 4.2 *Webpack의 사용하는 이유 3가지*
   > 파일 단위의 자바 스크립트 모듈 관리의 필요성<br/>
   > 웹 개발 작업 자동화 도구(Web Task Manager, VSCode.Live Server)<br/>
   > 웹 애플리케이션의 빠른 로딩 속도와 높은 성능
 
 <br/>
 
-## 4.3 *ES6 모듈 문법*
+### 4.3 *ES6 모듈 문법*
   - [ES6 Modules 문법 소개 글](https://joshua1988.github.io/es6-online-book/modules.html#%EB%AA%A8%EB%93%88%ED%99%94%EC%9D%98-%ED%95%84%EC%9A%94%EC%84%B1)
   
 <br/>
 
-## 4.4 *웹팩의 주요 속성 4가지*
+### 4.4 *웹팩의 주요 속성 4가지*
   - entry
     - 변환할 자원의 최초 진입점 또는 자바스크립트 파일 경로
   - output
@@ -148,7 +148,7 @@ npm run build
   
   <br/>
 
-# 5. *정리*
+## 5. *정리*
   - Entry
     - 웹팩을 실행할 대상 파일 즉 진입점
   - Output
@@ -162,7 +162,7 @@ npm run build
 
 <br/>
 
-# 6. *Webpack Dev Server*
+## 6. *Webpack Dev Server*
   - [Webpack Dev Server](https://joshua1988.github.io/webpack-guide/devtools/webpack-dev-server.html)
   - 웹팩을 사용하여 개발할때 빌드작업 시간을 줄여 줌(즉, 코드만 변경하고 저장하면 웹팩빌드 후 브라우저 새로고침)
   
@@ -194,8 +194,8 @@ npm run build
 
 <br/>
 
-# 7. *실전 webpack.config.js 분석*
+## 7. *실전 webpack.config.js 분석*
 
-# 8. 출처
+## 8. 출처
 
   * [인프런](https://www.inflearn.com/course/%ED%94%84%EB%9F%B0%ED%8A%B8%EC%97%94%EB%93%9C-%EC%9B%B9%ED%8C%A9/dashboard)
