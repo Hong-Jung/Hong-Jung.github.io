@@ -67,13 +67,13 @@ last_modified_at: 2021-10-25
   - `npm i -g @vue/cli-init` : `vue init...` 명령어를 위한 global 설치
   - *기존의 `Github`소스를 다운받은 후 `npm i` 명령어를 사용하여 `package.json`의 dependencies 설치 후 `npm run serve` 실행 필요*
   
+  
 |     Feature      | CLI v2.x                                                                                        | CLI v3.x                                                                                                                                                                |
 | :--------------: | :---------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 |    **명령어**    | `vue init '프로젝트 템플릿 이름' '파일 위치'`<br/>*Sample* : `vue init webpack-simple vue-news` | `vue create '프로젝트 이름'`<br/>*Sample* : `vue create vue-cli3`                                                                                                       |
 | **Webpack 설정** | 노출 O<br/>`webpack.config.js`을 직접 수정                                                      | <span style="color:hotpink">*노출 X*</span><br/>`vue.config.js`의 `configureWebpack`로 설정 가능([Link](https://cli.vuejs.org/guide/webpack.html#simple-configuration)) |
 | **Project 구성** | `Github`의 Template 다운로드                                                                    | `Plugin` 기반으로 추가                                                                                                                                                  |
 |   **ES6 이해**   | 필요 X                                                                                          | <span style="color:hotpink">*필요 O*</span>                                                                                                                             |
-<br/>
 	
 ### 2.2 Project Setup
 - [Github](https://github.com/LabofDev/Vue.git) Branch Name : **`vue-advanced-1.init`**
