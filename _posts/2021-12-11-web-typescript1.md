@@ -21,10 +21,13 @@ last_modified_at: 2021-12-11
 <img src="../../assets/images/posts/typescript-1/typescript.png" width="100%"/>
 
 ## 1. 오리엔테이션
+
 ### 1.1 정의
+
 -. 캡틴 판교의 인프런 강의를 기반으로 학습 자료를 정리
 
 ## 2. 소개 와 배경
+
 ### 2.1 타입 스크립트란?
 - [타입스크립트 공식 문서](https://www.typescriptlang.org/)
 - 타입스크립트는 자바스크립트의 슈퍼셋(타입을 부여) 언어입니다. 자바스크립트의 확장된 언어. 
