@@ -2,106 +2,127 @@
 
 {% assign sum = site.posts | size %}
 {% assign sum_life = site.categories.architecture.size | plus: site.categories.Hobby-Interest.size %}
-{% assign sum_work = site.categories.maritime.size | plus: site.categories.net.size | plus: site.categories.web.size | plus: site.categories.mobile.size | plus: site.categories.technology.size %}
-{% assign sum_future = site.categories.Framework-Pattern.size | plus: site.categories.Maru-Project.size | plus: site.categories.Bloom-Project.size | plus: site.categories.Logistics-Project.size %}
+{% assign sum_work = site.categories.maritime.size | plus: site.categories.net.size | plus: site.categories.web.size |
+plus: site.categories.mobile.size | plus: site.categories.technology.size | plus: site.categories.bootcamp.size %}
+{% assign sum_future = site.categories.Framework-Pattern.size | plus: site.categories.Maru-Project.size | plus:
+site.categories.Bloom-Project.size | plus: site.categories.Logistics-Project.size %}
 
 <nav class="nav__list">
-  <input id="ac-toc" name="accordion-toc" type="checkbox" />
-  <label for="ac-toc">{{ site.data.ui-text[site.locale].menu_label }}</label>
-  <ul class="nav__items" id="category_tag_menu">
-      <!--전체 글 수-->
-      <!--<li>Total : <b style="color:lightgray;">{{sum}}</b></li>-->
-      <li>
+    <input id="ac-toc" name="accordion-toc" type="checkbox" />
+    <label for="ac-toc">{{ site.data.ui-text[site.locale].menu_label }}</label>
+    <ul class="nav__items" id="category_tag_menu">
+        <!--전체 글 수-->
+        <!--<li>Total : <b style="color:lightgray;">{{sum}}</b></li>-->
+        <li>
 
-        <!-- Life 카테고리 -->
-        <span class="nav__sub-title">Life (<span style="color:Chartreuse;">{{ sum_life }}</span>)</span>
+            <!-- Life 카테고리 -->
+            <span class="nav__sub-title">Life (<span style="color:Chartreuse;">{{ sum_life }}</span>)</span>
             <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
             <ul>
-                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
+                <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시-->
                 {% for category in site.categories %}
-                    {% if category[0] == "Hobby-Interest" %}
-                        <li><a href="/categories/Hobby-Interest" class="">Hobby & Interest (<span style="color:hotpink;">{{category[1].size}}</span>)</a></li>
-                    {% endif %}
+                {% if category[0] == "Hobby-Interest" %}
+                <li><a href="/categories/Hobby-Interest" class="">Hobby & Interest (<span
+                            style="color:hotpink;">{{category[1].size}}</span>)</a></li>
+                {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "architecture" %}
-                        <li><a href="/categories/architecture" class="">Architecture (<span style="color:hotpink;">{{category[1].size}}</span>)</a></li>
-                    {% endif %}
+                {% if category[0] == "architecture" %}
+                <li><a href="/categories/architecture" class="">Architecture (<span
+                            style="color:hotpink;">{{category[1].size}}</span>)</a></li>
+                {% endif %}
                 {% endfor %}
             </ul>
 
 
-        <!-- Work 카테고리 -->
-        <span class="nav__sub-title">Work (<span style="color:Chartreuse;">{{ sum_work }}</span>)</span>
+            <!-- Work 카테고리 -->
+            <span class="nav__sub-title">Work (<span style="color:Chartreuse;">{{ sum_work }}</span>)</span>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "maritime" %}
-                        <li><a href="/categories/maritime" class="">Maritime (<span style="color:tomato;">{{category[1].size}}</span>)</a></li>
-                    {% endif %}
+                {% if category[0] == "maritime" %}
+                <li><a href="/categories/maritime" class="">Maritime (<span
+                            style="color:tomato;">{{category[1].size}}</span>)</a></li>
+                {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "net" %}
-                        <li><a href="/categories/net" class="">.Net (<span style="color:tomato;">{{category[1].size}}</span>)</a></li>
-                    {% endif %}
+                {% if category[0] == "net" %}
+                <li><a href="/categories/net" class="">.Net (<span
+                            style="color:tomato;">{{category[1].size}}</span>)</a></li>
+                {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "web" %}
-                        <li><a href="/categories/web" class="">Web (<span style="color:tomato;">{{category[1].size}}</span>)</a></li>
-                    {% endif %}
+                {% if category[0] == "web" %}
+                <li><a href="/categories/web" class="">Web (<span style="color:tomato;">{{category[1].size}}</span>)</a>
+                </li>
+                {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "mobile" %}
-                        <li><a href="/categories/mobile" class="">Mobile (<span style="color:tomato;">{{category[1].size}}</span>)</a></li>
-                    {% endif %}
+                {% if category[0] == "mobile" %}
+                <li><a href="/categories/mobile" class="">Mobile (<span
+                            style="color:tomato;">{{category[1].size}}</span>)</a></li>
+                {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "technology" %}
-                        <li><a href="/categories/technology" class="">Technology (<span style="color:tomato;">{{category[1].size}}</span>)</a></li>
-                    {% endif %}
+                {% if category[0] == "technology" %}
+                <li><a href="/categories/technology" class="">Technology (<span
+                            style="color:tomato;">{{category[1].size}}</span>)</a></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            <ul>
+                {% for category in site.categories %}
+                {% if category[0] == "bootcamp" %}
+                <li><a href="/categories/bootcamp" class="">Bootcamp (<span
+                            style="color:tomato;">{{category[1].size}}</span>)</a></li>
+                {% endif %}
                 {% endfor %}
             </ul>
 
 
-        <!-- Future 카테고리 -->
-        <span class="nav__sub-title">Future (<span style="color:Chartreuse;">{{ sum_future }}</span>)</span>
+            <!-- Future 카테고리 -->
+            <span class="nav__sub-title">Future (<span style="color:Chartreuse;">{{ sum_future }}</span>)</span>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "Framework-Pattern" %}
-                        <li><a href="/categories/Framework-Pattern" class="">Framework & Pattern (<span style="color:dodgerblue;">{{category[1].size}}</span>)</a></li>
-                    {% endif %}
+                {% if category[0] == "Framework-Pattern" %}
+                <li><a href="/categories/Framework-Pattern" class="">Framework & Pattern (<span
+                            style="color:dodgerblue;">{{category[1].size}}</span>)</a></li>
+                {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "Maru-Project" %}
-                        <li><a href="/categories/Maru-Project" class="">Maru Project (<span style="color:dodgerblue;">{{category[1].size}}</span>)</a></li>
-                    {% endif %}
+                {% if category[0] == "Maru-Project" %}
+                <li><a href="/categories/Maru-Project" class="">Maru Project (<span
+                            style="color:dodgerblue;">{{category[1].size}}</span>)</a></li>
+                {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "Bloom-Project" %}
-                        <li><a href="/categories/Bloom-Project" class="">Bloom Project (<span style="color:dodgerblue;">{{category[1].size}}</span>)</a></li>
-                    {% endif %}
+                {% if category[0] == "Bloom-Project" %}
+                <li><a href="/categories/Bloom-Project" class="">Bloom Project (<span
+                            style="color:dodgerblue;">{{category[1].size}}</span>)</a></li>
+                {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
-                    {% if category[0] == "Logistics-Project" %}
-                        <li><a href="/categories/Logistics-Project" class="">Logistics Project (<span style="color:dodgerblue;">{{category[1].size}}</span>)</a></li>
-                    {% endif %}
+                {% if category[0] == "Logistics-Project" %}
+                <li><a href="/categories/Logistics-Project" class="">Logistics Project (<span
+                            style="color:dodgerblue;">{{category[1].size}}</span>)</a></li>
+                {% endif %}
                 {% endfor %}
             </ul>
-      </li>
-  </ul>
+        </li>
+    </ul>
 </nav>

@@ -1,14 +1,14 @@
 ---
-title:  "[개발자의품격] BootCamp 5기"
-excerpt: "개발자의품격 부프캠프"
+title:  "[BootCamp 5기] - Input Type for Mobile User"
+excerpt: "개발자의품격"
 comments: true
 header:
   t
 
 categories:
-  - web
+  - bootcamp
 tags:
-  - [Blog, BootCamp, 개발자의품격]
+  - [Blog, bootcamp, 개발자의품격, html, input type]
 
 toc: true
 toc_sticky: false
