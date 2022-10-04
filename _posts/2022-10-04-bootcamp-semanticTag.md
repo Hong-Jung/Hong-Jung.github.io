@@ -14,23 +14,20 @@ toc: true
 toc_sticky: false
 toc_label: "페이지 주요 목차" 
  
-date: 2022-10-02
-last_modified_at: 2022-10-02
+date: 2022-10-04
+last_modified_at: 2022-10-04
 ---
 
-<img src="../../assets/images/posts/bootcamp005/개발자의품격001.png" width="100%"/>
+<!-- <img src="../../assets/images/posts/bootcamp005/개발자의품격001.png" width="100%"/> -->
 
-## 1. 오리엔테이션
+## 1. Semantic Tag
 
-- 2022년10월03일(월) 21:00 ~ 23:00
-- Zoom을 통한 화상
+- Semantic Tag 기술 블로그
 
-### 1.1 진행 내용
+### 1.1 하위 목록
 
-- '개발자의 품격' 소개
-- 강의 진행 방향 및 학습 방법
-- 캠프5기 멤버 소개 
+- 하위 목록 상세
 
-## 2. 지원 동기 및 목표
+#### 1.1.1 하위 하위 목록
 
-- 웹개발 학습 및 프로젝트 진행
+- 하위 하위 목록 상세
