@@ -18,7 +18,7 @@ date: 2022-10-04
 last_modified_at: 2022-10-04
 ---
 
-<!-- <img src="../../assets/images/posts/bootcamp005/개발자의품격001.png" width="100%"/> -->
+<a href='https://better-mobile-inputs.netlify.app/' target='_blank'><img src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/qyjE-kzw.png?resize=1000%2C822&ssl=1" width="100%"/></a>
 
 ## 1. Input Type for Mobile User
 
