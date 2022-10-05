@@ -22,8 +22,6 @@ last_modified_at: 2022-10-05
 
 ## 1. HTML
 
----
-
 - HTML 이란 ?([click](https://namu.wiki/w/HTML))
 - `웹 사이트`의 모습을 기술하기 위한 `마크업 언어`.
 - 참고 사이트
@@ -102,8 +100,6 @@ last_modified_at: 2022-10-05
 - 하위 항목
 
 ## 2. Environment Configure
-
----
 
 - 개발 환경 설정
   - Visual Studio Code, Nodejs 필수
