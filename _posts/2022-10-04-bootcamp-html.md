@@ -89,9 +89,10 @@ last_modified_at: 2022-10-04
 
 ## 2. Environment Configure
 
-- [VS code](https://code.visualstudio.com/)
-  - Extension
-    - HTML CSS support
+### 2.1 [VS code](https://code.visualstudio.com/)
+
+- Extension
+  - HTML CSS support
     - HTML Snippets
     - JavaScript(ES6) code Snippets
     - ESLint
@@ -100,4 +101,5 @@ last_modified_at: 2022-10-04
       - settings > formatter > HTML > format:Enable
       - settings > formatter > JavaScript > format:Enable
     - Live Server
-- [Nodejs](https://nodejs.org/en/)
+
+### 2.2 [Nodejs](https://nodejs.org/en/)
