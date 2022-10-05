@@ -21,7 +21,7 @@ last_modified_at: 2022-10-05
 <!-- <img src="../../assets/images/posts/bootcamp005/개발자의품격001.png" width="100%"/> -->
 
 ## 1. HTML
-
+---
 - HTML 이란 ?([click](https://namu.wiki/w/HTML))
 - `웹 사이트`의 모습을 기술하기 위한 `마크업 언어`.
 - 참고 사이트
@@ -31,7 +31,7 @@ last_modified_at: 2022-10-05
 
 ### 1.1 HTML 주요 사항
 
-#### 1.1.1 Global Attributes
+### 1.1.1 Global Attributes
 
 - 공통적으로 가지고 있는 요소들의 속성(글로벌, 전역)과 그렇지 않은 속성(로컬, 지역)
 - [참고 자료](https://developer.mozilla.org/ko/docs/Web/HTML/Global_attributes)
@@ -102,7 +102,7 @@ last_modified_at: 2022-10-05
 - 하위 항목
 
 ## 2. Environment Configure
-
+---
 ### 2.1 [VS code](https://code.visualstudio.com/)
 
 - Extension
