@@ -42,7 +42,7 @@ last_modified_at: 2022-10-04
 - inline style
   - html 요소에 직접 스타일을 작성
 - internal style
-  - <style></style> tag를 활용
+  - ```<style></style>``` tag를 활용
 - external style
   - 별도의 파일(확장자 .css)에 스타일 작성 후 참조하여 사용
 
