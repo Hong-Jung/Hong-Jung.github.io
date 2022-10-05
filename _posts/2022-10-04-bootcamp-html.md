@@ -66,24 +66,38 @@ last_modified_at: 2022-10-05
 ### 1.1.5 Table Tag
 
 - 표를 표현하기 위한 속성으로, 표, 행, 셀(데이터, 열제목), 제목, 데이터들의 요소가 있다.
-- table
-  - thead
-    - 제목이 들어가는 요소로 모든 tr tag 포함
-- tbody
-  - 데이터(컨텐츠)가 들어가는 요소로 모든 tr tag 포함
-- tr
-  - 행(table row)를 위한 요소
-- th
-  - 열제목(table head)를 위한 요소
-- td
-  - 데이터(table data)를 위한 요소
-- colspan, rowspan
+
+|     tag      | description                                       |
+| :----------: | :------------------------------------------------ |
+|  `<table>`   | 테이블 태그                                       |
+|  `<thead>`   | 제목이 들어가는 요소로 모든 tr tag 포함           |
+|  `<tbody>`   | 데이터(컨텐츠)가 들어가는 요소로 모든 tr tag 포함 |
+|    `<tr>`    | 행(table row)를 위한 요소                         |
+|    `<th>`    | 열제목(table head)를 위한 요소                    |
+|    `<td>`    | 데이터(table data)를 위한 요소                    |
+| colspan=숫자 | 열 병합                                           |
+| rowspan=숫자 | 행 병합                                           |
 
 ### 1.1.6 Form Tag
 
-- 하위 항목
+- [`<form>`](https://developer.mozilla.org/ko/docs/Web/HTML/Element/form)
+- 사용자로부터 정보를 **입력**받기 위한 *HTML 요소들*
+- form tag는 client 정보를 server로 전송하기 위함이며 form action과 button submit을 이용하여 전송 가능.
+- SPA(Single Page Application) 트렌드에서는 적합하지 않으며, 화면의 깜빡임 없이 서버로 정보를 전송하는 라이브러리 사용.
+- `name` 속성은 그룹을 위함이며, 중복될 수 있다.
+- `id` 속성은 unique한 값을 위함으로 유일해야 한다.
+- `label:for` 속성에 `id`를 연결해 줌으로 그룹핑 가능.
+- `<input>` 입력 요소
+  - 사용자로부터 데이터를 입력 받을 수 있는 요소, HTML 제일 강력하고 복잡한 요소.
+  - [input type by MDN](https://developer.mozilla.org/ko/docs/Web/HTML/Element/Input)
+  - 모바일 환경을 고려하여 적극적으로 사용 권장
+- `<img>` 태그에는 반드시 **alt** 속성을 부여 한다.
   
 ### 1.1.7 Input Attribute
+
+- 하위 항목
+
+### 1.1.8 Etc Element
 
 - 하위 항목
 
