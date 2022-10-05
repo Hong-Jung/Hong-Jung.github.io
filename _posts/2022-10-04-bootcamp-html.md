@@ -93,13 +93,13 @@ last_modified_at: 2022-10-04
 
 - Extension
   - HTML CSS support
-    - HTML Snippets
-    - JavaScript(ES6) code Snippets
-    - ESLint
-    - Prettier - Code formatter
-      - settings > formatter > default formatter > prettier - code formatter
-      - settings > formatter > HTML > format:Enable
-      - settings > formatter > JavaScript > format:Enable
-    - Live Server
+  - HTML Snippets
+  - JavaScript(ES6) code Snippets
+  - ESLint
+  - Prettier - Code formatter
+    - settings > formatter > default formatter > prettier - code formatter
+    - settings > formatter > HTML > format:Enable
+    - settings > formatter > JavaScript > format:Enable
+  - Live Server
 
 ### 2.2 [Nodejs](https://nodejs.org/en/)
