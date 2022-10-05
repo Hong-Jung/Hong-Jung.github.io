@@ -22,12 +22,33 @@ last_modified_at: 2022-10-04
 
 ## 1. Semantic Tag
 
-- Semantic Tag 기술 블로그
+- [Semantics](https://developer.mozilla.org/ko/docs/Glossary/Semantics)
+- [Semantic HTML](https://en.wikipedia.org/wiki/Semantic_HTML)
+- [HTML Semantic Elements](https://www.w3schools.com/html/html5_semantic_elements.asp)
+- What are Semantic Elements?
+> A semantic element clearly describes its meaning to both the browser and the developer.
+> 
+> Examples of non-semantic elements: `<div>` and `<span>` - Tells nothing about its content.
+> 
+> Examples of semantic elements: `<form>`, `<table>`, and `<article>` - Clearly defines its content.
 
-### 1.1 하위 목록
+- 태그(요소)를 개발자들만 인지할 수 있도록 작성되는 부분을 지양하고, 의미 있는 태그(요소)를 적극적으로 사용하여 가독성, 접근성을 높일 수 있도록 `Semantic Tag` 사용을 지향
 
-- 하위 목록 상세
+### 1.1 Semantic Tag 종류
 
-#### 1.1.1 하위 하위 목록
+- <img src="https://www.w3schools.com/html/img_sem_elements.gif" width="50%"/>
 
-- 하위 하위 목록 상세
+|      Tag       | Description                                                                                                                                    |
+| :------------: | :--------------------------------------------------------------------------------------------------------------------------------------------- |
+|  `<article>`   | 컨텐츠 정의 / [참조](https://www.w3schools.com/html/tryit.asp?filename=tryhtml5_article)                                                       |
+|  `<details>`   | 추가 세부 정보                                                                                                                                 |
+| `<figcaption>` | `<figure>`의 캡션 / [참조](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_figcaption)                                               |
+|   `<figure>`   | 자체 포함된 컨텐츠 지정 / [참조](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_figcaption)                                         |
+|   `<footer>`   | 바닥글 / [참조](https://www.w3schools.com/html/tryit.asp?filename=tryhtml5_footer)                                                             |
+|   `<header>`   | 머릿글 / [참조](https://www.w3schools.com/html/tryit.asp?filename=tryhtml5_header)                                                             |
+|    `<main>`    | 주요 컨텐츠                                                                                                                                    |
+|    `<mark>`    | 강조표시 컨텐츠                                                                                                                                |
+|    `<nav>`     | 네비게이션 링크 / [참조](https://www.w3schools.com/html/tryit.asp?filename=tryhtml5_nav)                                                       |
+|  `<section>`   | `<header>`, `<footer>` 사이에 구역 정의 `<section>` 중첩 사용 가능/ [참조](https://www.w3schools.com/html/tryit.asp?filename=tryhtml5_section) |
+|  `<summary>`   | `<summary>` 요소의 제목                                                                                                                        |
+|    `<time>`    | 날짜/시간                                                                                                                                      |
