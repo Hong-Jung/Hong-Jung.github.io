@@ -28,7 +28,7 @@ last_modified_at: 2022-10-05
   - [W3](https://www.w3.org/)
   - [MDN](https://developer.mozilla.org/ko/)
   - [모질라재단](https://namu.wiki/w/%EB%AA%A8%EC%A7%88%EB%9D%BC%20%EC%9E%AC%EB%8B%A8)
-- <img src="https://velog.velcdn.com/images%2Fhadoyaji%2Fpost%2F441a79f9-24d3-44c2-abfc-73d7dfbaa8f0%2Fimage.png" with="70%" alt="DOM, BOM & JavaScript"/>>
+- <img src="https://velog.velcdn.com/images%2Fhadoyaji%2Fpost%2F441a79f9-24d3-44c2-abfc-73d7dfbaa8f0%2Fimage.png" with="70%" alt="DOM, BOM & JavaScript"/>
   - Window [MDN 참고](https://developer.mozilla.org/ko/docs/Web/API/Window)
     - Window 인터페이스는 DOM 문서를 담은 창을 나타냄
     - 최상위 객체 / 전역 객체 / 모든 객체가 소속된 객체
