@@ -28,6 +28,20 @@ last_modified_at: 2022-10-05
   - [W3](https://www.w3.org/)
   - [MDN](https://developer.mozilla.org/ko/)
   - [모질라재단](https://namu.wiki/w/%EB%AA%A8%EC%A7%88%EB%9D%BC%20%EC%9E%AC%EB%8B%A8)
+- <img src="https://velog.velcdn.com/images%2Fhadoyaji%2Fpost%2F441a79f9-24d3-44c2-abfc-73d7dfbaa8f0%2Fimage.png" with="70%" alt="DOM, BOM & JavaScript"/>>
+  - Window [MDN 참고](https://developer.mozilla.org/ko/docs/Web/API/Window)
+    - Window 인터페이스는 DOM 문서를 담은 창을 나타냄
+    - 최상위 객체 / 전역 객체 / 모든 객체가 소속된 객체
+  - DOM(Document Object Model) [MDN 참고](https://developer.mozilla.org/ko/docs/Web/API/Document_Object_Model/Introduction)
+    - 문서의 프로그래밍 interface
+    - 문서의 구조화된 표현(structured representation)을 제공
+    - 프로그래밍 언어가 DOM 구조에 접근할 수 있는 방법을 제공하여 그들이 문서 구조, 스타일, 내용 등을 변경할 수 있게 함
+    - 브라우저가 웹 문서를 이해할 수 있도록 구성된 것
+    - 자바스크립트를 통해 동적으로 변경 가능
+  - BOM(Browser Object Model) [Wiki 참고](https://en.wikipedia.org/wiki/Browser_Object_Model)
+    - 브라우저 객체 모델 : 자바스크립트가 브라우저와 소통하기 위해 만들어진 모델
+  - JavaScript [MDN 참고](https://developer.mozilla.org/ko/docs/Web/JavaScript)
+    - 가벼운 객체 지향 인터프리터 언어이며 웹페이지의 스크립트 언어로 잘 알려져 있지만, 브라우저가 아닌 환경에서도 많이 사용
 
 ### 1.1 Global Attributes
 
