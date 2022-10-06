@@ -93,11 +93,53 @@ last_modified_at: 2022-10-05
   
 ### 1.7 Input Attribute
 
-- 하위 항목
+- [MDN `<input>` Link](https://developer.mozilla.org/ko/docs/Web/HTML/Element/Input)
+- `Form`, `Button(Submit)` 사용시 `Required` 속성에 대해서는 유효성 검사를 수행
+- disabled 속성
+  - submit 버튼을 통하여 서버로 전송시 value의 데이터가 전송되지 않음. [MDN 참고](https://developer.mozilla.org/ko/docs/Web/HTML/Element/Input#attr-disabled)
+
+```html
+<form action="">
+  <!-- value 값을 서버로 전송 -->
+  <input type="text" name="" id="Send" value="this is id"/>
+
+  <!-- disabled 속성 값 때문에, value 값을 서버로 전송하지 않음 -->
+  <input type="text" name="" id="noSend" value="this is id" disabled/>
+  <button type="submit">send to server</button>
+</form>
+```
+
+- maxlength
+  - password, search, tel, text, url에서 **value의 최대 길이 (문자수)** [MDN 참고](https://developer.mozilla.org/ko/docs/Web/HTML/Element/Input#attr-maxlength)
+- placeholder
+  - password, search, tel, text, url에서 **양식 컨트롤이 비어있는 때 양식 컨트롤에 나타나는 내용** [MDN 참고](https://developer.mozilla.org/ko/docs/Web/HTML/Element/Input#attr-placeholder)
+- autocomplete 속성
+  - name 속성과 함께 사용 가능 [MDN 참고](https://developer.mozilla.org/ko/docs/Web/HTML/Attributes/autocomplete)
+- autofocus
+  - 화면이 나타날때 자동으로 포커스 [MDN 참고](https://developer.mozilla.org/ko/docs/Web/HTML/Element/Input#attr-autofocus)
 
 ### 1.8 Etc Element
 
-- 하위 항목
+- `<select>` 요소 [MDN 참고](https://developer.mozilla.org/ko/docs/Web/HTML/Element/select)
+  - 하위 데이터 요소로 `<option>` 사용 가능
+    - `value` 속성 : 데이터를 식별할 수 있는 유일한 키 값
+
+```html
+<select name="" id="">
+  <option value="001">data 1</option>
+  <option value="002">data 2</option>
+  <option value="003">data 3</option>
+</select>
+```
+
+- `<select>`와, `<input type='check'/>`와 `<input type='radio'/>`를 UI와 비지니스를 고려하여 사용 필요
+- `<textarea>`
+  - 멀티라인 일반 텍스트 편집 컨트롤 [MDN 참고](https://developer.mozilla.org/ko/docs/Web/HTML/Element/textarea)
+- `<fieldset>`, `<legend>` 요소
+  - 여러 컨트롤과 레이블을 묶을 때 사용 [MDN 참고](https://developer.mozilla.org/ko/docs/Web/HTML/Element/fieldset)
+- `<datalist>` 요소
+  - 다른 컨트롤에서 고를 수 있는(가능한, 추천하는) 선택지를 나타내는 `<option>` 요소를 여럿 가짐 [MDN 참고](https://developer.mozilla.org/ko/docs/Web/HTML/Element/datalist)
+  - 동일한 화면(UI, Page)의 여러곳에서 동일한 데이터를 사용하는 경우 유용함
 
 ## 2. Environment Configure
 
