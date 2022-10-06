@@ -1,5 +1,5 @@
 ---
-title:  "[BootCamp 5기] - Input Type for Mobile User"
+title:  "Input Type for Mobile User"
 excerpt: "개발자의품격"
 comments: true
 header:
@@ -15,7 +15,7 @@ toc_sticky: false
 toc_label: "페이지 주요 목차" 
  
 date: 2022-10-04
-last_modified_at: 2022-10-05
+last_modified_at: 2022-10-07
 ---
 
 [<img src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/qyjE-kzw.png?resize=1000%2C822&ssl=1" width="100%"/>](<img src="https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/04/qyjE-kzw.png?resize=1000%2C822&ssl=1" width="100%"/>)

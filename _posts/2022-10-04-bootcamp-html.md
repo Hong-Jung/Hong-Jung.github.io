@@ -1,5 +1,5 @@
 ---
-title:  "[BootCamp 5기] - HTML"
+title:  "HTML"
 excerpt: "개발자의품격"
 comments: true
 header:
@@ -15,7 +15,7 @@ toc_sticky: false
 toc_label: "페이지 주요 목차" 
  
 date: 2022-10-04
-last_modified_at: 2022-10-06
+last_modified_at: 2022-10-07
 ---
 
 <!-- <img src="../../assets/images/posts/bootcamp005/개발자의품격001.png" width="100%"/> -->
