@@ -159,6 +159,97 @@ last_modified_at: 2022-10-07
   - 다른 컨트롤에서 고를 수 있는(가능한, 추천하는) 선택지를 나타내는 `<option>` 요소를 여럿 가짐 [MDN 참고](https://developer.mozilla.org/ko/docs/Web/HTML/Element/datalist)
   - 동일한 화면(UI, Page)의 여러곳에서 동일한 데이터를 사용하는 경우 유용함
 
+### 1.9 Form Element
+
+- form 요소
+
+```html
+<form action="" method="" target="" novalidate>
+  <button type="submit" formnovalidate="formnovalidate">저장</button>
+</form>
+```
+
+- action 속성
+  - 데이터를 전송할 서버의 주소
+- method 속성
+  - 데이터의 전송 방법
+  - get
+  - url에 전송할 데이터가 포함되어 전송, 데이터 노출, 보안취약, 데이터 크기 제약
+  - 페이지 주소를 공유 할때 유용(퍼머링크)
+  - post
+  - 전송할 데이터가 보이지 않음, get 방식보다는 보안상 안전(볼수 있음)
+  - 전송할 데이터 암호화가 필요(https 프로토콜 사용하면 네트워크에서 모니터링 불가)
+  - 데이터의 크기에 제약이 없음
+- target 속성
+  - _self(자기자신, 기본값),_blank(새창), _parent(iframe에서 바로 위의 부모),_top(iframe에서 최상위 부모)
+- form 요소내 input 요소의 validate 미적용
+  - form > novalidate 속성 사용
+  - button > formnovalidate="formnovalidate" 속성 사용
+
+### 1.10 iframe Element
+
+- [W3 School 참고](https://www.w3schools.com/tags/tag_iframe.asp)
+- html 페이지에 다른 html 페이지를 삽입하여 사용할 수 있음
+- 요즘의 웹프레임워크(리액트, 앵귤러, 뷰)에서는 사용하지 않으며, 대형 포털에서는 iframe을 지원하지 않음
+
+### 1.11 Video & Audio Element
+
+- video element
+  - [W3 School 참고](https://www.w3schools.com/html/html5_video.asp)
+  - controls
+    - 비디오 관련된 컨트롤 UI 제공
+  - autoplay
+    - 자동 실행
+  - muted
+    - 소리 제거
+  - loop
+    - 영상 자동 재생
+  - poster
+    - 썸네일
+  - preload : auto, metadata, none
+    - auto
+      - 미리 다운로드, 시청할 확율이 높고, 영상 플레이 했을 때 바로 보여줘야 하는 중요한 영상
+    - metadata
+      - 미리 다운로드 안함, 메타 정보만 미리 다운로드
+    - none
+      - 미리 다운로드 암함, 영상을 바로 보지 않을 확율이 높음, 서버 부담 작음
+- audio element
+  - [W3 School 참고](https://www.w3schools.com/html/html5_audio.asp)
+  - autoplay
+    - 자동 다운로드후 가장 빠른 시점부터 자동 재생
+  - loop
+    - 자동 재생
+  - muted
+    - 소리 제거
+  - preload
+    - auto, metadata, none
+
+### 1.12 map Element
+
+- [W3 School 참고](https://www.w3schools.com/tags/tag_map.asp)
+- [www.image-map.net 이미지 map 자동 요소 및 속성 생성 사이트](https://www.image-map.net/)
+- `<map>` 태그는 이미지 맵 정의에 사용, 이미지 맵은 클릭 가능한 영역이 있는 이미지를 의미
+- `<map>` 요소의 필수 이름 속성은 `<img>`의 **usemap** 속성과 연결되어 이미지와 지도 간의 관계를 생성
+- `<map>` 요소에는 이미지 맵에서 클릭 가능한 영역을 정의하는 다수의 `<area>` 요소가 포함
+  
+```html
+<img src="workplace.jpg" alt="Workplace" usemap="#workmap" width="400" height="379">
+
+<map name="workmap">
+  <area shape="rect" coords="34,44,270,350" alt="Computer" href="computer.htm">
+  <area shape="rect" coords="290,172,333,250" alt="Phone" href="phone.htm">
+  <area shape="circle" coords="337,300,44" alt="Cup of coffee" href="coffee.htm">
+</map>
+```
+
+### 1.13 Semantic Element
+
+- [W3 School 참고](https://www.w3schools.com/html/html5_semantic_elements.asp)
+- 많은 웹 사이트에는 `탐색`, `머리글` 및 `바닥글`을 나타내는 `<div id="nav"> <div class="header"> <div id="footer">` 와 같은 HTML 코드가 포함되어 있음
+  - 의미 없이 `div` 요소가 중첩하여 수없이 사용되면, 유지보수 및 가독성 모든 면에서 나쁜 영향을 끼침
+- 태그(요소)를 개발자들만 인지할 수 있도록 작성되는 부분을 지양하고, 의미 있는 태그(요소)를 적극적으로 사용하여 가독성, 접근성을 높일 수 있도록 `Semantic Tag` 사용을 지향
+- 시멘틱 요소는 100% `<div>` 요소와 동일하다.
+
 ## 2. Environment Configure
 
 - 개발 환경 설정
