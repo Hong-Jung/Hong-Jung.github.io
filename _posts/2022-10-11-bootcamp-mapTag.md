@@ -35,7 +35,7 @@ last_modified_at: 2022-10-11
 
 [<img src="../../assets/images/posts/bootcamp005/image_map_sample_ikea.png" width="300px" align="center"/>](https://www.ikea.com/kr/ko/?ref=gwp-start)
 
-- 자, 이제 이미지 맵을 어떻게 사용하는지 실제 사례를 보자
+- 자, 이제 이미지 맵을 어떻게 사용하는지 하나하나 따라서 진행해 보자.
 
 ### 1.1 Index
 
