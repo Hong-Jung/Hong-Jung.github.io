@@ -32,7 +32,9 @@ last_modified_at: 2022-10-11
 
 - 즉, 이미지의 특정 좌표(x축, y축)을 기준으로 링크 정보를 생성하여 페이지 이동이 가능하다. 다국적 기업인 IKEA의 홈페이지에서 많은 실례를 찾아 볼 수 있다. 
   
-[<img src="../assets/images/posts/bootcamp005/image_map_sample_ikea.png" width="300px" alt="IKEA 샘플 이미지" align="center"/>](https://www.ikea.com/kr/ko/?ref=gwp-start)
+<!-- [<img src="../../assets/images/posts/bootcamp005/image_map_sample_ikea.png" width="300px" alt="IKEA 샘플 이미지" align="center"/>](https://www.ikea.com/kr/ko/?ref=gwp-start) -->
+
+<img src="../../assets/images/posts/bootcamp005/image_map_sample_ikea.png" width="300px"/>
 
 - 자, 이제 이미지 맵을 어떻게 사용하는지 실제 사례를 보자
 
