@@ -15,7 +15,7 @@ toc_sticky: false
 toc_label: "페이지 주요 목차" 
  
 date: 2022-10-11
-last_modified_at: 2022-10-11
+last_modified_at: 2022-10-12
 ---
 
 <!-- <img src="../../assets/images/posts/bootcamp005/개발자의품격001.png" width="100%"/> -->
@@ -124,11 +124,167 @@ last_modified_at: 2022-10-11
 
 ### 1.2 CSS 적용 방법
 
+- [MDN Site 참고](https://developer.mozilla.org/ko/docs/Learn/CSS/First_steps/How_CSS_is_structured#html_%EC%97%90_css_%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0)
+- inline style
+  - html 요소의 시작 태그에 style 속성을 사용하여 직접 지정
+- internal style
+  - head 태그내에 `<style></style>` 태그를 사용하여 지정
+- external style
+  - internal style의 내용을 별도의 css 확장자의 파일로 분리하고 head 태그내에서 참고하여 사용
+
+  - ```html
+    <link rel="stylesheet" href="./css/style.css" />
+    ```
+
+  - 실무에서 가장 많이 사용
+
 ### 1.3 색상 적용 방법
+
+- [MDN Site 참고](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Colors/Applying_color)
+- 색상명
+  - 색상명에 해당하는 키워드 사용
+
+  - ```html
+    <h1 style="background-color: blue">파란색 배경색 적용</h1>
+    ```
+
+- RGB
+  - R-Red, G-Green, B-Blue에 대당하는 숫자값(0~255) 사용
+
+  - ```html
+    <h1 style="color: rgb(255, 0, 0)">빨간색</h1>
+    ```
+
+- RGBA
+  - RGB에 알파값 추가 A-Alpha(투명도)
+
+  - ```html
+    <h1 style="color: rgba(255, 0, 0, 0.2)">빨간색</h1>
+    ```
+
+- HEX
+  - 16진수 표기법, 광원(빛의 3원색)인 Red, Green, Blue의 조합으로 표기
+  - 0 -> HEX '00', 255 -> HEX 'FF'
+
+  - ```html
+    <h1 style="color: #ff0000">빨간색</h1>
+    ```
+
+- HSL
+  - 색조(hue), 채도(saturation), 밝기(lightness) 3가지 값
+  - 색조 : 0~360, 360은 빨간색, 120은 초록색, 240은 파란색
+  - 채도 : 0~100%, 0%은 회색음영
+  - 밝기 : 0~100%, 100% 가장 밝은 값
+
+  - ```html
+    <h1 style="color: hsl(360, 100%, 50%)">빨간색</h1>
+    ```
+
+- HSLA
+  - HSL에 알파값 추가 A-Alpha(투명도)
+
+  - ```html
+    <h1 style="background-color: hsla(9, 100%, 64%, 0.2)">어떤 배경색</h1>
+    ```
 
 ### 1.4 텍스트 스타일링
 
+- [MDN Siste 참고](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Text)
+- 몇가지 스타일을 복합해서 사용할 수 있으며, 개별로 사용도 가능하다.
+
+  - ```html
+    <style>
+      .underover {
+          text-decoration: dashed underline overline red 4px;
+        }
+      .decoration_style {text-decoration-style: dashed;}
+      .decoration_line {text-decoration-line: underline;}
+      .decoration_color {text-decoration-color: red;}
+      .decoration_thinkness {text-decoration-thinkness: 4px;}
+    </style>
+    ```
+
+- 대소문자를 위한 스타일의 경우
+
+  - ```html
+    <style>
+      .uppercase {text-transform: uppercase;}
+      .lowercase {text-transform: lowercase;}
+      .capitalize {text-transform: capitalize;}
+    </style>
+    ```
+
+  - 사용자는 페이지에서 문자 입력시 스타일을 사용하여 대소문자로 변경할 수 있으나, CSS는 눈에 보이는 값만 적용된다. 
+  - 즉, 입력은 소문자로 하지만 표시는 대문자로 된다. 하지만 값(value)은 입력한 소문자 그대로 이다.
+  - 서버로 전송할 경우 javascript.toUpperCase() 함수를 사용하여 다시 변경 후 서버로 전송 한다.
+
 ### 1.5 글꼴 스타일링
+
+- [MDN Site 참고](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Fonts)
+- [5개의 기본 폰트를 브라우저가 제공함](https://www.w3schools.com/cssref/css_websafe_fonts.asp)
+- 다중의 폰트를 정의할 수 있다.
+
+  - ```html
+    <style>
+      .font1 {
+        font-family: "Courier New", Courier, monospace;
+      }
+
+      .font2 {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+    </style>
+    ```
+
+  - 1번째부터 순차적으로 적용하고 없다면 하순위로 이동한다.
+- italic & oblique 구분
+  - `italic` 이탤릭체 폰트 사용, `oblique` 글자 자체만 기울임
+- [글꼴](https://developer.mozilla.org/ko/docs/Web/CSS/font-family)
+  - font-family: 굴림, 맑은고딕 등
+
+  - ```html
+    <h1 style="font-family: verdana">verdana 폰트</h1>
+    ```
+
+- [글꼴 스타일](https://developer.mozilla.org/ko/docs/Learn/CSS/Styling_text/Fundamentals)
+  - font-style: 이택릭 등
+
+  - ```html
+    .italic { font-style: italic; }
+    ```
+
+- 글꼴 굵기
+  - font-weight: normal(보통, 숫자로 400), bold(숫자로 700)
+
+  - ```html
+    <p style="font-weight: 100">font-weight:100</p>
+    ```
+
+  - 100 ~ 900, bold, bolder, normal 값이 존재
+  - border : 상대적인 값
+    - 부모 100~300 > 자식 400, 부모 400~500 > 자식 700, 부모 600이상 > 자식 900 고정
+  - lighter : 상대적인 값
+    - 부모 100~500 > 자식 100, 부모 600~700 > 자식 400, 부모 800~900 > 자식 700
+- 폰트 크기
+  - font-size : ???
+
+  - ```html
+    <p style="font-size: 10px">font-size:10px</p>
+    ```
+
+  - 절대 값
+    - xx-small, x-small, small, medium, large, x-large, xx-large
+  - 상대 값
+    - larger, smaller
+  - 길이 값
+    - em : 부모 요소의 폰트 크기 기준 (상대값)
+    - rem : 루트 요소의 폰트 크기 기준 (상대값)
+    - px : 픽셀
+    - pt : 포인트, 1pt = 0.72인치
+  - 퍼센트 값
+  - 대부분의 브라우저의 폰트 크기의 ***기본값은 12px = 16px = 1em = 100%***
+  - `em, rem`의 ***장점은 상대값으로 반영됨으로 다양한 크기의 디바이스 적용에 적당***
+  - 모바일 디바이스 일때는 ***기본값이 20px이다라는 식으로 정의***할 수 있다.
 
 ### 1.6 목록 스타일링
 
