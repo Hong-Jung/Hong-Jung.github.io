@@ -44,6 +44,28 @@ last_modified_at: 2022-10-07
   - 브라우저 객체 모델 : 자바스크립트가 브라우저와 소통하기 위해 만들어진 모델
 - JavaScript [MDN 참고](https://developer.mozilla.org/ko/docs/Web/JavaScript)
   - 가벼운 객체 지향 인터프리터 언어이며 웹페이지의 스크립트 언어로 잘 알려져 있지만, 브라우저가 아닌 환경에서도 많이 사용
+- 용어 정리
+  - ***요소(Element)***
+    - 시작 태그와 종료 태그로 감싸진 부분을 의미 (종료 태그가 없는 경우도 존재)
+    - 하나의 요소 안에는 여러 요소가 하위에 있을 수 있음
+      - 예) 다음 select 요소는 그 하위에 3개의 option 요소를 가지고 있음
+
+      - ```html
+        <select>
+          <option>Text1</option>
+          <option>Text2</option>
+          <option>Text3</option>
+        </select>
+        ```
+
+  - ***태그(Tag)***
+    - 요소(Element)의 시작과 끝 의미
+    - 위의 `select` 요소의 시작 태그는 `<select>`, 종료 태그는 `</select>`
+    - 태그 사이에는 텍스트 또는 다른 요소(Element)가 올 수 있음
+  - ***속성(Attribute, Property)***
+    - ***HTML***의 경우 `Attribute`라고 함
+    - ***CSS, JavaScript***의 경우 `Property`라고 함
+    > ***실무***</u>* 에서는 ***HTML, CSS, JavaScript*** 상관 없이 `Property`라고 많이 함
 
 ---
 
