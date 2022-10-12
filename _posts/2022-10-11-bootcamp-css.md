@@ -371,7 +371,7 @@ last_modified_at: 2022-10-12
 - [Box Size - MDN Site 참고](https://developer.mozilla.org/ko/docs/Web/CSS/box-sizing)
 - 박스 모델(Box Model)
   - html 요소는 박스 모양으로 구성(box mobel)
-  - <img src="../../assets/images/posts/bootcamp005/boxmodel.png" width="300px" align="center"/>
+  - <img src="../../assets/images/posts/bootcamp005/boxmodel.png" width="70%" align="center"/>
   - padding과 margin 속성의 값의 할당 의미
 
     - ```html
