@@ -322,7 +322,7 @@ last_modified_at: 2022-10-12
 
 - [MDN Site 참고](https://developer.mozilla.org/ko/docs/Web/CSS/cursor)
 - 가상 클래스(pseudo-classes)
-  - a:hover, a:visited, a:link
+  - a:hover, a:visited, a:link [가상 클래스 MDN Site 참고](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)
 - 페이지이동 역할(버튼과 같음), 커서모양 학습
   - style="curosr= value"
   - auto, default, context-menu, help, pointer, progress, wait, cell, crosshair, text, copy, move, not-allowed, col-resize, row-resize, zoom-in, zoom-out
@@ -330,7 +330,6 @@ last_modified_at: 2022-10-12
 ### 1.7 링크와 커서 스타일링
 
 - [MDN Site 참고](https://developer.mozilla.org/ko/docs/Web/CSS/cursor)
-- [가상 클래스 MDN Site 참고](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)
 - 페이지이동 역할(버튼과 같음), 커서모양 학습
   - style="cursor= value" [MDN cursor value 참고](https://developer.mozilla.org/ko/docs/Web/CSS/cursor#%EA%B0%92)
   - auto, default, context-menu, help, pointer, progress, wait, cell, crosshair, text, copy, move, not-allowed, col-resize, row-resize, zoom-in, zoom-out
