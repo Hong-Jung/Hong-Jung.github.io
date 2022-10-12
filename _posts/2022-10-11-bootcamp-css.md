@@ -325,7 +325,7 @@ last_modified_at: 2022-10-12
   - a:hover, a:visited, a:link [가상 클래스 MDN Site 참고](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)
 - 페이지이동 역할(버튼과 같음), 커서모양 학습
   - style="curosr= value"
-  - auto, default, context-menu, help, pointer, progress, wait, cell, crosshair, text, copy, move, not-allowed, col-resize, row-resize, zoom-in, zoom-out
+    - auto, default, context-menu, help, pointer, progress, wait, cell, crosshair, text, copy, move, not-allowed, col-resize, row-resize, zoom-in, zoom-out
  
 ### 1.7 링크와 커서 스타일링
 
@@ -362,8 +362,6 @@ last_modified_at: 2022-10-12
       .table > tbody {
         cursor: pointer;
       }
-
-      /* 태그선택자 < 클래스선택자 < 인라인스타일 */
     </style>
   ```
 
