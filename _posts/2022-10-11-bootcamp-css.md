@@ -321,7 +321,7 @@ last_modified_at: 2022-10-12
 ## 링크와 커서 스타일링
 
 - [MDN Site 참고](https://developer.mozilla.org/ko/docs/Web/CSS/cursor)
-- 가상 클래스 다시 언급
+- 가상 클래스(pseudo-classes)
   - a:hover, a:visited, a:link
 - 페이지이동 역할(버튼과 같음), 커서모양 학습
   - style="curosr= value"
