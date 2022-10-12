@@ -288,11 +288,130 @@ last_modified_at: 2022-10-12
 
 ### 1.6 목록 스타일링
 
+- [MDN Site 참고](https://developer.mozilla.org/en-US/docs/Web/CSS/list-style-type)
+- 순서 없는 목록(ul), 순서 있는 목록(ol), 목록의 하위 목록(li)
+- `ul > list-style-type`
+  - disc, circle, square, "custom"
+
+  - ```html
+    <style>
+      ul {
+        list-style-type: disc;
+        list-style-type: circle;
+        list-style-type: square;
+        list-style-type: "-";
+      }
+    </style>
+    ```
+
+- `ol > list-style-type`
+  - decimal, lower-roman, lower-greek, lower-latin, armenian, lower-alpha
+
+  - ```html
+    <style>
+      ol {
+        list-style-type: decimal;
+        list-style-type: lower-roman;
+        list-style-type: lower-greek;
+        list-style-type: armenian;
+      }
+    </style>
+    ```
+
+## 링크와 커서 스타일링
+
+- [MDN Site 참고](https://developer.mozilla.org/ko/docs/Web/CSS/cursor)
+- 가상 클래스 다시 언급
+  - a:hover, a:visited, a:link
+- 페이지이동 역할(버튼과 같음), 커서모양 학습
+  - style="curosr= value"
+  - auto, default, context-menu, help, pointer, progress, wait, cell, crosshair, text, copy, move, not-allowed, col-resize, row-resize, zoom-in, zoom-out
+ 
 ### 1.7 링크와 커서 스타일링
+
+- [MDN Site 참고](https://developer.mozilla.org/ko/docs/Web/CSS/cursor)
+- [가상 클래스 MDN Site 참고](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)
+- 페이지이동 역할(버튼과 같음), 커서모양 학습
+  - style="cursor= value" [MDN cursor value 참고](https://developer.mozilla.org/ko/docs/Web/CSS/cursor#%EA%B0%92)
+  - auto, default, context-menu, help, pointer, progress, wait, cell, crosshair, text, copy, move, not-allowed, col-resize, row-resize, zoom-in, zoom-out
 
 ### 1.8 표 스타일링
 
+- [MDN Site 참고](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Table)
+
+- ```html
+    <style>
+      .table {
+        border: 1px solid black;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      .table th,
+      .table td {
+        border: 1px solid black;
+      }
+
+      .table-striped > tbody > tr:nth-child(2n + 1) {
+        background-color: aquamarine;
+      }
+
+      .table-hover > tbody > tr:hover {
+        background-color: yellow;
+      }
+
+      .table > tbody {
+        cursor: pointer;
+      }
+
+      /* 태그선택자 < 클래스선택자 < 인라인스타일 */
+    </style>
+  ```
+
 ### 1.9 CSS 박스 모델과 요소의 크기
+
+- [Box Model - MDN Site 참고](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Box_Model)
+- [Box Size - MDN Site 참고](https://developer.mozilla.org/ko/docs/Web/CSS/box-sizing)
+- 박스 모델(Box Model)
+  - html 요소는 박스 모양으로 구성(box mobel)
+  - <img src="../../assets/images/posts/bootcamp005/boxmodel.png" width="300px" align="center"/>
+  - padding과 margin 속성의 값의 할당 의미
+
+    - ```html
+      <div style="padding: 10px 5px 10px 5px; 
+          margin: 5px 10px 5px 10px;
+          border: 10px solid green;">
+      <!-- 순서가 top, right, bottom, left 즉, 시계방향으로 진행 -->
+      <!-- 2개만 준다면, 1번째는 top, bottom 2번째는 right, left를 의미 -->
+      ```
+
+- 박스 사이징(Box Sizing)
+  - margin, border, padding, content 중 크기(width, height)의 기준 잡기가 중요
+  - box-sizing 속성을 이용하여 기준점 설정
+  - px 단위, 페센트 단위(부모 요소를 기준의 상대 값)
+
+  - ```html
+    <style>
+      .box-size {
+        box-sizing: content-box;
+        box-sizing: border-box;
+      }
+    </style>
+    <body>
+      <div class="box-size">박스 모델</div>
+
+      <div style="width: 100%; height: 200px; background-color: green">
+        <div
+          style="
+            width: 50%;
+            max-width: 900px;
+            min-width: 200px;
+            height: 50%;
+            background-color: red;">
+        </div>
+      </div>
+    </body>
+    ```
 
 ### 1.10 background 스타일링
 
