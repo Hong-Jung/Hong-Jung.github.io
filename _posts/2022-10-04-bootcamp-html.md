@@ -65,7 +65,7 @@ last_modified_at: 2022-10-07
   - ***속성(Attribute, Property)***
     - ***HTML***의 경우 `Attribute`라고 함
     - ***CSS, JavaScript***의 경우 `Property`라고 함
-    > ***실무***</u>* 에서는 ***HTML, CSS, JavaScript*** 상관 없이 `Property`라고 많이 함
+    > ***실무***에서는 ***HTML, CSS, JavaScript*** 상관 없이 `Property`라고 많이 함
 
 ---
 
