@@ -28,7 +28,7 @@ $type-size-4-5: 1.12em !default; // Ubuntu Mono is a bit small
 // https://github.com/mmistakes/minimal-mistakes/issues/1219
 html {
   font-size: 12px; // change to whatever
-  font-weight: 300;
+  font-weight: 200;
 
   @include breakpoint($medium) {
     font-size: 14px; // change to whatever
@@ -50,6 +50,6 @@ html {
 
 .language-plaintext {
   font-family: $monospace;
-  font-size: $type-size-5;
-  background: #485a55;
+  font-size: $type-size-5; //$type-size-5;
+  background: #300111;
 }
