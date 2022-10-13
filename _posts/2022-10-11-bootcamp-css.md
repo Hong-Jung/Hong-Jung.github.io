@@ -318,7 +318,7 @@ last_modified_at: 2022-10-12
     </style>
     ```
 
-## 1.7 링크와 커서 스타일링
+### 1.7 링크와 커서 스타일링
 
 - [MDN Site 참고](https://developer.mozilla.org/ko/docs/Web/CSS/cursor)
 - 가상 클래스(pseudo-classes)
