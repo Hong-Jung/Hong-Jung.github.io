@@ -405,7 +405,56 @@ last_modified_at: 2022-10-12
 
 ### 1.10 background 스타일링
 
+- [MDN Site 참고](https://developer.mozilla.org/ko/docs/Web/CSS/background)
+- [단축 속성](https://developer.mozilla.org/ko/docs/Web/CSS/Shorthand_properties)으로 색상, 이미지, 원점, 크기 반복등 여러 배경 스타일을 한 번에 지정할 수 있음.(속성별로 사용 가능)
+
+- ```html
+  <style>
+      /* 배경색 */
+      div {
+        background-color: aqua;
+      }
+
+      /* 배경 이미지 */
+      /* background: color, image, repeat, position */
+      body {
+        /* background-image: url("./img/img_tree.png"); */
+        /* background-repeat: repeat-x; */
+        /* background-position: center top; */
+        /* background-position: right 20px top 50px; */
+        /* background-attachment: scroll; */
+
+        background: yellowgreen url("./img/img_tree.png") no-repeat right 20px top 50px;
+        background-attachment: fixed;
+      }
+    </style>
+  ```
+
 ### 1.11 border 스타일링
+
+- [MDN Site 참고](https://developer.mozilla.org/ko/docs/Web/CSS/border)
+- [단축 속성](https://developer.mozilla.org/ko/docs/Web/CSS/Shorthand_properties)으로 요소의 테두리를 설정(border-width, border-style, border-color)
+
+- ```html
+  <style>
+      /* border  */
+      /* 시계방향 : border-top, border-right, border-bottom, border-left */
+      /* border: 5px -> 4면 모두 5px */
+      /* border: 5px 10px -> top, bottom은 5px, right, left는 10px */
+      /* border: 5px 10px 7px -> top은 5px, right, left는 10px, bottom 7px */
+      /* border: 5px 10px 7px 8px */
+      div {
+        border: 3px solid red;
+        /*border-width: 3px;
+        border-style: solid;
+        border-color: red;*/
+
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+      }
+  </style>
+  ```
 
 ## 2. Reference
 
