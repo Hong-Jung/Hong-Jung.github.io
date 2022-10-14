@@ -65,10 +65,10 @@ last_modified_at: 2022-10-11
 
 ### 1. IKEA 홈페이지의 이미지 맵에 대한 분석   
 
-- 좌측의 실제 이미지에 3개의 영역을 구분하여, 각 영역에 `Hover or Click`시 이벤트 처리를 통하여 추가 정보를 표시하고 있다.
+- 아래의 이미지를 보면 실제 이미지에 3개의 영역을 구분하여, 각 영역에 `Hover or Click`시 이벤트 처리를 통하여 추가 정보를 표시하고 있다.
   - A : 배경 이미지 영역
   - B : 3개의 상세 영역을 구분하고 각 영역의 `<a>` 태그 또는 추가 정보를 위한 `<div>` 태크 사용
-- <img src="../../assets/images/posts/bootcamp005/image_map_sample_ikea.png" width="100%"/>
+- <img src="../../assets/images/posts/bootcamp005/ikea_image_link_analysis.png" width="100%"/>
 - 태그(코드)의 양도 많으며, 가독성도 떨어진다. 아마 다른 툴을 활용해서 상세 코드를 생성하지 않았을까? 라는 생각을 해 본다.
 
 #### 1.1 기능 위주의 분석
@@ -76,7 +76,7 @@ last_modified_at: 2022-10-11
 - B 영역에 대해서 간단하게 분석해 보자
 - *둥근 영역*에 마우스를 `Hover`하면 우측으로 `<div>` 태그를 활용하여 *간략한 정보*를 표시 한다.
 - *둥근 영역*이나 *간략 정보 영역*을 `click`하면 `<a>` 태그를 이용하여 *상세 페이지로 이동* 한다.
-- <img src="../../assets/images/posts/bootcamp005/image_map_sample_ikea_2.png" width="100%"/>
+- <img src="../../assets/images/posts/bootcamp005/ikea_image_link_analysis_2.png" width="100%"/>
 
 #### 1.2 코드 위주의 분석
 
