@@ -31,11 +31,9 @@ last_modified_at: 2022-10-11
       - [1.2 코드 위주의 분석](#12-코드-위주의-분석)
     - [2. 이미지 맵 태그 생성 도구](#2-이미지-맵-태그-생성-도구)
       - [2.1 태그 자동 생성 도구란?](#21-태그-자동-생성-도구란)
-      - [2.2 자동 생성 도구 종류 및 사용법](#22-자동-생성-도구-종류-및-사용법)
-    - [3. 이미지 맵 태그 제작 및 적용](#3-이미지-맵-태그-제작-및-적용)
-      - [3.1 이미지 준비](#31-이미지-준비)
-      - [3.2 이미지 맵 태그 생성 도구 활용](#32-이미지-맵-태그-생성-도구-활용)
-      - [3.3 웹페이지 적용](#33-웹페이지-적용)
+      - [2.2 이미지 준비](#22-이미지-준비)
+      - [2.3 자동 생성 도구 종류 및 사용법](#23-자동-생성-도구-종류-및-사용법)
+    - [3. 웹페이지 적용](#3-웹페이지-적용)
   - [4. Conclusion](#4-conclusion)
   - [5. Reference](#5-reference)
 
@@ -98,32 +96,56 @@ last_modified_at: 2022-10-11
 - `<map>` 요소에는 이미지 맵에서 클릭 가능한 영역을 정의하는 다수의 `<area>` 요소가 포함된다.
 - 위의 2개 싸이트를 이용하면 이미지맵을 위한 태그를 아주 손쉽게 만들 수 있다.
 
-#### 2.2 자동 생성 도구 종류 및 사용법
+#### 2.2 이미지 준비
+
+- 아래와 같이 이미지에 맵을 적용할 이미지를 검색하여 확보 한다.
+- 본인의 경우 파워포인트를 사용하여 미리 맵 영역을 표시 하였다.
+- <img src="../../assets/images/posts/bootcamp005/ikea_image_link_analysis_3.png"/>
+
+#### 2.3 자동 생성 도구 종류 및 사용법
 
 - [Image-Map](https://www.image-map.net/)
+  - *Image-Map* 이라는 이름의 싸이트이며, 로컬 이미지를 바로 오픈하여 맵 영역을 표시하고 링크등의 속성을 적용한 *tag*를 확보 할 수 있다.
+  - 사용법은 다음과 같다.
+  - <img src="../../assets/images/posts/bootcamp005/ikea_image_link_analysis_4.png"/>
+  - A : `Select Image from My PC`를 클릭하여 맵을 만들 이미지 파일을 로딩한다.
+  - B : `C영역`의 *area*를 선택하고 상단 이미지에 맵 영역을 만들 부위를 `클릭`하여 영역 지정
+  - C : Shape(원, 사각형, 다각형), Link, Title, Target 속성을 지정
+  - D : area 추가
+  - E : Tag 자동 생성을 위하여 `Show Me The Code!` 클릭
+  - F : 자동으로 생성된 *Image map tag*.
 - [imagemap](https://imagemap.org/)
+  - *imagemap.org*이라는 이름의 싸이트이며, 동일하게 로컬 이미지를 바로 오픈하여 맵 영역을 표시하고 링크들의 속성을 적용한 *tag*를 확보 할 수 있다.
+  - 사용법은 다음과 같다.
+  - <img src="../../assets/images/posts/bootcamp005/ikea_image_link_analysis_5.png"/>
+  - A : `SELECT IMAGE`를 클릭하여 맵을 만들 이미지 파일을 로딩한다.
+  - B : `area`의 형태를 *사각형, 원, 다각형* 중 선택할 수 있다. (C에서 지우고 싶은 area 선택 후 *삭제*도 가능)
+  - C : *Link, Title* 속성을 입력, 수정할 수 있는 속성 영역
+  - D : 자동으로 생성된 *Image map tag*.
 
+### 3. 웹페이지 적용
 
-### 3. 이미지 맵 태그 제작 및 적용
+- 간단하게 image map을 적용해 보자.
+- 적용할 html 파일의 내용이다.
 
-- test
+- ```html
+  <img src="./img/그림1.png" usemap="#image-map">
 
-#### 3.1 이미지 준비
+  <map name="image-map">
+    <area target="_blank" alt="google" title="google" href="https://www.google.com" coords="533,341,20" shape="circle">
+    <area target="_blank" alt="naver" title="naver" href="https://www.naver.com" coords="1191,511,20" shape="circle">
+  </map>
+  ```
 
-- test
-
-#### 3.2 이미지 맵 태그 생성 도구 활용
-
-- test
-
-#### 3.3 웹페이지 적용
-
-- test
+- 실제 적용 화면(Sample)
+- <img src="../../assets/images/posts/bootcamp005/ikea_image_link_analysis_6.png"/>
 
 ## 4. Conclusion
 
-- section
+- 작성중....
 
 ## 5. Reference
 
-- section
+- [W3 School](https://www.w3schools.com/html/html_images_imagemap.asp)
+- [Image-Map](https://www.image-map.net/)
+- [imagemap](https://imagemap.org/)
