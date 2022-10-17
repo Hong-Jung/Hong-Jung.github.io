@@ -535,9 +535,141 @@ last_modified_at: 2022-10-12
 
 ### 1.15 반응형 웹
 
-- 
+- 반응형 웹
+  - 해상도도 별로 웹 페이지의 레이아웃을 변경 가능한 기술
+- [뷰포트(Viewport)](https://www.w3schools.com/css/css_rwd_viewport.asp)
+  - 모바일 디바이스에서 웹 페이지가 사용자에게 보여지는 영역을 의미
 
-## 2. Reference
+  - ```html
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    ```
+
+- [미디어 쿼리](https://www.w3schools.com/css/css_rwd_mediaqueries.asp)
+  - 스크린의 크기별로 CSS에서 최적활 할 수 있는 기술
+  - `@media` 규칙을 사용하여 특정 조건이 true인 경우에만 CSS 속성 블록을 포함합니다.
+
+  - ```html
+    <style>
+    @media screen and (max-width: 768px) {
+    .row,
+    .navbar {
+        flex-direction: column;
+      }
+    }
+    
+    /* 스마트폰 같은 작은 기기 (576px 이상) */
+    @media (min-width: 576px) { /* CSS 정의 */ }
+
+    /* 태블릿 같은 중간 크기 기기 (768px 이상) */
+    @media (min-width: 768px) { /* CSS 정의 */ }
+
+    /* 데스크톱 작은 해상도 (992px 이상) */
+    @media (min-width: 992px) { /* CSS 정의 */ }
+
+    /* 데스크톱 중간 해상도 (1200px 이상) */
+    @media (min-width: 1200px) { /* CSS 정의 */ }
+
+    /* 데스크톱 고 해상도 (1400px 이상) */
+    @media (min-width: 1400px) { /* CSS 정의 */ }
+    </style>
+    ```
+
+### 1.16 오픈 그래프 프로토콜
+
+- [ogp.me 참고](https://ogp.me/)
+- [오픈 그래프 프로토콜이란?](https://namu.wiki/w/%EC%98%A4%ED%94%88%20%EA%B7%B8%EB%9E%98%ED%94%84%20%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C)
+  - 오픈 그래프 프로토콜은 어떠한 인터넷 웹사이트의 HTML 문서에서 `head -> meta` 태그 중 `og:XXX`가 있는 태그들을 찾아내어 보여주는 프로토콜이다.
+
+- ```html
+  /* meta tag에 아래와 같은 코드 추가 */
+  <meta property="og:title" content="제목">
+  <meta property="og:image" content="https://xxx.xx.io/aasdf/xxx.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="최종 목적지">
+  <meta property="og:description" content="설명">
+  ```
+
+- 카카오 개발자 > 도구 > 디버거 도구 > 공유 디버거
+  - url을 입력해서 캐쉬를 초기화 해야 한다. (카카오톡 서비스에서 캐쉬 사용중이라 클리어 필요)
+
+## 2. 웹 디자인시 반드시 고려할 사용
+
+### 2.1 패턴 및 기획시 고려 사항
+
+- 최소한의 semantic tag를 적극 사용하라
+- 간략한 반응형을 구현하라
+- box-sizing으로 기준을 잡아라
+- display: flex; flex-direction: row; flex-wrap: warp; 설정 잡아라
+- content에서 flex: 30% 같이 비율로 잡아라
+- navbar의 경우 position: sticky; top: 0;와 같이 고정 시켜라
+- 컬러값은 "HEX"를 사용해라
+- 크기는 em, rem(루트요소)비율을 사용하라. (px 사용 금지, 상단 크기를 기준으로 비율로)
+- semantic tag가 있다.
+  - 기존에는 `<div>`만 이용했다.
+  - semantic tag는 `<div>`와 완전 동일하지만 별명을 준다.
+  - layout semantic tag
+    - `<header></header>` 머릿 영역
+    - `<nav></nav>` 메뉴 영역
+    - `<aside></aside>` 좌우의 측면 영역
+    - `<main></main>` 메인 영역
+    - `<footer></footer>` 하단 푸터
+
+### 2.2 꼭 검토 필요한 CSS 및 참고 코드
+
+- box-sizing 속성으로 기준점을 설정 한다.
+
+  - ```html
+    <style>
+      * {
+       box-sizing: border-box;
+      }
+    </style>
+    ```
+
+- scroll-behavior: smooth;
+- fixed-button;
+- flexbox model을 활용
+- css > external style을 준수
+
+- ```html
+  <style>
+    /* flexbox model 사용 */
+    .row {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    
+    html{
+      /* 자연스러운 스크롤 */
+      scroll-behavior: smooth;
+    }
+
+    .navbar {
+      /* 위치에 고정 시킨다 */
+      position: sticky;
+      top: 0;
+    }
+  
+    .fixed-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      border: 3px solid green;
+      font-size: 25px;
+      color: green;
+      text-align: center;
+      display: none;
+    }
+  </style>
+  ```
+
+## 3. Reference
 
 - [개발자의 품격 youtube](https://www.youtube.com/c/%EA%B0%9C%EB%B0%9C%EC%9E%90%EC%9D%98%ED%92%88%EA%B2%A9)
 - [MDN Site](https://developer.mozilla.org/ko/)
