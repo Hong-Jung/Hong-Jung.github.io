@@ -456,6 +456,87 @@ last_modified_at: 2022-10-12
   </style>
   ```
 
+### 1.12 Position
+
+- [요소의 위치 정의 MDN site 참고](https://developer.mozilla.org/ko/docs/Web/CSS/position)
+- position: static
+  - 기본값
+  - 일반적인 문서의 흐름에 따라서 요소의 위치가 정해짐
+- position: relative
+  - top, right, bottom, left 속성 같이 사용해서 오프셋 적용
+- position: fixed
+  - 지정된 위치에 html 요소를 고정 (웇그 하단 to top 과 같은 기능)
+  - top, right, bottom, left 속성 같이 사용해서 오프셋 적용
+- position: absolute
+  - `position:relative;`가 설정된 가장 가까운 부모 요소에 대한 상대적 위치
+- position: sticky
+  - nav 요소의 최상단 부착 기능
+  - 스크롤이 되기 전에는 원래 요소가 있어야 할 위치에 있다가 스크롤이 되면 지정된 위치에 고정
+
+### 1.13 Overflow
+
+- [요소의 컨텐츠가 부모 요소의 크기보다 클때 MDN site 참고](https://developer.mozilla.org/ko/docs/Web/CSS/overflow)
+
+- ```html
+  <style>
+  overflow: visible;
+  overflow: hidden;
+  overflow: clip;
+  overflow: scroll;
+  overflow: auto;
+  overflow: hidden visible;
+  </style>
+  ```
+
+### 1.14 Layout for CSS
+
+- [MDN site 참고](https://developer.mozilla.org/ko/docs/Web/CSS/display)
+- 페이지 레이아웃을 위하여 부모/자식 관계로 설정
+- display 설정값을 사용하여
+  - block : 한 라인 전체
+  - inline : 요소의 크기 만큼만
+- display 유형을 설정하는 값
+  - table : table 태그 처럼 자식 요소 배치 (반응형에 어려움)
+  - flex : flexbox 모델에 따라 자식요소 배치 (실무에서 많이 사용)
+  - grid : 그리드 레이아웃을 사용해서 자식요소 배치
+  
+- ```html
+  <style>
+    .container {
+      <!-- table, flex, grid -->
+      display: <display-keyword>;
+    }
+  </style>
+  ```
+
+- display : table
+  - `display: table;` = `<table>`
+  - `display: table-header-group;` = `<thead>`
+  - `display: table-row-group;` = `<tbody>`
+  - `display: table-row;` = `<tr>`
+  - `display: table-cell;` = `<td>, <th>`
+- display : flex
+  - flexbox, main axis(x축 or y축 가능), cross axis(주축과 교차)
+  - 부모 요소의 display: flex로 주면 자식도 동일 속성 적용
+  - 주축을 기준으로 레이아웃
+  - flex-direction (주축 설정)
+    - row : 왼쪽 -> 오른쪽
+    - row-reverse : 오른쪽 -> 왼쪽
+    - column : 상단 -> 하단
+    - column-reverse : 하단 -> 상단
+  - flex-wrap (사이즈가 넓이보다 클때)
+    - wrap : 부모의 크기가 자식의 크기를 고려해서 조정
+  - justify-content (컨테이너 크기 > 자식의 크기 일때 정렬)
+    - flex-start, flex-end, center, space-between, space-ground, space-evenly
+- display : grid
+  - grid layout은 웹 페이지 레이아웃을 위한 2차원 지원
+    - 행,열을 동시에 지정해서 배치 가능
+  - flexbox -> 1차원(가로? 세로?)
+
+### 1.15 반응형 웹
+
+- 
+
 ## 2. Reference
 
 - [개발자의 품격 youtube](https://www.youtube.com/c/%EA%B0%9C%EB%B0%9C%EC%9E%90%EC%9D%98%ED%92%88%EA%B2%A9)
