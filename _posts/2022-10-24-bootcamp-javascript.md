@@ -71,7 +71,7 @@ last_modified_at: 2022-10-24
 ### 1.3 바닐라스크립트
 
 - [Valilla JavaScript](http://vanilla-js.com/)
-  - 순서 자바스크립트로 어떠한 라이브러리도 사용하지 않음
+  - 순수 자바스크립트로 어떠한 라이브러리도 사용하지 않음
   - 슬로건
     - Vanilla JS is a fast, lightweight, cross-platform framework
 for building incredible, powerful JavaScript applications.
