@@ -18,11 +18,11 @@ date: 2022-10-24
 last_modified_at: 2022-10-24
 ---
 
-# WHAT IS ***Variable(변수) Declaration(선언)*** IN JavaScript ???
+# What is ***variable(변수) declaration(선언)*** in JavaScript ???
 
 ## 0. Index
 
-- [WHAT IS ***Variable(변수) Declaration(선언)*** IN JavaScript ???](#what-is-variable변수-declaration선언-in-javascript-)
+- [What is ***variable(변수) declaration(선언)*** in JavaScript ???](#what-is-variable변수-declaration선언-in-javascript-)
   - [0. Index](#0-index)
   - [1. Introduction](#1-introduction)
     - [1.1 변수란 ?](#11-변수란-)

@@ -51,7 +51,7 @@ last_modified_at: 2022-10-24
   - [10.7 Math](#107-math)
   - [10.8 JSON](#108-json)
   - [10.9 window](#109-window)
-- [Reference](#reference)
+- [11. Reference](#11-reference)
 
 ## 1. JavaScript 란?
 
@@ -283,7 +283,7 @@ for building incredible, powerful JavaScript applications.
 
 ### 10.9 window
 
-## Reference
+## 11. Reference
 
 - [개발자의 품격 youtube](https://www.youtube.com/c/%EA%B0%9C%EB%B0%9C%EC%9E%90%EC%9D%98%ED%92%88%EA%B2%A9)
 - [MDN Site](https://developer.mozilla.org/ko/)
