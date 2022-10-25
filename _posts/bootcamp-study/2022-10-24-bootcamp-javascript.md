@@ -249,9 +249,167 @@ for building incredible, powerful JavaScript applications.
 
 ## 5. 기본 데이터 타입
 
+- 문자열(String)
+  - 쌍따옴표(") 또는 홑따옴표(') 이용 데이터 할당
+  
+  - ```javascript
+    let nameA = "hong-gil-dong";
+    let nameB = 'hong-gil-dong';
+    let nameC = "hong-'gil'-dong";
+    let nameD = 'hong-"gil"-dong';
+    ```
+
+- 숫자형(Number)
+  - 자바스크립트는 모든 숫자형 데이터를 `64비트 부동소수점`으로 관리
+  - 일반적인 형식을 가지는 언어(java, c#)은 다양한 숫자형 데이터 타입을 가짐
+  
+  - ```javascript
+    let num1 = 13; //정수
+    let num2 = 2.1; //소수점
+    ```
+
+- 참/거짓(Boolean)
+  - 2개의 값만 가질 수 있음: 참-true, 거짓-false
+  
+  - ```javascript
+    let num1 = 10;
+    let num2 = 5;
+    let isBig = num1 >= num2;
+    console.log(isBig);
+    ```
+
+- undefined
+  - 정의되지 않은 혹은 값을 할당하지 않은
+  - undefined는 데이터 타입이자 동시에 데이터 값.
+  - 실행되는 시점. 런타임 시점에 브라우저 엔진이 자동으로 undefined라는 값을 할당.
+  
+  - ```javascript
+    let a;
+    console.log(a);
+    ```
+
+- null
+  - "없음"을 의미
+  - null은 개발자가 의도적으로 할당하는 값
+  
+  - ```javascript
+    // 변수를 선언하는 시점에는 아직 어떤 값이 할당될지 모르는 경우
+    // 어떤 데이터 타입으로 할당될지 모르는 경우
+    let x = null;
+    ``` 
+
+- 메모리를 효율을 위해서 null 사용
+
+  - ```javascript
+    let y = "많은양의 문자열 데이터";
+    y = null;
+    // 가비지 컬렉션 - 더이상 사용하지 않는 메모리를 해제
+    ```
+
 ### 5.1 Object 타입
 
+- Object Type
+  - Object는 데이터를 담을 수 있는 객체
+  - 관련 있는 정보를 하나로 묶어서 관리하고 싶을 때 사용
+  - 사람 - 이름, 전화번호, 이메일주소, 집주소
+  
+    - ```javascript
+      let name = "홍길동";
+      let phone = "010-0000-0000";
+      let email = "hong@gmail.com";
+      let address = "서울특별시 강남구";
+      // 사람, 자동차, 제품과 같이 하나의 값으로 표현할 수 없는 경우에 하나의 변수로 이런 정보를 묶어서 관리할 수 있게 해줌
+      // 키(key)와 값(value)을 한 쌍을 갖습니다.
+
+        let person = {
+        name: "홍길동",
+        phone: "010-0000-0000",
+        email: "hong@gmail.com",
+        address: "서울특별시 강남구",
+      };
+
+      console.log(person);
+
+      // Object에 선언된 특정 키의 값을 읽을 때
+      let name = person.name; // 홍길동
+      let phone = person.phone; // 010-0000-0000
+      let email = person.email; // hong@gmail.com
+      let address = person.address; // 서울특별시 강서구 화곡동
+
+      // Object의 특정 키의 값을 변경할 때
+      person.address = "부산시 해운대구";
+      console.log(person.address);
+      console.log(person);
+
+      // Object에 새로운 키-값 추가
+      person.gender = "남";
+      console.log(person);
+
+      let person2 = {};
+      person2.name = "유재석";
+      person2.age = 51;
+      console.log(person2);
+
+      // Object의 특정 키를 접근하는 방법
+      // 1. 변수명.키
+      // 2. 변수명["키"] - 키값을 모르는 경우
+      console.log(person2.name); // 유재석
+      console.log(person2["name"]); // 유재석
+
+      // 동적(실행시점, 런타임시점)으로 Object의 특정 키 값을 가져와야 할 때
+      let userSelectedField = "age";
+      let userSelectedValue = person2[userSelectedField];
+      console.log(userSelectedValue);
+
+      ```
+
 ### 5.2 Array 타입
+
+- Array Type
+  - 하나 이상의 데이터를 담을 수 있다.
+  - 데이터를 담을 때는 순서가 있는 나열 방식
+  - 배열은 대괄호[]를 사용해서 데이터를 할당
+  - 배열에는 어떤 데이터 타입도 가능
+  
+  - ```javascript
+    let nums = [1, 3, 12, 5, 7];
+    let str = ["a", "b", "c", "d"];
+    // 배열에는 어떤 데이터 타입도 함께 담을 수 있다.
+    let mix = [1, "a", 3, true, {}, []];
+    ```
+  
+- 순서가 존재
+  - 순서(순번) 개념을 사용해서 데이터에 접근, 데이터를 가져오고, 데이터 수정
+  - 데이터는 순번을 가짐
+  - 순번 = index, index 시작 번호는 0부터 시작
+  - 배열의 인덱스(index)는 0부터 시작해서 1씩 증가한다.
+  
+  - ```javascript
+    // 인덱스 번호를 사용해서 배열의 특정 요소에 접근할 수 있음.
+    console.log(nums[0]); // nums의 첫번째 요소
+    console.log(nums[2]); // nums의 세번째 요소
+
+    // 웹 애플리케이션을 이용하고 있는 사용자 목록을 데이터베이스에서 가져옴
+    let userList = [
+      {
+        name: "유재석",
+        gender: "남",
+        age: 51,
+        email: "ryu@gmail.com",
+        phone: "010-0000-0000",
+      },
+      {
+        name: "김종국",
+        gender: "남",
+        age: 47,
+        email: "kim@gmail.com",
+        phone: "010-0000-0001",
+      },
+    ];
+
+    let user1 = userList[0];
+    console.log(user1.name);
+    ```
 
 ### 5.3 비트 부동소수점
 
