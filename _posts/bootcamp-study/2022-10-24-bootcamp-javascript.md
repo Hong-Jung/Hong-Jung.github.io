@@ -491,6 +491,146 @@ for building incredible, powerful JavaScript applications.
 
 ## 6. 연산자(할당, 비교, 산술, 논리, 문자열, 조건삼항)
 
+- 할당 연산자, 비교 연산자, 산술 연산자, 논리 연산자, 문자열 연산자, 조건 삼항 연산자
+- [할당 연산자](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators#%ED%95%A0%EB%8B%B9_%EC%97%B0%EC%82%B0%EC%9E%90)
+  - 우측의 피연산자를 좌측의 연산자에 할당
+
+  - ```javascript
+    let x = 1;
+    let y = x;
+    x = x + y; // 1 + 1 = 2
+    x = x - y; // 2 - 1 = 1
+    x = x * y; // 1 * 1 = 1
+    x = x / y; // 1 / 1 = 1
+    // 사칙연산 : +, -, *, /
+    // % : 나누고 남은 나머지 값
+    
+    x = 5;
+    y = 2;
+    let z = x % y; // 5 / 2의 나머지 = 1
+
+    // ** : 제곱근
+    x = 3;
+    y = 2;
+    x = x ** y; //3^2=9
+
+    // 복합 할당 연산자
+    x += y; //x = x + y
+    x -= y; //x = x - y
+    x *= y; //x = x * y
+    x /= y; //x = x / y
+    x %= y; //x = x % y
+    ```
+
+- [비교 연산자](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators#%EA%B4%80%EA%B3%84_%EC%97%B0%EC%82%B0%EC%9E%90)
+  - 값이나 데이터를 비교하기 위함
+  
+  - ```javascript
+    let x = 3;
+    let y = 4;
+    console.log(x == y); //false
+
+    x = 3;
+    y = "3";
+    console.log(x == y); //true, javascript의 장점이자 단점, 데이터 타입 비교 없이 값만 비교함 
+    console.log(x === y); //false, 데이터 타입 및 값 모두 비교
+    console.log(x != y); //false, 값만 비교
+    console.log(x !== y); //ttrue, 데이터타입 및 값 비교
+
+    x = 5;
+    y = 2;
+    console.log(x > y); //true
+    y = 5;
+    console.log(x >= y); //true
+    console.log(x < y); //false
+    console.log(x <= y); //true
+    ```
+    
+- [산술 연산자](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators#%EC%82%B0%EC%88%A0_%EC%97%B0%EC%82%B0%EC%9E%90)
+  - 증가연산자(++), 감소연산자(--), 단항 부정 연산자, 숫자화연산자
+    - 증가연산자는 ++ 기호를 사용. 1를 증가
+    - 감소연산자는 -- 기호를 사용. 1을 감소
+    - 단항 부정 연산자는 피연산자의 값의 부호가 바뀐다.
+    - 숫자화연산자는 숫자가 아닌 문자/boolean 값을 숫자로 변환하는 시도를 함 (+)
+  
+  - ```javascript
+    // 증가연산자
+    let x = 5;
+    y = x++; //할당을 한 후 증가해라
+    console.log(y); //5
+    console.log(x); //6
+    x = 5;
+    y = ++x; //할당전 증가해라
+    console.log(y); //6
+    console.log(x); //6
+
+    // 감소연산자
+    x = 5;
+    y = x--; //할당을 한 후 감소
+    console.log(y); //5
+    console.log(x); //4
+    x = 5;
+    y = --x;
+    console.log(y); //4
+    console.log(x); //4
+
+    // 단항 부정 연산자
+    x = -3;
+    console.log(x); //-3
+    console.log(-x); //3
+
+    // 숫자화 연산자 (수화가 가능한 값의 경우 가능)
+    x = "3";
+    y = +x;
+    console.log(y); //3(숫자)
+    console.log(y === x); //false
+    
+    console.log(+true); //1
+    console.log(+false); //0
+
+    // 논리 연산자
+    // 조건을 여러가지를 만족하는 연산자
+    // AND : &&
+    // OR : ||
+    let o = true && false;
+    console.log(o); //false
+
+    o = (3 > 2) && (4 > 7);
+    console.log(o); //false
+    o = (3 > 2) && (8 > 7);
+    console.log(o); //true
+
+    o = true || false;
+    console.log(o); //true
+    o = (3 > 2) || (4 > 7);
+    console.log(o); //true
+    o = (2 > 3) || (7 > 8);
+    console.log(o); //false
+    ```
+    
+- 문자열 연산자
+  - 두개의 문자열을 합침
+  
+  - ```javascript
+    let firstName = "Hong";
+    let lastName = "gil-dong";
+    lst fullName = firstName + lastName;
+    console.log(fullName); //Honggil-dong";
+    ```
+    
+- [조건 삼항 연산자](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators#%EC%A1%B0%EA%B1%B4%EB%B6%80%EC%82%BC%ED%95%AD_%EC%97%B0%EC%82%B0%EC%9E%90)
+  - 비교 연산을 하면서 ?를 사용하여 true일때 false일때 값을 연산할 수 있음
+  
+  - ```javascript
+    let age = 16;
+    let isAudult = age >= 20 ? "성인" : "미성년자";
+    console.log(isAudult); //미성년자
+
+    let point = 88;
+    let grade = point >= 90 ? "A" : point >= 80 ? "B" : point >= 70 ? "C" : "D";
+    console.log(grade); //B
+    ```
+
 ## 7. 조건문
 
 ## 8. 반복문
