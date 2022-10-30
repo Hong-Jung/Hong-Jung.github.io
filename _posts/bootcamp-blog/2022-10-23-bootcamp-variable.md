@@ -122,11 +122,7 @@ last_modified_at: 2022-10-24
 - 문제점 ?
   - 이미 선언한 변수에 값도 다시 할 당 할 수 있고(여긴 그나마 문제가 덜됨), 하지만 동일한 변수명을 다시 재 선언함으로 코드의 오류가 발생(공동 작업이나, 원 변수의 의미를 알지 못한다면). 그래서 `ES6`에서 `let`, `const`라는 변수 선언자가 생겼다.
 - 샘플 코드
-  - <iframe height="300" style="width: 100%;" scrolling="no" title="var variable" src="https://codepen.io/jh3010/embed/ExRVyeg?default-tab=js%2Cresult&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href="https://codepen.io/jh3010/pen/ExRVyeg">
-  var variable</a> by walter (<a href="https://codepen.io/jh3010">@jh3010</a>)
-  on <a href="https://codepen.io">CodePen</a>.
-</iframe>
+  - <iframe height="300" style="width: 100%;" scrolling="no" title="var variable" src="https://codepen.io/jh3010/embed/ExRVyeg?default-tab=js%2Cresult&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true"/>
 
 #### 2.2.2 let
 
