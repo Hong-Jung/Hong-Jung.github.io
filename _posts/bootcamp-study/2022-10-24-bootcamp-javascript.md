@@ -633,13 +633,263 @@ for building incredible, powerful JavaScript applications.
 
 ## 7. 조건문
 
+- [조건문](https://developer.mozilla.org/ko/docs/Learn/JavaScript/Building_blocks/conditionals)
+- [if...else](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/if...else)
+
+  - ```javascript
+    let busFare = 0;
+    let age = 70;
+
+    if (age < 8) {
+      busFare = 0;
+    } else if (age >= 8 && age < 14) {
+      busFare = 450;
+    } else if (age >= 14 && age < 20) {
+      busFare = 700;
+    } else if (age >= 20 && age < 70) {
+      busFare = 1000;
+    } else {
+      // 70보다 같거나 큰 경우
+      busFare = 0;
+    }
+
+    console.log("버스요금:", busFare);
+
+    if (age < 8) {
+      busFare = 0;
+    } else if (age < 14) {
+      busFare = 450;
+    } else if (age < 20) {
+      busFare = 700;
+    } else if (age < 70) {
+      busFare = 1000;
+    } else {
+      busFare = 0;
+    }
+
+    // 다음과 같은 값은 조건식에서 모두 것지(false)로 취급이 됨.
+    // false
+    // undefined
+    // null
+    // 0
+    // "" 비어있는 문자열
+    let x;
+    x = null;
+    x = 0;
+    x = "";
+    if (x) {
+    } else {
+      console.log("else구문이 실행");
+    }
+    ```
+
+- [switch](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/switch)
+
+  - ```javascript
+    // Date 객체 - 날짜와 시간과 관련된 객체
+    const d = new Date();
+    const day = d.getDay(); // 코드가 실행되는 시점의 요일. 요일 값을 숫자로 알려줌.
+    console.log(day);
+    // 0 - 일요일, 1 - 월요일, 2 - 화요일, 3 - 수요일, 4 - 목요일, 5 - 금요일, 6 - 토요일
+
+    // 상수값 비교, 비교 연산자를 가질 수 없음.
+    switch (day) {
+      case 0:
+        dayName = "일요일";
+        break;
+      case 1:
+        dayName = "월요일";
+        break;
+      case 2:
+        dayName = "화요일";
+        break;
+      case 3:
+        dayName = "수요일";
+        break;
+      case 4:
+        dayName = "목요일";
+        break;
+      case 5:
+        dayName = "금요일";
+        break;
+      case 6:
+        dayName = "토요일";
+        break;
+      default:
+        break;
+    }
+
+    console.log(dayName);
+
+    let dayNames = [
+      "일요일",
+      "월요일",
+      "화요일",
+      "수요일",
+      "목요일",
+      "금요일",
+      "토요일",
+    ];
+    // 0 - 일요일, 1 - 월요일, 2 - 화요일, 3 - 수요일, 4 - 목요일, 5 - 금요일, 6 - 토요일
+    console.log(dayNames[day]);
+    ```
+
 ## 8. 반복문
 
+- 코드 블럭을 원하는 횟수만큼 반복 실행되게 함
+- 반복문의 종류
+  - for, for in, for of, for each, while
+  - [for](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/for)
+    - initialization, condition, final-expression으로 구분
+    - continue, break 
+  - [for...in](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/for...in)
+    - ***객체***의 반복에 사용
+    - 속성(배열, 객체)을 포함한 객체나 열거 가능한 속성에 대해서 반복
+    - 객체의 모든 열거가능한 속성에 대해서 반복
+
+    - ```javascript
+      var obj = {
+        a: 1,
+        b: 2,
+        c: 3
+      };
+      for (var item of obj) {
+          console.log(item);// a, b, c
+      }
+
+      //배열도 object 타입으로 인식해서 결과는 출력되나 배열의 index가 출력됨.
+      var arr = [1, 2, 3];
+      for (var item in arr) {
+        console.log(item) // 0, 1, 2
+      }
+      ```
+   
+  - [for...of](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/for...of)
+    - ***배열***의 반복에 사용
+    - 컬렉션 전용 반복
+    - 모든 객체보다는 [System.iterator] 속성이 있는 모든 컬렉션 요소에 대해 반복
+
+    - ```javascript
+      var arr = [1, 2, 3];
+      for (var item of arr) {
+        console.log(item); // 1, 2, 3
+      }
+
+      var obj = {
+        a: 1,
+        b: 2,
+        c: 3
+      };
+      for (var item of obj) {
+          console.log(item);
+      }
+      //Uncaught TypeError: obj is not iterable
+      ```
+
+  - [forEach](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
+    - 배열 객체의 함수로 파라메터로 함수를 정의해서 사용 가능
+
+    - ```javascript
+      let brands = ["A", "B', "C", "D", "E"];
+      brands.forEach(function (item, index) {
+          console.log(item);
+      });
+      ```
+
+  - [while](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/while)
+    - 조건문이 참일 때 실행되는 반복문
+    - 조건은 문장안이 실행되기 전에 참, 거짓을 판단
+    - 몇번을 반복해야 할지 알 수 없을때 많이 사용
+    - do { 코드블럭 } while (조건문)
+      - 무조건 한번은 코드 블럭을 실행하고, 조건문을 체크
+
 ## 9. 함수
+
+- 반복적인 기능, 재사용 가능한 코드 묶음
+- 특정 작업을 여러번 반복해야하는 경우 해당 작업을 재사용 가능한 구조로 만들게 되면 중복 작업을 피할 수 있고 이미 만들어 놓은 기능을 사용함으로 쉽게 코드를 짤 수 잇다
+
+- [함수 선언식](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/function)
+  - 함수 이름을 만들어 사용.
+  - 함수 선언식 : 메소드라고도 함, function 키워드 사용
+  - 함수는 공통적인 기능을 위해 많이 사용하고 공통 함수 담당이 만들고 유지보수하고 분리해서 개발하는 경향이 실무에 많다.
+
+  - /** 엔터*/
+    - 함수의 리마크 자동 생성
+
+- [함수 표현식](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/function)
+  - 변수를 선언해서 사용하는 것처럼 변수에 함수을 할당
+  - const sum = function(num1, num2) { return num1+num2; }
+
+  - 실행의 측면에서 선언식, 표현식 차이가 존재
+    - ***선언식은 인터프리트 방식 아님***(자바 엔진이 함수 선언식부터 해석하고 가지고 잇음)
+    - ***표현식(변수)은 인터프리트 방식***
+
+- [function 생성자 함수](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function#function_인스턴스)
+  - 자바스크립트 내장 함수 function
+  - 문자열로 파라미터, 코드블럭 순서대로 넣어 만듬
+  - const add = new Function(“num1”, “num2”, “return num1+num2”); 마지막이 코드블럭, 앞은 파라미터임
+
+- [화살표 함수](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+  - (실무에서 가장 많이 사용) 나중이 배운다
 
 ## 10. 주요 객체와 내장 함수
 
 ### 10.1 String
+
+- [string](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String)
+  - 문자열은 텍스트 형태로 표현될 수있는 데이터를 보관하는 데 유용합니다. 문자열에서 가장 많이 사용되는 작업들은 문자열의 길이를 확인하는 `(length)`, 문자열을 생성하고 연결하는 + 와 += `문자열 연산자`, `서브문자열(substring)`이 있는지 확인하고, 있으면 위치를 확인하는 `indexOf()` 메서드, `서브문자열(substring)`을 추출해내는 substring() 메서드가 존재
+
+- indexOf(찾고자 하는 문자열)
+  - 그 문자열이 시작되는 인덱스 번호를 반환
+- lastIndexOf(찾고자 하는 문자열, 시작할 인덱스 번호)
+  - 마지막 인덱스 번호
+
+- 문자열을 잘라내는 내장 함수 (세밀하게 차이점이 존재 한다.)
+  - slice
+    - (시작위치, 종료위치) 파라메터로 문자열을 잘라 반환
+    - 시작위치만 파라메터만 주면, 종료 위치는 자동으로 끝으로 간다.
+    - 값은 뒤에서 부터 시작
+    - 문자열을 뒤에서부터 찾을때 가장 많이 사용
+  - substring
+    - (시작위치, 종료위치) 파라메터로 문자열 잘라 반환
+    - 음수값을 가질 수 없다 !!
+  - substr
+    - (시작위치, 잘라낼길이) 파라메터로 문자열 잘라 반환
+    - 잘라낼 길이를 정확하게 아는 경우 사용
+- replace(문자열1, 문자열2) - 문자열에서 문자열1을 찾아서 문자열2로 교체
+  - 발견되는 첫번째 문자열만 변경함
+  - 정규식을 통하여 전체 문자열 통제 가능
+
+- toXXXCase()
+  - toUpperCase() - 모든 알파벳을 대문자로 변경
+  - toLowerCase() - 모든 알파멧을 소문자로 변경
+  - 검색에 대한 일관성(대/소문자)을 위하여 가장 많이 사용
+- concat() - 여러 문자열을 하나로 결합
+- trim() - 문자열의 앞/뒤 공백 제거
+
+- padStart() - 두개의 파라메터를 받아서 첫번째 파라메터는 "길이", 두번째 파라메터는 "채울 문자"
+  - "ST" -> 4, "A" -> AAST
+  - 첫번째 파라메터로 전달 받은 길이만큼 문자열의 앞에 두번째 파라메터로 전달 받은 문자로 채움
+  - paddEnd()
+    - padStart() 와 동일하나 문자열의 뒤에서 처리함
+
+- charAt()
+  - 첫번째 파라메터 - 인덱스 번호
+  - 문자열에서 인덱스 번호에 해당하는 문자 하나를 반환
+- charCodeAt()
+  - 인덱스번호에 맞는 하나의 문자를 반환
+  - 문자를 유니코드로 변환해서 반환. 
+- split()
+  - 파라메터로 전달 받은 문자열로 앞뒤로 분리하여 배열로 반환
+  - let to = "a@a.com, b@b.com, c@c.com";
+  - let tags = "#A#B#C";
+
+- startWith() - 파라메터로 전달받은 문자열로 시작하는지를 확인 후 boolean으로 반환
+- endWith() - 파라메터로 전달받은 문자열로 끝나는지 확인 후 boolean으로 반환
+
+- 유니코드 : 전 세계 모든 문자를 컴퓨터에서 일관되게 표현하고 다룰 수 있게 설계된 산업 표준
+  - 일관된 산업 표준으로 만드는 것을 "인코딩"이라고 하는데 인코딩의 방식에는 수없이 많은 방법이 존재 한다. (euc-kr, iso ... )
+  - 인코딩 - utf-8이 가장 대표적인 인코딩 방식
 
 ### 10.2 Number
 
