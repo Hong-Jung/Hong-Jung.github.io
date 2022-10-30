@@ -825,6 +825,22 @@ for building incredible, powerful JavaScript applications.
   - 함수 선언식 : 메소드라고도 함, function 키워드 사용
   - 함수는 공통적인 기능을 위해 많이 사용하고 공통 함수 담당이 만들고 유지보수하고 분리해서 개발하는 경향이 실무에 많다.
 
+  - ```javascript
+    console.log(plus(9, 12)); // 인터프리터 방식이 아니라 사용 가능
+
+    function plus(num1, num2) {
+      // 정의할 코드 블록, 함수 기능
+      let sum = num1 + num2;
+      return sum; // 함수를 호출한 곳으로 반환
+    }
+
+    let sum1 = plus(3, 5); // 8
+    console.log(sum1);
+
+    let sum2 = plus(7, 9);
+    console.log(sum2);
+    ```
+
   - /** 엔터*/
     - 함수의 리마크 자동 생성
 
@@ -836,10 +852,43 @@ for building incredible, powerful JavaScript applications.
     - `선언식은 인터프리트 방식 아님`(자바 엔진이 함수 선언식부터 해석하고 가지고 잇음)
     - `표현식(변수)은 인터프리트 방식`
 
+  - ```javascript
+    console.log(sum(5, 9)); // 인터프리터 방식으로 오류 발생
+
+    const sum = function (num1, num2) {
+      return num1 + num2;
+    };
+
+    console.log(sum(5, 9));
+    ```
+
 - [function 생성자 함수](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function#function_인스턴스)
   - 자바스크립트 내장 함수 function
   - 문자열로 파라미터, 코드블럭 순서대로 넣어 만듬
   - const add = new Function(“num1”, “num2”, “return num1+num2”); 마지막이 코드블럭, 앞은 파라미터임
+
+  - ```javascript
+    const add = new Function("num1", "num2", "return num1 + num2");
+    console.log(add(21, 27));
+
+    function calculator(num1, num2, operator) {
+      if (operator === "+") {
+        return num1 + num2;
+      } else if (operator === "-") {
+        return num1 - num2;
+      } else if (operator === "*") {
+        return num1 * num2;
+      } else if (operator === "/") {
+        return num1 / num2;
+      }
+    }
+    const operator = "+";
+    const cal = new Function(
+      "num1",
+      "num2",
+      "return num1 " + operator + " num2"
+    );
+    ```
 
 - [화살표 함수](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
   - (실무에서 가장 많이 사용) 나중이 배운다
