@@ -122,33 +122,69 @@ last_modified_at: 2022-10-24
 - 문제점 ?
   - 이미 선언한 변수에 값도 다시 할 당 할 수 있고(여긴 그나마 문제가 덜됨), 하지만 동일한 변수명을 다시 재 선언함으로 코드의 오류가 발생(공동 작업이나, 원 변수의 의미를 알지 못한다면). 그래서 `ES6`에서 `let`, `const`라는 변수 선언자가 생겼다.
 - 샘플 코드
-  - <iframe height="300" style="width: 100%;" scrolling="no" title="var variable" src="https://codepen.io/jh3010/embed/ExRVyeg?default-tab=js%2Cresult&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true"/>
+  
+  - ```javascript
+    // 선언한 변수명에 데이터를 다시 할당할 수 있음
+    var x = 1;
+    var y = 2;
+    var z = x + y; // 12
+    console.log("z 출력값 1 : ", z);
+
+    x = 3;
+    y = 4;
+    z = x + y;
+    console.log("z 출력값 2 : ", z);
+
+    // 동일한 변수명으로 재 선언 할 수 있음
+    var x = 5;
+    var y = 6;
+    var z = x + y;
+    console.log("z 출력값 3 : ", z);
+    ```
 
 #### 2.2.2 let
 
 - 선언한 변수명에 데이터를 다시 할달할 수 있음
 - 동일한 변수명으로 재 선언 할 수 없음
 - 샘플 코드
-  - <iframe height="300" style="width: 100%;" scrolling="no" title="let variable" src="https://codepen.io/jh3010/embed/vYrNKVR?default-tab=js%2Cresult&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href="https://codepen.io/jh3010/pen/vYrNKVR">
-  let variable</a> by walter (<a href="https://codepen.io/jh3010">@jh3010</a>)
-  on <a href="https://codepen.io">CodePen</a>.
-</iframe>
+  
+  - ```javascript
+    // 0.1 선언한 변수명에 데이터를 다시 할달할 수 있음
+    let x1 = 5;
+    let y1 = 7;
+    let z1 = x1 + y1;
+    console.log("z1 출력값 1 : ", z1);
+
+    x1 = 9;
+    y1 = 10;
+    z1 = x1 + y1;
+    console.log("z1 출력값 2 : ", z1);
+
+    // 0.2 동일한 변수명으로 재 선언 할 수 없음
+    let x1 = 7; // 동일한 변수명으로 재선언시 에러 발생
+    console.log("x1 출력값 : ", x1);
+    ```
 
 #### 2.2.3 const
 
 - 변수를 선언하는 시점에 값을 반드시 할당해야 함
 - 동일한 변수명을 재 선언 할 수 없으며, 값을 재 할당 할 수도 없음
 - 샘플 코드
-  - <iframe height="300" style="width: 100%;" scrolling="no" title="const variable" src="https://codepen.io/jh3010/embed/eYKpzQJ?default-tab=js%2Cresult&theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href="https://codepen.io/jh3010/pen/eYKpzQJ">
-  const variable</a> by walter (<a href="https://codepen.io/jh3010">@jh3010</a>)
-  on <a href="https://codepen.io">CodePen</a>.
-</iframe>
+  
+  - ```javascript
+    // 변수를 선언하는 시점에 값을 반드시 할당해야 함
+    const PI; // 선언시 값을 할당하지 않아 에러 발생
+    const PI = 3.14;
+
+    // 동일한 변수명을 재 선언 할 수 없으며, 값을 재 할당 할 수도 없음
+    let PI = 3; // 에러발생
+    PI = 3.16; // 에러발생
+    ```
 
 ## 3. Conclusion
 
-- 결언
+- 이상으로 변수란 무엇인지, 명명의 종류와 규칙 마지막으로 선언에 대한 3가지 방법에 대해서 알아보았다.
+- 다시 강조하지만, 명명의 규칙과 선언의 3가지 방법에 대해서 명학하게 구분하고 사용 필요성에 대해서 알게 된다면 좋은 팀원으로 공동작업(협업)에 임할 수 있다고 생각한다.
 
 ## 4. Reference
 
