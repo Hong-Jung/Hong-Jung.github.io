@@ -173,13 +173,13 @@ for building incredible, powerful JavaScript applications.
 
 - **변수 선언자(var, let, const)**를 이용하여 변수를 선언할때 이름을 지어주어야 한다. 이럴때 다음과 같이 많이 사용하는 명명규칙이 있다.
   - [카멜표기법(camelCase)](https://ko.wikipedia.org/wiki/%EC%B9%B4%EB%A9%9C_%ED%91%9C%EA%B8%B0%EB%B2%95)
-    - ```javasscript var userName = "walter";```
+    - ```javascript var userName = "walter";```
   - [스네이크 표기법(snake_case)](https://ko.wikipedia.org/wiki/%EC%8A%A4%EB%84%A4%EC%9D%B4%ED%81%AC_%ED%91%9C%EA%B8%B0%EB%B2%95)
-    - ```javasscript var user_name = "walter";```
+    - ```javascript var user_name = "walter";```
   - 파스칼 표기법(PascalCase)
-    - ```javasscript var UserName = "walter";```
+    - ```javascript var UserName = "walter";```
   - [헝가리언 표기법(데이터타입의 약어사용)](https://ko.wikipedia.org/wiki/%ED%97%9D%EA%B0%80%EB%A6%AC%EC%95%88_%ED%91%9C%EA%B8%B0%EB%B2%95)
-    - ```javasscript var strUserName = "walter";```
+    - ```javascript var strUserName = "walter";```
   - ES6에서도 카멜표기법을 따라서 사용하며, 일반적으로 가장 많이 사용
 
 ### 4.2 변수 선언자(var, let, const)
