@@ -738,12 +738,12 @@ for building incredible, powerful JavaScript applications.
 
 - 코드 블럭을 원하는 횟수만큼 반복 실행되게 함
 - 반복문의 종류
-  - for, for in, for of, for each, while
+  - for, for...in, for...of, forEach, while(do-while)
   - [for](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/for)
     - initialization, condition, final-expression으로 구분
     - continue, break 
   - [for...in](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/for...in)
-    - ***객체***의 반복에 사용
+    - `객체의 반복에 사용`
     - 속성(배열, 객체)을 포함한 객체나 열거 가능한 속성에 대해서 반복
     - 객체의 모든 열거가능한 속성에 대해서 반복
 
@@ -765,7 +765,7 @@ for building incredible, powerful JavaScript applications.
       ```
    
   - [for...of](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/for...of)
-    - ***배열***의 반복에 사용
+    - `배열의 반복에 사용`
     - 컬렉션 전용 반복
     - 모든 객체보다는 [System.iterator] 속성이 있는 모든 컬렉션 요소에 대해 반복
 
@@ -821,8 +821,8 @@ for building incredible, powerful JavaScript applications.
   - const sum = function(num1, num2) { return num1+num2; }
 
   - 실행의 측면에서 선언식, 표현식 차이가 존재
-    - ***선언식은 인터프리트 방식 아님***(자바 엔진이 함수 선언식부터 해석하고 가지고 잇음)
-    - ***표현식(변수)은 인터프리트 방식***
+    - `선언식은 인터프리트 방식 아님`(자바 엔진이 함수 선언식부터 해석하고 가지고 잇음)
+    - `표현식(변수)은 인터프리트 방식`
 
 - [function 생성자 함수](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function#function_인스턴스)
   - 자바스크립트 내장 함수 function
