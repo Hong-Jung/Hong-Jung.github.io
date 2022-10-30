@@ -742,6 +742,18 @@ for building incredible, powerful JavaScript applications.
   - [for](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/for)
     - initialization, condition, final-expression으로 구분
     - continue, break 
+
+    - ```javascript
+      for ([initialization]; [condition]; [final-expression]){
+        statement;
+      }
+
+      for (var i = 0; i < 9; i++) {
+        console.log(i);
+        // 기타 등등
+      }
+      ```
+
   - [for...in](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/for...in)
     - `객체의 반복에 사용`
     - 속성(배열, 객체)을 포함한 객체나 열거 가능한 속성에 대해서 반복
