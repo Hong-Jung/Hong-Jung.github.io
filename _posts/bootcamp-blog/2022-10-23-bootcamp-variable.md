@@ -15,7 +15,7 @@ toc_sticky: false
 toc_label: "페이지 주요 목차" 
  
 date: 2022-10-24
-last_modified_at: 2022-10-24
+last_modified_at: 2022-10-30
 ---
 
 # What is ***variable(변수) declaration(선언)*** in JavaScript ???

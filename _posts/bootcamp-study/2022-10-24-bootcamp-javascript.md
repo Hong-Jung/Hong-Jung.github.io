@@ -1018,6 +1018,106 @@ for building incredible, powerful JavaScript applications.
 
 ### 10.3 Array
 
+- JavaScript [Array](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array) 클래스는 리스트 형태의 고수준 객체인 배열을 생성할 때 사용하는 전역 객체입니다.
+- 배열은 리스트와 비슷한 객체로서 순회와 변형 작업을 수행하는 메서드를 갖음
+- JavaScript 배열은 길이도, 각 요소의 자료형도 고정되어 있지 않고, 배열의 길이가 언제든지 늘어나거나 줄어들 수 있고 데이터를 연속적이지 않은 곳에 저장할 수 있으므로, JavaScript 배열은 밀집성을 보장하지 않음
+- 관련 내장 함수 및 속성
+  - [toString()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/toString)
+    - 문자열 객체로 변환하여 반환
+
+    - ```javascript
+      // this is toString sample
+      ```
+
+
+  - [join()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/join) / [push()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/push)
+    - join(파라미터의 문자가 요소 사이 삽입되어 하나의 문자로 반환) 
+    - push(파라미터의 문자를 요소로 추가)
+    - 배열을 이용해서 태그에 바인딩 샘플(문자열 더하기 vs 배열 push & join, 버튼 테이블 태그 추가하여 샘플 작성)
+
+    - ```javascript
+      // this is join sample
+
+      // this is push sample
+      ```
+
+  - [pop()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/pop) / [shift()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/shift)
+    - pop(마지막 요소 제거 후 반환) 
+    - shift(첫번째 요소 제거 후 반환)
+      - shift는 메시지큐 처리에 많이 사용
+
+    - ```javascript
+      // this is pop sample
+
+      // this is shift sample
+      ```
+
+  - [push()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/push) / [unshift()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift)
+    - push(파라미터의 문자를 마지막 요소로 추가)
+    - unshift(파라미터의 문자를 첫번째 요소로 추가)
+    - select의 옵션추가 샘플
+    - push가 일반적이나 태그 밖으로 뺄때는 unshift가 더 효율적이다
+
+    - ```javascript
+      // this is push sample
+
+      // this is unshift sample
+      ```
+
+  - [splice()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
+    - 특정 위치에 요소 추가, 추가시 삭제도 가능
+
+    - ```javascript
+      // this is splice sample
+      ```
+
+  - [concat()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/concat)
+    - 2개 이상의 배열 결합
+    - …arr1, …arr2
+
+    - ```javascript
+      // this is concat sample
+      ```
+
+  - [slice()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/slice)
+    -요소를 잘라내서 배열 타입으로 반환
+
+    - ```javascript
+      // this is slice sample
+      ```
+
+  - [sort()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
+    - 요소를 정렬
+    - 문자열 정렬, 숫자 정렬 샘플
+    - 숫자정열시 함수에서 양수는 바꿈, 음수는 바꾸지 않은, 0 같음
+    - 배열내 객체의 정렬 샘플(숫자, 문자의 경우 차이점 이해해야함)
+
+    - ```javascript
+      // this is sort sample
+      ```
+
+  - [filter()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+    - 특정 조건의 요소를 찾고 배열로 반환
+    - 필터 함수 사용 샘플
+
+    - ```javascript
+      // this is filter sample
+      ```
+
+  - [map()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+    - 배열의 요소가 객체의 경우(key-value), 새로운 객체로 변경 후 배열 반환
+
+    - ```javascript
+      // this is map sample
+      ```
+
+  - [reduce()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
+    - 요소의 크기만큼 callback 호출(재귀 호출)하면서 누적된 값을 출력
+    
+    - ```javascript
+      // this is reduce sample
+      ```
+
 ### 10.4 Date
 
 ### 10.5 Set
