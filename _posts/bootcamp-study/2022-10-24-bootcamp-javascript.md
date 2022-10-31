@@ -1425,7 +1425,183 @@ for building incredible, powerful JavaScript applications.
 
 ### 10.4 Date
 
+- [MDN - Date](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Date)
+- 시간의 한 점을 플랫폼 종속적이지 않도록 나타니며, `Date Object`는 `1970년01월01일 UTC(협정 세계시) 자정`과의 시간 차이를 `밀리초`로 나타내는 정수 값을 담는다.
+- Date Object의 기본 사용 방법
+
+  - ```javascript
+    let now = new Date(); // 반드시 new 키워드로 Date Object 생성
+    console.log(now); // 로컬 컴퓨터에 설정된 날짜 기준으로 표기
+    // Output: Tue Nov 01 2022 06:42:36 GMT+0900 (한국 표준시)
+
+    // year, month, day, hour, minute, second, millsecond
+    // 월(month)는 1월 '0', 2월 '1', 3월 '2' ... 12월 '11' 이다. !!!
+    // 일(day)는 일요일 '0', 월요일 '1', 화요일 '2' ... 토요일 '6' 이다. !!!
+    let d = new Date(2022, 10, 1, 06, 34, 20, 0);
+    console.log(d);
+    // Output: Tue Nov 01 2022 06:34:20 GMT+0900 (한국 표준시)
+    ```
+
+- Date Object의 기본 get function
+
+  - ```javascript
+    let now = new Date(); // 반드시 new 키워드로 Date Object 생성
+
+    console.log(now.getFullYear()); // 년도
+    console.log(now.getMonth()); // 월. 1월 0, 2월 1
+    console.log(now.getDate()); // 날짜
+    console.log(now.getDay()); // 요일. 일요일-0, 월요일-1
+    console.log(now.getHours()); // 시간
+    console.log(now.getMinutes()); // 분
+    console.log(now.getSeconds()); // 초
+    console.log(now.getMilliseconds()); // 밀리초
+    ```
+
+- 밀리초로 하루를 계산하는 샘플
+
+  - ```javascript
+    let d2 = new Date(0);
+    console.log(d2); // 1970-01-01 시작.
+
+    // 1초 1000밀리초
+    // 하루 =  24 * 60 * 60 * 1000
+    console.log(new Date(24 * 60 * 60 * 1000));
+
+    function getIntervalDate(day) {
+      let now = new Date();
+      let dayMilliseconds = 60 * 60 * 24 * 1000;
+      let currentMilliseconds = now.getTime();
+      let intervalDate = currentMilliseconds + day * dayMilliseconds;
+      return new Date(intervalDate);
+    }
+
+    console.log(getIntervalDate(-7));//Tue Oct 25 2022 06:59:13 GMT+0900 (한국 표준시)
+    console.log(getIntervalDate(-30));//Sun Oct 02 2022 06:59:24 GMT+0900 (한국 표준시)
+    console.log(getIntervalDate(7));//Tue Nov 08 2022 06:59:36 GMT+0900 (한국 표준시)
+    ```
+
+- Date Object 의 좋은 샘플
+  - 다음과 같이 input type이 `date` 요소를 각각 `startDate와` `endDate를` html 에서 생성
+  - 각 date 요소에 기본 날짜를 설정
+    - startDate : 7일전 날짜
+    - endDate : 오늘 날짜
+  - 기본 설정
+    - 날짜의 기본 포맷은 `YYYY_MM_DD`
+  
+  - ```html
+    <input type="date" id="startDate" /> ~ <input type="date" id="endDate" />
+    ```
+
+  - ```javascript
+    // 오늘날짜를 반환하는 함수
+    function getToday(){
+      const today =
+          year +
+          "-" +
+          month.toString().padStart(2, 0) +
+          "-" +
+          day.toString().padStart(2, 0);
+      return today;
+    }
+    
+
+    function getIntervalDateFormat(day, format) {
+      let now = new Date();
+      let dayMilliseconds = 60 * 60 * 24 * 1000;
+      let currentMilliseconds = now.getTime();
+
+      let intervalDate = currentMilliseconds + day * dayMilliseconds;
+      let d = new Date(intervalDate);
+
+      let year = d.getFullYear();
+      let month = (d.getMonth() + 1).toString().padStart(2, 0);
+      let date = d.getDate().toString().padStart(2, 0);
+
+      // YYYY-MM-DD, YYYY.MM.DD, MM.DD.YYYY
+      return format
+        .replace("YYYY", year)
+        .replace("MM", month)
+        .replace("DD", date);
+    }
+    const before7days = getIntervalDateFormat(-7, "YYYY-MM-DD");
+    document.getElementById("startDate").value = before7days;//startDate 7일전으로 설정
+    document.getElementById("endDate").value = today;//endDate 오늘날짜로 설정
+    ```
+
 ### 10.5 Set
+
+- [MDN - Arrary Object](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array)
+- [MDN - Set Object](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Set)
+  - 자료형에 관계 없이 원시 값과 객체 참조 모두 `유일한 값`을 저장할 수 있다.
+  - 반드시 `new Set();`과 같이 생성자를 통하여 사용
+  - 속성
+    - size
+  - 메서드
+    - add(value)
+      - Set 개체에 값을 추가하고 추가된 개체를 반환
+    - clear()
+      - 모든 요소를 ​​제거
+    - delete(value)
+      - 값과 연결된 요소를 제거, 성공적으로 제거되었는지 여부를 확인하는 boolean 값을 반환
+    - has(value)
+      - 주어진 값으로 존재하는지 여부를 확인하는 boolean 값을 반환
+- 설문조사를하여 좋아하는 음식을 리스트업하여 배열화 하였다. 음식명을 기준으로 중복되는 요소를 제거하여 유일한 음식명만 리스트업
+  - 객체의 특성(키-값)을 활용하여 `배열 -> 객체 -> 배열` 과정을 통하여 중복된 요소 제거
+
+    - ```javascript
+      //객체의 특성이 `키-값을 유일`하게 가짐으로 중복되는 키값은 만들수 없다는 점을 활용
+      let foods = ["햄버거", "김치찌개", "된장찌개", "제육볶음", "김치찌개", "햄버거"];
+      let oFood = {};
+      
+      for (const food of foods) {
+        oFood[food] = "";
+      }
+      console.log(oFood);
+      // Output: {햄버거: '', 김치찌개: '', 된장찌개: '', 제육볶음: ''}
+
+      let uniqueFoods = [];
+      for (const key in oFood) {
+        uniqueFoods.push(key);
+      }
+
+      console.log(uniqueFoods);
+      // Output: ['햄버거', '김치찌개', '된장찌개', '제육볶음']
+
+      // 찾고자 하는 데이터가 요소로 있는지 찾으려면 for문, if문을 사용
+      for (const food of uniqueFoods) {
+        if (food === "김치찌개") {
+          console.log("김치찌개 존재");
+        }
+      }
+      ```
+
+  - `set object` 사용
+
+    - ```javascript
+      //ES6에서 추가된 set object를 활용하면 쉽게 구현 가능
+      //set은 배열과 유사하나 값이 유일해야만 한다.
+
+      let foodSet = new Set();
+      foodSet.add("햄버거");
+      foodSet.add("김치찌개");
+      foodSet.add("된장찌개");
+      foodSet.add("제육볶음");
+      foodSet.add("김치찌개"); // 중복
+      foodSet.add("햄버거"); // 중복
+
+      foodSet.forEach(function (food) {
+        console.log(food);
+      });
+      // Output:
+      //햄버거
+      //김치찌개
+      //된장찌개
+      //제육볶음
+
+      console.log(foodSet.has("김치찌개")); // 특정요소의 존재유무 확인
+      foodSet.delete("김치찌개"); // 특정요소 삭제
+      foodSet.clear(); // 모두 삭제
+      ```
 
 ### 10.6 Map
 
