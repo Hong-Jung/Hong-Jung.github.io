@@ -1026,64 +1026,180 @@ for building incredible, powerful JavaScript applications.
     - 문자열 객체로 변환하여 반환
 
     - ```javascript
-      // this is toString sample
+      let brands = ["애플", "구글", "아마존", "마이크로소프트", "메타"];
+      console.log(brands.toString());
+      // Output:
+      // 애플,구글,아마존,마이크로소프트,메타
       ```
 
-
-  - [join()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/join) / [push()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/push)
-    - join(파라미터의 문자가 요소 사이 삽입되어 하나의 문자로 반환) 
-    - push(파라미터의 문자를 요소로 추가)
+  - [join()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/join)
+    - 파라미터의 문자가 요소 사이 삽입되어 하나의 문자로 반환
     - 배열을 이용해서 태그에 바인딩 샘플(문자열 더하기 vs 배열 push & join, 버튼 테이블 태그 추가하여 샘플 작성)
 
     - ```javascript
-      // this is join sample
-
-      // this is push sample
+      console.log(brands.join(" * "));
+      // Output:
+      // 애플 * 구글 * 아마존 * 마이크로소프트 * 메타
+      console.log(brands.join(""));
+      // Output:
+      // 애플구글아마존마이크로소프트메타
       ```
 
-  - [pop()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/pop) / [shift()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/shift)
-    - pop(마지막 요소 제거 후 반환) 
-    - shift(첫번째 요소 제거 후 반환)
-      - shift는 메시지큐 처리에 많이 사용
+  - [push()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/push)
+    - 파라미터의 문자를 마지막 요소로 추가
+
+    - ```html
+      <button onclick="doSearch();">조회</button>
+      <table>
+        <thead>
+          <th>음료</th>
+          <th>가격</th>
+        </thead>
+        <tbody id="tbBody"></tbody>
+      </table>
+      ```
 
     - ```javascript
-      // this is pop sample
+      function doSearch() {
+        const drinkList = [
+          {
+            name: "오렌지",
+            price: 1000,
+          },
+          {
+            name: "파워레이드",
+            price: 1400,
+          },
+          {
+            name: "커피",
+            price: 700,
+          },
+          {
+            name: "보리음료",
+            price: 1200,
+          },
+          {
+            name: "코카콜라",
+            price: 1000,
+          },
+        ];
 
-      // this is shift sample
+        // push()
+        let trTags = [];
+        for (const drink of drinkList) {
+          trTags.push("<tr>");
+          trTags.push("<td>" + drink.name + "</td>");
+          trTags.push("<td>" + drink.price + "</td>");
+          trTags.push("</tr>");
+        }
+
+        console.log(trTags.join(""));
+        document.getElementById("tbBody").innerHTML = trTags;
+      }
       ```
 
-  - [push()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/push) / [unshift()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift)
-    - push(파라미터의 문자를 마지막 요소로 추가)
-    - unshift(파라미터의 문자를 첫번째 요소로 추가)
+  - [unshift()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift)
+    - 파라미터의 문자를 첫번째 요소로 추가
     - select의 옵션추가 샘플
     - push가 일반적이나 태그 밖으로 뺄때는 unshift가 더 효율적이다
 
     - ```javascript
-      // this is push sample
+      let brands = ["애플", "구글", "아마존", "마이크로소프트", "메타"];
+      brands.unshift("삼성전자");
+      // Output:
+      // 6
+      console.log(brands);
+      // Output:
+      // Array(6) [ "삼성전자", "애플", "구글", "아마존", "마이크로소프트", "메타" ]
+      ```
 
-      // this is unshift sample
+    - ```javascript
+      function loadDrinkType() {
+        const types = [
+          { text: "이온음료", code: "A" },
+          { text: "커피", code: "B" },
+          { text: "탄산음료", code: "C" },
+        ];
+
+        const h = [];
+        for (const type of types) {
+          h.push(
+            '<option value="' + type.code + '">' + type.text + "</option>"
+          );
+        }
+
+        return h;
+      }
+
+      const selDrinkType = loadDrinkType();
+      selDrinkType.unshift('<option value=""></option>');
+      document.getElementById("selDrinkType").innerHTML = selDrinkType.join("");
+      ```
+
+  - [pop()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/pop) / 
+    - 마지막 요소 제거 후 반환
+
+    - ```javascript
+      let brands = ["애플", "구글", "아마존", "마이크로소프트", "메타"];
+      console.log(brands.pop());
+      // Output: 
+      // 메타
+      console.log(brands);
+      // Output: 
+      // Array(4) [ "애플", "구글", "아마존", "마이크로소프트" ]
+      ```
+
+  - [shift()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/shift)
+    - 첫번째 요소 제거 후 반환
+    - shift는 메시지큐 처리에 많이 사용
+
+    - ```javascript
+      const array1 = [1, 2, 3];
+      const firstElement = array1.shift();
+
+      console.log(array1);
+      // Output: 
+      // Array [2, 3]
+
+      console.log(firstElement);
+      // output:
+      // 1
       ```
 
   - [splice()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
     - 특정 위치에 요소 추가, 추가시 삭제도 가능
+    - 첫번째 파라미터 - 새로운 요소를 추가할 인덱스 번호
+    - 두번째 파라미터 - 요소를 추가하기전에 삭제할 요소 수
+    - 나머지 파라미터 - 추가할 요소
 
     - ```javascript
-      // this is splice sample
+      let brands = ["애플", "구글", "아마존", "마이크로소프트", "메타"];
+      brands.splice(1, 0, "개발자의품격", "더그레잇");
+      console.log(brands);
+      // Output:
+      // Array(7) [ "애플", "개발자의품격", "더그레잇", "구글", "아마존", "마이크로소프트", "메타" ]
       ```
 
   - [concat()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/concat)
     - 2개 이상의 배열 결합
-    - …arr1, …arr2
 
     - ```javascript
-      // this is concat sample
+      let arr1 = ["A", "B"];
+      let arr2 = ["C", "D"];
+      let arr3 = ["E", "F", "G"];
+      let arr4 = arr1.concat(arr2, arr3);
+      console.log(arr4);
+      // Output:
+      // Array(7) [ "A", "B", "C", "D", "E", "F", "G" ]
       ```
 
   - [slice()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/slice)
     -요소를 잘라내서 배열 타입으로 반환
 
     - ```javascript
-      // this is slice sample
+      console.log(arr4.slice(1, 2));
+      // Output:
+      // Array [ "B" ]
       ```
 
   - [sort()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
@@ -1093,7 +1209,64 @@ for building incredible, powerful JavaScript applications.
     - 배열내 객체의 정렬 샘플(숫자, 문자의 경우 차이점 이해해야함)
 
     - ```javascript
-      // this is sort sample
+      let points = [40, 100, 1, 5, 25, 10];
+      console.log(points.sort());
+      // Output:
+      // Array(6) [ 1, 10, 100, 25, 40, 5 ]
+
+      const ascPoints = points.sort(function (a, b) {
+        // a - 40, b-100
+        // [40, 100, 1, 5, 25, 10]
+        // a - 100, b - 1
+        // [40, 1, 100, 5, 25, 10]
+        // a - 100, b -5
+        // [40, 1, 5, 100, 25, 10]
+        // a - 100, b - 25
+        // [40, 1, 5, 25, 100, 10]
+        // [1, 5, 10, 25, 40, 100]
+        // if (a > b) return 1;
+        // else if (a < b) return -1;
+        // else 0;
+        return a - b;
+      });
+      console.log(ascPoints);
+
+      const descPoints = points.sort(function (a, b) {
+        return b - a;
+      });
+      console.log(descPoints);
+
+      let drinkList = [
+        {
+          name: "오렌지",
+          price: 1000,
+        },
+        {
+          name: "파워레이드",
+          price: 1400,
+        },
+        {
+          name: "커피",
+          price: 700,
+        },
+        {
+          name: "보리음료",
+          price: 1200,
+        },
+        {
+          name: "코카콜라",
+          price: 1000,
+        },
+      ];
+
+      const userSortKey = "name";
+
+      const ascDrinkList = drinkList.sort(function (a, b) {
+        if (a[userSortKey] > b[userSortKey]) return 1;
+        else if (a[userSortKey] < b[userSortKey]) return -1;
+        else 0;
+      });
+      console.log(ascDrinkList);
       ```
 
   - [filter()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
@@ -1101,21 +1274,153 @@ for building incredible, powerful JavaScript applications.
     - 필터 함수 사용 샘플
 
     - ```javascript
-      // this is filter sample
+      let drinkList = [
+        {
+          name: "오렌지",
+          price: 1000,
+        },
+        {
+          name: "파워레이드",
+          price: 1400,
+        },
+        {
+          name: "커피",
+          price: 700,
+        },
+        {
+          name: "보리음료",
+          price: 1200,
+        },
+        {
+          name: "코카콜라",
+          price: 1000,
+        },
+      ];
+
+      let availableProduct = [];
+      const inputCoin = 1000;
+
+      availableProduct = drinkList.filter(function (drink) {
+        return drink.price <= inputCoin;
+      });
+
+      console.log(availableProduct);
+      // Output:
+      // Array(3) [ {…}, {…}, {…} ]
+      //  0: Object { name: "오렌지", price: 1000 }
+      //  1: Object { name: "커피", price: 700 }
+      //  2: Object { name: "코카콜라", price: 1000 }
       ```
 
   - [map()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
     - 배열의 요소가 객체의 경우(key-value), 새로운 객체로 변경 후 배열 반환
 
     - ```javascript
-      // this is map sample
+      let userList = [
+        {
+          firstName: "재석",
+          lastName: "유",
+          email: "ryu@gmail.com",
+        },
+        {
+          firstName: "종국",
+          lastName: "김",
+          email: "kim@gmail.com",
+        },
+        {
+          firstName: "지효",
+          lastName: "송",
+          email: "song@gmail.com",
+        },
+      ];
+
+      let newUserList = userList.map(function (user) {
+        return {
+          fullName: user.lastName + user.firstName,
+          email: user.email,
+        };
+      });
+
+      console.log(newUserList);
+      // Output:
+      // Array(3) [ {…}, {…}, {…} ]
+      //  0: Object { fullName: "유재석", email: "ryu@gmail.com" }
+      //  1: Object { fullName: "김종국", email: "kim@gmail.com" }
+      //  2: Object { fullName: "송지효", email: "song@gmail.com" }
       ```
 
   - [reduce()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
     - 요소의 크기만큼 callback 호출(재귀 호출)하면서 누적된 값을 출력
     
     - ```javascript
-      // this is reduce sample
+      points = [40, 100, 1, 5, 25, 10];
+
+      let sum = points.reduce(function (accumulator, currentValue) {
+        return accumulator + currentValue;
+      }, 0); 
+      
+      console.log(sum);
+
+      drinkList = [
+        {
+          name: "오렌지",
+          price: 1000,
+        },
+        {
+          name: "파워레이드",
+          price: 1400,
+        },
+        {
+          name: "커피",
+          price: 700,
+        },
+        {
+          name: "보리음료",
+          price: 1200,
+        },
+        {
+          name: "코카콜라",
+          price: 1000,
+        },
+      ];
+
+      let drinkTotal = drinkList.reduce(function (total, drink) {
+        return total + drink.price;
+      }, 0);
+      console.log(drinkTotal);
+
+      userList = [
+        {
+          firstName: "재석",
+          lastName: "유",
+          email: "ryu@gmail.com",
+        },
+        {
+          firstName: "종국",
+          lastName: "김",
+          email: "kim@gmail.com",
+        },
+        {
+          firstName: "지효",
+          lastName: "송",
+          email: "song@gmail.com",
+        },
+        {
+          firstName: "가네",
+          lastName: "김",
+          email: "kim2@gmail.com",
+        },
+      ];
+
+      let kims = userList.reduce(function (users, user) {
+        if (user.lastName === "김") {
+          users.push(user);
+        }
+
+        return users;
+      }, []);
+
+      console.log(kims);
       ```
 
 ### 10.4 Date
