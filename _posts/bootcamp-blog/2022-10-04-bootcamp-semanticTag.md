@@ -1,5 +1,5 @@
 ---
-title:  "Semantic Tag"
+title:  "[Blog] Semantic Tag"
 excerpt: "개발자의품격"
 comments: true
 header:

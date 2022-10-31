@@ -1,5 +1,5 @@
 ---
-title:  "JavaScript in Loop Statement."
+title:  "[Blog] JavaScript in Loop Statement."
 excerpt: "개발자의품격"
 comments: true
 header:

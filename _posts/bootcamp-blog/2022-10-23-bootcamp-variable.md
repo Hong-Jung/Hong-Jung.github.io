@@ -1,5 +1,5 @@
 ---
-title:  "JavaScript in Variable Declaration."
+title:  "[Blog] JavaScript in Variable Declaration."
 excerpt: "개발자의품격"
 comments: true
 header:

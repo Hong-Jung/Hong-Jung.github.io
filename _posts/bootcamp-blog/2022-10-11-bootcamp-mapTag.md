@@ -1,5 +1,5 @@
 ---
-title:  "What is Image Map Tag ???"
+title:  "[Blog] What is Image Map Tag ???"
 excerpt: "개발자의품격"
 comments: true
 header:

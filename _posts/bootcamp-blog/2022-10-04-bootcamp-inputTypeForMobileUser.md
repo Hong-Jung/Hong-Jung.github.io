@@ -1,5 +1,5 @@
 ---
-title:  "Input Type for Mobile User"
+title:  "[Blog] Input Type for Mobile User"
 excerpt: "개발자의품격"
 comments: true
 header:
