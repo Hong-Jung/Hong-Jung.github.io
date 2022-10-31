@@ -900,59 +900,119 @@ for building incredible, powerful JavaScript applications.
 - [string](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String)
   - 문자열은 텍스트 형태로 표현될 수있는 데이터를 보관하는 데 유용합니다. 문자열에서 가장 많이 사용되는 작업들은 문자열의 길이를 확인하는 `(length)`, 문자열을 생성하고 연결하는 + 와 += `문자열 연산자`, `서브문자열(substring)`이 있는지 확인하고, 있으면 위치를 확인하는 `indexOf()` 메서드, `서브문자열(substring)`을 추출해내는 substring() 메서드가 존재
 
-- indexOf(찾고자 하는 문자열)
-  - 그 문자열이 시작되는 인덱스 번호를 반환
-- lastIndexOf(찾고자 하는 문자열, 시작할 인덱스 번호)
-  - 마지막 인덱스 번호
+- 관련 내장 함수 및 속성
+  - indexOf(찾고자 하는 문자열)
+    - 그 문자열이 시작되는 인덱스 번호를 반환
+  - lastIndexOf(찾고자 하는 문자열, 시작할 인덱스 번호)
+    - 마지막 인덱스 번호
 
-- 문자열을 잘라내는 내장 함수 (세밀하게 차이점이 존재 한다.)
-  - slice
-    - (시작위치, 종료위치) 파라메터로 문자열을 잘라 반환
-    - 시작위치만 파라메터만 주면, 종료 위치는 자동으로 끝으로 간다.
-    - 값은 뒤에서 부터 시작
-    - 문자열을 뒤에서부터 찾을때 가장 많이 사용
-  - substring
-    - (시작위치, 종료위치) 파라메터로 문자열 잘라 반환
-    - 음수값을 가질 수 없다 !!
-  - substr
-    - (시작위치, 잘라낼길이) 파라메터로 문자열 잘라 반환
-    - 잘라낼 길이를 정확하게 아는 경우 사용
-- replace(문자열1, 문자열2) - 문자열에서 문자열1을 찾아서 문자열2로 교체
-  - 발견되는 첫번째 문자열만 변경함
-  - 정규식을 통하여 전체 문자열 통제 가능
+  - 문자열을 잘라내는 내장 함수 (세밀하게 차이점이 존재 한다.)
+    - slice
+      - (시작위치, 종료위치) 파라메터로 문자열을 잘라 반환
+      - 시작위치만 파라메터만 주면, 종료 위치는 자동으로 끝으로 간다.
+      - 값은 뒤에서 부터 시작
+      - 문자열을 뒤에서부터 찾을때 가장 많이 사용
+    - substring
+      - (시작위치, 종료위치) 파라메터로 문자열 잘라 반환
+      - 음수값을 가질 수 없다 !!
+    - substr
+      - (시작위치, 잘라낼길이) 파라메터로 문자열 잘라 반환
+      - 잘라낼 길이를 정확하게 아는 경우 사용
+  - replace(문자열1, 문자열2) - 문자열에서 문자열1을 찾아서 문자열2로 교체
+    - 발견되는 첫번째 문자열만 변경함
+    - 정규식을 통하여 전체 문자열 통제 가능
 
-- toXXXCase()
-  - toUpperCase() - 모든 알파벳을 대문자로 변경
-  - toLowerCase() - 모든 알파멧을 소문자로 변경
-  - 검색에 대한 일관성(대/소문자)을 위하여 가장 많이 사용
-- concat() - 여러 문자열을 하나로 결합
-- trim() - 문자열의 앞/뒤 공백 제거
+  - toXXXCase()
+    - toUpperCase() - 모든 알파벳을 대문자로 변경
+    - toLowerCase() - 모든 알파멧을 소문자로 변경
+    - 검색에 대한 일관성(대/소문자)을 위하여 가장 많이 사용
+  - concat() - 여러 문자열을 하나로 결합
+  - trim() - 문자열의 앞/뒤 공백 제거
 
-- padStart() - 두개의 파라메터를 받아서 첫번째 파라메터는 "길이", 두번째 파라메터는 "채울 문자"
-  - "ST" -> 4, "A" -> AAST
-  - 첫번째 파라메터로 전달 받은 길이만큼 문자열의 앞에 두번째 파라메터로 전달 받은 문자로 채움
-  - paddEnd()
-    - padStart() 와 동일하나 문자열의 뒤에서 처리함
+  - padStart() - 두개의 파라메터를 받아서 첫번째 파라메터는 "길이", 두번째 파라메터는 "채울 문자"
+    - "ST" -> 4, "A" -> AAST
+    - 첫번째 파라메터로 전달 받은 길이만큼 문자열의 앞에 두번째 파라메터로 전달 받은 문자로 채움
+    - paddEnd()
+      - padStart() 와 동일하나 문자열의 뒤에서 처리함
 
-- charAt()
-  - 첫번째 파라메터 - 인덱스 번호
-  - 문자열에서 인덱스 번호에 해당하는 문자 하나를 반환
-- charCodeAt()
-  - 인덱스번호에 맞는 하나의 문자를 반환
-  - 문자를 유니코드로 변환해서 반환. 
-- split()
-  - 파라메터로 전달 받은 문자열로 앞뒤로 분리하여 배열로 반환
-  - let to = "a@a.com, b@b.com, c@c.com";
-  - let tags = "#A#B#C";
+  - charAt()
+    - 첫번째 파라메터 - 인덱스 번호
+    - 문자열에서 인덱스 번호에 해당하는 문자 하나를 반환
+  - charCodeAt()
+    - 인덱스번호에 맞는 하나의 문자를 반환
+    - 문자를 유니코드로 변환해서 반환. 
+  - split()
+    - 파라메터로 전달 받은 문자열로 앞뒤로 분리하여 배열로 반환
+    - let to = "a@a.com, b@b.com, c@c.com";
+    - let tags = "#A#B#C";
 
-- startWith() - 파라메터로 전달받은 문자열로 시작하는지를 확인 후 boolean으로 반환
-- endWith() - 파라메터로 전달받은 문자열로 끝나는지 확인 후 boolean으로 반환
+  - startWith() - 파라메터로 전달받은 문자열로 시작하는지를 확인 후 boolean으로 반환
+  - endWith() - 파라메터로 전달받은 문자열로 끝나는지 확인 후 boolean으로 반환
 
-- 유니코드 : 전 세계 모든 문자를 컴퓨터에서 일관되게 표현하고 다룰 수 있게 설계된 산업 표준
-  - 일관된 산업 표준으로 만드는 것을 "인코딩"이라고 하는데 인코딩의 방식에는 수없이 많은 방법이 존재 한다. (euc-kr, iso ... )
-  - 인코딩 - utf-8이 가장 대표적인 인코딩 방식
+  - 유니코드 : 전 세계 모든 문자를 컴퓨터에서 일관되게 표현하고 다룰 수 있게 설계된 산업 표준
+    - 일관된 산업 표준으로 만드는 것을 "인코딩"이라고 하는데 인코딩의 방식에는 수없이 많은 방법이 존재 한다. (euc-kr, iso ... )
+    - 인코딩 - utf-8이 가장 대표적인 인코딩 방식
 
 ### 10.2 Number
+
+- [Number](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Number)
+- `Number` 는 `37`이나 `-9.25`와 같은 숫자를 표현하고 다룰 때 사용하는 원시 래퍼 객체
+- 관련 내장 함수 및 속성
+  - [toString()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Number/toString)
+    - 문자형 데이터 타입으로 변경
+  - [toExponential()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Number/toExponential)
+    - 지수표기법으로 반환
+    - 과학, 공학에서 큰 숫자 사용
+  - [toFixed()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed)
+    - 소수점 자릿수 표기
+
+    - ```javascript
+      let x = 10.656;
+      console.log(x.toFixed(0)); // 11
+      console.log(x.toFixed(1)); // 10.7
+      console.log(x.toFixed(2)); // 10.66
+      console.log(x.toFixed(4)); // 10.6560
+      ```
+
+  - [toPrecision()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Number/toPrecision)
+    - 정수 + 소수를 포함하여 전체 자릿수 표기
+
+    - ```javascript
+      let x = 10.656;
+      console.log(x.toPrecision(2)); // 11
+      console.log(x.toPrecision(3)); // 10.7
+      ```
+
+  - [parseInt()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Number/parseInt)
+    - 문자를 정수로 변환
+
+    - ```javascript
+      console.log(parseInt("3")); // 숫자 3
+      console.log(parseInt("12.33")); // 숫자 12
+      console.log(parseInt("12.77")); // 숫자 12
+      console.log(parseInt("10 20 30")); // 숫자 10
+      console.log(parseInt("10 years")); // 숫자 10
+      console.log(parseInt("10살")); // 숫자 10
+      ```
+
+  - 사용자로부터 입력 받은 값(수)의 연산
+    - 사용자로부터 입력된 값(수)을 연산하는 경우 사용
+    - 사용자로 입력받은 값은 실제로 문자(string) 임
+    - 숫사 연산을 위해서는 문자를 숫자로 변환하여 연산 필요
+  - [parseFloat()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Number/parseFloat)
+    - 부동소수점으로 반환 
+  - 값의 유효범위 확인
+    - [MAX_SAFE_INTEGER](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER)
+
+      - ```javascript
+        console.log(Number.MAX_SAFE_INTEGER);
+        ```
+
+    - [MIN_SAFE_INTEGER](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Number/MIN_SAFE_INTEGER)
+
+      - ```javascript
+        console.log(Number.MIN_SAFE_INTEGER);
+        ```
 
 ### 10.3 Array
 
