@@ -37,17 +37,6 @@ last_modified_at: 2022-10-24
   - [5.1 Object 타입](#51-object-타입)
   - [5.2 Array 타입](#52-array-타입)
   - [5.3 64 비트 부동소수점](#53-64-비트-부동소수점)
-- [6. 연산자(할당, 비교, 산술, 논리, 문자열, 조건삼항)](#6-연산자할당-비교-산술-논리-문자열-조건삼항)
-- [7. 조건문](#7-조건문)
-- [8. 반복문](#8-반복문)
-- [9. 함수](#9-함수)
-- [10. 주요 객체와 내장 함수](#10-주요-객체와-내장-함수)
-  - [10.1 String](#101-string)
-  - [10.2 Number](#102-number)
-  - [10.3 Array](#103-array)
-  - [10.4 Date](#104-date)
-  - [10.5 Set](#105-set)
-  - [10.6 Map](#106-map)
   - [10.7 Math](#107-math)
   - [10.8 JSON](#108-json)
   - [10.9 window](#109-window)
@@ -1605,7 +1594,209 @@ for building incredible, powerful JavaScript applications.
 
 ### 10.6 Map
 
+- [MDN Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+
+- ES6에서 추가된 객체로 반드시 `new 키워드`로 인스턴스 생성 후 사용
+- `key-value` 형태의 객체이다.
+- Object vs Map 차이점
+  - Object는 키값으로 문자열만 가질 수 있다. / Map은 키로 `모든 데이터 타입`을 가짐
+  - Map은 `size` 프로퍼티를 통하여 크기(요소 갯수)를 쉽게 알 수 있다
+  - Object는 순서를 보장하지 않는다 / Map은 `순서를 보장`한다
+
+- ```javascript
+  const map1 = new Map();
+
+  map1.set('a', 1);
+  map1.set('b', 2);
+  map1.set('c', 3);
+
+  console.log(map1.get('a'));
+  // expected output: 1
+
+  map1.set('a', 97);
+
+  console.log(map1.get('a'));
+  // expected output: 97
+
+  console.log(map1.size);
+  // expected output: 3
+
+  map1.delete('b');
+
+  console.log(map1.size);
+  // expected output: 2
+  ```
+
+- ```javascript
+  // Map 객체
+  let personMap = new Map();
+  personMap.set("name", "홍길동");
+  personMap.set("email", "hong@gmail.com");
+  personMap.set("phone", "010-0000-0000");
+
+  console.log(personMap.get("name")); // get함수 key 파라미터
+  console.log(personMap.has("email")); // key가 있는지 체크
+  personMap.forEach(function (person) {
+    console.log(person);
+  });
+
+  console.log(personMap.size);
+  personMap.delete("email");
+  personMap.clear();
+  ```
+
 ### 10.7 Math
+
+- [MDN Math](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Math)
+- **Math**는 수학적인 상수와 함수를 위한 속성과 메서드를 가진 내장 객체이며, 함수 객체가 아님
+- Math Object의 메서드
+  - [round()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Math/round)
+    - 반올림 처리
+    - 입력값을 **반올림**한 수와 가장 가까운 정수 값을 반환
+
+    - ```javascript
+      console.log(Math.round(4.9)); // 5
+      console.log(Math.round(4.4)); // 4
+      ```
+
+  - [ceil()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil)
+    - 무조건 올림
+    - 주어진 숫자보다 크거나 같은 숫자 중 **가장 작은 숫자**를 integer로 반환
+
+    - ```javascript
+      console.log(Math.ceil(4.6)); // 5
+      console.log(Math.ceil(4.1)); // 5
+
+      // 페이징 처리시 반드시 처리 필요
+      let total = 51;
+      let countPerPage = 10;
+      let totalPage = Math.ceil(total / countPerPage);
+      console.log(totalPage);
+      ```
+
+  - [floor()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Math/floor)
+    - 무조건 내림
+    - 주어진 숫자와 같거나 작은 정수 중에서 **가장 큰 수**를 반환합니다.
+
+    - ```javascript
+      console.log(Math.floor(4.7)); // 4
+      console.log(Math.floor(-4.2)); // -5
+      ```
+
+  - [trunc()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc)
+    - 소수점 이하는 무조건 버림
+    - **소수부분을 제거**하고 숫자의 정수부분을 반환
+
+    - ```javascript
+      console.log(Math.trunc(4.7)); // 4
+      console.log(Math.trunc(-4.2)); // -4
+      ```
+
+  - [sign()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Math/sign)
+    - 음수(-1), 0(0), 양수(+1) 반환
+    - 주어진 수의 부호를 나타내는 +/-1을 반환
+
+    - ```javascript
+      console.log(Math.sign(-4)); // -1
+      console.log(Math.sign(5)); // 1
+      console.log(Math.sign(0)); // 0
+      ```
+
+  - [pow()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Math/pow)
+    - 제곱 값
+    - base^exponent처럼 base 에 exponent를 제곱한 값을 반환
+
+    - ```javascript
+      console.log(Math.pow(8, 2)); // 64
+      ```
+
+  - [sqrt()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Math/sqrt)
+    - 루트 값
+    - ∀ x ≥ 0 , M a t h . s q r t ( x ) = x = the unique y ≥ 0 such that y 2 = x 
+
+    - ```javascript
+      console.log(Math.sqrt(64)); // 8
+      ```
+
+  - [abs()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Math/abs)
+    - 무조건 양수값 반환
+    - 함수는 주어진 숫자의 **절대값**을 반환
+
+    - ```javascript
+      console.log(Math.abs(-4.7)); // 4.7
+      ```
+
+  - [min()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Math/min)
+    - 가장 작은 값
+    - 함수는 주어진 **숫자들 중 가장 작은 값**을 반환
+
+    - ```javascript
+      console.log(Math.min(4, 2, 7, 34, 25, 1)); // 1
+      ```
+
+  - [max()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Math/max)
+    - 가장 큰 값
+    - 함수는 입력값으로 받은 0개 이상의 **숫자 중 가장 큰 숫자**를 반환
+
+    - ```javascript
+      console.log(Math.max(4, 2, 7, 34, 25, 1)); // 34
+      ```
+
+  - [random()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
+    - 랜덤 값
+    - 함수는 0 이상 1 미만의 구간에서 근사적으로 균일한(approximately uniform) 부동소숫점 의사난수를 반환, 사용자가 원하는 범위로 변형 가능
+
+    - ```javascript
+      console.log(Math.random()); // 0보다는 반드시 크고 1보다 작은 수가 무작위로 반환
+
+      console.log(Math.random() * 10); // 0보다는 반드시 크고 10보다는 작은 수
+      console.log(Math.floor(Math.random() * 10)); // 0에서 9사이의 정수
+      console.log(Math.floor(Math.random() * 10) + 1); // 1 ~ 10 정수
+      console.log(Math.floor(Math.random() * 100) + 1); // 1 ~ 100 정수
+
+      // min에서 max 사이의 랜덤 정수 반환
+      function getRandomInteger(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      console.log(getRandomInteger(1, 10));
+      ```
+    
+    - 가위/바위/보를 랜덤으로 출력하는 코드 샘플
+
+      - ```html
+        <button onclick="rspPlayer('가위');">가위</button>
+        <button onclick="rspPlayer('바위');">바위</button>
+        <button onclick="rspPlayer('보');">보</button>
+        ```
+      
+      - ```javascript
+        function getRandomInteger(min, max) {
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function rspPlayer(userRsp) {
+          const rsp = ["가위", "바위", "보"];
+          const computerRsp = rsp[getRandomInteger(0, 2)];
+
+          const userWinValue = {
+            가위: "보",
+            바위: "가위",
+            보: "바위",
+          };
+
+          console.log("사용자가 선택한 것", userRsp);
+          console.log("컴퓨터가 선택한 것", computerRsp);
+
+          const result =
+            userRsp === computerRsp
+              ? "무승부"
+              : userWinValue[userRsp] === computerRsp
+              ? "사용자 승리"
+              : "컴퓨터 승리";
+          console.log(result);
+        }
+        ```
 
 ### 10.8 JSON
 
