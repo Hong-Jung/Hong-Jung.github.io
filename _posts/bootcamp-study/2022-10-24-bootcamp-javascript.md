@@ -1800,7 +1800,121 @@ for building incredible, powerful JavaScript applications.
 
 ### 10.8 JSON
 
+- [MDN JSON](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/JSON)
+- JSON 객체는 `JavaScript Object Notation`을 `분석`하거나 값을 JSON으로 `변환`하는 메서드 가짐
+  - 데이터를 저장, 전송할 때 많이 사용하는 데이터 교환 형식(데이터 포맷)
+  - Client <-> Server 데이터 전송시 가장 많이 사용하는 데이터 포맷
+  - 표기법은 JavaScript Object와 거의 흡사
+  - 대부분의 Prgramming Language에서 지원하는 형식
+
+  - ```javascript
+    let person = {
+      id: "0001",
+      age: 22,
+      tel: "000-0000-0000",
+      team: "01",
+      company: "001",
+      email: "0001@google.com",
+      obj: {},
+      arr: [],
+    };
+    ```
+
+  - [stringify()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
+    - JavaScript 값이나 객체를 JSON 문자열로 변환
+
+    - ```javascript
+      const strPerson = JSON.stringify(person);
+      console.log(strPerson);
+      // Output:
+      // {"id":"0001","age":22,"tel":"000-0000-0000","team":"01","company":"001","email":"0001@google.com","obj":{},"arr":[]}
+      ```
+
+  - [parse()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse)
+    - JSON 문자열의 구문을 분석하고, 그 결과에서 JavaScript 값이나 객체를 생성
+
+    - ```javascript
+      const oPerson = JSON.parse(strPerson);
+      console.log(oPerson);
+      // Output:
+      // {id: '0001', age: 22, tel: '000-0000-0000', team: '01', company: '001', …}
+      ```
+
 ### 10.9 window
+
+- [MDN window](https://developer.mozilla.org/ko/docs/Web/API/Window)
+- `DOM` 문서를 담은 `창`을 나타냄
+- document 속성이 창에 불러온 DOM 문서를 가리키며 반대로, 주어진 문서의 창은 `document.defaultView`를 사용해 접근 가능
+- JavaScript 코드에 노출된 전역 변수 `window`는 현재 스크립트가 작동 중인 `창`을 나타냄
+- `window.alert('문자열');` 이나 `alert('문자열');`과 같이 사용가능.(전역 객체)
+- 자주 사용하는 내장 함수
+  - [alert()](https://developer.mozilla.org/ko/docs/Web/API/Window/alert)
+    - 확인 버튼을 가지고 메시지를 지정할 수 있는 경고 팝업이 나타남
+
+    - ```javascript
+      window.alert("Hello world!");
+      alert("Hello world!");
+      ```
+
+  - [prompt()](https://developer.mozilla.org/ko/docs/Web/API/Window/prompt)
+    - 사용자가 텍스트를 입력할 수 있는 팝업이 나타남
+
+    - ```javascript
+      let sign = prompt("당신의 별자리는 무엇입니까?");
+
+      if (sign.toLowerCase() === "전갈자리") {
+        alert("와! 저도 전갈자리예요!");
+      }
+
+      // prompt 기능을 쓰는 방법은 다양합니다.
+      sign = window.prompt(); // 빈 대화 상자를 엽니다.
+      sign = prompt(); // 빈 대화 상자를 엽니다.
+      sign = window.prompt("님 지금 기분 좋아요?"); // 안내 문구 "님 지금 기분 좋아요?"가 보이는 창을 띄웁니다.
+      sign = window.prompt("님 지금 기분 좋아요?", "네."); // 안내 문구 "님 지금 기분 좋아요?"가 보이는 창을 띄우되 기본적으로 입력되어 있는 값은 "네."로 합니다.
+      ```
+
+  - [open()](https://developer.mozilla.org/en-US/docs/Web/API/Window/open)
+    - 기존 창이나 새로운 창에 컨텐츠를 로딩
+
+    - ```javascript
+      const windowFeatures = "left=100,top=100,width=320,height=320";
+      const handle = window.open("https://www.mozilla.org/", "mozillaWindow", windowFeatures);
+      if (!handle) {
+        // The window wasn't allowed to open
+        // This is likely caused by built-in popup blockers.
+        // …
+      }
+      ```
+
+  - [setTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout)
+    - 타이머가 만료되면 함수 또는 지정된 코드를 실행하는 타이머를 설정
+    - [clearTimeout()](https://developer.mozilla.org/en-US/docs/Web/API/clearTimeout)
+      - setTimeout()을 호출하여 취소
+
+    - ```javascript
+      // 설정된 시간후 실행되는 함수 설정
+      const myFuncTimeout = setTimeout(function () {
+        console.log("3초 후에 출력");
+      }, 3000);
+
+      // Timeout 설정된 함수를 취소
+      clearTimeout(myFuncTimeout)
+      ```
+
+  - [setInterval()](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)
+    - 설정된 시간 지연으로 함수를 반복적으로 호출하거나 코드 블럭을 실행
+    - [clearInterval()](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval)
+      - setInterval() 호출에 의해 설정된 시간이 지정된 반복 작업을 취소
+
+    - ```javascript
+      // 설정된 시간마다 실행되는 함수 설정
+      const myFuncInterval = setInterval(function () {
+        console.log("1초 마다 출력");
+      }, 1000);
+
+      // Interval 설정된 함수 취소
+      clearInterval(myFuncInterval)
+      ```
 
 ## 11. Reference
 
