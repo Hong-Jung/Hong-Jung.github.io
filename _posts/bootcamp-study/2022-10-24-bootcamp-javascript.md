@@ -91,8 +91,6 @@ last_modified_at: 2022-10-24
     - Vanilla JS is a fast, lightweight, cross-platform framework
 for building incredible, powerful JavaScript applications.
 
----
-
 ## 2. JavaScript 작성 위치
 
 ### 2.1. 작성 위치
@@ -159,15 +157,11 @@ for building incredible, powerful JavaScript applications.
   </body>
   ```
 
----
-
 ## 3. Console 객체의 log 함수
 
 ### 3.1. log 함수란?
 
 - console.log 함수를 사용해 원하는 값을 콘솔에 출력 가능
-
----
 
 ## 4. 변수 선언자(var, let, const)
 
@@ -260,8 +254,6 @@ for building incredible, powerful JavaScript applications.
         let PI = 3; // 에러발생
         PI = 3.16; // 에러발생
         ```
-
----
 
 ## 5. 기본 데이터 타입
 
@@ -505,8 +497,6 @@ for building incredible, powerful JavaScript applications.
     console.log(Number.MIN_SAFE_INTEGER); //-9007199254740991
     ```
 
----
-
 ## 6. 연산자(할당, 비교, 산술, 논리, 문자열, 조건삼항)
 
 - 할당 연산자, 비교 연산자, 산술 연산자, 논리 연산자, 문자열 연산자, 조건 삼항 연산자
@@ -660,8 +650,6 @@ for building incredible, powerful JavaScript applications.
     console.log(grade); //B
     ```
 
----
-
 ## 7. 조건문
 
 - [조건문](https://developer.mozilla.org/ko/docs/Learn/JavaScript/Building_blocks/conditionals)
@@ -770,8 +758,6 @@ for building incredible, powerful JavaScript applications.
     console.log(dayNames[day]);
     ```
 
----
-
 ## 8. 반복문
 
 - 코드 블럭을 원하는 횟수만큼 반복 실행되게 함
@@ -861,8 +847,6 @@ for building incredible, powerful JavaScript applications.
   - do { 코드블럭 } while (조건문)
     - 무조건 한번은 코드 블럭을 실행하고, 조건문을 체크
 
----
-
 ## 9. 함수
 
 - 반복적인 기능, 재사용 가능한 코드 묶음
@@ -947,8 +931,6 @@ for building incredible, powerful JavaScript applications.
 
 - [화살표 함수](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
   - (실무에서 가장 많이 사용) 나중이 배운다
-
----
 
 ## 10. 주요 객체와 내장 함수
 
@@ -1983,8 +1965,6 @@ for building incredible, powerful JavaScript applications.
       // Interval 설정된 함수 취소
       clearInterval(myFuncInterval)
       ```
-
----
 
 ## 99. 참고
 
