@@ -110,7 +110,7 @@ last_modified_at: 2022-10-12
 
   - 가상 클래스 선택자(pseudo selector)
     - 특정 요소에 사용자의 이벤트(마우스 포커스, 마우스 호버등)에 대해서 스타일을 지정
-    - a 요소의 text-decoration: none이후 마우스 호버시 링크 표시<br/>
+    - a 요소의 text-decoration: none이후 마우스 호버시 링크 표시
 
     - ```html
       <style>
