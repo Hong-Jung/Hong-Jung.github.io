@@ -54,7 +54,10 @@ last_modified_at: 2022-11-04
 
 ### 1.2. ES6
 
-- ES6이 무엇인지 ??
+- [ECMA Script(ES)](https://ko.wikipedia.org/wiki/ECMA%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8)
+- 스크립트 표준 규격인 [ECMA-262](https://www.ecma-international.org/technical-committees/tc39/?tab=general) 채택됨
+- JavaScirpt는 언어이며, ECMA Script는 스크립트 표준
+- ECMA Script = ES
 
 ## 2. [ES6] this 키워드
 
