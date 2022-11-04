@@ -1,5 +1,5 @@
 ---
-title:  "JavaScript"
+title:  "JavaScript - 기본"
 excerpt: "개발자의품격"
 comments: true
 header:
@@ -18,46 +18,72 @@ date: 2022-10-24
 last_modified_at: 2022-10-24
 ---
 
-<!-- <img src="../../assets/images/posts/bootcamp005/개발자의품격001.png" width="100%"/> -->
+# JavaScript
 
-## 0. Index
-
-- [0. Index](#0-index)
-- [1. JavaScript 란?](#1-javascript-란)
-  - [1.1 역사](#11-역사)
-  - [1.2 표준재정](#12-표준재정)
-  - [1.3 바닐라스크립트](#13-바닐라스크립트)
-- [2. JavaScript 작성 위치](#2-javascript-작성-위치)
-  - [2.1 작성 위치](#21-작성-위치)
-  - [2.2 추천 위치](#22-추천-위치)
-- [4. 변수 선언자(var, let, const)](#4-변수-선언자var-let-const)
-  - [4.1 변수명명 규칙](#41-변수명명-규칙)
-  - [4.2 변수 선언자(var, let, const)](#42-변수-선언자var-let-const)
-- [5. 기본 데이터 타입](#5-기본-데이터-타입)
-  - [5.1 Object 타입](#51-object-타입)
-  - [5.2 Array 타입](#52-array-타입)
-  - [5.3 64 비트 부동소수점](#53-64-비트-부동소수점)
-  - [10.7 Math](#107-math)
-  - [10.8 JSON](#108-json)
-  - [10.9 window](#109-window)
-- [11. Reference](#11-reference)
+- [JavaScript](#javascript)
+  - [1. JavaScript 란?](#1-javascript-란)
+    - [1.1. 역사](#11-역사)
+    - [1.2. 표준재정](#12-표준재정)
+    - [1.3. 바닐라스크립트](#13-바닐라스크립트)
+  - [2. JavaScript 작성 위치](#2-javascript-작성-위치)
+    - [2.1. 작성 위치](#21-작성-위치)
+    - [2.2. 추천 위치](#22-추천-위치)
+  - [3. Console 객체의 log 함수](#3-console-객체의-log-함수)
+    - [3.1. log 함수란?](#31-log-함수란)
+  - [4. 변수 선언자(var, let, const)](#4-변수-선언자var-let-const)
+    - [4.1. 변수명명 규칙](#41-변수명명-규칙)
+    - [4.2. 변수 선언자(var, let, const)](#42-변수-선언자var-let-const)
+  - [5. 기본 데이터 타입](#5-기본-데이터-타입)
+    - [5.1 Object 타입](#51-object-타입)
+    - [5.2 Array 타입](#52-array-타입)
+    - [5.3 64 비트 부동소수점](#53-64-비트-부동소수점)
+  - [6. 연산자(할당, 비교, 산술, 논리, 문자열, 조건삼항)](#6-연산자할당-비교-산술-논리-문자열-조건삼항)
+    - [6.1. 할당 연산자](#61-할당-연산자)
+    - [6.2. 비교 연산자](#62-비교-연산자)
+    - [6.3. 산술 연산자](#63-산술-연산자)
+    - [6.4. 문자열 연산자](#64-문자열-연산자)
+    - [6.5 조건 삼항 연산자](#65-조건-삼항-연산자)
+  - [7. 조건문](#7-조건문)
+    - [7.1. if...else](#71-ifelse)
+    - [7.2. switch](#72-switch)
+  - [8. 반복문](#8-반복문)
+    - [8.1. for...in](#81-forin)
+    - [8.2. for...of](#82-forof)
+    - [8.3. forEach](#83-foreach)
+    - [8.4. while(do...while)](#84-whiledowhile)
+  - [9. 함수](#9-함수)
+    - [9.1. 함수 선언식](#91-함수-선언식)
+    - [9.2. 함수 표현식](#92-함수-표현식)
+    - [9.3. function 생성자 함수](#93-function-생성자-함수)
+    - [9.4 화살표 함수](#94-화살표-함수)
+  - [10. 주요 객체와 내장 함수](#10-주요-객체와-내장-함수)
+    - [10.1 String](#101-string)
+    - [10.2 Number](#102-number)
+    - [10.3 Array](#103-array)
+    - [10.4 Date](#104-date)
+    - [10.5 Set](#105-set)
+    - [10.6 Map](#106-map)
+    - [10.7 Math](#107-math)
+    - [10.8 JSON](#108-json)
+    - [10.9 window](#109-window)
+  - [99. 참고](#99-참고)
 
 ## 1. JavaScript 란?
 
-### 1.1 역사
+### 1.1. 역사
 
 - [JavaScript의 역사](https://ko.wikipedia.org/wiki/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8)
   - 1990년대 넷스케이프 회사의 Brendan Eich가 처음 Mocha이름으로 개발 후 LiveScript를 거처 JavaScirpt로 되었음
   - Microsoft도 인터넷 익스플로러 전용 JScript를 개발, 이때부터 표준화가 이슈화 됨
 
-### 1.2 표준재정
+### 1.2. 표준재정
 
 - [ECMA Script(ES)](https://ko.wikipedia.org/wiki/ECMA%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8)
   - 스크립트 표준 규격인 [ECMA-262](https://www.ecma-international.org/technical-committees/tc39/?tab=general) 채택됨
   - JavaScirpt는 언어이며, ECMA Script는 스크립트 표준
   - ECMA Script = ES
 
-### 1.3 바닐라스크립트
+### 1.3. 바닐라스크립트
 
 - [Valilla JavaScript](http://vanilla-js.com/)
   - 순수 자바스크립트로 어떠한 라이브러리도 사용하지 않음
@@ -65,9 +91,11 @@ last_modified_at: 2022-10-24
     - Vanilla JS is a fast, lightweight, cross-platform framework
 for building incredible, powerful JavaScript applications.
 
+---
+
 ## 2. JavaScript 작성 위치
 
-### 2.1 작성 위치
+### 2.1. 작성 위치
 
 - 헤더영역에 인라인으로 작성
 
@@ -81,7 +109,7 @@ for building incredible, powerful JavaScript applications.
     ```
 
 - 바디 어디든 작성
-
+  
   - ```html
     <body>
       <script>
@@ -97,7 +125,7 @@ for building incredible, powerful JavaScript applications.
 - 외부 파일 작성
 
   - ```javascript
-    <!-- ./js/js_location.js -->
+    // ./js/js_location.js
     document.write("별도의 js 파일에서 document.write 실행");
     ```
 
@@ -117,7 +145,7 @@ for building incredible, powerful JavaScript applications.
     </head>
     ```
 
-### 2.2 추천 위치
+### 2.2. 추천 위치
 
 - 하단의 외부참조부터 넣고, 해당 파일만의 스크립트 태그 작성
 
@@ -131,18 +159,15 @@ for building incredible, powerful JavaScript applications.
   </body>
   ```
 
+---
+
 ## 3. Console 객체의 log 함수
 
-- `console.log` 함수를 사용해 원하는 값을 콘솔에 출력 가능
+### 3.1. log 함수란?
 
-- ```html
-  <body>
-    <script>
-      <!-- window.console 객체의 log 함수의 문자열 파라메터를 사용하여 로그 출력 -->
-      console.log('hello !');
-    </script>
-  </body>
-  ```
+- console.log 함수를 사용해 원하는 값을 콘솔에 출력 가능
+
+---
 
 ## 4. 변수 선언자(var, let, const)
 
@@ -158,7 +183,7 @@ for building incredible, powerful JavaScript applications.
   - ES6 이전에는 변수 선언자는 "var" 뿐임
   - ES6 이후에는 변수 선언자는 "var, let, const"와 같이 다양해짐
 
-### 4.1 변수명명 규칙
+### 4.1. 변수명명 규칙
 
 - **변수 선언자(var, let, const)**를 이용하여 변수를 선언할때 이름을 지어주어야 한다. 이럴때 다음과 같이 많이 사용하는 명명규칙이 있다.
   - [카멜표기법(camelCase)](https://ko.wikipedia.org/wiki/%EC%B9%B4%EB%A9%9C_%ED%91%9C%EA%B8%B0%EB%B2%95)
@@ -171,7 +196,7 @@ for building incredible, powerful JavaScript applications.
     - ```javascript var strUserName = "walter";```
   - ES6에서도 카멜표기법을 따라서 사용하며, 일반적으로 가장 많이 사용
 
-### 4.2 변수 선언자(var, let, const)
+### 4.2. 변수 선언자(var, let, const)
 
 - var, let, const의 차이점
   - var
@@ -235,6 +260,8 @@ for building incredible, powerful JavaScript applications.
         let PI = 3; // 에러발생
         PI = 3.16; // 에러발생
         ```
+
+---
 
 ## 5. 기본 데이터 타입
 
@@ -407,63 +434,63 @@ for building incredible, powerful JavaScript applications.
 - JavaScript는 숫자를 저장할 경우 64비트 부동소수점을 사용해서 저장
   - 64비트 부동소수점을 사용해서 계산을할때 오류가 반드시 발생
   - ```64 bit = 1 bit(양수, 음수 표현) + 11 bit(지수부, 자릿수 앞쪽에서 맞춤) + 52 bit(기수부, 자릿수 뒤쪽에서 맞춤)```
-  
-- ```javascript
-  let x = 0.1;
-  let y = 0.2;
-  let z = x + y;
-  console.log(z);
-  //0.3이 정상적인 값이지만 64비트 부동소수점으로 계산함으로 끝자리 다르게 표현됨
-  //=> 0.30000000000000004
 
-  // 0. x에 대해서 64비트 부동 소수점으로 계산해 보면 아래와 같다.
-  // 1. 0.1을 2진수로 나타내면
-  //   0.0001100110011001100110011001100110011001100110011001101
-  // 2. 1번에 대한 양수 또는 음수를 나타내는 1비트
-  //   0
-  // 3. 지수부(11 bit()) 계산
-  //   0.1의 2진수 값중 정수가 1이 올때까지 소숫점 이동
-  //   원래 값 : 0.0001100110011001100110011001100110011001100110011001101
-  //   우로 4칸 이동한 값 : 1.100110011001100110011001100110011001100110011001101
-  //   2^(n(비트수)-1)-1+m(자릿수이동수) 
-  //     = 2^(11비트-1)-1-4칸이동 = 2^(11-1)-1-4 = 1019
-  //   1019를 2진수로 계산 = 1111111011 이지만 
-  //     11비트를 맞추기 위하여 앞에 0 붙임 = 01111111011
-  // 4. 가수부(52 bit) 계산
-  //   가수부의 대상 = 우로 4칸 이동한 값 : 1.100110011001100110011001100110011001100110011001101 중
-  //     우로 4칸 이동한 값중 소수부분만 사용 100110011001100110011001100110011001100110011001101
-  //     52비트 자리수를 위하여 끝에 0을 추가 1001100110011001100110011001100110011001100110011010
-  // 5. 결과는
-  //    0(음수양수) + 01111111011(지수부) + 1001100110011001100110011001100110011001100110011010(가수부)
-  //    = 0011111110111001100110011001100110011001100110011001100110011010
+  - ```javascript
+    let x = 0.1;
+    let y = 0.2;
+    let z = x + y;
+    console.log(z);
+    //0.3이 정상적인 값이지만 64비트 부동소수점으로 계산함으로 끝자리 다르게 표현됨
+    //=> 0.30000000000000004
 
-  // 0. y에 대해서 64비트 부동 소주점으로 계산해 보면 아래와 같다.
-  // 1. 0.2에 대해서 2진수로 나타내면 = 0.001100110011001100110011001100110011001100110011001101
-  // 2. 1번에 대해서 양수 또는 음수 상태 확인
-  //      양수 : 0 (음수는 1)
-  // 3. 지수부(11 bit)
-  //    1이 나올때까지 소숫점 이동 = 우측으로 3칸(-3)
-  //      0.001100110011001100110011001100110011001100110011001101 => 1.100110011001100110011001100110011001100110011001101
-  //    2^(n-1)-1-m = 2^(11-1)-1-3 = 2^(10)-4 = 1024 - 4 = 1020
-  //    1020에 대해서 2진수 = 1111111100
-  //    1111111100 는 10 bit임으로 11 bit를 맞추기 위해서 앞에 0를 붙여 비트수 맞춤 = 01111111100
-  // 4. 가수부(52 bit)
-  //    대상 값은 3번(지수부이 1이 나올때까지 이동한 값의 소수 부분)
-  //      100110011001100110011001100110011001100110011001101 (51 bit)
-  //      52 bit 자릿수를 위하여 뒤쪽에 0을 붙여 자릿수 맞춤
-  //      1001100110011001100110011001100110011001100110011010 (52 bit)
-  // 5. 결과는
-  //    0(양수) + 01111111100(지수부) + 1001100110011001100110011001100110011001100110011010(가수부)
-  //    0011111111001001100110011001100110011001100110011001100110011010
-  //
-  // 6. 0.0001100110011001100110011001100110011001100110011001101 <- x 0.1에 대한 2진수
-  //    0.0011001100110011001100110011001100110011001100110011010 <- y 0.2에 대한 2진수
-  //    0.0100110011001100110011001100110011001100110011001100111 <- 0.1 2진수 + 0.2 2진수 더하기
-  //    2진수끼리 합을 
-  console.log(parseInt("0100110011001100110011001100110011001100110011001100111", 2) * Math.pow(2, -55));
-  // => 0.30000000000000004 바로 위의 값
-  // => 0.30000000000000004 0.1 + 0.2 값
-  ```
+    // 0. x에 대해서 64비트 부동 소수점으로 계산해 보면 아래와 같다.
+    // 1. 0.1을 2진수로 나타내면
+    //   0.0001100110011001100110011001100110011001100110011001101
+    // 2. 1번에 대한 양수 또는 음수를 나타내는 1비트
+    //   0
+    // 3. 지수부(11 bit()) 계산
+    //   0.1의 2진수 값중 정수가 1이 올때까지 소숫점 이동
+    //   원래 값 : 0.0001100110011001100110011001100110011001100110011001101
+    //   우로 4칸 이동한 값 : 1.100110011001100110011001100110011001100110011001101
+    //   2^(n(비트수)-1)-1+m(자릿수이동수) 
+    //     = 2^(11비트-1)-1-4칸이동 = 2^(11-1)-1-4 = 1019
+    //   1019를 2진수로 계산 = 1111111011 이지만 
+    //     11비트를 맞추기 위하여 앞에 0 붙임 = 01111111011
+    // 4. 가수부(52 bit) 계산
+    //   가수부의 대상 = 우로 4칸 이동한 값 : 1.100110011001100110011001100110011001100110011001101 중
+    //     우로 4칸 이동한 값중 소수부분만 사용 100110011001100110011001100110011001100110011001101
+    //     52비트 자리수를 위하여 끝에 0을 추가 1001100110011001100110011001100110011001100110011010
+    // 5. 결과는
+    //    0(음수양수) + 01111111011(지수부) + 1001100110011001100110011001100110011001100110011010(가수부)
+    //    = 0011111110111001100110011001100110011001100110011001100110011010
+
+    // 0. y에 대해서 64비트 부동 소주점으로 계산해 보면 아래와 같다.
+    // 1. 0.2에 대해서 2진수로 나타내면 = 0.001100110011001100110011001100110011001100110011001101
+    // 2. 1번에 대해서 양수 또는 음수 상태 확인
+    //      양수 : 0 (음수는 1)
+    // 3. 지수부(11 bit)
+    //    1이 나올때까지 소숫점 이동 = 우측으로 3칸(-3)
+    //      0.001100110011001100110011001100110011001100110011001101 => 1.100110011001100110011001100110011001100110011001101
+    //    2^(n-1)-1-m = 2^(11-1)-1-3 = 2^(10)-4 = 1024 - 4 = 1020
+    //    1020에 대해서 2진수 = 1111111100
+    //    1111111100 는 10 bit임으로 11 bit를 맞추기 위해서 앞에 0를 붙여 비트수 맞춤 = 01111111100
+    // 4. 가수부(52 bit)
+    //    대상 값은 3번(지수부이 1이 나올때까지 이동한 값의 소수 부분)
+    //      100110011001100110011001100110011001100110011001101 (51 bit)
+    //      52 bit 자릿수를 위하여 뒤쪽에 0을 붙여 자릿수 맞춤
+    //      1001100110011001100110011001100110011001100110011010 (52 bit)
+    // 5. 결과는
+    //    0(양수) + 01111111100(지수부) + 1001100110011001100110011001100110011001100110011010(가수부)
+    //    0011111111001001100110011001100110011001100110011001100110011010
+    //
+    // 6. 0.0001100110011001100110011001100110011001100110011001101 <- x 0.1에 대한 2진수
+    //    0.0011001100110011001100110011001100110011001100110011010 <- y 0.2에 대한 2진수
+    //    0.0100110011001100110011001100110011001100110011001100111 <- 0.1 2진수 + 0.2 2진수 더하기
+    //    2진수끼리 합을 
+    console.log(parseInt("0100110011001100110011001100110011001100110011001100111", 2) * Math.pow(2, -55));
+    // => 0.30000000000000004 바로 위의 값
+    // => 0.30000000000000004 0.1 + 0.2 값
+    ```
 
 - 아주 큰 값을 계산하는 경우 위에서 확인한 듯 작은 오류가 발생한다. 그래서 오류를 잡아주는 라이브러리를 사용하자.
   - [BinNumber](https://mikemcl.github.io/bignumber.js/)
@@ -478,9 +505,14 @@ for building incredible, powerful JavaScript applications.
     console.log(Number.MIN_SAFE_INTEGER); //-9007199254740991
     ```
 
+---
+
 ## 6. 연산자(할당, 비교, 산술, 논리, 문자열, 조건삼항)
 
 - 할당 연산자, 비교 연산자, 산술 연산자, 논리 연산자, 문자열 연산자, 조건 삼항 연산자
+
+### 6.1. 할당 연산자
+
 - [할당 연산자](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators#%ED%95%A0%EB%8B%B9_%EC%97%B0%EC%82%B0%EC%9E%90)
   - 우측의 피연산자를 좌측의 연산자에 할당
 
@@ -511,6 +543,8 @@ for building incredible, powerful JavaScript applications.
     x %= y; //x = x % y
     ```
 
+### 6.2. 비교 연산자
+
 - [비교 연산자](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators#%EA%B4%80%EA%B3%84_%EC%97%B0%EC%82%B0%EC%9E%90)
   - 값이나 데이터를 비교하기 위함
   
@@ -534,7 +568,9 @@ for building incredible, powerful JavaScript applications.
     console.log(x < y); //false
     console.log(x <= y); //true
     ```
-    
+
+### 6.3. 산술 연산자
+
 - [산술 연산자](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators#%EC%82%B0%EC%88%A0_%EC%97%B0%EC%82%B0%EC%9E%90)
   - 증가연산자(++), 감소연산자(--), 단항 부정 연산자, 숫자화연산자
     - 증가연산자는 ++ 기호를 사용. 1를 증가
@@ -597,6 +633,8 @@ for building incredible, powerful JavaScript applications.
     console.log(o); //false
     ```
     
+### 6.4. 문자열 연산자
+
 - 문자열 연산자
   - 두개의 문자열을 합침
   
@@ -606,7 +644,9 @@ for building incredible, powerful JavaScript applications.
     lst fullName = firstName + lastName;
     console.log(fullName); //Honggil-dong";
     ```
-    
+
+### 6.5 조건 삼항 연산자
+
 - [조건 삼항 연산자](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators#%EC%A1%B0%EA%B1%B4%EB%B6%80%EC%82%BC%ED%95%AD_%EC%97%B0%EC%82%B0%EC%9E%90)
   - 비교 연산을 하면서 ?를 사용하여 true일때 false일때 값을 연산할 수 있음
   
@@ -620,9 +660,14 @@ for building incredible, powerful JavaScript applications.
     console.log(grade); //B
     ```
 
+---
+
 ## 7. 조건문
 
 - [조건문](https://developer.mozilla.org/ko/docs/Learn/JavaScript/Building_blocks/conditionals)
+
+### 7.1. if...else
+
 - [if...else](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/if...else)
 
   - ```javascript
@@ -671,6 +716,8 @@ for building incredible, powerful JavaScript applications.
       console.log("else구문이 실행");
     }
     ```
+
+### 7.2. switch
 
 - [switch](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/switch)
 
@@ -723,91 +770,105 @@ for building incredible, powerful JavaScript applications.
     console.log(dayNames[day]);
     ```
 
+---
+
 ## 8. 반복문
 
 - 코드 블럭을 원하는 횟수만큼 반복 실행되게 함
 - 반복문의 종류
   - for, for...in, for...of, forEach, while(do-while)
   - [for](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/for)
-    - initialization, condition, final-expression으로 구분
-    - continue, break 
+  - initialization, condition, final-expression으로 구분
+  - continue, break 
 
-    - ```javascript
-      for ([initialization]; [condition]; [final-expression]){
-        statement;
-      }
+  - ```javascript
+    for ([initialization]; [condition]; [final-expression]){
+      statement;
+    }
 
-      for (var i = 0; i < 9; i++) {
-        console.log(i);
-        // 기타 등등
-      }
-      ```
+    for (var i = 0; i < 9; i++) {
+      console.log(i);
+      // 기타 등등
+    }
+    ```
 
-  - [for...in](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/for...in)
-    - `객체의 반복에 사용`
-    - 속성(배열, 객체)을 포함한 객체나 열거 가능한 속성에 대해서 반복
-    - 객체의 모든 열거가능한 속성에 대해서 반복
+### 8.1. for...in
 
-    - ```javascript
-      var obj = {
-        a: 1,
-        b: 2,
-        c: 3
-      };
-      for (var item of obj) {
-          console.log(item);// a, b, c
-      }
+- [for...in](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/for...in)
+  - `객체의 반복에 사용`
+  - 속성(배열, 객체)을 포함한 객체나 열거 가능한 속성에 대해서 반복
+  - 객체의 모든 열거가능한 속성에 대해서 반복
 
-      //배열도 object 타입으로 인식해서 결과는 출력되나 배열의 index가 출력됨.
-      var arr = [1, 2, 3];
-      for (var item in arr) {
-        console.log(item) // 0, 1, 2
-      }
-      ```
-   
-  - [for...of](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/for...of)
-    - `배열의 반복에 사용`
-    - 컬렉션 전용 반복
-    - 모든 객체보다는 [System.iterator] 속성이 있는 모든 컬렉션 요소에 대해 반복
+  - ```javascript
+    var obj = {
+      a: 1,
+      b: 2,
+      c: 3
+    };
+    for (var item of obj) {
+        console.log(item);// a, b, c
+    }
 
-    - ```javascript
-      var arr = [1, 2, 3];
-      for (var item of arr) {
-        console.log(item); // 1, 2, 3
-      }
+    //배열도 object 타입으로 인식해서 결과는 출력되나 배열의 index가 출력됨.
+    var arr = [1, 2, 3];
+    for (var item in arr) {
+      console.log(item) // 0, 1, 2
+    }
+    ```
 
-      var obj = {
-        a: 1,
-        b: 2,
-        c: 3
-      };
-      for (var item of obj) {
-          console.log(item);
-      }
-      //Uncaught TypeError: obj is not iterable
-      ```
+### 8.2. for...of
 
-  - [forEach](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
-    - 배열 객체의 함수로 파라메터로 함수를 정의해서 사용 가능
+- [for...of](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/for...of)
+  - `배열의 반복에 사용`
+  - 컬렉션 전용 반복
+  - 모든 객체보다는 [System.iterator] 속성이 있는 모든 컬렉션 요소에 대해 반복
 
-    - ```javascript
-      let brands = ["A", "B', "C", "D", "E"];
-      brands.forEach(function (item, index) {
-          console.log(item);
-      });
-      ```
+  - ```javascript
+    var arr = [1, 2, 3];
+    for (var item of arr) {
+      console.log(item); // 1, 2, 3
+    }
 
-  - [while](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/while)
-    - 조건문이 참일 때 실행되는 반복문
-    - 조건은 문장안이 실행되기 전에 참, 거짓을 판단
-    - 몇번을 반복해야 할지 알 수 없을때 많이 사용
-    - do { 코드블럭 } while (조건문)
-      - 무조건 한번은 코드 블럭을 실행하고, 조건문을 체크
+    var obj = {
+      a: 1,
+      b: 2,
+      c: 3
+    };
+    for (var item of obj) {
+        console.log(item);
+    }
+    //Uncaught TypeError: obj is not iterable
+    ```
+
+### 8.3. forEach
+
+- [forEach](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
+  - 배열 객체의 함수로 파라메터로 함수를 정의해서 사용 가능
+
+  - ```javascript
+    let brands = ["A", "B', "C", "D", "E"];
+    brands.forEach(function (item, index) {
+        console.log(item);
+    });
+    ```
+
+### 8.4. while(do...while)
+
+- [while](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/while)
+  - 조건문이 참일 때 실행되는 반복문
+  - 조건은 문장안이 실행되기 전에 참, 거짓을 판단
+  - 몇번을 반복해야 할지 알 수 없을때 많이 사용
+  - do { 코드블럭 } while (조건문)
+    - 무조건 한번은 코드 블럭을 실행하고, 조건문을 체크
+
+---
 
 ## 9. 함수
 
 - 반복적인 기능, 재사용 가능한 코드 묶음
 - 특정 작업을 여러번 반복해야하는 경우 해당 작업을 재사용 가능한 구조로 만들게 되면 중복 작업을 피할 수 있고 이미 만들어 놓은 기능을 사용함으로 쉽게 코드를 짤 수 잇다
+
+### 9.1. 함수 선언식
 
 - [함수 선언식](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/function)
   - 함수 이름을 만들어 사용.
@@ -830,8 +891,9 @@ for building incredible, powerful JavaScript applications.
     console.log(sum2);
     ```
 
-  - /** 엔터*/
-    - 함수의 리마크 자동 생성
+  - [함수의 리마크 자동 생성](https://curryyou.tistory.com/319)
+
+### 9.2. 함수 표현식
 
 - [함수 표현식](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/function)
   - 변수를 선언해서 사용하는 것처럼 변수에 함수을 할당
@@ -850,6 +912,8 @@ for building incredible, powerful JavaScript applications.
 
     console.log(sum(5, 9));
     ```
+
+### 9.3. function 생성자 함수
 
 - [function 생성자 함수](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Function#function_인스턴스)
   - 자바스크립트 내장 함수 function
@@ -879,8 +943,12 @@ for building incredible, powerful JavaScript applications.
     );
     ```
 
+### 9.4 화살표 함수
+
 - [화살표 함수](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
   - (실무에서 가장 많이 사용) 나중이 배운다
+
+---
 
 ## 10. 주요 객체와 내장 함수
 
@@ -1603,47 +1671,47 @@ for building incredible, powerful JavaScript applications.
   - Map은 `size` 프로퍼티를 통하여 크기(요소 갯수)를 쉽게 알 수 있다
   - Object는 순서를 보장하지 않는다 / Map은 `순서를 보장`한다
 
-- ```javascript
-  const map1 = new Map();
+  - ```javascript
+    const map1 = new Map();
 
-  map1.set('a', 1);
-  map1.set('b', 2);
-  map1.set('c', 3);
+    map1.set('a', 1);
+    map1.set('b', 2);
+    map1.set('c', 3);
 
-  console.log(map1.get('a'));
-  // expected output: 1
+    console.log(map1.get('a'));
+    // expected output: 1
 
-  map1.set('a', 97);
+    map1.set('a', 97);
 
-  console.log(map1.get('a'));
-  // expected output: 97
+    console.log(map1.get('a'));
+    // expected output: 97
 
-  console.log(map1.size);
-  // expected output: 3
+    console.log(map1.size);
+    // expected output: 3
 
-  map1.delete('b');
+    map1.delete('b');
 
-  console.log(map1.size);
-  // expected output: 2
-  ```
+    console.log(map1.size);
+    // expected output: 2
+    ```
 
-- ```javascript
-  // Map 객체
-  let personMap = new Map();
-  personMap.set("name", "홍길동");
-  personMap.set("email", "hong@gmail.com");
-  personMap.set("phone", "010-0000-0000");
+  - ```javascript
+    // Map 객체
+    let personMap = new Map();
+    personMap.set("name", "홍길동");
+    personMap.set("email", "hong@gmail.com");
+    personMap.set("phone", "010-0000-0000");
 
-  console.log(personMap.get("name")); // get함수 key 파라미터
-  console.log(personMap.has("email")); // key가 있는지 체크
-  personMap.forEach(function (person) {
-    console.log(person);
-  });
+    console.log(personMap.get("name")); // get함수 key 파라미터
+    console.log(personMap.has("email")); // key가 있는지 체크
+    personMap.forEach(function (person) {
+      console.log(person);
+    });
 
-  console.log(personMap.size);
-  personMap.delete("email");
-  personMap.clear();
-  ```
+    console.log(personMap.size);
+    personMap.delete("email");
+    personMap.clear();
+    ```
 
 ### 10.7 Math
 
@@ -1916,7 +1984,9 @@ for building incredible, powerful JavaScript applications.
       clearInterval(myFuncInterval)
       ```
 
-## 11. Reference
+---
+
+## 99. 참고
 
 - [개발자의 품격 youtube](https://www.youtube.com/c/%EA%B0%9C%EB%B0%9C%EC%9E%90%EC%9D%98%ED%92%88%EA%B2%A9)
 - [MDN Site](https://developer.mozilla.org/ko/)
