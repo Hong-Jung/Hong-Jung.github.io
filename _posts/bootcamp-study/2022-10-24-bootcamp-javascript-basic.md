@@ -1233,7 +1233,7 @@ for building incredible, powerful JavaScript applications.
       ```
 
   - [slice()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/slice)
-    -요소를 잘라내서 배열 타입으로 반환
+    - 요소를 잘라내서 배열 타입으로 반환
 
     - ```javascript
       console.log(arr4.slice(1, 2));
