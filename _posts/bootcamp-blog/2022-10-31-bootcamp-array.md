@@ -483,6 +483,7 @@ fruits.forEach(function (item, index, array) {
 >> //  1: Object { fullName: "김종국", email: "kim@gmail.com" }
 >> //  2: Object { fullName: "송지효", email: "song@gmail.com" }
 >> ```
+
 ### 2.13 reduce()
 
 - [reduce()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
