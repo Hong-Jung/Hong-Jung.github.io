@@ -1175,7 +1175,7 @@ for building incredible, powerful JavaScript applications.
       document.getElementById("selDrinkType").innerHTML = selDrinkType.join("");
       ```
 
-  - [pop()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/pop) / 
+  - [pop()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/pop) 
     - 마지막 요소 제거 후 반환
 
     - ```javascript

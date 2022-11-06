@@ -43,8 +43,6 @@ last_modified_at: 2022-11-06
     - [2.12 map()](#212-map)
     - [2.13 reduce()](#213-reduce)
   - [3. Conclusion](#3-conclusion)
-    - [3.1 어디서 사용할 것인가 ? (활용도)](#31-어디서-사용할-것인가--활용도)
-    - [3.2 최종 정리](#32-최종-정리)
   - [4. Reference](#4-reference)
 
 ## 1. Introduction 
@@ -87,7 +85,7 @@ fruits.forEach(function (item, index, array) {
 
 ### 1.2 배열은 왜 필요할까 ?
 
-- 배열(Array)은 서로 관련이 있는 데이터끼리의 모음으로 하나의 모음으로 관리하기 위한 데이터 타입의 한 종류 이며, 객체 입니다.
+- 배열(Array)은 *서로 관련이 있는 데이터끼리의 모음*으로 하나의 모음으로 관리하기 위한 데이터 타입의 한 종류 이며, 객체 입니다.
   - 실제 코딩의 경우를 생각해 봅시다. (Case Study)
     - 처리할 데이터의 종류가 5개가 존재 한다고 가정하며, 각 데이터는 다음과 같습니다.
     - first name, last name, age, email, phone
@@ -112,7 +110,7 @@ fruits.forEach(function (item, index, array) {
       - 5개의 변수의 값을 하나의 문자열로 합치고 싶다면?
       - 주소라는 속성이 추가되어 더하고 싶다면?
       - firstName, lastName 기준으로 오름차순 혹은 내림차순으로 정렬하고 싶다면?
-    - 해결책은 너무도 다양 합니다. 이러한 요구사항의 해결책을 어떠한 것이 최선일까?라는 문제로 접근할 것이 아니라, 이미 이러한 요구사항의 해결책을 위하여 만들어 놓은 것이 Array 객체가 그중 하나 입니다.
+    - 해결책은 너무도 다양 합니다. 이러한 요구사항의 해결책을 어떠한 것이 최선일까?라는 문제로 접근할 것이 아니라, 이미 **이러한 요구사항의 해결책을 위하여 만들어 놓은 것이 Array 객체가 그중 하나** 입니다.
   
     - ```javascript
       let person = ["John", "Doe", 23, "john.doe@email.com", "111-2222-3333"];
@@ -145,206 +143,425 @@ fruits.forEach(function (item, index, array) {
 
 ### 2.1 toString()
 
-- 문자열 객체로 변환하여 반환
+- [toString()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/toString)
   
-> toString()
->> `toString()` 메서드는 지정된 배열 및 그 요소를 나타내는 문자열을 반환합니다.
->>>
->>> ```javascript
->>> let brands = ["애플", "구글", "아마존", "마이크로소프트", "메타"];
->>> console.log(brands.toString());
->>> // Output:
->>> // 애플,구글,아마존,마이크로소프트,메타
->>> ```
-
-- code sample
-
-```javascript
-// this is code sample
-```
+> 문자열 객체로 변환하여 반환
+>>
+>> ```javascript
+>> let brands = ["애플", "구글", "아마존", "마이크로소프트", "메타"];
+>> console.log(brands.toString());
+>> // Output:
+>> // 애플,구글,아마존,마이크로소프트,메타
+>> ```
 
 ### 2.2 join()
 
-- 간략 설명
+- [join()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/join)
   
-> 내장 객체 함수()
->> 설명
->>> text
-
-- code sample
-
-```javascript
-// this is code sample
-```
+> 파라미터의 문자가 요소 사이 삽입되어 하나의 문자로 반환
+>>
+>> ```javascript
+>> console.log(brands.join(" * "));
+>> // Output:
+>> // 애플 * 구글 * 아마존 * 마이크로소프트 * 메타
+>> console.log(brands.join(""));
+>> // Output:
+>> // 애플구글아마존마이크로소프트메타
+>> ```
 
 ### 2.3 push()
 
-- 간략 설명
+- [push()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/push)
   
-> 내장 객체 함수()
->> 설명
->>> text
-
-- code sample
-
-```javascript
-// this is code sample
-```
+> 파라미터의 문자를 마지막 요소로 추가
+>>
+>> ```html
+>> <button onclick="doSearch();">조회</button>
+>> <table>
+>> <thead>
+>>     <th>음료</th>
+>>     <th>가격</th>
+>>   </thead>
+>>   <tbody id="tbBody"></tbody>
+>> </table>
+>> ```
+>>
+>> ```javascript
+>> function doSearch() {
+>>   const drinkList = [
+>>     {
+>>       name: "오렌지",
+>>       price: 1000,
+>>     },
+>>     {
+>>       name: "파워레이드",
+>>       price: 1400,
+>>     },
+>>     {
+>>       name: "커피",
+>>       price: 700,
+>>     },
+>>     {
+>>       name: "보리음료",
+>>       price: 1200,
+>>     },
+>>     {
+>>       name: "코카콜라",
+>>       price: 1000,
+>>     },
+>>   ];
+>> 
+>>   // push()
+>>   let trTags = [];
+>>   for (const drink of drinkList) {
+>>     trTags.push("<tr>");
+>>     trTags.push("<td>" + drink.name + "</td>");
+>>     trTags.push("<td>" + drink.price + "</td>");
+>>     trTags.push("</tr>");
+>>   }
+>> 
+>>   console.log(trTags.join(""));
+>>   document.getElementById("tbBody").innerHTML = trTags;
+>> }
+>> ```
 
 ### 2.4 unshift()
 
-- 간략 설명
+- [unshift()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift)
   
-> 내장 객체 함수()
->> 설명
->>> text
-
-- code sample
-
-```javascript
-// this is code sample
-```
+> 파라미터의 문자를 첫번째 요소로 추가, push가 일반적이나 태그 밖으로 뺄때는 unshift가 더 효율적임
+>> 
+>> ```javascript
+>> let brands = ["애플", "구글", "아마존", "마이크로소프트", "메타"];
+>> brands.unshift("삼성전자");
+>> // Output:
+>> // 6
+>> console.log(brands);
+>> // Output:
+>> // Array(6) [ "삼성전자", "애플", "구글", "아마존", "마이크로소프트", "메타" ]
+>> ```
+>>
+>> ```javascript
+>> function loadDrinkType() {
+>>   const types = [
+>>     { text: "이온음료", code: "A" },
+>>     { text: "커피", code: "B" },
+>>     { text: "탄산음료", code: "C" },
+>>   ];
+>>   const h = [];
+>>   for (const type of types) {
+>>     h.push(
+>>       '<option value="' + type.code + '">' + type.text + "</option>"
+>>     );
+>>   }
+>>   return h;
+>> }
+>> const selDrinkType = loadDrinkType();
+>> selDrinkType.unshift('<option value=""></option>');
+>> document.getElementById("selDrinkType").innerHTML = selDrinkType.join("");
+>> ```
 
 ### 2.5 pop()
 
-- 간략 설명
+- [pop()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/pop)
   
-> 내장 객체 함수()
->> 설명
->>> text
-
-- code sample
-
-```javascript
-// this is code sample
-```
+> 마지막 요소 제거 후 반환
+>>
+>> ```javascript
+>> let brands = ["애플", "구글", "아마존", "마이크로소프트", "메타"];
+>> console.log(brands.pop());
+>> // Output: 
+>> // 메타
+>> console.log(brands);
+>> // Output: 
+>> // Array(4) [ "애플", "구글", "아마존", "마이크로소프트" ]
+>> ```
 
 ### 2.6 shift()
 
-- 간략 설명
+- [shift()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/shift)
   
-> 내장 객체 함수()
->> 설명
->>> text
-
-- code sample
-
-```javascript
-// this is code sample
-```
+> 첫번째 요소 제거 후 반환, shift는 메시지큐 처리에 많이 사용
+>>
+>> ```javascript
+>> const array1 = [1, 2, 3];
+>> const firstElement = array1.shift();
+>> console.log(array1);
+>> // Output: 
+>> // Array [2, 3]
+>> console.log(firstElement);
+>> // output:
+>> // 1
 
 ### 2.7 splice()
 
-- 간략 설명
+- [splice()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
   
-> 내장 객체 함수()
->> 설명
->>> text
-
-- code sample
-
-```javascript
-// this is code sample
-```
+> 특정 위치에 요소 추가, 추가시 삭제도 가능
+>>
+>> - 첫번째 파라미터 - 새로운 요소를 추가할 인덱스 번호
+>> - 두번째 파라미터 - 요소를 추가하기전에 삭제할 요소 수
+>> - 나머지 파라미터 - 추가할 요소
+>>
+>> ```javascript
+>> let brands = ["애플", "구글", "아마존", "마이크로소프트", "메타"];
+>> brands.splice(1, 0, "개발자의품격", "더그레잇");
+>> console.log(brands);
+>> // Output:
+>> // Array(7) [ "애플", "개발자의품격", "더그레잇", "구글", "아마존", "마이크로소프트", "메타" ]
+>> ```
 
 ### 2.8 concat()
 
-- 간략 설명
+- [concat()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/concat)
   
-> 내장 객체 함수()
->> 설명
->>> text
-
-- code sample
-
-```javascript
-// this is code sample
-```
+> 2개 이상의 배열 결합
+>>
+>> ```javascript
+>> let arr1 = ["A", "B"];
+>> let arr2 = ["C", "D"];
+>> let arr3 = ["E", "F", "G"];
+>> let arr4 = arr1.concat(arr2, arr3);
+>> console.log(arr4);
+>> // Output:
+>> // Array(7) [ "A", "B", "C", "D", "E", "F", "G" ]
+>> ```
 
 ### 2.9 slice()
 
-- 간략 설명
+- [slice()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/slice)
   
-> 내장 객체 함수()
->> 설명
->>> text
-
-- code sample
-
-```javascript
-// this is code sample
-```
+> 요소를 잘라내서 배열 타입으로 반환
+>>
+>> ```javascript
+>> console.log(arr4.slice(1, 2));
+>> // Output:
+>> // Array [ "B" ]
+>> ```
 
 ### 2.10 sort()
 
-- 간략 설명
+- [sort()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
   
-> 내장 객체 함수()
->> 설명
->>> text
-
-- code sample
-
-```javascript
-// this is code sample
-```
+> 요소를 정렬
+>>
+>> - 숫자정열시 함수에서 양수는 바꿈, 음수는 바꾸지 않은, 0 같음
+>> - 배열내 객체의 정렬 샘플(숫자, 문자의 경우 차이점 이해해야함)
+>>
+>> ```javascript
+>> let points = [40, 100, 1, 5, 25, 10];
+>> console.log(points.sort());
+>> // Output:
+>> // Array(6) [ 1, 10, 100, 25, 40, 5 ]
+>> const ascPoints = points.sort(function (a, b) {
+>>   // a - 40, b-100
+>>   // [40, 100, 1, 5, 25, 10]
+>>   // a - 100, b - 1
+>>   // [40, 1, 100, 5, 25, 10]
+>>   // a - 100, b -5
+>>   // [40, 1, 5, 100, 25, 10]
+>>   // a - 100, b - 25
+>>   // [40, 1, 5, 25, 100, 10]
+>>   // [1, 5, 10, 25, 40, 100]
+>>   // if (a > b) return 1;
+>>   // else if (a < b) return -1;
+>>   // else 0;
+>>   return a - b;
+>> });
+>> console.log(ascPoints);
+>> const descPoints = points.sort(function (a, b) {
+>>   return b - a;
+>> });
+>> console.log(descPoints);
+>> let drinkList = [
+>>   {
+>>     name: "오렌지",
+>>     price: 1000,
+>>   },
+>>   {
+>>     name: "파워레이드",
+>>     price: 1400,
+>>   },
+>>   {
+>>     name: "커피",
+>>     price: 700,
+>>   },
+>>   {
+>>     name: "보리음료",
+>>     price: 1200,
+>>   },
+>>   {
+>>     name: "코카콜라",
+>>     price: 1000,
+>>   },
+>> ];
+>> const userSortKey = "name";
+>> const ascDrinkList = drinkList.sort(function (a, b) {
+>>   if (a[userSortKey] > b[userSortKey]) return 1;
+>>   else if (a[userSortKey] < b[userSortKey]) return -1;
+>>   else 0;
+>> });
+>> console.log(ascDrinkList);
+>> ```
 
 ### 2.11 filter()
 
-- 간략 설명
+- [filter()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
   
-> 내장 객체 함수()
->> 설명
->>> text
-
-- code sample
-
-```javascript
-// this is code sample
-```
+> 특정 조건의 요소를 찾고 배열로 반환
+>>
+>> ```javascript
+>> let drinkList = [
+>>   {
+>>     name: "오렌지",
+>>     price: 1000,
+>>   },
+>>   {
+>>     name: "파워레이드",
+>>     price: 1400,
+>>   },
+>>   {
+>>     name: "커피",
+>>     price: 700,
+>>   },
+>>   {
+>>     name: "보리음료",
+>>     price: 1200,
+>>   },
+>>   {
+>>     name: "코카콜라",
+>>     price: 1000,
+>>   },
+>> ];
+>> let availableProduct = [];
+>> const inputCoin = 1000;
+>> availableProduct = drinkList.filter(function (drink) {
+>>   return drink.price <= inputCoin;
+>> });
+>> console.log(availableProduct);
+>> // Output:
+>> // Array(3) [ {…}, {…}, {…} ]
+>> //  0: Object { name: "오렌지", price: 1000 }
+>> //  1: Object { name: "커피", price: 700 }
+>> //  2: Object { name: "코카콜라", price: 1000 }
+>> ```
 
 ### 2.12 map()
 
-- 간략 설명
+- [map()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
   
-> 내장 객체 함수()
->> 설명
->>> text
-
-- code sample
-
-```javascript
-// this is code sample
-```
-
+> 배열의 요소가 객체의 경우(key-value), 새로운 객체로 변경 후 배열 반환
+>>
+>> ```javascript
+>> let userList = [
+>>   {
+>>     firstName: "재석",
+>>     lastName: "유",
+>>     email: "ryu@gmail.com",
+>>   },
+>>   {
+>>     firstName: "종국",
+>>     lastName: "김",
+>>     email: "kim@gmail.com",
+>>   },
+>>   {
+>>     firstName: "지효",
+>>     lastName: "송",
+>>     email: "song@gmail.com",
+>>   },
+>> ];
+>> let newUserList = userList.map(function (user) {
+>>   return {
+>>     fullName: user.lastName + user.firstName,
+>>     email: user.email,
+>>   };
+>> });
+>> console.log(newUserList);
+>> // Output:
+>> // Array(3) [ {…}, {…}, {…} ]
+>> //  0: Object { fullName: "유재석", email: "ryu@gmail.com" }
+>> //  1: Object { fullName: "김종국", email: "kim@gmail.com" }
+>> //  2: Object { fullName: "송지효", email: "song@gmail.com" }
+>> ```
 ### 2.13 reduce()
 
-- 간략 설명
+- [reduce()](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
   
-> 내장 객체 함수()
->> 설명
->>> text
-
-- code sample
-
-```javascript
-// this is code sample
-```
+>> 요소의 크기만큼 callback 호출(재귀 호출)하면서 누적된 값을 출력
+>>
+>> ```javascript
+>> points = [40, 100, 1, 5, 25, 10];
+>> let sum = points.reduce(function (accumulator, currentValue) {
+>>   return accumulator + currentValue;
+>> }, 0); 
+>> 
+>> console.log(sum);
+>> drinkList = [
+>>   {
+>>     name: "오렌지",
+>>     price: 1000,
+>>   },
+>>   {
+>>     name: "파워레이드",
+>>     price: 1400,
+>>   },
+>>   {
+>>     name: "커피",
+>>     price: 700,
+>>   },
+>>   {
+>>     name: "보리음료",
+>>     price: 1200,
+>>   },
+>>   {
+>>     name: "코카콜라",
+>>     price: 1000,
+>>   },
+>> ];
+>> let drinkTotal = drinkList.reduce(function (total, drink) {
+>>   return total + drink.price;
+>> }, 0);
+>> console.log(drinkTotal);
+>> userList = [
+>>   {
+>>     firstName: "재석",
+>>     lastName: "유",
+>>     email: "ryu@gmail.com",
+>>   },
+>>   {
+>>     firstName: "종국",
+>>     lastName: "김",
+>>     email: "kim@gmail.com",
+>>   },
+>>   {
+>>     firstName: "지효",
+>>     lastName: "송",
+>>     email: "song@gmail.com",
+>>   },
+>>   {
+>>     firstName: "가네",
+>>     lastName: "김",
+>>     email: "kim2@gmail.com",
+>>   },
+>> ];
+>> let kims = userList.reduce(function (users, user) {
+>>   if (user.lastName === "김") {
+>>     users.push(user);
+>>   }
+>>   return users;
+>> }, []);
+>> console.log(kims);
+>> ```
 
 ## 3. Conclusion
 
-### 3.1 어디서 사용할 것인가 ? (활용도)
-
-- content
-
-### 3.2 최종 정리
-
-- 6가지 JavaScript에서 사용되는 반복문에 대해서 알아보았다.
-- 각 반복문에 대해서 충분한 학습을 통하여 개발코드 작성에 적절한 구문을 사용할 수 있길 바란다. (용도에 맞는 연장을 사용하길..)
-- 사소한 코드 한줄 한줄이 시스템 전체에 치명적인 영향을 미칠 수 있다는 생각을 항상 하길 바랍다.
-- 강조하지만, `for...in`(객체) 과 `for...of`(배열)의 차이점에 대해서 분명하게 확인하고 넘어가도록 하자.
-- `for`(가장 일반적인 반복문), `for...in`(객체 타입 반복), `for...of`(배열 타입 반복), `forEach`(배열 타입의 함수), `while`(1회도 반복하지 않을 수 있음), `do...while`(최소 1회는 반복 됨)
-
+- JavaScript에서 Array 객체의 활용도나 사용빈도는 상당히 높은 편이다. 즉, 아주 자주 사용하게 된다는 의미이며, 자주 사용하는 만큼 반드시 알고 넘어가야할 객체 입니다.
+- 배열에 값을 *넣기(push, unshift, splice)*, *빼기(pop, shift, slice)*, *찾기(filter)*, *결합하기(concat)*, *정렬하기(sort)*는 무엇보다 중요하며 자주 사용하게 될 것 입니다.
+- `map()`의 경우 ES6에서 새롭게 추고된 내장 함수로 key-value의 형태를 뜀으로 Object와 아주 유사하지만 다음의 몇가지 큰 차이점이 있습니다.
+  - Key로 모든 데이터 타입을 가짐
+  - Key의 사이즈를 쉽게 알 수 있음(size property)
+  - Index에 의한 순서를 보장
+  
 ## 4. Reference
 
 - [MDN Site - Arrary](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
