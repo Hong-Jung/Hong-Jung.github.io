@@ -87,35 +87,35 @@ fruits.forEach(function (item, index, array) {
 
 - 배열(Array)은 *서로 관련이 있는 데이터끼리의 모음*으로 하나의 모음으로 관리하기 위한 데이터 타입의 한 종류 이며, 객체 입니다.
   - 실제 코딩의 경우를 생각해 봅시다. (Case Study)
-    - 처리할 데이터의 종류가 5개가 존재 한다고 가정하며, 각 데이터는 다음과 같습니다.
-    - first name, last name, age, email, phone
+    - 시험 점수 5개가 존재 한다고 가정하며, 각 데이터는 다음과 같습니다.
+    - score1 ~ score5
     - 배열 없이 일반 변수로 5개의 데이터를 정의하고 할당하며, 출력 합니다.
 
     - ```javascript
-      let firstName = "John";
-      let lastName = "Doe";
-      let age = 23;
-      let email = "john.doe@email.com";
-      let phone = "111-2222-3333";
+      let score1 = 65;
+      let score2 = 70;
+      let score3 = 89;
+      let score4 = 94;
+      let score5 = 85;
 
-      console.log(firstName);//output: 
-      console.log(lastName);//output: 
-      console.log(age);//output: 
-      console.log(email);//output: 
-      console.log(phone);//output: 
+      console.log(score1);//output: 65
+      console.log(score2);//output: 70
+      console.log(score3);//output: 89
+      console.log(score4);//output: 94
+      console.log(score5);//output: 85
       ```
 
     - 쉽죠? 5개 변수를 선언하고 각 선언한 변수에 데이터베이스로부터 수신한 값? 또는 로직으로 사용할 값을 할당 합니다. 각 할당한 값을 하나씩 출력해 봅니다.
     - 자, 여기서 다음의 요구사항? 요건에 대해서 어떤 해결책이 있을까요?
       - 5개의 변수의 값을 하나의 문자열로 합치고 싶다면?
-      - 주소라는 속성이 추가되어 더하고 싶다면?
-      - firstName, lastName 기준으로 오름차순 혹은 내림차순으로 정렬하고 싶다면?
+      - 점수가 추가되어 더하고 싶다면?
+      - 점수 기준으로 오름차순 혹은 내림차순으로 정렬하고 싶다면?
     - 해결책은 너무도 다양 합니다. 이러한 요구사항의 해결책을 어떠한 것이 최선일까?라는 문제로 접근할 것이 아니라, 이미 **이러한 요구사항의 해결책을 위하여 만들어 놓은 것이 Array 객체가 그중 하나** 입니다.
   
     - ```javascript
-      let person = ["John", "Doe", 23, "john.doe@email.com", "111-2222-3333"];
-      console.log(person);
-      //output: Array(5) [ "John", "Doe", 23, "john.doe@email.com", "111-2223-3333" ]
+      let score = [65, 70, 89, 94, 85];
+      console.log(score);
+      //output: Array(5) [ 65, 70, 89, 94, 85 ]
       ```
 
     - 3가지 요구사항뿐 아니라, 더 많은 요구의 해결을 위한 Array 객체의 하위에 함수나 속성 형태로 이미 제공되고 있습니다. 우리는 이미 만들어진 함수나 속성에 대해서 정확한 쓰임새를 익힘으로 무한의 활용이 가능해 집니다.
