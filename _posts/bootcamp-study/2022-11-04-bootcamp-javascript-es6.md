@@ -44,14 +44,23 @@ last_modified_at: 2022-11-04
     - [10.1 Code Sample](#101-code-sample)
   - [11. [ES6] Array Destructuring](#11-es6-array-destructuring)
     - [11.1 Code Sample](#111-code-sample)
-  - [12. XMLHttpRequest & json-server](#12-xmlhttprequest--json-server)
+  - [12. XMLHttpRequest(XHR) & json-server](#12-xmlhttprequestxhr--json-server)
+    - [12.1 Virtual Web Server Configure (JSON Server)](#121-virtual-web-server-configure-json-server)
+    - [12.1 Code Sample](#121-code-sample)
   - [13. fetch API](#13-fetch-api)
+    - [13.1 Code Sample](#131-code-sample)
   - [14. async & await](#14-async--await)
+    - [14.1 Code Sample](#141-code-sample)
   - [15. module](#15-module)
+    - [15.1 Code Sample](#151-code-sample)
   - [16. class](#16-class)
+    - [16.1 Code Sample](#161-code-sample)
   - [17. error](#17-error)
+    - [17.1 Code Sample](#171-code-sample)
   - [18. strict mode](#18-strict-mode)
+    - [18.1 Code Sample](#181-code-sample)
   - [19. 정규 표현식](#19-정규-표현식)
+    - [19.1 Code Sample](#191-code-sample)
   - [20. 참고](#20-참고)
 
 ## 1. JavaScript ES6?
@@ -412,37 +421,337 @@ console.log(latitude); // 위도
 console.log(longitude); // 경도
 ```
 
-## 12. XMLHttpRequest & json-server
+## 12. XMLHttpRequest(XHR) & json-server
 
-- 컨텐츠
+- [MDN XMLHttpRequest](https://developer.mozilla.org/ko/docs/Web/API/XMLHttpRequest)
+- 서버와 상호작용(통신)에서 사용되며, 페이지 새로고침 없이도 URL에서 데이터를 가져옴
+- [HTTP](https://developer.mozilla.org/ko/docs/Web/HTTP/Overview)
+  - <img src="https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview/fetching_a_page.png" width="80%" align="center"/>
+  - 동기화 방식
+  - 클라이언트가 서버로 요청(request)을 보내면, 서버가 요청에 대한 응답(response)
+  - 응답이 오기 전까지는 다른 코드 블럭으로 이동이 불가
+- [Ajax(Asynchronous JavaScript And XML)](https://developer.mozilla.org/ko/docs/Web/Guide/AJAX/Getting_Started)
+  - `*Asynchronous JavaScript + XML(AJAX)*은 그 자체가 특정 기술은 아닙니다. 2005년 Jesse James Garrett이 처음 만들어낸 말로, HTML 또는 XHTML, CSS, JavaScript, DOM, XML, XSLT, 그리고 제일 중요한 XMLHttpRequest 객체를 비롯해 기존의 여러 기술을 사용하는 "새로운" 접근법을 설명하는 용어입니다. 이렇게 다양한 기술을 AJAX 모델로서 결합했을 때, 웹 어플리케이션은 전체 페이지를 새로 고칠 필요 없이 사용자 인터페이스에 빠르고 점진적인 업데이트를 적용할 수 있습니다. 덕분에 어플리케이션은 보다 빨라지고, 사용자 행동에 대한 반응성도 좋아집니다.` (in [MDN](https://developer.mozilla.org/ko/docs/Web/Guide/AJAX))
+  - 비동기 통신(코드 블럭이 기다리지 않고 실행됨)
+  - 페이지를 새로고침 하지 않아도 URL을 통해서 데이터를 전송하거나 받아올 수 있음.
+  - `XMLHttpRequest` 객체
+
+### 12.1 Virtual Web Server Configure (JSON Server)
+
+- 통신 코드를 실행하기 위해서 서버가 있어야하나, 개발단계 또는 코드레벨에서는 부담이다. 그래서 가상의 웹서버를 제공하는 패키지들이 있다. 다음의 순서대로 진행해 *간단한 가상서버*를 설치 한다.
+- [npm json server](https://www.npmjs.com/package/json-server)
+  - Step 1
+    - Install JSON Server
+  
+    - ```command
+      npm install -g json-server
+      ```
+
+  - Step 2
+    - Create a `db.json` file with some data
+
+    - ```json
+      {
+        "posts": [
+          { "id": 1, "title": "json-server", "author": "typicode" }
+        ],
+        "comments": [
+          { "id": 1, "body": "some comment", "postId": 1 }
+        ],
+        "profile": { "name": "typicode" }
+      }
+      ```
+
+  - Step 3
+    - Start JSON Server
+
+    - ```command
+      json-server --watch db.json
+      ```
+
+  - Step 4
+    - Now if you go to `http://localhost:3000/posts/1`, you'll get
+
+    - ```json
+      { "id": 1, "title": "json-server", "author": "typicode" }
+      ```
+
+### 12.1 Code Sample
+
+```javascript
+// HTTP Method
+// GET - 리소스 요청, POST - 리소스 생성, PUT - 리소스 수정, DELETE - 리소스 삭제
+
+// 0.1 일반적으로 XMLHttpRequest 사용
+function getPostData() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost:3000/posts");
+    xhr.setRequestHeader("content-type", "application/json");
+    xhr.send();
+
+    // 서버로부터 응답을 받으면 onload 실행
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            const res = JSON.parse(xhr.response);
+            console.log(res);
+            console.log(`JSON.parse(xhr.response) the posts : ${res}`);
+
+            // 통신을 통해 수신한 데이터를 처리하는 로직 구현
+            // return res
+        } else {
+            console.log(xhr.status, xhr.statusText);
+        }
+    };
+}
+getPostData();
+console.log("AAAA");
+
+function getCommentData() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost:3000/comments");
+    xhr.setRequestHeader("content-type", "application/json");
+    xhr.send();
+
+    // 서버로부터 응답을 받으면 onload 실행
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            const res = JSON.parse(xhr.response);
+            console.log(res);
+            console.log(`JSON.parse(xhr.response) the comments : ${res}`);
+
+            // 통신을 통해 수신한 데이터를 처리하는 로직 구현
+            // return res
+        } else {
+            console.log(xhr.status, xhr.statusText);
+        }
+    }
+}
+getCommentData();
+console.log("BBBB");
+
+/*output : 
+AAAA
+BBBB
+[{…}] <<- posts json data
+JSON.parse(xhr.response) the posts : [object Object]
+[{…}] <<- comments json data
+JSON.parse(xhr.response) the comments : [object Object]
+*/
+```
+
+```javascript
+// 0.2 Promise 사용
+// 비동기 통신을 하는데 서버로 응답이 왔을 때 호출한 함수에서 알 수 있게 약속 한다.
+function getData(url) {
+    return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.setRequestHeader("content-type", "application/json");
+        xhr.send();
+
+        // 서버로부터 응답을 받으면 onload 실행
+        xhr.onload = () => {
+            if (xhr.status === 200) {
+                const res = JSON.parse(xhr.response);
+                resolve(res);
+            } else {
+                console.log(xhr.status, xhr.statusText);
+                reject(xhr.status);
+            }
+        };
+    });
+}
+getData("http://localhost:3000/posts").then((res) => {
+    console.log("http://localhost:3000/posts : " + res);
+    console.log(res);
+});
+getData("http://localhost:3000/comments").then((res) => {
+    console.log("http://localhost:3000/comments : " + res);
+    console.log(res);
+});
+console.log("CCCC");
+
+/*output : 
+CCCC
+http://localhost:3000/posts : [object Object]
+[{…}] <<- posts json data
+http://localhost:3000/comments : [object Object]
+[{…}] <<- comment json data
+*/
+```
+
+```javascript
+// 나머지 post, put, delete 구현
+//<button onclick="postData();">생성</button>
+function postData() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost:3000/posts");
+    xhr.setRequestHeader("content-type", "application/json;charset=UTF-8");
+    const data = { title: "JavaScript", author: "Jeremy" };
+    xhr.send(JSON.stringify(data));
+
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            const res = JSON.parse(xhr.response);
+            console.log(res);
+        } else {
+            console.log(xhr.status, xhr.statusText);
+        }
+    };
+}
+/*
+output: 
+201 'Created'
+
+->> db.json file
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "title": "JavaScript",
+      "author": "Jeremy",
+      "id": 2
+    }
+  ]
+}
+*/
+
+//<button onclick="putData();">수정</button>
+function putData() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("PUT", "http://localhost:3000/posts/2");
+    xhr.setRequestHeader("content-type", "application/json;charset=UTF-8");
+    xhr.send(JSON.stringify({ title: "HTML", author: "John Doe" }));
+
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            const res = JSON.parse(xhr.response);
+            console.log(res);
+        } else {
+            console.log(xhr.status, xhr.statusText);
+        }
+    };
+}
+/*
+output:
+{title: 'HTML', author: 'John Doe', id: 2}
+
+->> db.json file
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "title": "HTML",
+      "author": "John Doe",
+      "id": 2
+    }
+  ]
+}
+*/
+
+//<button onclick="deleteData();">삭제</button>
+function deleteData() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("DELETE", "http://localhost:3000/posts/2");
+    xhr.setRequestHeader("content-type", "application/json;charset=UTF-8");
+    xhr.send();
+
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            const res = JSON.parse(xhr.response);
+            console.log(res);
+        } else {
+            console.log(xhr.status, xhr.statusText);
+        }
+    };
+}
+/*
+output:
+{}
+
+->> db.json file
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ]
+}
+*/
+```
 
 ## 13. fetch API
 
 - 컨텐츠
 
+### 13.1 Code Sample
+
+```javascript
+```
+
 ## 14. async & await
 
 - 컨텐츠
+
+### 14.1 Code Sample
+
+```javascript
+```
 
 ## 15. module
 
 - 컨텐츠
 
+### 15.1 Code Sample
+
+```javascript
+```
+
 ## 16. class
 
 - 컨텐츠
+
+### 16.1 Code Sample
+
+```javascript
+```
 
 ## 17. error
 
 - 컨텐츠
 
+### 17.1 Code Sample
+
+```javascript
+```
+
 ## 18. strict mode
 
 - 컨텐츠
 
+### 18.1 Code Sample
+
+```javascript
+```
+
 ## 19. 정규 표현식
 
 - 컨텐츠
+
+### 19.1 Code Sample
+
+```javascript
+```
 
 ## 20. 참고
 
