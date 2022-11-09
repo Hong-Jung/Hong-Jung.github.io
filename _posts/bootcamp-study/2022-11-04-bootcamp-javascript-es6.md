@@ -869,29 +869,151 @@ export function error(message) {
 
 ## 16. class
 
-- 컨텐츠
+- [MDN class](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes)
+- class는 객체(object)를 생성하기 위한 템플릿이다.(붕어빵을 찍어내기 위한 붕어빵 틀!)
+  - 함수를 *함수표현식*과 *함수선언식*으로 정의하듯 class문법도 *class 표현식*, *class 선언식* 두가지로 가능
+  
+  - ```javascript
+    // class 표현식
+    class Rectangle {
+      constructor(height, width) {
+        this.height = height;
+        this.width = width;
+      }
+    }
+
+    // class 선언식(unnamed, named)
+    let Rectangle = class Rectangle2 {
+      constructor(height, width) {
+        this.height = height;
+        this.width = width;
+      }
+    };
+    console.log(Rectangle.name);
+    // output: "Rectangle2"
+    ```
+
+- JavaScript에서 class의 특징
+  - class body는 {} 블럭에 정의하며, [strict mode](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Strict_mode)이라 문법 오류를 표출
+  - *constructor()* 메서드를 통하여 객체를 생성하고 초기화하며, 클래스에 한개만 존재 (부모 클래스의 생성자 호출시 *super* 키워드 사용)
+  - *static* 키워드는 정적 속성 및 메서드를 정의하며, 클래스의 인스턴스화(new) 없이 호출
+  - public 필드(필드를 먼저 선언)와 private 필드(#) 선언
+  - *extends* 키워드를 사용하여 상속
+  - *super* 키워드를 사용하여 상위 클래스 호출(접근)
 
 ### 16.1 Code Sample
 
 ```javascript
+// 일반적인 클래스 정의
+class Car {
+  constructor(modelName, modelYear) {
+    this.modelName = modelName;
+    this.modelYear = modelYear;
+  }
+
+  getModelName() {
+    return this.modelName;
+  }
+
+  getModelYear() {
+    return this.modelYear;
+  }
+
+  setModelYear(modelYear) {
+    this.modelYear = modelYear;
+  }
+}
+
+const sonata = new Car("소나타", "2022");
+console.log(sonata.getModelName());
+sonata.setModelYear(2023);
+console.log(sonata.getModelYear());
+
+// Car 클래스를 상속받은 ElectricCar 클래스 정의
+class ElectricCar extends Car {
+  constructor(modelName, modelYear, type) {
+    super(modelName, modelYear);
+    this.type = type;
+  }
+  getType() {
+    return this.type;
+  }
+  setType(type) {
+    this.type = type;
+  }
+}
+
+const ionic = new ElectricCar("아이오닉", 2022, "E");
+console.log(ionic.getType());
+ionic.setType("E2");
+console.log(ionic.getType());
 ```
 
 ## 17. error
 
-- 컨텐츠
+- [MDN Error](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Error)
+- 런타임(실행시) 오류가 발생하면 던져짐
+- 표준 내장 오류 유형
+  - EvalError, RangeError, ReferenceError, SyntaxError, TypeError, URIError, AggregateError, IntervalError
+- try...catch...finally 코드 블럭을 통하여 오류 처리 가능
+  
+  - ```javascript
+    try {
+      throw new Error("이런!");
+    } catch (e) {
+      alert(e.name + ": " + e.message);
+    } finally {
+      console.log("종료");
+    }
+    ```
 
 ### 17.1 Code Sample
 
 ```javascript
+let x = "";
+
+try {
+  if (x === "") {
+    throw "x is empty";
+  }
+} catch (error) {
+  // 에러 로그 기록
+  console.log(error);
+  writeLog(error);
+} finally {
+  console.log("에러가 나든 안나든 실행");
+}
+console.log("try...catch문 밖의 코드");
+
+function writeLog(message) {
+  // 로그파일 혹은 데이터베이스에 저장
+}
 ```
 
 ## 18. strict mode
 
-- 컨텐츠
+- [MDN strict mode](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Strict_mode)
+- 초기 불안한 문법의 변경없이 진화하는 새로운 문법에 대응하기 위하여 ES5부터 나옴
+- ES5에서 추가된 엄격모드(strict mode)는 암묵적인 느슨한모드(sloppy mode)를 해제하기 위함
+- strict mode 적용 방법
+  - `'use strict';` 또는 `"use strict";` 구문을 추가 (스크립트 전체 또는 함수단위 가능)
+  - 모듈의 경우 전체 컨텐츠에 대해서 자동으로 엄격 모드
 
 ### 18.1 Code Sample
 
 ```javascript
+<script>
+  // strict mode (엄격모드)
+  "use strict";
+  x = 3; // 불완전한 문법
+
+  function myFunction() {
+    "use strict";
+    y = 2;
+  }
+
+  myFunction();
+</script>
 ```
 
 ## 19. 정규 표현식
