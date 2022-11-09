@@ -48,7 +48,6 @@ last_modified_at: 2022-11-04
     - [12.1 Virtual Web Server Configure (JSON Server)](#121-virtual-web-server-configure-json-server)
     - [12.1 Code Sample](#121-code-sample)
   - [13. fetch API](#13-fetch-api)
-    - [13.1 Code Sample](#131-code-sample)
   - [14. async & await](#14-async--await)
     - [14.1 Code Sample](#141-code-sample)
   - [15. module](#15-module)
@@ -692,29 +691,180 @@ output:
 
 ## 13. fetch API
 
-- 컨텐츠
+- [MDN Fetch API](https://developer.mozilla.org/ko/docs/Web/API/Fetch_API)
+- [XMLHttpRequest](https://developer.mozilla.org/ko/docs/Web/API/XMLHttpRequest)와 비슷한 API이지만, 보다 강력하고 유연한 기능을 제공
+  
+- ```javascript
+  // syntax without ES5
+  fetch('api 주소')
+  .then(function(res) {
+    return res.json();
+  })
+  .then(function(res) {
+    // data를 응답 받은 후의 로직
+  });
+
+  // syntax with ES6(arrow function)
+  fetch('api 주소')
+  .then(res => res.json())
+  .then(res => {
+    // data를 응답 받은 후의 로직
+  });
+  ```
 
 ### 13.1 Code Sample
 
 ```javascript
+function getPostData() {
+  // fetch("http://localhost:3000/posts")
+  //   .then(function (response) {
+  //     return response.json();
+  //   })
+  //   .then(function (json) {
+  //     console.log(json);
+  //   });
+
+  fetch("http://localhost:3000/posts")
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+}
+
+const headers = { "content-type": "application/json;charset=UTF-8" };
+
+function postData() {
+  const data = { title: "JavaScript", author: "Jeremy" };
+
+  fetch("http://localhost:3000/posts", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: headers,
+  })
+  .then((response) => response.json())
+  .then((json) => console.log(json));
+}
+
+function putData() {
+  const data = { title: "Fetch API", author: "Jeremy" };
+  fetch("http://localhost:3000/posts/2", {
+    method: "PUT",
+    body: JSON.stringify(data),
+    headers: headers,
+  })
+  .then((response) => response.json())
+  .then((json) => console.log(json));
+}
+
+function deleteData() {
+  fetch("http://localhost:3000/posts/2", {
+    method: "DELETE",
+  })
+  .then((response) => response.json())
+  .then((json) => console.log(json));
+}
 ```
 
 ## 14. async & await
 
-- 컨텐츠
+- [MDN async](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/async_function)
+  - 비동기 함수를 정의
+  - 암시적으로 promise를 사용하여 결과를 반환
+  
+  - ```javascript
+    async function foo() {
+        await 1
+    }
+
+    function foo() {
+      return Promise.resolve(1)
+    }
+    ```
+
+- [MDN await](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/await)
+  - `async` 함수의 실행을 일시 중지하고 전달 된 `Promise`의 해결을 기다린 다음 async 함수의 실행을 다시 시작하고 완료후 값을 반환
+  - `await` 키워드는 async 함수에서만 유효. async 함수의 본문 외부에서 사용하면 SyntaxError가 발생
 
 ### 14.1 Code Sample
 
 ```javascript
+//<button onclick="getPostData();">조회</button>
+function getPostData() {
+  fetch("http://localhost:3000/posts")
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+
+  console.log("ABC");
+}
+// Promise Type
+// 패치부분에서 기다리지 않고 패치를 빠져나옴 즉, 비동기 방식이라 코드가 진행됨
+// 순서가 있어야 하는 코드 블럭이면 사용 불가
+
+//<button onclick="getPostNCommentData();">조회2</button>
+function getPostNCommentData() {
+  fetch("http://localhost:3000/posts")
+    .then((response) => response.json())
+    .then((json) => {
+      fetch("http://localhost:3000/comments")
+        .then((response2) => response2.json())
+        .then((json2) => {
+          console.log(json2);
+        });
+    });
+}
+// Promise Type
+// 만약 순서있게 API를 호출해야 한다면 위와같이 코드를 중첩해서 작성해야 한다.
+// 코드양도 많아지고 가독성도 떨어진다.
+
+//<button onclick="getData();">조회3</button>
+async function getData() {
+  const response = await fetch("http://localhost:3000/posts");
+  const json = await response.json();
+
+  const response2 = await fetch("http://localhost:3000/comments");
+  const json2 = await response2.json();
+
+  console.log(json2);
+
+}
+// async & await
+// promise의 순서있게 실행을 해결하기 위한 방법
+// await에서 동기화처럼 응답이 올때까지 기다림으로 순서있는 코드 실행을 구현
+// 코드양도 줄고, 가독성도 좋아진다.
 ```
 
 ## 15. module
 
-- 컨텐츠
+- [MDN module](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Modules)
+- 여러 기능들에 관한 코드가 모여있는 하나의 파일로 다음을 위함
+  - 유지보수성, 네임스페이스화, 재사용성
+  - CommonJS, AMD, UMD, ES6과 같이 여러가지 방법 존재
+  - ES6 방법
+    - `import`, `export로` 구분
+    - *named export*
+      - 모듈내에서 한번만 사용 가능
+      - import할때 {}로 묶어서 참조 또는 as(alias), *(와일드카드) 사용 가능
+    - *default export*
+      - 모듈내에서 여러번 사용 가능
+      - import할때 export 이름 그대로 사용해야 함
 
 ### 15.1 Code Sample
 
 ```javascript
+// log.js
+export function log(message) {
+  console.log(message);
+}
+
+export function error(message) {
+  console.error(message);
+}
+```
+
+```javascript
+<script type="module">
+  // module
+  import { log } from "./log.js";
+  log("모듈내 함수 호출");
+</script>
 ```
 
 ## 16. class
