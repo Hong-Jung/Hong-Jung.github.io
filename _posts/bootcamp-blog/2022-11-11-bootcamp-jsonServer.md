@@ -86,7 +86,7 @@ last_modified_at: 2022-11-11
   - Step 1
     - JSON Server 설치
   
-    - ```command
+    - ```powershell
       npm install -g json-server // for windows
       sudo npm install -g json-server // for mac
       ```
@@ -109,7 +109,7 @@ last_modified_at: 2022-11-11
   - Step 3
     - JSON Server 시작
 
-    - ```command
+    - ```powershell
       json-server --watch db.json
       ```
 
