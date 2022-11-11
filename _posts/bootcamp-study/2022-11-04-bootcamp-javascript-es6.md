@@ -1,5 +1,5 @@
 ---
-title:  "JavaScript - DOM & CRUD"
+title:  "JavaScript - ES6 & Advance"
 excerpt: "개발자의품격"
 comments: true
 header:
