@@ -10,7 +10,7 @@ tags:
   - [Blog, bootcamp, 개발자의품격, JSONServer]
 
 toc: true
-toc_sticky: true
+toc_sticky: false
 toc_label: "페이지 주요 목차" 
  
 date: 2022-11-11
@@ -19,10 +19,10 @@ last_modified_at: 2022-11-12
 
 # What is **JSON Server** ?
 
-## 0. Index
+## Index
 
 - [What is **JSON Server** ?](#what-is-json-server-)
-  - [0. Index](#0-index)
+  - [Index](#index)
   - [1. Introduction](#1-introduction)
     - [1.1 JSON Server 란 ?](#11-json-server-란-)
     - [1.2 JSON Server가 왜 필요할까 ?](#12-json-server가-왜-필요할까-)
@@ -126,11 +126,11 @@ last_modified_at: 2022-11-12
 
 - 무사히 설치가 완료되었다면, 이제 API를 호출하여 정상적인지 테스트가 필요 합니다.
 - 테스트 방법에는 2가지가 있습니다.
-  - 웹 브라우져를 이용하여 확인
+  - 웹 브라우져를 이용하여 확인 방법
     - URL에 `http://localhost:3000/posts/1` 입력 후 데이터 조회 확인
     - <img src="../../assets/images/posts/bootcamp005/json_server_2.png" width="70%" align="center"/>
-  - Postman을 이용하여 확인
-    - [Postman Download](https://www.postman.com/downloads/)하여 설치
+  - Postman을 이용하여 확인 방법
+    - [Postman Download](https://www.postman.com/downloads/) 자신의 운영체제에 맞는 버전을 다운로드 후 설치 하시면 됩니다.
     - <img src="../../assets/images/posts/bootcamp005/json_server_3.png" width="100%" align="center"/>
 - 어떤 방법으로든 posts의 1번 ID에 대해서 잘 조회 되었다면 성공 입니다.
 

@@ -10,7 +10,7 @@ tags:
   - [Blog, bootcamp, 개발자의품격, JavaScript, ES6]
 
 toc: true
-toc_sticky: false
+toc_sticky: true
 toc_label: "페이지 주요 목차" 
  
 date: 2022-11-04
