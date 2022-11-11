@@ -76,7 +76,7 @@ last_modified_at: 2022-11-11
 
 ### 2.1 정교 표현식 문법
 
-- <img src="../../assets/images/posts/bootcamp005/regexp_1.png" width="100%" align="center"/>
+- <img src="../../assets/images/posts/bootcamp005/regexp_1.png" width="50%" align="center"/>
 - `/패턴/플래그`  
 - `/`와 `/`사이에 `찾을`(매칭시킬) `패턴`(아래의 패턴표나 MDN 참고) 작성
 - `/` 다음에 `플래그`을 위한 `패턴`(아래의 패턴이나 MDN 참고) 작성
