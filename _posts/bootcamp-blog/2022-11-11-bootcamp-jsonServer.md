@@ -2,8 +2,9 @@
 title:  "[Blog] JSON Server"
 excerpt: "개발자의품격"
 comments: true
-header:
+header: this is header
 author_profile: false
+sidebar_main: true
 
 categories:
   - bootcamp
