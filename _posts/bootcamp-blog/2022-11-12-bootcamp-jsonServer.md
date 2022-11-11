@@ -8,7 +8,7 @@ header:
 categories:
   - bootcamp
 tags:
-  - [Blog, bootcamp, 개발자의품격, JSON Server]
+  - [Blog, bootcamp, 개발자의품격, JSONServer]
 
 toc: true
 toc_sticky: false
