@@ -2,11 +2,11 @@
 title: "Bootcamp"
 layout: archive
 permalink: categories/bootcamp
-author_profile: true
-sidebar_main: true
+author_profile: false
+sidebar_main: false
 ---
 
 {% assign posts = site.categories.bootcamp %}
 {% for post in posts %} 
-    {% include archive-single2.html type=page.entries_layout %} 
+    {% include archive-single.html type=page.entries_layout %} 
 {% endfor %}
