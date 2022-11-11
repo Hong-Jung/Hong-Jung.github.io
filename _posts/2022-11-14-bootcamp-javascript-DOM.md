@@ -3,7 +3,6 @@ title:  "JavaScript - DOM & CRUD"
 excerpt: "개발자의품격"
 comments: true
 header:
-  t
 
 categories:
   - bootcamp
