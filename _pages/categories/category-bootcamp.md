@@ -2,7 +2,7 @@
 title: "Bootcamp"
 layout: archive
 permalink: categories/bootcamp
-author_profile: false
+author_profile: true
 sidebar_main: true
 ---
 
