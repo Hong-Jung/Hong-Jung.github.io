@@ -2,7 +2,8 @@
 title:  "JavaScript - DOM & CRUD"
 excerpt: "개발자의품격"
 comments: true
-header:
+header: 
+  t
 
 categories:
   - bootcamp
@@ -10,7 +11,7 @@ tags:
   - [Blog, bootcamp, 개발자의품격, JavaScript, DOM]
 
 toc: true
-toc_sticky: false
+toc_sticky: true
 toc_label: "페이지 주요 목차" 
  
 date: 2022-11-14
