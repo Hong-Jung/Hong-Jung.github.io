@@ -14,8 +14,8 @@ toc: true
 toc_sticky: false
 toc_label: "페이지 주요 목차" 
  
-date: 2022-11-12
-last_modified_at: 2022-11-12
+date: 2022-11-13
+last_modified_at: 2022-11-13
 ---
 
 # ***Regular Expressions*** in JavaScript
