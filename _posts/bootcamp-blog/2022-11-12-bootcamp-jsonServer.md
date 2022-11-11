@@ -17,11 +17,11 @@ date: 2022-11-12
 last_modified_at: 2022-11-12
 ---
 
-# What is ***JSON Server*** ?
+# What is **JSON Server** ?
 
 ## 0. Index
 
-- [What is ***JSON Server*** ?](#what-is-json-server-)
+- [What is **JSON Server** ?](#what-is-json-server-)
   - [0. Index](#0-index)
   - [1. Introduction](#1-introduction)
     - [1.1 JSON Server 란 ?](#11-json-server-란-)
