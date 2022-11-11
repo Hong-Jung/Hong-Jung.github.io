@@ -18,9 +18,9 @@ date: 2022-11-04
 last_modified_at: 2022-11-04
 ---
 
-# JavaScript
+# JavaScript ES6
 
-- [JavaScript](#javascript)
+- [JavaScript ES6](#javascript-es6)
   - [1. JavaScript ES6?](#1-javascript-es6)
     - [1.1. 역사](#11-역사)
     - [1.2. ES6](#12-es6)
