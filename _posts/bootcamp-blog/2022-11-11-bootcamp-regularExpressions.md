@@ -36,6 +36,8 @@ last_modified_at: 2022-11-11
       - [2.1.4 플래그(옵션)](#214-플래그옵션)
       - [2.1.5 주요 함수](#215-주요-함수)
     - [2.2 실제 샘플 코드를 통한 분석](#22-실제-샘플-코드를-통한-분석)
+    - [2.2.1 메일 주소 형식에 대해서 정규 표현식을 통한 코드 샘플을 살펴 보겠습니다.](#221-메일-주소-형식에-대해서-정규-표현식을-통한-코드-샘플을-살펴-보겠습니다)
+    - [2.2.2 문제](#222-문제)
   - [3. Conclusion](#3-conclusion)
   - [4. Reference](#4-reference)
 
@@ -150,24 +152,24 @@ last_modified_at: 2022-11-11
 
 ### 2.2 실제 샘플 코드를 통한 분석
 
-- 메일 주소 형식에 대해서 정규 표현식을 통한 코드 샘플을 살펴 보겠습니다.
+### 2.2.1 메일 주소 형식에 대해서 정규 표현식을 통한 코드 샘플을 살펴 보겠습니다.
   
-- ```html
-  <input type="email" name="" id="email" value="" />
-  <button onclick="doSave();">저장</button>
+```html
+<input type="email" name="" id="email" value="" />
+<button onclick="doSave();">저장</button>
 
-  <script>
-  const regexpEmail = /^([a-z]+\d*)+(\.?[a-z]+\d*)+@([a-z]+\d*)+(\.[a-z]{2,3})+$/;
+<script>
+const regexpEmail = /^([a-z]+\d*)+(\.?[a-z]+\d*)+@([a-z]+\d*)+(\.[a-z]{2,3})+$/;
 
-  function doSave() {
-    const email = document.getElementById("email").value;
-    console.log(email);
-    if (!regexpEmail.test(email)) {
-      alert("이메일 형식이 맞지 않습니다. 올바른 형식으로 입력하세요.");
-    }
+function doSave() {
+  const email = document.getElementById("email").value;
+  console.log(email);
+  if (!regexpEmail.test(email)) {
+    alert("이메일 형식이 맞지 않습니다. 올바른 형식으로 입력하세요.");
   }
-  </script>
-  ```
+}
+</script>
+```
 
 - `/`^([a-z]+\d*)+(\\.?[a-z]+\d*)+@([a-z]+\d*)+(\\.[a-z]{2,3})+$`/`
   - >`//`로 시작과 끝을 의미
@@ -203,6 +205,74 @@ last_modified_at: 2022-11-11
     - >소문자 a에서 z까지 최소한 한개 이상, 최소 2개 이상 최대 3개 이하
   - `(`\\.[a-z]{2,3})`+`
     - >한 묶음으로 최소 한번 이상
+
+### 2.2.2 문제
+
+- 문제.사용자가 입력한 아이디를 파라미터로 받고, 사용자 아이디가 다음 조건을 만족하는지 확인하는 함수를 작성하세요.
+  - 사용자 아이디는 5자리 이상 15자리 이하입니다. 
+  - 알파벳 소문자, 숫자, 밑줄(_), 마침표(.)만 포함할 수 있습니다. 
+  - 밑줄은 연속해서 2개 사용할 수 없습니다. 
+  - 마침표는 1개만 사용할 수 있습니다. 
+  - 아이디 시작은 반드시 소문자여야 합니다. 
+  - 아이디 마지막 문자는 소문자 또는 숫자만 가능합니다. 
+  - 조건을 만족하면 true, 만족하지 않으면 false 반환하세요.
+  
+```html
+<body>
+    <input type="text" name="" id="id" value="" placeholder="아이디를 입력하세요." />
+    <button onclick="checkId();">체크</button>
+    <br /><br />
+    <textarea id="txt"></textarea>
+    <script>
+        function checkUserId(userId) {
+            //1. 사용자 아이디는 5자리 이상 15자리 이하입니다.
+            if (!/^.{5,15}$/.test(userId)) {
+                document.getElementById("txt").value = "사용자 아이디는 5자리 이상 15자리 이하입니다.";
+                return false;
+            }
+
+            //2. 알파벳 소문자, 숫자, 밑줄(_), 마침표(.)만 포함할 수 있습니다.
+            if (!/[a-z0-9_\.]+/.test(userId)) {
+                document.getElementById("txt").value = "알파벳 소문자, 숫자, 밑줄(_), 마침표(.)만 포함할 수 있습니다.";
+                return false;
+            }
+
+            //3. 밑줄은 연속해서 2개 사용할 수 없습니다.
+            if (/_{2}/.test(userId)) {
+                document.getElementById("txt").value = "밑줄은 연속해서 2개 사용할 수 없습니다.";
+                return false;
+            }
+
+            //4. 마침표는 1개만 사용할 수 있습니다.
+            if (userId.split(/\./).length > 2) {
+                document.getElementById("txt").value = "마침표는 1개만 사용할 수 있습니다.";
+                return false;
+            }
+
+            //5. 아이디 시작은 반드시 소문자여야 합니다.
+            if (!/^[a-z]/.test(userId)) {
+                document.getElementById("txt").value = "아이디 시작은 반드시 소문자여야 합니다.";
+                return false;
+            }
+
+            //6. 아이디 마지막 문자는 소문자 또는 숫자만 가능합니다.
+            if (!/[a-z0-9]$/.test(userId)) {
+                document.getElementById("txt").value = "아이디 마지막 문자는 소문자 또는 숫자만 가능합니다.";
+                return false;
+            }
+
+            return true;
+        }
+
+        function checkId() {
+            const userId = document.getElementById("id").value;
+            if (checkUserId(userId)) {
+                document.getElementById("txt").value = "정상적인 아이디 입니다.";
+            }
+        }
+    </script>
+</body>
+```
 
 ## 3. Conclusion
 
