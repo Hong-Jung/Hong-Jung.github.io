@@ -3,7 +3,6 @@ title:  "JavaScript - ES6 & Advance"
 excerpt: "개발자의품격"
 comments: true
 header:
-  t
 
 categories:
   - bootcamp
@@ -11,7 +10,7 @@ tags:
   - [Blog, bootcamp, 개발자의품격, JavaScript, ES6]
 
 toc: true
-toc_sticky: false
+toc_sticky: true
 toc_label: "페이지 주요 목차" 
  
 date: 2022-11-04
@@ -1055,7 +1054,7 @@ function writeLog(message) {
 |     \W     | \w가 아님                                            |
 |     \s     | 공백                                                 |
 |     \S     | 공백이 아님                                          |
-| \특수기호  | 특수기호                                             |
+| \특수기호  | 일반문자로 인식                                      |
 
 ### 19.3 검색 패턴
 
