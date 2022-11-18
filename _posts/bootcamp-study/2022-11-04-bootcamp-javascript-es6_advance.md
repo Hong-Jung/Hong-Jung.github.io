@@ -1026,6 +1026,7 @@ function writeLog(message) {
 - [MDN 정규 표현식(Regular Expressions)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions)
 - [W3School 정규 표현식(Regular Expressions)](https://www.w3schools.com/java/java_regex.asp)
 - *형식 언어(Formal Language)*라고 하며, `특정 패턴의 문자열을 찾기 위한 표현 방식`
+- [RegExLib](https://regexlib.com/UserPatterns.aspx?authorId=e52f1f3c-83dd-4dad-a4c8-ed4745dbf278&AspxAutoDetectCookieSupport=1), [Regexper](https://regexper.com/)
   
 ### 19.1 사용법(형식)
 
