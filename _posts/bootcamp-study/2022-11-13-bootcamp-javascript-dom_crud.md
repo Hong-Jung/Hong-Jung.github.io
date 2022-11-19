@@ -1907,13 +1907,408 @@ function parseQueryString() {
 
 ### 2.6 Simple Data Grid
 
-- contents
+- 컬럼 정렬, 필터링, 페이징 등등의 기능을 가지고 있는 컨트롤
+- CRUD를 위하여 구성한 Table의 많은 기능을 가지고 있음
+- Custom Attribute
+  
+```html
+<th data-sort-key="name">Name</th>
+
+<script>
+  window.addEventListener("load", () => {
+      document.querySelectorAll("th[data-sort-key]").forEach(th => {
+          th.addEventListener("click", () => {
+              sort(th.getAttribute("data-sort-key"));
+          });
+      });
+  });
+</script>
+```
+
+```html
+<head>
+  <style>
+    .normal-table {
+      border: 1px solid black;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .normal-table th,
+    .normal-table td {
+      border: 1px solid black;
+      padding: 5px 10px;
+    }
+
+    .normal-table thead tr {
+      background-color: yellow;
+    }
+
+    .striped tbody tr:nth-child(2n) {
+      background-color: grey;
+    }
+
+    .hover tbody tr:hover {
+      background-color: pink;
+    }
+
+    .pagination {
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .pagination a {
+      color: black;
+      padding: 8px 16px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .pagination a.active {
+      background-color: deeppink;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <select name="" id="gender">
+    <option value="">전체</option>
+    <option value="male">남자</option>
+    <option value="female">여자</option>
+  </select>
+  <input
+    type="search"
+    name=""
+    id="name"
+    placeholder="Name"
+    onkeyup="checkEnter()"
+  />
+  <button onclick="doSearch();">조회</button>
+  <button onclick="goToCreate();">생성</button>
+  <button id="btnDelete" onclick="doDelete();" disabled>삭제</button>
+  <table class="normal-table striped hover">
+    <thead>
+      <tr>
+        <th><input type="checkbox" onchange="checkAll();" /></th>
+        <th data-sort-key="name">Name</th>
+        <th data-sort-key="company">Company</th>
+        <th data-sort-key="gender">Gender</th>
+        <th data-sort-key="email">Email</th>
+        <th data-sort-key="phone">Phone</th>
+        <th data-sort-key="address">Address</th>
+      </tr>
+      <tr>
+        <th></th>
+        <th><input type="search" data-filter-key="name" /></th>
+        <th><input type="search" data-filter-key="company" /></th>
+        <th><input type="search" data-filter-key="gender" /></th>
+        <th><input type="search" data-filter-key="email" /></th>
+        <th><input type="search" data-filter-key="phone" /></th>
+        <th><input type="search" data-filter-key="address" /></th>
+      </tr>
+    </thead>
+    <tbody id="tbBody"></tbody>
+  </table>
+  <div id="pagination" class="pagination"></div>
+  <script>
+    let customerData = [];
+    // crud - Create, Read, Update, Delete
+    async function doSearch() {
+      const gender = document.querySelector("#gender").value;
+      const name = document.querySelector("#name").value;
+
+      let resource = "http://localhost:3000/customers";
+      if (gender === "") {
+        if (name != "") {
+          resource = `http://localhost:3000/customers?name_like=${name}`;
+        }
+      } else {
+        if (name !== "") {
+          resource = `http://localhost:3000/customers?gender=${gender}&name_like=${name}`;
+        } else {
+          resource = `http://localhost:3000/customers?gender=${gender}`;
+        }
+      }
+
+      const res = await fetch(resource);
+      const resJson = await res.json();
+      console.log(resJson);
+      customerData = resJson;
+      // filterData = JSON.parse(JSON.stringify(resJson)); // 깊은 복사
+      filterData = [...resJson]; // 깊은 복사
+
+      renderTable(resJson.slice(0, pagecnt));
+      paging(filterData);
+    }
+
+    function renderTable(data) {
+      // customerData = data;
+      // data = data.slice()
+      const h = [];
+      for (const item of data) {
+        h.push(`<tr>`);
+        h.push(
+          `<td><input type="checkbox" name="chk" value="${item.id}" onchange="isChecked();" /></td>`
+        );
+        h.push(
+          `<td><a href="javascript:goToDetail('${item.id}');">${item.name}</a></td>`
+        );
+        h.push(`<td>${item.company}</td>`);
+        h.push(`<td>${item.gender}</td>`);
+        h.push(`<td>${item.email}</td>`);
+        h.push(`<td>${item.phone}</td>`);
+        h.push(`<td>${item.address}</td>`);
+        h.push(`</tr>`);
+      }
+
+      document.querySelector("#tbBody").innerHTML = h.join("");
+    }
+
+    function goToCreate() {
+      document.location.href = "60_dom_crud_create.html";
+    }
+
+    async function doDelete() {
+      const chks = document.querySelectorAll("[name=chk]:checked");
+      if (chks.length > 0) {
+        if (confirm("정말 삭제 하시겠습니까?")) {
+          for (const chk of chks) {
+            await fetch(`http://localhost:3000/customers/${chk.value}`, {
+              method: "DELETE",
+            });
+          }
+
+          alert("데이터가 정상적으로 삭제 되었습니다.");
+          await doSearch();
+        }
+      } else {
+        alert("삭제할 아이템을 선택하세요.");
+      }
+    }
+
+    function checkAll() {
+      console.log(event.target.checked);
+      const checkValue = event.target.checked;
+      const chks = document.querySelectorAll("[name=chk]");
+      if (chks.length > 0) {
+        for (const chk of chks) {
+          chk.checked = checkValue;
+        }
+      }
+
+      isChecked();
+    }
+
+    function isChecked() {
+      const chks = document.querySelectorAll("[name=chk]:checked");
+      if (chks.length > 0) {
+        document.querySelector("#btnDelete").disabled = false;
+      } else {
+        document.querySelector("#btnDelete").disabled = true;
+      }
+    }
+
+    function checkEnter() {
+      if (event.keyCode === 13) {
+        doSearch();
+      }
+    }
+
+    function goToDetail(id) {
+      document.location.href = `61_dom_crud_detail.html?id=${id}&v1=1&name=jeremy`;
+    }
+
+    let lastSortKey = "";
+    let bAsc = true;
+
+    function sort(sortKey) {
+      if (sortKey === lastSortKey) {
+        bAsc = !bAsc;
+      }
+
+      let sortValue = bAsc ? 1 : -1;
+
+      const sortData = filterData.sort(function (a, b) {
+        if (a[sortKey].toLowerCase() > b[sortKey].toLowerCase()) {
+          return sortValue;
+        } else if (a[sortKey].toLowerCase() < b[sortKey].toLowerCase()) {
+          return -1 * sortValue;
+        } else {
+          return 0;
+        }
+      });
+
+      const startIdx = (currentPage - 1) * pagecnt;
+      let endIdx = currentPage * pagecnt;
+      if (endIdx > sortData.length) {
+        endIdx = sortData.length;
+      }
+
+      renderTable(sortData.slice(startIdx, endIdx));
+      lastSortKey = sortKey;
+      filterData = sortData;
+      renderPagination();
+    }
+
+    let filterData = [];
+
+    function filter(filterKey) {
+      const filterValue = event.target.value.toLowerCase();
+      // filterData = customerData;
+      let endIdx = pagecnt;
+      if (filterValue !== "") {
+        filterData = filterData.filter(
+          (customer) =>
+            customer[filterKey].toLowerCase().indexOf(filterValue) > -1
+        );
+
+        if (filterData.length < pagecnt) {
+          endIdx = filterData.length;
+        }
+      } else {
+        filterData = customerData;
+      }
+
+      currentPage = 1;
+      renderTable(filterData.slice(0, endIdx));
+      renderPagination();
+    }
+
+    let totalPage = 0;
+    const pagecnt = 3;
+    let pageRange = [];
+    let currentPage = 1;
+
+    function paging(data) {
+      totalPage = Math.ceil(data.length / pagecnt);
+
+      if (totalPage > 5) {
+        pageRange = [1, 2, 3, 4, 5];
+      } else {
+        pageRange = [];
+        for (let i = 1; i <= totalPage; i++) {
+          pageRange.push(i);
+        }
+      }
+
+      renderPagination();
+    }
+
+    function renderPagination() {
+      console.log(pageRange);
+      const h = [];
+      if (pageRange[0] > 1) {
+        h.push(`<a href="javascript:prevPage();">&laquo;</a>`);
+      }
+
+      for (const no of pageRange) {
+        h.push(
+          `<a href="javascript:changePage(${no})" class="${
+            no === currentPage ? "active" : ""
+          }">${no}</a>`
+        );
+      }
+
+      if (pageRange[pageRange.length - 1] < totalPage) {
+        h.push(`<a href="javascript:nextPage();">&raquo;</a>`);
+      }
+
+      document.querySelector("#pagination").innerHTML = h.join("");
+    }
+
+    function prevPage() {
+      const pageNo = pageRange[0];
+      pageRange = [
+        pageNo - 5,
+        pageNo - 4,
+        pageNo - 3,
+        pageNo - 2,
+        pageNo - 1,
+      ];
+      changePage(pageNo - 1);
+    }
+
+    function nextPage() {
+      const pageNo = pageRange[pageRange.length - 1];
+      const startPageNo = pageNo + 1;
+      let endPageNo = pageNo + 5;
+      if (endPageNo > totalPage) {
+        endPageNo = totalPage;
+      }
+
+      pageRange = [];
+      for (let i = startPageNo; i <= endPageNo; i++) {
+        pageRange.push(i);
+      }
+
+      console.log("pageRange", pageRange);
+
+      changePage(startPageNo);
+    }
+
+    function changePage(pageNo) {
+      currentPage = pageNo;
+      const startIdx = (pageNo - 1) * pagecnt;
+      let endIdx = pageNo * pagecnt;
+      if (endIdx > filterData.length) {
+        endIdx = filterData.length;
+      }
+
+      renderTable(filterData.slice(startIdx, endIdx));
+      renderPagination();
+    }
+
+    window.addEventListener("load", () => {
+      document.querySelectorAll("th[data-sort-key]").forEach((th) => {
+        th.addEventListener("click", () => {
+          sort(th.getAttribute("data-sort-key"));
+        });
+      });
+
+      document.querySelectorAll("input[data-filter-key]").forEach((input) => {
+        input.addEventListener("keyup", () => {
+          if (event.keyCode === 13) {
+            filter(input.getAttribute("data-filter-key"));
+          }
+        });
+      });
+    });
+  </script>
+</body>
+```
 
 ## 3. Additional
 
 ### 3.1 LocalStorage & SessionStorage
 
-- contents
+- html5에 포함된 기능
+  - local storage (5MB 가능)
+    - 삭제하기 전까지 클라이언트 브라우저에 계속해서 남아 있음
+    - 도메인별로 따로 저장이됨
+  - session storage
+    - 브라우저 창을 닫으면 삭제 됨
+
+```javascript
+if (typeof (Storage) !== "undefined") {
+    //local storage
+    localStorage.setItem("name", "Hi"); // 언어, 테마
+    let arr = ["a", "b"];
+    localStorage.setItem("arr", JSON.stringify(arr));
+
+    // session storage
+    sessionStorage.setItem("name2", "hihihi!!");
+}
+```
+
+```javascript
+//local storage
+console.log(localStorage.getItem("name"));
+console.log(localStorage.getItem("name2"));
+console.log(JSON.parse((localStorage.getItem("name2"))));
+
+// session storage
+console.log(sessionStorage.getItem("name2"));
+```
 
 ### 3.2 GeoLocation API
 

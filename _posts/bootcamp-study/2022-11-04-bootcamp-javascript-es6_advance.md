@@ -65,7 +65,9 @@ last_modified_at: 2022-11-04
     - [19.5 플래그(옵션)](#195-플래그옵션)
     - [19.6 주요 함수](#196-주요-함수)
     - [19.2 Code Sample](#192-code-sample)
-  - [20. 참고](#20-참고)
+  - [20. Memory](#20-memory)
+    - [20.1 스택 메모리, 힙 메모리](#201-스택-메모리-힙-메모리)
+  - [21. 참고](#21-참고)
 
 ## 1. JavaScript ES6?
 
@@ -1117,7 +1119,21 @@ function doSave() {
 }
 ```
 
-## 20. 참고
+## 20. Memory
+
+### 20.1 스택 메모리, 힙 메모리
+
+- 스택메모리
+  - string, number, boolean (사이즈가 고정적인 데이터 타입)
+- 힙메모리
+  - object, array (사이즈가 유동적인 데이터 타입)
+  - const arr = [1,2,3,4];
+    - 첫번째 블록
+      - 배열 데이터가 저장되어 있는 힙메모리 블록에 대한 주소 값(스택메모리)
+    - 두번째 블록
+      - 배열 데이터가 저장되는 공간(힙메모리)
+  
+## 21. 참고
 
 - [개발자의 품격 youtube](https://www.youtube.com/c/%EA%B0%9C%EB%B0%9C%EC%9E%90%EC%9D%98%ED%92%88%EA%B2%A9)
 - [MDN Site](https://developer.mozilla.org/ko/)
