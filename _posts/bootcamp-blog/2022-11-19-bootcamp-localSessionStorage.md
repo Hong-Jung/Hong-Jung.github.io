@@ -147,9 +147,8 @@ sessionStorage.getItem('key2');
 <img src="./../../assets/images/posts/bootcamp005/web_storage_2.png" width="100%" align="center"/><br>
 
 > **IMPORTANT**
->> `sessionStorage.removeItem('key2');`를 통하여 *key2* 값은 *제거* 되었다. 하지만 아직도 *key1 값은 남아있다*.<br>
->> 하지만, 해당 클라이언트 *브라우저(탭 또는 창)을 닫게 되면* 다음의 이미지처럼 *key1 값도 사라*지게 된다.<br>
->> 이와같이 세션 스토리지(Session Storage)의 라이프 싸이클은 웹 브라우저와 함께 한다는 사실을 알 수 있다.
+>> `sessionStorage.removeItem('key2');`를 통하여 *key2* 값은 *제거* 되었다. 하지만 아직도 *key1 값은 남아있다*.<br><br>
+>> 하지만, 해당 <u>클라이언트 브라우저(탭 또는 창)을 닫게 되면 다음의 이미지처럼 key1 값도 사라지게 된다.</u> 이와같이 세션 스토리지(Session Storage)의 라이프 싸이클은 웹 브라우저와 함께 한다는 사실을 알 수 있다.
   
 <img src="./../../assets/images/posts/bootcamp005/web_storage_3.png" width="100%" align="center"/>
 
