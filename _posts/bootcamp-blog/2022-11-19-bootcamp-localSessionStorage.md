@@ -80,7 +80,7 @@ last_modified_at: 2022-11-19
 >> - Storage Object를 상속 받음<br>
 >> - 키(key)-값(value) 형태로 저장<br>
 >> - 브라우저의 탭이나 창 간에 데이터가 공유되며, 탭이나 창을 닫아도 남아 있음<br>
->> - 용량의 제한이 있음(보통 모바일은 2.5MB, 데스크탑은 5~10MB)<br>
+>> - 용량의 제한이 있음(보통 5M 정도이나 정확한 수치는 브라우저마다 다름. [Web Storage Support Test](http://dev-test.nemikor.com/web-storage/support-test/))<br>
 >> - 문자형(string) 데이터 타입만 지원 (숫자형 데이터 타입을 위하여 JSON 형태로 변환 필요)
 
 ```javascript
@@ -129,7 +129,7 @@ localStorage.clear();
 >> - 브라우저 창을 닫으면(세션이 종료되면) 삭제 됨<br>
 >> - Storage Object를 상속 받음<br>
 >> - 여러 탭(창)을 뛰우면 여러개 세션 스토리지가 서로 격리되어 저장됨(탭(창)이 닫히면 사라짐)<br>
->> - 용량의 제한이 있음(보통 모바일은 2.5MB, 데스크탑은 5~10MB)
+>> - 용량의 제한이 있음(보통 5M 정도이나 정확한 용량은 브라우저마다 다름. [Web Storage Support Test](http://dev-test.nemikor.com/web-storage/support-test/)
 
 ```javascript
 // key-value 저장
