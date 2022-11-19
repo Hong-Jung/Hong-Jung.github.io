@@ -710,7 +710,7 @@ last_modified_at: 2022-11-13
 ### 1.6 input validity
 
 - 입력 유효성체크로 반드시 `form tag` 내부에 있어야 함
-  - 요효성 체크 요소에는 `required` 태그로 체크 항목임을 명시
+  - 유효성 체크 요소에는 `required` 태그로 체크 항목임을 명시
     - `form tag`의 `onsubmit` 이벤트 발생시 `자동으로 유효성 체크`하여 submit이 안됨
 - 최근의 프론트앤드 프레임워크가 form tag를 사용하지 않음
   - 화면이 껌뻑이기 때문, 즉 비동기 방식으로 불가함
@@ -833,7 +833,6 @@ function login2() {
     - API 호출 결과값은 `innerHTML` 속성을 사용하여 html tag를 생성하여 바인딩
     - 그리드 앞에 전체 선택/해지 체크박스 위치
     - 삭제 버튼 자동 활성/비활성
-    - 
   
 ```html
 <head>
