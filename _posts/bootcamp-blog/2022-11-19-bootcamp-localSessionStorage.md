@@ -19,18 +19,18 @@ date: 2022-11-19
 last_modified_at: 2022-11-19
 ---
 
-# **Local Storage** & **Session Storage** in JavaScript
+# **Local Storage** & **Session Storage** in Web Storage
 
 ## Index
 
-- [**Local Storage** & **Session Storage** in JavaScript](#local-storage--session-storage-in-javascript)
+- [**Local Storage** & **Session Storage** in Web Storage](#local-storage--session-storage-in-web-storage)
   - [Index](#index)
   - [Introduction](#introduction)
     - [JavaScript에서의 Storage ?](#javascript에서의-storage-)
     - [왜 필요하며 어디에서 사용될까 ?](#왜-필요하며-어디에서-사용될까-)
   - [Body](#body)
-    - [***Local Storage***](#local-storage)
-    - [***Session Storage***](#session-storage)
+    - [로컬 스토리지(***Local Storage***)](#로컬-스토리지local-storage)
+    - [세션 스토리지(***Session Storage***)](#세션-스토리지session-storage)
   - [Conclusion](#conclusion)
   - [Reference](#reference)
 
@@ -68,7 +68,7 @@ last_modified_at: 2022-11-19
 
 ## Body
 
-### ***Local Storage***
+### 로컬 스토리지(***Local Storage***)
 
 - 웹 스토리지(Web Storage) 중 로컬 스토리지(Local Storage)로 다음와 같은 몇가지 중요한 특징이 존재 한다.
   
@@ -119,7 +119,7 @@ localStorage.clear();
 
 <img src="./../../assets/images/posts/bootcamp005/web_storage_1.png" width="100%" align="center"/>
 
-### ***Session Storage***
+### 세션 스토리지(***Session Storage***)
 
 - 웹 스토리지(Web Storage) 중 세션 스토리지(Session Storage)로 다음과 같은 몇가지 중요한 특징이 존재 한다.
 
