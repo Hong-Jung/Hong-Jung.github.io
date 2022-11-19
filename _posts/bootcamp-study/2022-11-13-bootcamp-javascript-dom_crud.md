@@ -10,7 +10,7 @@ tags:
   - [Blog, bootcamp, 개발자의품격, JavaScript, DOM, CRUD]
 
 toc: true
-toc_sticky: false
+toc_sticky: true
 toc_label: "페이지 주요 목차" 
  
 date: 2022-11-13
@@ -2441,11 +2441,3 @@ console.log(sessionStorage.getItem("name2"));
 - [MDN Site](https://developer.mozilla.org/ko/)
 - [W3C Site](https://www.w3.org/)
 - [Can I use ? Site](https://caniuse.com/)
-   NOTE, TIP, IMPORTANT, CAUTION, and WARNING.
-  
->[!IMPORTANT]
->
-> NOTE, TIP, IMPORTANT, CAUTION, ALERT and WARNING.<br>
->~~important~~<br>
-><u>importtant</u><br>
->important
