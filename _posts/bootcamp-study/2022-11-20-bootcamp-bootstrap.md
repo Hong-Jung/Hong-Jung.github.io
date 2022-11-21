@@ -142,50 +142,59 @@ last_modified_at: 2022-11-20
 
 ## 3. Content
 
-- Reboot, Typography, Images, Tables, Figures가 있다.
-- Typography([bootstrap typography](https://getbootstrap.com/docs/5.2/content/typography/))
-  - 글자 관련된 디자인 클래스들 제공
-- Images([bootstrap images](https://getbootstrap.com/docs/5.2/content/images/))
-  - 이미지 관련된 디자인 클래스 제공
-  - `class='img-fluid'`는 반응형 이미지 사용(가장 많이 사용)
-- Tables([bootstrap tables](https://getbootstrap.com/docs/5.2/content/tables/))
-  - 테이블(table) 태그(tag)에 대한 디자인 클래스 제공
+- Reboot, Typography, Images, Tables, Figures
 
-  - ```html
-    <table class="table table-secondary table-striped table-hover table-bordered">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
-          <th scope="col">Handle</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td colspan="2">Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-    </table>
-    ```
+| name       | class name                                                       | description                                                                                       |
+| :--------- | :--------------------------------------------------------------- | :------------------------------------------------------------------------------------------------ |
+| Typography | h1~6, mark, del, s, ins, u, strong, em                           | [글자 관련된 디자인 클래스](https://getbootstrap.com/docs/5.2/content/typography/)                |
+| Images     | img-fluid, img-thumbnail                                         | [이미지 관련된 디자인](https://getbootstrap.com/docs/5.2/content/images/)                         |
+| Tables     | table, table-primary, table-striped, table-hover, table-bordered | [테이블(table) 태그(tag)에 대한 디자인 클래스](https://getbootstrap.com/docs/5.2/content/tables/) |
 
 ## 4. Forms
 
+- 입력 관련 컨트롤에 대한 디자인 스타일 제공
+
+| name            | class name                                                                                               | description                                                                                                       |
+| :-------------- | :------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------- |
+| From control    | form-label, form-control, disabled readonly                                                              | [type='text'와 같은 기본 입력 컨트롤](https://getbootstrap.com/docs/5.2/forms/form-control/)                      |
+| Select          | form-select,                                                                                             | [선택 컨트롤](https://getbootstrap.com/docs/5.2/forms/select/)                                                    |
+| Check & Radios  | form-check-input, form-check-label, class="form-check form-switch", class="form-check form-check-inline" | [체크 및 라디오](https://getbootstrap.com/docs/5.2/forms/checks-radios/)                                          |
+| Range           | form-range                                                                                               | [범위](https://getbootstrap.com/docs/5.2/forms/range/)                                                            |
+| Input group     | div / class="input-group", span / class="input-group-text"                                               | [입력 컨트롤의 그룹핑](https://getbootstrap.com/docs/5.2/forms/input-group/)                                      |
+| Floating labels | div / class="form-floating"                                                                              | [라벨과 입력을 한개의 그룹으로 묶고 라벨을 플로팅 시킴](https://getbootstrap.com/docs/5.2/forms/floating-labels/) |
+| Layout          |                                                                                                          | [layout 패턴 및 스타일](https://getbootstrap.com/docs/5.2/forms/layout/)                                          |
+| Validation      | needs-validation, valid-feedback , invalid-feedback                                                      | [유효성 검사](https://getbootstrap.com/docs/5.2/forms/validation/)                                                |
+
 ## 5. Components
+
+- 간략한 설명
+
+| name         | class name                               | description                                                                           |
+| :----------- | :--------------------------------------- | :------------------------------------------------------------------------------------ |
+| Accordion    | accordion-xx                             | [확장, 축소 컨트롤](https://getbootstrap.com/docs/5.2/components/accordion/)          |
+| Alerts       | alert                                    | [알람](https://getbootstrap.com/docs/5.2/components/alerts/)                          |
+| Badge        | badge                                    | [뱃지 카운트, 마크](https://getbootstrap.com/docs/5.2/components/badge/)              |
+| Breadcrumb   | breadcrumb                               | [메뉴 네비게이션](https://getbootstrap.com/docs/5.2/components/breadcrumb/)           |
+| Buttons      | btn                                      | [버튼 스타일](https://getbootstrap.com/docs/5.2/components/buttons/)                  |
+| Button group | btn-group                                | [버튼의 그룹화](https://getbootstrap.com/docs/5.2/components/button-group/)           |
+| Card         | card-xx                                  | [카드 스타일](https://getbootstrap.com/docs/5.2/components/card/)                     |
+| Carousel     | carousel-xx                              | [이미지 스라이딩](https://getbootstrap.com/docs/5.2/components/carousel/)             |
+| Close button | btn-close                                | [닫힘 버튼](https://getbootstrap.com/docs/5.2/components/close-button/)               |
+| Collapse     | collapse, data-bs-toggle, data-bs-target | [확장, 축소](https://getbootstrap.com/docs/5.2/components/collapse/)                  |
+| Dropdowns    | dropdown                                 | [메뉴의 서브메뉴](https://getbootstrap.com/docs/5.2/components/dropdowns/)            |
+| List group   | list-group-xx                            | [정형화된 목록](https://getbootstrap.com/docs/5.2/components/list-group/)             |
+| Modal        | modal-xx, static backdrop                | [팝업창](https://getbootstrap.com/docs/5.2/components/modal/)                         |
+| Navbar       | navbar-xx                                | [메뉴](https://getbootstrap.com/docs/5.2/components/navbar/)                          |
+| Navs & tabs  | nav-xx                                   | [Nav + Tab](https://getbootstrap.com/docs/5.2/components/navs-tabs/)                  |
+| Offcanvas    | offcanvas-xx                             | [스라이딩 캔버스](https://getbootstrap.com/docs/5.2/components/offcanvas/)            |
+| Pagination   | Page, pagination                         | [페이징](https://getbootstrap.com/docs/5.2/components/pagination/)                    |
+| Placeholders | placeholder                              | [로딩 효과](https://getbootstrap.com/docs/5.2/components/placeholders/)               |
+| Popovers     | data-bs-toggle, popover                  | [클릭이나 이벤트시 설명 문구](https://getbootstrap.com/docs/5.2/components/popovers/) |
+| Progress     | progress-xx                              | [진행상태](https://getbootstrap.com/docs/5.2/components/progress/)                    |
+| Scrollspy    | data-bs-spy, scroll                      | [스크롤 이동](https://getbootstrap.com/docs/5.2/components/scrollspy/)                |
+| Spinners     | spinner-border                           | [스핀-로딩](https://getbootstrap.com/docs/5.2/components/spinners/)                   |
+| Toasts       | toast-xx                                 | [잠깐 보였다 사라지는 알람](https://getbootstrap.com/docs/5.2/components/toasts/)     |
+| Tooltips     | data-bs-toggle="tooltip"                 | [툴팁](https://getbootstrap.com/docs/5.2/components/tooltips/)                        |
 
 ## 6. Helpers
 
