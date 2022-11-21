@@ -195,21 +195,112 @@ last_modified_at: 2022-11-20
 
 # 6. Helpers
 
+- 다양한 Helper 
+
+| name               | class name                      | description                                                                  |
+| :----------------- | :------------------------------ | :--------------------------------------------------------------------------- |
+| Clearfix           | clearfix,float-start, float-end | [Bootstrap Refer](https://getbootstrap.com/docs/5.2/helpers/clearfix/)       |
+| Color & background | text-bg-xx                      | [색상, 배경색](https://getbootstrap.com/docs/5.2/helpers/color-background/)  |
+| Colored links      | link-xx                         | [링크 스타일](https://getbootstrap.com/docs/5.2/helpers/colored-links/)      |
+| Position           | fixed-xx, sticky-xx             | [위치 관련 스타일](https://getbootstrap.com/docs/5.2/helpers/position/)      |
+| Ratio              | ratio-xx                        | [동영상 이미지 비율](https://getbootstrap.com/docs/5.2/helpers/ratio/)       |
+| Stacks             | vstack, hstack                  | [세로, 가로 쌓기](https://getbootstrap.com/docs/5.2/helpers/stacks/)         |
+| Stretched link     |                                 | [Bootstrap Refer](https://getbootstrap.com/docs/5.2/helpers/stretched-link/) |
+| Text truncation    | text-truncate                   | [글자 줄임표시](https://getbootstrap.com/docs/5.2/helpers/text-truncation/)  |
+| Vertical rule      | vr                              | [세로 구분자](https://getbootstrap.com/docs/5.2/helpers/vertical-rule/)      |
+| Visually hidden    | visually-xx                     | [숨김](https://getbootstrap.com/docs/5.2/helpers/visually-hidden/)           |
+
 # 7. Utilities
 
+- 다양한 Utilities
+
+| name           | class name               | description                                                                   |
+| :------------- | :----------------------- | :---------------------------------------------------------------------------- |
+| API            | SASS                     | [Bootstrap Refer](https://getbootstrap.com/docs/5.2/utilities/api/)           |
+| Background     | bg-xx                    | [배경색](https://getbootstrap.com/docs/5.2/utilities/background/)             |
+| Borders        | border-xx                | [Border](https://getbootstrap.com/docs/5.2/utilities/borders/)                |
+| Colors         | text-xx, text-opacity-xx | [글자색, 투명도](https://getbootstrap.com/docs/5.2/utilities/colors/)         |
+| Display        | d-{brakpoint}-{value}    | [표시](https://getbootstrap.com/docs/5.2/utilities/display/)                  |
+| Flex           | d-flex, flex-xx          | [flex layout](https://getbootstrap.com/docs/5.2/utilities/flex/)              |
+| Float          | float-xx                 | [float](https://getbootstrap.com/docs/5.2/utilities/float/)                   |
+| Interactions   | user-select-xx           | [text 선택 스타일](https://getbootstrap.com/docs/5.2/utilities/interactions/) |
+| Opacity        | opacity-xx               | [투명도](https://getbootstrap.com/docs/5.2/utilities/opacity/)                |
+| Overflow       | overflow-xx              | [overflow 스타일](https://getbootstrap.com/docs/5.2/utilities/overflow/)      |
+| Position       | position-xx              | [position 스타일](https://getbootstrap.com/docs/5.2/utilities/position/)      |
+| Shadows        | shadow-xx                | [그림자](https://getbootstrap.com/docs/5.2/utilities/shadows/)                |
+| Sizing         | w-xx, h-xx               | [넓이, 높이 크기](https://getbootstrap.com/docs/5.2/utilities/sizing/)        |
+| Spacing        | m-xx, p-xx               | [margin, padding](https://getbootstrap.com/docs/5.2/utilities/spacing/)       |
+| Text           | text-xx,                 | [text 정렬 등등](https://getbootstrap.com/docs/5.2/utilities/text/)           |
+| Vertical align | align-xx                 | [Vertical 정렬](https://getbootstrap.com/docs/5.2/utilities/vertical-align/)  |
+| Visibility     | visible, invisible       | [보이고, 안보이고](https://getbootstrap.com/docs/5.2/utilities/visibility/)   |
+
 # 8. Extend
+
+- 확장에 대한 전략
+  - 구축하고 유지 관리하는 데 사용되는 기본 원칙, 전략 및 기술
+- Icons
+  - > While Bootstrap doesn’t include an icon set by default, we do have our own comprehensive icon library called Bootstrap Icons.
+  - [Font Awesome](https://fontawesome.com/)
+  - [Feather](https://feathericons.com/)
+  - [Octicons](https://primer.style/octicons/)
+  - [More...](https://getbootstrap.com/docs/5.2/extend/icons/)
 
 # 9. Apply Bootstrap
 
 ## 리스트 조회
 
+- 주요 변경 사항
+  - [기존의 소트 코드](https://hong-jung.github.io/bootcamp/bootcamp-javascript-dom_crud/#21-list-ui)
+  
+- > IMPORTANT
+  >> sssss<br>
+  >> sssss<br>
+  >> sssss<br>
+  >> sssss<br>
+
 ## 생성
+
+- 주요 변경 사항
+  - [기존의 소트 코드](https://hong-jung.github.io/bootcamp/bootcamp-javascript-dom_crud/#22-create-ui)
+  
+- > IMPORTANT
+  >> sssss<br>
+  >> sssss<br>
+  >> sssss<br>
+  >> sssss<br>
 
 ## 상세
 
+- 주요 변경 사항
+  - [기존의 소트 코드](https://hong-jung.github.io/bootcamp/bootcamp-javascript-dom_crud/#23-detail-ui)
+  
+- > IMPORTANT
+  >> sssss<br>
+  >> sssss<br>
+  >> sssss<br>
+  >> sssss<br>
+
 ## 삭제
 
+- 주요 변경 사항
+  - [기존의 소트 코드](https://hong-jung.github.io/bootcamp/bootcamp-javascript-dom_crud/#24-update-ui)
+  
+- > IMPORTANT
+  >> sssss<br>
+  >> sssss<br>
+  >> sssss<br>
+  >> sssss<br>
+
 ## 멀티생성
+
+- 주요 변경 사항
+  - [기존의 소트 코드](https://hong-jung.github.io/bootcamp/bootcamp-javascript-dom_crud/#25-multiple-create-ui)
+  
+- > IMPORTANT
+  >> sssss<br>
+  >> sssss<br>
+  >> sssss<br>
+  >> sssss<br>
 
 # 10. Theme
 
