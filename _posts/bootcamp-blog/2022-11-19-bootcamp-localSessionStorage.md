@@ -21,19 +21,6 @@ last_modified_at: 2022-11-19
 
 # **Local Storage** & **Session Storage** in Web Storage
 
-## Index
-
-- [**Local Storage** & **Session Storage** in Web Storage](#local-storage--session-storage-in-web-storage)
-  - [Index](#index)
-  - [Introduction](#introduction)
-    - [JavaScript에서의 Storage ?](#javascript에서의-storage-)
-    - [왜 필요하며 어디에서 사용될까 ?](#왜-필요하며-어디에서-사용될까-)
-  - [Body](#body)
-    - [로컬 스토리지(***Local Storage***)](#로컬-스토리지local-storage)
-    - [세션 스토리지(***Session Storage***)](#세션-스토리지session-storage)
-  - [Conclusion](#conclusion)
-  - [Reference](#reference)
-
 ## Introduction 
 
 - 블로그에서 다루는 내용
@@ -66,6 +53,19 @@ last_modified_at: 2022-11-19
   >> 하지만, 데이터베이스에 저장하기전 즉, <u>작성이 완료되 경우가 아니라 본인만 열람하며 계속해서 수정해야 한다면 어떻게 될까? 그렇다, 기능적으로 해소할 수 있다</u>.<br><br>
   >> 이럴때, 로컬 스토리지(Local Storage) 또는 세션 스토리지(Session Storage)를 활용한다면, 데이터베이스에 저장하기 전 임시로 작성되는 내용에 대해서 충분히 관리(생성, 열람, 수정, 삭제) 가능하다.
 
+## Index
+
+- [**Local Storage** \& **Session Storage** in Web Storage](#local-storage--session-storage-in-web-storage)
+  - [Introduction](#introduction)
+    - [JavaScript에서의 Storage ?](#javascript에서의-storage-)
+    - [왜 필요하며 어디에서 사용될까 ?](#왜-필요하며-어디에서-사용될까-)
+  - [Index](#index)
+  - [Body](#body)
+    - [로컬 스토리지(***Local Storage***)](#로컬-스토리지local-storage)
+    - [세션 스토리지(***Session Storage***)](#세션-스토리지session-storage)
+  - [Conclusion](#conclusion)
+  - [Reference](#reference)
+  
 ## Body
 
 ### 로컬 스토리지(***Local Storage***)
