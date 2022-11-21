@@ -17,27 +17,24 @@ date: 2022-11-20
 last_modified_at: 2022-11-20
 ---
 
-# Bootstrap
+- [1. What is bootstrap ?](#1-what-is-bootstrap-)
+- [2. Layout](#2-layout)
+- [3. Content](#3-content)
+- [4. Forms](#4-forms)
+- [5. Components](#5-components)
+- [6. Helpers](#6-helpers)
+- [7. Utilities](#7-utilities)
+- [8. Extend](#8-extend)
+- [9. Apply Bootstrap](#9-apply-bootstrap)
+  - [리스트 조회](#리스트-조회)
+  - [생성](#생성)
+  - [상세](#상세)
+  - [삭제](#삭제)
+  - [멀티생성](#멀티생성)
+- [10. Theme](#10-theme)
+- [참고](#참고)
 
-- [Bootstrap](#bootstrap)
-  - [1. What is bootstrap ?](#1-what-is-bootstrap-)
-  - [2. Layout](#2-layout)
-  - [3. Content](#3-content)
-  - [4. Forms](#4-forms)
-  - [5. Components](#5-components)
-  - [6. Helpers](#6-helpers)
-  - [7. Utilities](#7-utilities)
-  - [8. Extend](#8-extend)
-  - [9. Apply Bootstrap](#9-apply-bootstrap)
-    - [리스트 조회](#리스트-조회)
-    - [생성](#생성)
-    - [상세](#상세)
-    - [삭제](#삭제)
-    - [멀티생성](#멀티생성)
-  - [10. Theme](#10-theme)
-  - [참고](#참고)
-
-## 1. What is bootstrap ?
+# 1. What is bootstrap ?
 
 <img src="https://getbootstrap.com/docs/5.2/assets/img/bootstrap-icons@2x.png" width="100%" align="center"/>
 
@@ -61,7 +58,7 @@ last_modified_at: 2022-11-20
         crossorigin="anonymous"></script>
   ```
 
-## 2. Layout
+# 2. Layout
 
 - 반응형 웹에 대한 모든 요소
   - `brakpoints`, `containers`, `grid` 가장 중요한 개념
@@ -140,7 +137,7 @@ last_modified_at: 2022-11-20
   - CSS grid
     - flexbox(1차원), grid(2차원)
 
-## 3. Content
+# 3. Content
 
 - Reboot, Typography, Images, Tables, Figures
 
@@ -150,7 +147,7 @@ last_modified_at: 2022-11-20
 | Images     | img-fluid, img-thumbnail                                         | [이미지 관련된 디자인](https://getbootstrap.com/docs/5.2/content/images/)                         |
 | Tables     | table, table-primary, table-striped, table-hover, table-bordered | [테이블(table) 태그(tag)에 대한 디자인 클래스](https://getbootstrap.com/docs/5.2/content/tables/) |
 
-## 4. Forms
+# 4. Forms
 
 - 입력 관련 컨트롤에 대한 디자인 스타일 제공
 
@@ -165,7 +162,7 @@ last_modified_at: 2022-11-20
 | Layout          |                                                                                                          | [layout 패턴 및 스타일](https://getbootstrap.com/docs/5.2/forms/layout/)                                          |
 | Validation      | needs-validation, valid-feedback , invalid-feedback                                                      | [유효성 검사](https://getbootstrap.com/docs/5.2/forms/validation/)                                                |
 
-## 5. Components
+# 5. Components
 
 - 간략한 설명
 
@@ -196,27 +193,27 @@ last_modified_at: 2022-11-20
 | Toasts       | toast-xx                                 | [잠깐 보였다 사라지는 알람](https://getbootstrap.com/docs/5.2/components/toasts/)     |
 | Tooltips     | data-bs-toggle="tooltip"                 | [툴팁](https://getbootstrap.com/docs/5.2/components/tooltips/)                        |
 
-## 6. Helpers
+# 6. Helpers
 
-## 7. Utilities
+# 7. Utilities
 
-## 8. Extend
+# 8. Extend
 
-## 9. Apply Bootstrap
+# 9. Apply Bootstrap
 
-### 리스트 조회
+## 리스트 조회
 
-### 생성
+## 생성
 
-### 상세
+## 상세
 
-### 삭제
+## 삭제
 
-### 멀티생성
+## 멀티생성
 
-## 10. Theme
+# 10. Theme
 
-## 참고
+# 참고
 
 - [개발자의 품격 youtube](https://www.youtube.com/c/%EA%B0%9C%EB%B0%9C%EC%9E%90%EC%9D%98%ED%92%88%EA%B2%A9)
 - [MDN Site](https://developer.mozilla.org/ko/)
