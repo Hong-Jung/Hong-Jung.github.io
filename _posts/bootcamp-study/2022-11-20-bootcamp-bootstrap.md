@@ -18,15 +18,6 @@ last_modified_at: 2022-11-20
 ---
 
 - [1. What is bootstrap ?](#1-what-is-bootstrap-)
-- [2. Layout](#2-layout)
-- [3. Content](#3-content)
-- [4. Forms](#4-forms)
-- [5. Components](#5-components)
-- [6. Helpers](#6-helpers)
-- [7. Utilities](#7-utilities)
-- [8. Extend](#8-extend)
-- [9. Apply Bootstrap](#9-apply-bootstrap)
-  - [리스트 조회](#리스트-조회)
   - [생성](#생성)
   - [상세](#상세)
   - [삭제](#삭제)
@@ -253,10 +244,168 @@ last_modified_at: 2022-11-20
   - [기존의 소트 코드](https://hong-jung.github.io/bootcamp/bootcamp-javascript-dom_crud/#21-list-ui)
   
 - > IMPORTANT
-  >> sssss<br>
-  >> sssss<br>
-  >> sssss<br>
-  >> sssss<br>
+  >> bootstrap css & javascript cdn 추가<br>
+  >> 조회 조건 영역 변경(inline forms layout 반영)<br>
+  >> table element 변경<br>
+  >> 컨텐츠 중앙 정렬을 위하여 class="container" 추가<br>
+
+```html
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <!-- 조회 조건 -->
+        <div class="row row-cols-lg-auto g-3 align-items-center mt-1 mb-1">
+            <div class="col-12">
+                <select class="form-select" name="" id="gender">
+                    <option value="">전체</option>
+                    <option value="male">남자</option>
+                    <option value="female">여자</option>
+                </select>
+            </div>
+
+            <div class="col-12">
+                <input type="search" class="form-control" name="" id="name" placeholder="Name" onkeyup="checkEnter()" />
+            </div>
+
+            <div class="col-12">
+                <button class="btn btn-primary" onclick="doSearch();">조회</button>
+                <button class="btn btn-success" onclick="goToCreate();">생성</button>
+                <button class="btn btn-danger" id="btnDelete" onclick="doDelete();" disabled>삭제</button>
+            </div>
+        </div>
+
+        <!-- 테이블 -->
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" onchange="checkAll();" class="form-check-input" /></th>
+                    <th>Name</th>
+                    <th>Company</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody id="tbBody"></tbody>
+        </table>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script>
+        // crud - Create, Read, Update, Delete
+        async function doSearch() {
+            const gender = document.querySelector("#gender").value;
+            const name = document.querySelector("#name").value;
+
+            let resource = "http://localhost:3000/customers";
+            if (gender === "") {
+                if (name != "") {
+                    resource = `http://localhost:3000/customers?name_like=${name}`;
+                }
+            } else {
+                if (name !== "") {
+                    resource = `http://localhost:3000/customers?gender=${gender}&name_like=${name}`;
+                } else {
+                    resource = `http://localhost:3000/customers?gender=${gender}`;
+                }
+            }
+
+            const res = await fetch(resource);
+            const resJson = await res.json();
+            console.log(resJson);
+            renderTable(resJson);
+        }
+
+        function renderTable(data) {
+            const h = [];
+            for (const item of data) {
+                h.push(`<tr>`);
+                h.push(
+                    `<td><input type="checkbox" name="chk" value="${item.id}" onchange="isChecked();" class="form-check-input" /></td>`
+                );
+                h.push(
+                    `<td><a href="javascript:goToDetail('${item.id}');">${item.name}</a></td>`
+                );
+                h.push(`<td>${item.company}</td>`);
+                h.push(`<td>${item.gender}</td>`);
+                h.push(`<td>${item.email}</td>`);
+                h.push(`<td>${item.phone}</td>`);
+                h.push(`<td>${item.address}</td>`);
+                h.push(`</tr>`);
+            }
+
+            document.querySelector("#tbBody").innerHTML = h.join("");
+        }
+
+        function goToCreate() {
+            document.location.href = "60_dom_crud_create.html";
+        }
+
+        async function doDelete() {
+            const chks = document.querySelectorAll("[name=chk]:checked");
+            if (chks.length > 0) {
+                if (confirm("정말 삭제 하시겠습니까?")) {
+                    for (const chk of chks) {
+                        await fetch(`http://localhost:3000/customers/${chk.value}`, {
+                            method: "DELETE",
+                        });
+                    }
+
+                    alert("데이터가 정상적으로 삭제 되었습니다.");
+                    doSearch();
+                }
+            } else {
+                alert("삭제할 아이템을 선택하세요.");
+            }
+        }
+
+        function checkAll() {
+            console.log(event.target.checked);
+            const checkValue = event.target.checked;
+            const chks = document.querySelectorAll("[name=chk]");
+            if (chks.length > 0) {
+                for (const chk of chks) {
+                    chk.checked = checkValue;
+                }
+            }
+
+            isChecked();
+        }
+
+        function isChecked() {
+            const chks = document.querySelectorAll("[name=chk]:checked");
+            if (chks.length > 0) {
+                document.querySelector("#btnDelete").disabled = false;
+            } else {
+                document.querySelector("#btnDelete").disabled = true;
+            }
+        }
+
+        function checkEnter() {
+            if (event.keyCode === 13) {
+                doSearch();
+            }
+        }
+
+        function goToDetail(id) {
+            document.location.href = `61_dom_crud_detail.html?id=${id}&v1=1&name=jeremy`;
+        }
+    </script>
+</body>
+```
 
 ## 생성
 
@@ -264,10 +413,10 @@ last_modified_at: 2022-11-20
   - [기존의 소트 코드](https://hong-jung.github.io/bootcamp/bootcamp-javascript-dom_crud/#22-create-ui)
   
 - > IMPORTANT
-  >> sssss<br>
-  >> sssss<br>
-  >> sssss<br>
-  >> sssss<br>
+  >> bootstrap css & javascript cdn 추가<br>
+  >> 컨텐츠 중앙 정렬을 위하여 class="container" 추가<br>
+  >> label, text, button 스타일 적용<br>
+  >> alert 적용([sweetalert2](https://sweetalert2.github.io/))
 
 ## 상세
 
