@@ -418,6 +418,258 @@ last_modified_at: 2022-11-20
   >> label, text, button 스타일 적용<br>
   >> alert 적용([sweetalert2](https://sweetalert2.github.io/))
 
+```html
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container mt-2">
+        <div class="row gy-2">
+            <div class="col-4">
+                <label for="name" class="form-label">Name</label>
+            </div>
+            <div class="col-8">
+                <input type="text" name="" id="name" class="form-control" onkeyup="checkEnter('company')" />
+            </div>
+            <div class="col-4">
+                <label for="name" class="form-label">Gender</label>
+            </div>
+            <div class="col-8">
+                <input type="radio" name="gender" id="male" value="male" class="form-check-input" checked />
+                <label for="male" class="form-check-label">남자</label>
+                <input type="radio" name="gender" id="female" value="female" class="form-check-input" />
+                <label for="female" class="form-check-label">여자</label>
+            </div>
+            <div class="col-4">
+                <label for="company" class="form-label">Company</label>
+            </div>
+            <div class="col-8">
+                <input type="text" name="" id="company" class="form-control" onkeyup="checkEnter('email')" />
+            </div>
+            <div class="col-4">
+                <label for="email" class="form-label">Email</label>
+            </div>
+            <div class="col-8">
+                <input type="email" name="" id="email" class="form-control" onblur="checkEmail();"
+                    onkeyup="checkEnter('phone')" />
+                <div id="emailMsg" class="invalid-feedback">
+                    올바른 형식의 이메일을 입력하세요.
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="phone" class="form-label">Phone</label>
+            </div>
+            <div class="col-8">
+                <input type="tel" name="" id="phone" class="form-control" onblur="checkPhone();"
+                    onkeyup="checkEnter('btnDaumAPI')" />
+                <div id="phoneMsg" class="invalid-feedback">
+                    올바른 형식의 전화번호를 입력하세요.
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="address" class="form-label">Address</label>
+            </div>
+            <div class="col-8">
+                <div class="input-group">
+                    <button id="btnDaumAPI" onclick="openDaumAPI();" class="btn btn-dark">주소찾기</button>
+                    <input type="text" name="" id="zonecode" class="form-control" readonly />
+                </div>
+                <input type="text" name="" id="address" class="form-control mt-1" class="form-control" readonly />
+                <input type="text" name="" id="address2" class="form-control mt-1" placeholder="상세주소"
+                    onkeyup="checkEnter('create')" />
+            </div>
+            <div class="text-center">
+                <button onclick="doCreate();" class="btn btn-success">생성</button>
+                <button onclick="goToList();" class="btn btn-secondary">목록</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        async function doCreate() {
+            const name = document.querySelector("#name").value.trim();
+            const gender = document.querySelector("[name=gender]:checked").value;
+            const company = document.querySelector("#company").value.trim();
+            const email = document.querySelector("#email").value.trim();
+            const phone = document.querySelector("#phone").value.trim();
+            const address = document.querySelector("#address").value.trim();
+
+            console.log(name);
+            console.log(gender);
+            console.log(company);
+            console.log(email);
+            console.log(phone);
+            console.log(address);
+
+            if (name === "") {
+                return Swal.fire({
+                    icon: 'info',
+                    title: 'Name을 입력하세요.',
+                    text: 'Name은 필수 입력값입니다.',
+                })
+            }
+
+            if (company === "") {
+                return alert("Company를 입력하세요.");
+                return Swal.fire({
+                    icon: 'info',
+                    title: 'Company를 입력하세요.',
+                    text: 'Company는 필수 입력값입니다.',
+                })
+            }
+
+            const regexpEmail =
+                /^([a-z]+\d*)+(\.?[a-z]+\d*)+@([a-z]+\d*)+(\.[a-z]{2,3})+$/;
+            if (!regexpEmail.test(email)) {
+                return Swal.fire({
+                    icon: "info",
+                    title: "올바른 형식의 Email을 입력하세요.",
+                    text: "이메일주소는 알파벳소문자, 숫자, 특수문자는 점(.)만 사용할 수 있습니다.",
+                });
+            }
+
+            const regexpTel = /^010-\d{4}-\d{4}$/;
+            if (!regexpTel.test(phone)) {
+                return Swal.fire({
+                    icon: "info",
+                    title: "올바른 형식의 Phone을 입력하세요.",
+                    text: "전화번호는 010-XXXX-XXXX 포맷으로 입력해야 합니다.",
+                });
+            }
+
+            if (address === "") {
+                return Swal.fire({
+                    icon: "info",
+                    title: "Address를 입력하세요.",
+                    text: "Address는 필수 입력값입니다.",
+                });
+            }
+
+            const zonecode = document.querySelector("#zonecode").value;
+            const address2 = document.querySelector("#address2").value;
+
+            Swal.fire({
+                title: "정말 저장하시겠습니까?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "생성",
+                cancelButtonText: "취소",
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    const res = await fetch("http://localhost:3000/customers", {
+                        method: "POST",
+                        body: JSON.stringify({
+                            name,
+                            gender,
+                            company,
+                            email,
+                            phone,
+                            address: `(${zonecode})${address} ${address2}`.trim(),
+                            zonecode: zonecode,
+                            roadAddress: address,
+                            address2: address2,
+                        }),
+                        headers: {
+                            "content-type": "application/json;charset=UTF-8",
+                        },
+                    });
+
+                    if (res.status === 201) {
+                        Swal.fire({
+                            icon: "success",
+                            title: "고객 정보가 정상적으로 생성되었습니다.",
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "고객 정보를 생성하지 못했습니다. 다시 시도하세요.",
+                        });
+                    }
+                }
+            });
+        }
+
+        function checkEmail() {
+            const email = document.querySelector("#email").value;
+            if (email !== "") {
+                const regexpEmail =
+                    /^([a-z]+\d*)+(\.?[a-z]+\d*)+@([a-z]+\d*)+(\.[a-z]{2,3})+$/;
+                if (!regexpEmail.test(email)) {
+                    document.querySelector("#email").classList.add("is-invalid");
+                    document.querySelector("#emailMsg").style.display = "block";
+                } else {
+                    document.querySelector("#email").classList.remove("is-invalid");
+                    document.querySelector("#emailMsg").style.display = "none";
+                }
+            } else {
+                document.querySelector("#email").classList.remove("is-invalid");
+                document.querySelector("#emailMsg").style.display = "none";
+            }
+        }
+
+        function checkPhone() {
+            const phone = document.querySelector("#phone").value;
+            if (phone !== "") {
+                const regexpTel = /^010-\d{4}-\d{4}$/;
+                if (!regexpTel.test(phone)) {
+                    document.querySelector("#phone").classList.add("is-invalid");
+                    document.querySelector("#phoneMsg").style.display = "block";
+                } else {
+                    document.querySelector("#phone").classList.remove("is-invalid");
+                    document.querySelector("#phoneMsg").style.display = "none";
+                }
+            } else {
+                document.querySelector("#phone").classList.remove("is-invalid");
+                document.querySelector("#phoneMsg").style.display = "none";
+            }
+        }
+
+        function openDaumAPI() {
+            new daum.Postcode({
+                oncomplete: function (data) {
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+                    // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+                    console.log(data);
+                    document.querySelector("#zonecode").value = data.zonecode;
+                    document.querySelector("#address").value = data.roadAddress;
+                },
+            }).open();
+        }
+
+        function checkEnter(moveId) {
+            if (event.keyCode === 13) {
+                if (moveId === "btnDaumAPI") {
+                    openDaumAPI();
+                } else if (moveId === "create") {
+                    doCreate();
+                } else {
+                    document.querySelector("#" + moveId).focus();
+                }
+            }
+        }
+
+        function goToList() {
+            document.location.href = "59_dom_crud_list.html";
+        }
+    </script>
+</body>
+```
+
 ## 상세
 
 - 주요 변경 사항
