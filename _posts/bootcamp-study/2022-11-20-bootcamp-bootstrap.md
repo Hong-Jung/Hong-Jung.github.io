@@ -20,6 +20,7 @@ last_modified_at: 2022-11-20
 - [1. What is bootstrap ?](#1-what-is-bootstrap-)
   - [생성](#생성)
   - [상세](#상세)
+  - [수정](#수정)
   - [삭제](#삭제)
   - [멀티생성](#멀티생성)
 - [10. Theme](#10-theme)
@@ -304,6 +305,7 @@ last_modified_at: 2022-11-20
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         // crud - Create, Read, Update, Delete
         async function doSearch() {
@@ -351,22 +353,36 @@ last_modified_at: 2022-11-20
         }
 
         function goToCreate() {
-            document.location.href = "60_dom_crud_create.html";
+            document.location.href = "dom_crud_create.html";
         }
 
         async function doDelete() {
             const chks = document.querySelectorAll("[name=chk]:checked");
             if (chks.length > 0) {
-                if (confirm("정말 삭제 하시겠습니까?")) {
-                    for (const chk of chks) {
-                        await fetch(`http://localhost:3000/customers/${chk.value}`, {
-                            method: "DELETE",
-                        });
-                    }
+                Swal.fire({
+                    title: "정말 삭제 하시겠습니까?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "삭제",
+                    cancelButtonText: "취소",
+                }).then(async (result) => {
+                    if (result.isConfirmed) {
+                        for (const chk of chks) {
+                            await fetch(`http://localhost:3000/customers/${chk.value}`, {
+                                method: "DELETE",
+                            });
+                        }
 
-                    alert("데이터가 정상적으로 삭제 되었습니다.");
-                    doSearch();
-                }
+                        Swal.fire({
+                            icon: "success",
+                            title: "데이터가 정상적으로 삭제 되었습니다.",
+                        });
+                        await doSearch();
+                    }
+                });
             } else {
                 alert("삭제할 아이템을 선택하세요.");
             }
@@ -401,7 +417,7 @@ last_modified_at: 2022-11-20
         }
 
         function goToDetail(id) {
-            document.location.href = `61_dom_crud_detail.html?id=${id}&v1=1&name=jeremy`;
+            document.location.href = `dom_crud_detail.html?id=${id}&v1=1&name=jeremy`;
         }
     </script>
 </body>
@@ -418,27 +434,699 @@ last_modified_at: 2022-11-20
   >> label, text, button 스타일 적용<br>
   >> alert 적용([sweetalert2](https://sweetalert2.github.io/))
 
+```html
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container mt-2">
+        <div class="row gy-2">
+            <div class="col-4">
+                <label for="name" class="form-label">Name</label>
+            </div>
+            <div class="col-8">
+                <input type="text" name="" id="name" class="form-control" onkeyup="checkEnter('company')" />
+            </div>
+            <div class="col-4">
+                <label for="name" class="form-label">Gender</label>
+            </div>
+            <div class="col-8">
+                <input type="radio" name="gender" id="male" value="male" class="form-check-input" checked />
+                <label for="male" class="form-check-label">남자</label>
+                <input type="radio" name="gender" id="female" value="female" class="form-check-input" />
+                <label for="female" class="form-check-label">여자</label>
+            </div>
+            <div class="col-4">
+                <label for="company" class="form-label">Company</label>
+            </div>
+            <div class="col-8">
+                <input type="text" name="" id="company" class="form-control" onkeyup="checkEnter('email')" />
+            </div>
+            <div class="col-4">
+                <label for="email" class="form-label">Email</label>
+            </div>
+            <div class="col-8">
+                <input type="email" name="" id="email" class="form-control" onblur="checkEmail();"
+                    onkeyup="checkEnter('phone')" />
+                <div id="emailMsg" class="invalid-feedback">
+                    올바른 형식의 이메일을 입력하세요.
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="phone" class="form-label">Phone</label>
+            </div>
+            <div class="col-8">
+                <input type="tel" name="" id="phone" class="form-control" onblur="checkPhone();"
+                    onkeyup="checkEnter('btnDaumAPI')" />
+                <div id="phoneMsg" class="invalid-feedback">
+                    올바른 형식의 전화번호를 입력하세요.
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="address" class="form-label">Address</label>
+            </div>
+            <div class="col-8">
+                <div class="input-group">
+                    <button id="btnDaumAPI" onclick="openDaumAPI();" class="btn btn-dark">주소찾기</button>
+                    <input type="text" name="" id="zonecode" class="form-control" readonly />
+                </div>
+                <input type="text" name="" id="address" class="form-control mt-1" class="form-control" readonly />
+                <input type="text" name="" id="address2" class="form-control mt-1" placeholder="상세주소"
+                    onkeyup="checkEnter('create')" />
+            </div>
+            <div class="text-center">
+                <button onclick="doCreate();" class="btn btn-success">생성</button>
+                <button onclick="goToList();" class="btn btn-secondary">목록</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        async function doCreate() {
+            const name = document.querySelector("#name").value.trim();
+            const gender = document.querySelector("[name=gender]:checked").value;
+            const company = document.querySelector("#company").value.trim();
+            const email = document.querySelector("#email").value.trim();
+            const phone = document.querySelector("#phone").value.trim();
+            const address = document.querySelector("#address").value.trim();
+
+            console.log(name);
+            console.log(gender);
+            console.log(company);
+            console.log(email);
+            console.log(phone);
+            console.log(address);
+
+            if (name === "") {
+                return Swal.fire({
+                    icon: 'info',
+                    title: 'Name을 입력하세요.',
+                    text: 'Name은 필수 입력값입니다.',
+                })
+            }
+
+            if (company === "") {
+                return alert("Company를 입력하세요.");
+                return Swal.fire({
+                    icon: 'info',
+                    title: 'Company를 입력하세요.',
+                    text: 'Company는 필수 입력값입니다.',
+                })
+            }
+
+            const regexpEmail =
+                /^([a-z]+\d*)+(\.?[a-z]+\d*)+@([a-z]+\d*)+(\.[a-z]{2,3})+$/;
+            if (!regexpEmail.test(email)) {
+                return Swal.fire({
+                    icon: "info",
+                    title: "올바른 형식의 Email을 입력하세요.",
+                    text: "이메일주소는 알파벳소문자, 숫자, 특수문자는 점(.)만 사용할 수 있습니다.",
+                });
+            }
+
+            const regexpTel = /^010-\d{4}-\d{4}$/;
+            if (!regexpTel.test(phone)) {
+                return Swal.fire({
+                    icon: "info",
+                    title: "올바른 형식의 Phone을 입력하세요.",
+                    text: "전화번호는 010-XXXX-XXXX 포맷으로 입력해야 합니다.",
+                });
+            }
+
+            if (address === "") {
+                return Swal.fire({
+                    icon: "info",
+                    title: "Address를 입력하세요.",
+                    text: "Address는 필수 입력값입니다.",
+                });
+            }
+
+            const zonecode = document.querySelector("#zonecode").value;
+            const address2 = document.querySelector("#address2").value;
+
+            Swal.fire({
+                title: "정말 저장하시겠습니까?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "생성",
+                cancelButtonText: "취소",
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    const res = await fetch("http://localhost:3000/customers", {
+                        method: "POST",
+                        body: JSON.stringify({
+                            name,
+                            gender,
+                            company,
+                            email,
+                            phone,
+                            address: `(${zonecode})${address} ${address2}`.trim(),
+                            zonecode: zonecode,
+                            roadAddress: address,
+                            address2: address2,
+                        }),
+                        headers: {
+                            "content-type": "application/json;charset=UTF-8",
+                        },
+                    });
+
+                    if (res.status === 201) {
+                        Swal.fire({
+                            icon: "success",
+                            title: "고객 정보가 정상적으로 생성되었습니다.",
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "고객 정보를 생성하지 못했습니다. 다시 시도하세요.",
+                        });
+                    }
+                }
+            });
+        }
+
+        function checkEmail() {
+            const email = document.querySelector("#email").value;
+            if (email !== "") {
+                const regexpEmail =
+                    /^([a-z]+\d*)+(\.?[a-z]+\d*)+@([a-z]+\d*)+(\.[a-z]{2,3})+$/;
+                if (!regexpEmail.test(email)) {
+                    document.querySelector("#email").classList.add("is-invalid");
+                    document.querySelector("#emailMsg").style.display = "block";
+                } else {
+                    document.querySelector("#email").classList.remove("is-invalid");
+                    document.querySelector("#emailMsg").style.display = "none";
+                }
+            } else {
+                document.querySelector("#email").classList.remove("is-invalid");
+                document.querySelector("#emailMsg").style.display = "none";
+            }
+        }
+
+        function checkPhone() {
+            const phone = document.querySelector("#phone").value;
+            if (phone !== "") {
+                const regexpTel = /^010-\d{4}-\d{4}$/;
+                if (!regexpTel.test(phone)) {
+                    document.querySelector("#phone").classList.add("is-invalid");
+                    document.querySelector("#phoneMsg").style.display = "block";
+                } else {
+                    document.querySelector("#phone").classList.remove("is-invalid");
+                    document.querySelector("#phoneMsg").style.display = "none";
+                }
+            } else {
+                document.querySelector("#phone").classList.remove("is-invalid");
+                document.querySelector("#phoneMsg").style.display = "none";
+            }
+        }
+
+        function openDaumAPI() {
+            new daum.Postcode({
+                oncomplete: function (data) {
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+                    // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+                    console.log(data);
+                    document.querySelector("#zonecode").value = data.zonecode;
+                    document.querySelector("#address").value = data.roadAddress;
+                },
+            }).open();
+        }
+
+        function checkEnter(moveId) {
+            if (event.keyCode === 13) {
+                if (moveId === "btnDaumAPI") {
+                    openDaumAPI();
+                } else if (moveId === "create") {
+                    doCreate();
+                } else {
+                    document.querySelector("#" + moveId).focus();
+                }
+            }
+        }
+
+        function goToList() {
+            document.location.href = "dom_crud_list.html";
+        }
+    </script>
+</body>
+```
+
 ## 상세
 
 - 주요 변경 사항
   - [기존의 소트 코드](https://hong-jung.github.io/bootcamp/bootcamp-javascript-dom_crud/#23-detail-ui)
   
 - > IMPORTANT
-  >> sssss<br>
-  >> sssss<br>
-  >> sssss<br>
-  >> sssss<br>
+  >> bootstrap css & javascript cdn 추가<br>
+  >> 컨텐츠 중앙 정렬을 위하여 class="container" 추가<br>
+  >> label, text, button 스타일 적용<br>
+  >> alert 적용([sweetalert2](https://sweetalert2.github.io/))
+
+```html
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container mt-2">
+
+        <div class="row mb-3">
+            <label for="name" class="col-sm-3 col-form-label">Name</label>
+            <div class="col-sm-9"><span id="name"></span></div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="name" class="col-sm-3 col-form-label">Gender</label>
+            <div class="col-sm-9"><span id="gender"></span></div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="company" class="col-sm-3 col-form-label">Company</label>
+            <div class="col-sm-9"><span id="company"></span></div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="email" class="col-sm-3 col-form-label">Email</label>
+            <div class="col-sm-9"><span id="email"></span></div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="phone" class="col-sm-3 col-form-label">Phone</label>
+            <div class="col-sm-9"><span id="phone"></span></div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="address" class="col-sm-3 col-form-label">Address</label>
+            <div class="col-sm-9"><span id="address"></span></div>
+        </div>
+
+        <div class="text-center">
+            <button onclick="goToUpdate();" class="btn btn-success">수정</button>
+            <button onclick="goToList();" class="btn btn-secondary">목록</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="./js/common.js"></script>
+    <script>
+        // queryString
+        //   console.log(window.location.search);
+
+        async function doSearchDetail() {
+            const { id } = parseQueryString();
+            const res = await fetch(`http://localhost:3000/customers/${id}`);
+            const resJson = await res.json();
+            console.log(resJson);
+            renderDetail(resJson);
+        }
+
+        function renderDetail(data) {
+            document.querySelector("#name").innerText = data.name;
+            document.querySelector("#gender").innerText = data.gender;
+            document.querySelector("#company").innerText = data.company;
+            document.querySelector("#email").innerText = data.email;
+            document.querySelector("#phone").innerText = data.phone;
+            document.querySelector("#address").innerText = data.address;
+        }
+
+        function goToList() {
+            document.location.href = "dom_crud_list.html";
+        }
+
+        function goToUpdate() {
+            const { id } = parseQueryString();
+            document.location.href = `dom_crud_update.html?id=${id}`;
+        }
+
+        doSearchDetail();
+    </script>
+</body>
+```
+
+## 수정
+
+- 주요 변경 사항
+  - [기존의 소트 코드](https://hong-jung.github.io/bootcamp/bootcamp-javascript-dom_crud/#24-update-ui)
+
+- > IMPORTANT
+  >> bootstrap css & javascript cdn 추가<br>
+  >> 컨텐츠 중앙 정렬을 위하여 class="container" 추가<br>
+  >> label, text, button 스타일 적용<br>
+  >> alert 적용([sweetalert2](https://sweetalert2.github.io/))
+
+```html
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container mt-2">
+        <div class="row gy-2">
+            <!-- name -->
+            <div class="col-4">
+                <label for="name" class="form-label">Name</label>
+            </div>
+            <div class="col-8">
+                <input type="text" name="" id="name" class="form-control" onkeyup="checkEnter('company')" />
+            </div>
+
+            <!-- gender -->
+            <div class="col-4">
+                <label for="name" class="form-label">Gender</label>
+            </div>
+            <div class="col-8">
+                <input type="radio" name="gender" id="male" value="male" class="form-check-input" checked />
+                <label for="male" class="form-check-label">남자</label>
+                <input type="radio" name="gender" id="female" value="female" class="form-check-input" />
+                <label for="female" class="form-check-label">여자</label>
+            </div>
+
+            <!-- company -->
+            <div class="col-4">
+                <label for="company" class="form-label">Company</label>
+            </div>
+            <div class="col-8">
+                <input type="text" name="" id="company" class="form-control" onkeyup="checkEnter('email')" />
+            </div>
+
+            <!-- email -->
+            <div class="col-4">
+                <label for="email" class="form-label">Email</label>
+            </div>
+            <div class="col-8">
+                <input type="email" name="" id="email" class="form-control" onblur="checkEmail();"
+                    onkeyup="checkEnter('phone')" />
+                <div id="emailMsg" class="invalid-feedback">
+                    올바른 형식의 이메일을 입력하세요.
+                </div>
+            </div>
+
+            <!-- phone -->
+            <div class="col-4">
+                <label for="phone" class="form-label">Phone</label>
+            </div>
+            <div class="col-8">
+                <input type="tel" name="" id="phone" class="form-control" onblur="checkPhone();"
+                    onkeyup="checkEnter('btnDaumAPI')" />
+                <div id="phoneMsg" class="invalid-feedback">
+                    올바른 형식의 전화번호를 입력하세요.
+                </div>
+            </div>
+
+            <!-- address -->
+            <div class="col-4">
+                <label for="address" class="form-label">Address</label>
+            </div>
+            <div class="col-8">
+                <div class="input-group">
+                    <button id="btnDaumAPI" onclick="openDaumAPI();" class="btn btn-dark">주소찾기</button>
+                    <input type="text" name="" id="zonecode" class="form-control" readonly />
+                </div>
+                <input type="text" name="" id="address" class="form-control mt-1" readonly />
+                <input type="text" name="" id="address2" class="form-control mt-1" placeholder="상세주소"
+                    onkeyup="checkEnter('create')" />
+            </div>
+
+            <!-- button -->
+            <div class="text-center">
+                <button onclick="doSave();" class="btn btn-success">저장</button>
+                <button onclick="goToList();" class="btn btn-secondary">목록</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="./js/common.js"></script>
+    <script>
+        async function doSearchDetail() {
+            const { id } = parseQueryString();
+            const res = await fetch(`http://localhost:3000/customers/${id}`);
+            const resJson = await res.json();
+            console.log(resJson);
+            renderDetail(resJson);
+        }
+
+        function renderDetail(data) {
+            document.querySelector("#name").value = data.name;
+            document.querySelector("#" + data.gender).checked = true;
+            document.querySelector("#company").value = data.company;
+            document.querySelector("#email").value = data.email;
+            document.querySelector("#phone").value = data.phone;
+            document.querySelector("#address").value = data.roadAddress;
+            document.querySelector("#address2").value = data.address2;
+            document.querySelector("#zonecode").value = data.zonecode;
+        }
+
+        doSearchDetail();
+
+        async function doSave() {
+            const name = document.querySelector("#name").value.trim();
+            const gender = document.querySelector("[name=gender]:checked").value;
+            const company = document.querySelector("#company").value.trim();
+            const email = document.querySelector("#email").value.trim();
+            const phone = document.querySelector("#phone").value.trim();
+            const address = document.querySelector("#address").value.trim();
+
+            console.log(name);
+            console.log(gender);
+            console.log(company);
+            console.log(email);
+            console.log(phone);
+            console.log(address);
+
+            if (name === "") {
+                return Swal.fire({
+                    icon: "info",
+                    title: "Name을 입력하세요.",
+                    text: "Name은 필수 입력값입니다.",
+                });
+            }
+
+            if (company === "") {
+                return Swal.fire({
+                    icon: "info",
+                    title: "Company를 입력하세요.",
+                    text: "Company는 필수 입력값입니다.",
+                });
+            }
+
+            const regexpEmail =
+                /^([a-z]+\d*)+(\.?[a-z]+\d*)+@([a-z]+\d*)+(\.[a-z]{2,3})+$/;
+            if (!regexpEmail.test(email)) {
+                return Swal.fire({
+                    icon: "info",
+                    title: "올바른 형식의 Email을 입력하세요.",
+                    text: "이메일주소는 알파벳소문자, 숫자, 특수문자는 점(.)만 사용할 수 있습니다.",
+                });
+            }
+
+            const regexpTel = /^010-\d{4}-\d{4}$/;
+            if (!regexpTel.test(phone)) {
+                return Swal.fire({
+                    icon: "info",
+                    title: "올바른 형식의 Phone을 입력하세요.",
+                    text: "전화번호는 010-XXXX-XXXX 포맷으로 입력해야 합니다.",
+                });
+            }
+
+            if (address === "") {
+                return Swal.fire({
+                    icon: "info",
+                    title: "Address를 입력하세요.",
+                    text: "Address는 필수 입력값입니다.",
+                });
+            }
+
+            const zonecode = document.querySelector("#zonecode").value;
+            const address2 = document.querySelector("#address2").value;
+
+            const { id } = parseQueryString();
+
+            Swal.fire({
+                title: "정말 저장하시겠습니까?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "생성",
+                cancelButtonText: "취소",
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    const res = await fetch(`http://localhost:3000/customers/${id}`, {
+                        method: "PUT",
+                        body: JSON.stringify({
+                            name,
+                            gender,
+                            company,
+                            email,
+                            phone,
+                            address: `(${zonecode})${address} ${address2}`.trim(),
+                            zonecode: zonecode,
+                            roadAddress: address,
+                            address2: address2,
+                        }),
+                        headers: {
+                            "content-type": "application/json;charset=UTF-8",
+                        },
+                    });
+
+                    if (res.status === 200) {
+                        Swal.fire({
+                            icon: "success",
+                            title: "정상적으로 저장되었습니다.",
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: "error",
+                            title: "고객 정보를 저장하지 못했습니다. 다시 시도하세요.",
+                        });
+                    }
+                }
+            });
+        }
+
+        function checkEmail() {
+            const email = document.querySelector("#email").value;
+            if (email !== "") {
+                const regexpEmail =
+                    /^([a-z]+\d*)+(\.?[a-z]+\d*)+@([a-z]+\d*)+(\.[a-z]{2,3})+$/;
+                if (!regexpEmail.test(email)) {
+                    document.querySelector("#email").classList.add("is-invalid");
+                    document.querySelector("#emailMsg").style.display = "block";
+                } else {
+                    document.querySelector("#email").classList.remove("is-invalid");
+                    document.querySelector("#emailMsg").style.display = "none";
+                }
+            } else {
+                document.querySelector("#email").classList.remove("is-invalid");
+                document.querySelector("#emailMsg").style.display = "none";
+            }
+        }
+
+        function checkPhone() {
+            const phone = document.querySelector("#phone").value;
+            if (phone !== "") {
+                const regexpTel = /^010-\d{4}-\d{4}$/;
+                if (!regexpTel.test(phone)) {
+                    document.querySelector("#phone").classList.add("is-invalid");
+                    document.querySelector("#phoneMsg").style.display = "block";
+                } else {
+                    document.querySelector("#phone").classList.remove("is-invalid");
+                    document.querySelector("#phoneMsg").style.display = "none";
+                }
+            } else {
+                document.querySelector("#phone").classList.remove("is-invalid");
+                document.querySelector("#phoneMsg").style.display = "none";
+            }
+        }
+
+        function openDaumAPI() {
+            new daum.Postcode({
+                oncomplete: function (data) {
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+                    // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+                    console.log(data);
+                    document.querySelector("#zonecode").value = data.zonecode;
+                    document.querySelector("#address").value = data.roadAddress;
+                },
+            }).open();
+        }
+
+        function checkEnter(moveId) {
+            if (event.keyCode === 13) {
+                if (moveId === "btnDaumAPI") {
+                    openDaumAPI();
+                } else if (moveId === "create") {
+                    doCreate();
+                } else {
+                    document.querySelector("#" + moveId).focus();
+                }
+            }
+        }
+
+        function goToList() {
+            document.location.href = "dom_crud_list.html";
+        }
+    </script>
+</body>
+```
 
 ## 삭제
 
 - 주요 변경 사항
-  - [기존의 소트 코드](https://hong-jung.github.io/bootcamp/bootcamp-javascript-dom_crud/#24-update-ui)
+  - [기존의 소트 코드](https://hong-jung.github.io/bootcamp/bootcamp-javascript-dom_crud/#21-list-ui)
   
 - > IMPORTANT
-  >> sssss<br>
-  >> sssss<br>
-  >> sssss<br>
-  >> sssss<br>
+  >> alert 적용([sweetalert2](https://sweetalert2.github.io/))
+  >> `doDelete()` function에서 `sweetalert2` 적용
+
+```javascript
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+async function doDelete() {
+    const chks = document.querySelectorAll("[name=chk]:checked");
+    if (chks.length > 0) {
+        Swal.fire({
+            title: "정말 삭제 하시겠습니까?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "삭제",
+            cancelButtonText: "취소",
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                for (const chk of chks) {
+                    await fetch(`http://localhost:3000/customers/${chk.value}`, {
+                        method: "DELETE",
+                    });
+                }
+
+                Swal.fire({
+                    icon: "success",
+                    title: "데이터가 정상적으로 삭제 되었습니다.",
+                });
+                await doSearch();
+            }
+        });
+    } else {
+        alert("삭제할 아이템을 선택하세요.");
+    }
+}
+```
 
 ## 멀티생성
 
@@ -446,10 +1134,238 @@ last_modified_at: 2022-11-20
   - [기존의 소트 코드](https://hong-jung.github.io/bootcamp/bootcamp-javascript-dom_crud/#25-multiple-create-ui)
   
 - > IMPORTANT
-  >> sssss<br>
-  >> sssss<br>
-  >> sssss<br>
-  >> sssss<br>
+  >> bootstrap css & javascript cdn 추가<br>
+  >> 컨텐츠 중앙 정렬을 위하여 class="container" 추가<br>
+  >> label, text, button 스타일 적용<br>
+  >> 저장시 유효성 검사 및 알람창 표시<br>
+  >> alert 적용([sweetalert2](https://sweetalert2.github.io/))
+
+```html
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <!-- 조회 조건 -->
+        <div class="mb-2 mt-3">
+            <button id="btnSave" onclick="doSave();" class="btn btn-success" disabled>
+                저장
+            </button>
+            <button onclick="addLine();" class="btn btn-dark">라인추가</button>
+            <button id="btnRemove" onclick="removeLine();" class="btn btn-danger" disabled>
+                라인삭제
+            </button>
+        </div>
+
+        <!-- 테이블 -->
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" onchange="checkAll();" class="form-check-input" /></th>
+                    <th>Name</th>
+                    <th>Company</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody id="tbBody"></tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function addLine() {
+            const h = [];
+            h.push(`<tr>`);
+            h.push(`<td><input type="checkbox" name="chk" onchange="isChecked();" class="form-check-input" /></td>`);
+            h.push(`<td><input type="text" name="name" class="form-control" /></td>`);
+            h.push(`<td><input type="text" name="company" class="form-control" /></td>`);
+            h.push(`<td><select name="gender" class="form-select"><option value="male" selected>남자</option><option value="female">여자</option></select></td>`);
+            h.push(`<td><input type="text" name="email" class="form-control" /></td>`);
+            h.push(`<td><input type="text" name="phone" class="form-control" /></td>`);
+            h.push(`<td><input type="text" name="address" class="form-control" /></td>`);
+            h.push(`</tr>`);
+
+            document
+                .querySelector("#tbBody")
+                .insertAdjacentHTML("beforeend", h.join(""));
+        }
+
+        function removeLine() {
+            const chks = document.querySelectorAll("[name=chk]:checked");
+            if (chks.length > 0) {
+                chks.forEach((chk) => {
+                    let tr = chk; // INPUT
+                    while (tr.tagName !== "TR") {
+                        tr = tr.parentNode; // 바로 부모 노드를 가져옴.
+                    }
+
+                    tr.remove();
+                });
+            }
+        }
+
+        function checkAll() {
+            console.log(event.target.checked);
+            const checkValue = event.target.checked;
+            const chks = document.querySelectorAll("[name=chk]");
+            if (chks.length > 0) {
+                for (const chk of chks) {
+                    chk.checked = checkValue;
+                }
+            }
+
+            isChecked();
+        }
+
+        function isChecked() {
+            const chks = document.querySelectorAll("[name=chk]:checked");
+            if (chks.length > 0) {
+                document.querySelector("#btnRemove").disabled = false;
+                document.querySelector("#btnSave").disabled = false;
+            } else {
+                document.querySelector("#btnRemove").disabled = true;
+                document.querySelector("#btnSave").disabled = true;
+            }
+        }
+
+        async function doSave() {
+            const chks = document.querySelectorAll("[name=chk]");
+
+            if (chks.length > 0) {
+                let passRequired = true;
+                const blankRows = [];
+                let passEmail = true;
+                const wrongEmails = [];
+                let passPhone = true;
+                const wrongPhones = [];
+                const customers = [];
+
+                const regexpEmail =
+                    /^([a-z]+\d*)+(\.?[a-z]+\d*)+@([a-z]+\d*)+(\.[a-z]{2,3})+$/;
+                const regexpTel = /^010-\d{4}-\d{4}$/;
+                chks.forEach((chk, index) => {
+                    if (chk.checked) {
+                        let tr = chk;
+                        while (tr.tagName !== "TR") {
+                            tr = tr.parentNode; // 바로 부모 노드를 가져옴.
+                        }
+
+                        const name = tr.querySelectorAll("[name=name]")[0].value;
+                        const company = tr.querySelectorAll("[name=company]")[0].value;
+                        const gender = tr.querySelectorAll("[name=gender]")[0].value;
+                        const email = tr.querySelectorAll("[name=email]")[0].value;
+                        const phone = tr.querySelectorAll("[name=phone]")[0].value;
+                        const address = tr.querySelectorAll("[name=address]")[0].value;
+
+                        customers.push({
+                            name,
+                            company,
+                            gender,
+                            email,
+                            phone,
+                            address,
+                        });
+
+                        if (name === "" || company === "" || email === "" || phone === "" || address === "") {
+                            passRequired = false;
+                            blankRows.push(index + 1);
+                        }
+
+                        if (!regexpEmail.test(email)) {
+                            passEmail = false;
+                            wrongEmails.push(index + 1);
+                        }
+
+                        if (!regexpTel.test(phone)) {
+                            passPhone = false;
+                            wrongPhones.push(index + 1);
+                        }
+                    }
+                });
+
+                if (!passRequired) {
+                    //return alert(`${blankRows.join(",")}행에 비어 있는 값이 존재합니다. 모든 값을 입력하세요.`);
+                    return Swal.fire({
+                        icon: "info",
+                        title: "필수값 입력 체크",
+                        text: `${blankRows.join(",")}행에 비어 있는 값이 존재합니다. 모든 값을 입력하세요.`,
+                    });
+                }
+
+                if (!passEmail) {
+                    //return alert(`${wrongEmails.join(",")}행에 입력한 이메일 형식이 올바르지 않습니다.`);
+                    return Swal.fire({
+                        icon: "info",
+                        title: "이메일 형식 체크",
+                        text: `${wrongEmails.join(",")}행에 입력한 이메일 형식이 올바르지 않습니다.`,
+                    });
+                }
+
+                if (!passPhone) {
+                    //return alert(`${wrongPhones.join(",")}행에 입력한 전화번호 형식이 올바르지 않습니다.`);
+                    return Swal.fire({
+                        icon: "info",
+                        title: "전화번호 형식 체크",
+                        text: `${wrongPhones.join(",")}행에 입력한 전화번호 형식이 올바르지 않습니다.`,
+                    });
+                }
+
+                const failData = [];
+                Swal.fire({
+                    title: "정말 저장하시겠습니까?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "생성",
+                    cancelButtonText: "취소",
+                }).then(async (result) => {
+                    if (result.isConfirmed) {
+                        for (const customer of customers) {
+                            const res = await fetch("http://localhost:3000/customers", {
+                                method: "POST",
+                                body: JSON.stringify(customer),
+                                headers: {
+                                    "content-type": "application/json;charset=UTF-8",
+                                },
+                            });
+
+                            if (res.status !== 201) {
+                                failData.push(customer);
+                            }
+                        }
+
+                        if (failData.length > 0) {
+                            Swal.fire({
+                                icon: "error",
+                                title: `저장에 실패한 데이터가 ${failData.length}건 있습니다.`,
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: "success",
+                                title: "정상적으로 저장 되었습니다.",
+                            });
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+```
 
 # 10. Theme
 
