@@ -17,7 +17,7 @@ date: 2022-11-20
 last_modified_at: 2022-11-20
 ---
 
-- [1. What is bootstrap ?](#1-what-is-bootstrap-)
+- [1. What is bootstrap](#1-what-is-bootstrap)
   - [생성](#생성)
   - [상세](#상세)
   - [수정](#수정)
@@ -26,7 +26,7 @@ last_modified_at: 2022-11-20
 - [10. Theme](#10-theme)
 - [참고](#참고)
 
-# 1. What is bootstrap ?
+# 1. What is bootstrap
 
 <img src="https://getbootstrap.com/docs/5.2/assets/img/bootstrap-icons@2x.png" width="100%" align="center"/>
 
