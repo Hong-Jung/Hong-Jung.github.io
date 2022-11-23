@@ -18,13 +18,21 @@ last_modified_at: 2022-11-20
 ---
 
 - [1. What is bootstrap](#1-what-is-bootstrap)
+- [2. Layout](#2-layout)
+- [3. Content](#3-content)
+- [4. Forms](#4-forms)
+- [5. Components](#5-components)
+- [6. Helpers](#6-helpers)
+- [7. Utilities](#7-utilities)
+- [8. Extend](#8-extend)
+- [9. Apply Bootstrap](#9-apply-bootstrap)
+  - [리스트 조회](#리스트-조회)
   - [생성](#생성)
   - [상세](#상세)
   - [수정](#수정)
   - [삭제](#삭제)
   - [멀티생성](#멀티생성)
-- [10. Theme](#10-theme)
-- [참고](#참고)
+- [10. 참고](#10-참고)
 
 # 1. What is bootstrap
 
@@ -39,16 +47,16 @@ last_modified_at: 2022-11-20
 >> - 다양한 디바이스에 최적의 웹 레이아웃에 최적화되어 있어 많이 사용하며, 자주 사용하는 위젯과 콤포넌트가 이미 만들어져 있음<br>
 >> - Bootstrap CSS & JavaScript CDN 추가 ([bootstrap getting started](https://getbootstrap.com/docs/5.2/getting-started/introduction/))
 
-- ```html
-  <!-- CSS CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+```html
+<!-- CSS CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
-  <!-- Javascript CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
-  ```
+<!-- Javascript CDN -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+```
 
 # 2. Layout
 
@@ -1367,9 +1375,7 @@ async function doDelete() {
 </body>
 ```
 
-# 10. Theme
-
-# 참고
+# 10. 참고
 
 - [개발자의 품격 youtube](https://www.youtube.com/c/%EA%B0%9C%EB%B0%9C%EC%9E%90%EC%9D%98%ED%92%88%EA%B2%A9)
 - [MDN Site](https://developer.mozilla.org/ko/)
