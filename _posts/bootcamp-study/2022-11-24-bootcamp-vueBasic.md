@@ -567,15 +567,95 @@ export default {
 
 # 5. 이벤트
 
-- contents
+- 이벤트
+  - Event
+    - on+event에서 on대신 @붙여 `@click`="func name" 또는 `v-on:click`="function name" 형식으로 사용
+  
+    - ```html
+      <button onclick="clickFunciton();">click</button>
+      <script>
+        fuction clickFunction() {
+          alert("click");
+        }
+      </script>
+
+      <button v-on:click="increaseCounter1">click 1</button>
+      <button @click="increaseCounter2">click 2</button>
+      ```
 
 > **IMPORTANT**
->> contents<br>
->> contents<br>
->> contents<br>
+>> <strong><h2>Event</h2></strong>
+>>
+>> - `@`나 `v-on` prefix를 사용하여 이벤트 리스너를 등록
+>> - 함수로 event를 인자를 전달하기 위해서는 functionName(`@event`)로 리스너를 등록해야 한다.
+>> - key event로 `@keyup.enter`와 같이 `keyup.`으로 키 값을 즉시 알 수 있음
+>>   - .enter, .tab, .delete, .esc, .space, .up, .down, .left, .right, .stop - event.stopPropagation(), .prevent - event.preventDefault();
 
 ```html
+<template>
+  <!-- event -->
+  <div>
+    <select name="" id="" v-on:change="changeCity($event)" v-model="selectedCity">
+      <option value="">==도시선택==</option>
+      <option v-bind:value="city.cityCode" v-bind:key="city.cityCode" v-for="city in cityList">{{ city.title }}</option>
+    </select>
+  </div>
+  <div>
+    <select name="" id="">
+      <option v-bind:value="dong.dongCode" v-bind:key="dong.dongCode" v-for="dong in selectedDongList">{{ dong.dongTitle }}</option>
+    </select>
+  </div>
 
+  <!-- key event -->
+  <div>
+    <input type="search" name="" id="" v-on:keyup="checkEnter($event)" v-model="searchText" />
+    <input type="search" name="" id="" v-on:keyup.enter="doSearch" v-model="searchText" />
+  </div>
+  <button @click="doSearch">조회</button>
+  <button type="submit" @click.prevent="doSearch">prevent</button>
+</template>
+<script>
+export default {
+  components: {},
+  data() {
+    return {
+      selectedCity: '',
+      cityList: [
+        { cityCode: '02', title: '서울' },
+        { cityCode: '051', title: '부산' },
+        { cityCode: '064', title: '제주' }
+      ],
+      dongList: [
+        { cityCode: '02', dongCode: '1', dongTitle: '서울 1동' },
+        { cityCode: '02', dongCode: '2', dongTitle: '서울 2동' },
+        { cityCode: '051', dongCode: '1', dongTitle: '부산 1동' },
+        { cityCode: '051', dongCode: '2', dongTitle: '부산 2동' },
+        { cityCode: '051', dongCode: '3', dongTitle: '부산 3동' },
+        { cityCode: '064', dongCode: '1', dongTitle: '제주 1동' },
+        { cityCode: '064', dongCode: '2', dongTitle: '제주 2동' }
+      ],
+      selectedDongList: [],
+      searchText: ''
+    }
+  },
+  methods: {
+    changeCity(event) {
+      console.log(event.target.tagName)
+      console.log(this.selectedCity)
+      this.selectedDongList = this.dongList.filter((dong) => dong.cityCode === this.selectedCity)
+      console.log(this.selectedDongList)
+    },
+    doSearch() {
+      console.log(this.searchText)
+    },
+    checkEnter(event) {
+      if (event.keyCode === 13) {
+        this.doSearch()
+      }
+    }
+  }
+}
+</script>
 ```
 
 # 6. 렌더링
