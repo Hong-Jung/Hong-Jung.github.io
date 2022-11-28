@@ -899,16 +899,261 @@ export default {
 
 # 9. component
 
-- contents
+- Vuejs에서는 모든 화면은 Component 개념으로 만들어 사용되며, 이러한 Component의 사용(참조) 및 데이터 전달 방법에 다음과 같은 방법이 존재
 
 > **IMPORTANT**
->> contents<br>
->> contents<br>
->> contents<br>
+>> Component 정의 및 참조 사용 방법(참조할 vue page에서 import 또는 main.js에서 Global 사용)
+>>
+>> - main.js : import 후 `app.component('page-title', PageTitle)` 형식으로 Global 정의 후 전역으로 사용
+>> - parent.vue : import 후 `Component 영역`에 선언 후 사용
 
-```html
+> **IMPORTANT**
+>> parent ↔ component 데이터 전달 방법(props, emit)
+>>
+>> - `props`는 `Component에서 Props 영역에 정의`한 데이터를 `Parent에서 Component 객체에 속성`으로 접근 가능
+>> - `emit은` `Component에서 $emit 키워드`로 `Parent의 이벤트 리스너를 호출`하여 접근
 
-```
+> **IMPORTANT**
+>> parent → component 리소스 접근 방법(ref)
+>>
+>> - `parent에 선언된 component의 속성에 ref를 정의`하고 `this.$refs.정의한 Component이름.Component 자원`으로 접근
+
+- Component 정의 및 참조(사용) 방법
+  
+  - ```html
+    <!-- 참조하는 vue page -->
+    <template>
+      <div><ChildComponent/></div>
+    </template>
+    <script>
+    import ChildComponent from '@/components/fragments/ChildComponent.vue'
+
+    export default {
+      components: {
+        ChildComponent
+      },
+    }
+    </script>
+    ```
+
+  - ```html
+    <script>
+    <!-- main.js -->
+    import PageTitle from './components/fragments/PageTitle.vue'
+
+    const app = createApp(App)
+    app.use(store)
+    app.use(router)
+    app.component('page-title', PageTitle)
+    app.mount('#app')
+    </script>
+
+    <!-- 일반 페이지에서는 'page-title 글로벌 component name으로 사용' -->
+    <template>
+      <div class="container">
+        <page-title title="고객목록" />
+        <h3 style="border-left: 5px solid red; padding-left: 3px; text-align: left">고객목록</h3>
+        <button class="btn btn-danger">클릭</button>
+      </div>
+    </template>
+    ```
+    
+- parent ↔ component 데이터 전달 방법
+  - Parent → Child 전달(Props)
+  
+  - ```html
+    <!-- parent -->
+    <template>
+      <div>
+        <ChildComponent :str="propsStr" v-bind:num="propsNum" :isOK="propsIsOK" :arr="propsArr" v-bind:obj="propsObj" />
+      </div>
+    </template>
+    <script>
+    import ChildComponent from '@/components/fragments/ChildComponent.vue' // 사용할 component import
+
+    export default {
+      components: {
+        ChildComponent // component 선언
+      },
+      data() {
+        return {
+          sampleData: '',
+          propsStr: '자식으로 전달하는 문자열',
+          propsNum: 34,
+          propsIsOK: true,
+          propsArr: [1, 2, 3, 4, 5],
+          propsObj: { name: 'Jeremy' }
+        }
+      }
+    }
+    </script>
+    ```
+
+  - ```html
+    <!-- child component -->
+    <template>
+      <div>
+        <p>str : {{ str }}</p>
+        <p>num : {{ num + 10 }}</p>
+        <p>isOK : {{ isOK }}</p>
+        <p>arr : {{ arr }}</p>
+        <p>obj : {{ obj }}</p>
+      </div>
+    </template>
+    <script>
+    export default {
+      props: {
+        str: { type: String, default: '' },
+        num: { type: Number, default: 0 },
+        isOK: { type: Boolean, default: false },
+        arr: { type: Array, default: function () { return [] } },
+        obj: { type: Object, default: function () { return {} } }
+      },
+      components: {},
+      data() {
+        return {
+          sampleData: ''
+        }
+      }
+    }
+    </script>
+    ```
+
+  - Child → Parent 전달(Emit)
+  
+  - ```html
+    <!-- child component : 부모의 이벤트 리스너 호출하여 접근 -->
+    <template>
+      <div>
+        <p>arr : {{ arr }}</p>
+        <div>
+          <select name="" id="" v-on:change="callParent" v-model="selectedValue">
+            <option v-bind:value="num" v-bind:key="num" v-for="num in arr">{{ num }}</option>
+          </select>
+        </div>
+      </div>
+    </template>
+    <script>
+    export default {
+      props: {
+        arr: {
+          type: Array,
+          default: function () {
+            return []
+          }
+        }
+      },
+      data() {
+        return {
+          selectedValue: 0
+        }
+      },
+      methods: {
+        callParent() {
+          this.$emit('changeNum', this.selectedValue)
+        }
+      }
+    }
+    </script>
+    ```
+
+  - ```html
+    <!-- 이벤트 리스너를 통하여 접근 -->
+    <template>
+      <div>
+        <ChildComponent :arr="propsArr" v-bind:obj="propsObj" v-on:changeNum="getData"/>
+      </div>
+    </template>
+    <script>
+    import ChildComponent from '@/components/fragments/ChildComponent.vue'
+
+    export default {
+      components: {
+        ChildComponent
+      },
+      data() {
+        return {
+          propsArr: [1, 2, 3, 4, 5],
+        }
+      },
+      methods: {
+        getData(data) {
+          console.log('called from child component and value : ' + data)
+          // output : called from child component and value : 1
+          // output : called from child component and value : 2
+        }
+      }
+    }
+    </script>
+    ```
+
+- parent → component 리소스 접근 방법
+  
+  - ```html
+    <!-- parent에 component의 ref 속성 정의 및 $refs로 접근 -->
+    <template>
+      <div>
+        <ChildComponent v-bind:obj="propsObj" ref="refChildComponent" />
+        <button v-on:click="changeChildValue">child refer</button>
+      </div>
+    </template>
+    <script>
+    import ChildComponent from '@/components/fragments/ChildComponent.vue'
+
+    export default {
+      components: {
+        ChildComponent
+      },
+      data() {
+        return {
+          propsObj: { name: 'Jeremy' }
+        }
+      },
+      methods: {
+        changeChildValue() {
+          this.$refs.refChildComponent.str2 = 'i love seoul.'
+          this.$refs.refChildComponent.printConsoleLog()
+        }
+      }
+    }
+    </script>
+    ```
+
+  - ```html
+    <!-- child component의 접근되는 자원 정의 -->
+    <template>
+      <div>
+        <p>obj : {{ obj }}</p>
+        <br />
+        <h1>{{ str2 }}</h1>
+      </div>
+    </template>
+    <script>
+    export default {
+      props: {
+        obj: { type: Object, default: function () { return {} } }
+      },
+      components: {},
+      data() {
+        return {
+          str2: 'this is child component label : i love busan.'
+        }
+      },
+      methods: {
+        printConsoleLog() {
+          console.log('component specific method.')
+        }
+      }
+    }
+    </script>
+    ```
+
+- Parent Child 조건에서의 데이터 전달 개념도<br/>
+<img src="./../../assets/images/posts/vue-beginner/vue-1-4.png" width="40%" align="center"/>
+- 동일한 레벨에서의 Component간의 데이터 전달 방법<br/>
+<img src="./../../assets/images/posts/vue-beginner/vue-1-6.png" width="60%" align="center"/>
+- parent ↔ component 데이터 전달 샘플 코드<br/>
+<img src="./../../assets/images/posts/vue-beginner/vue-1-5.png" width="100%" align="center"/>
 
 # 10. bootstrap
 
