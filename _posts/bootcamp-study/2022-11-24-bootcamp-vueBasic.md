@@ -102,7 +102,7 @@ sudo npm install -g @vue/cli //Mac OS는 sudo 추가
     ```
 
 - 프로젝트 구성
-  - <img src="./../../assets/images/posts/vue-beginner/vue-1-8.png" width="50%" align="center"/>
+  - <img src="./../../assets/images/posts/vue-beginner/vue-1-8.png" width="40%" align="center"/>
   - node_modules : 설치된 node 모듈이 위치해 있는 폴더. npm install 명령어를 통해 설치한 모듈이 위치
   - public : index.html 파일이 위치하는 곳 (정적 파일이 위치)
   - src : 구현되는 vue 컴포넌트 파일이 위치
@@ -660,41 +660,241 @@ export default {
 
 # 6. 렌더링
 
-- contents
-
-> **IMPORTANT**
->> contents<br>
->> contents<br>
->> contents<br>
+- 화면에 나타나기 또는 숨기기 위해서 기존의 javaScript에서는 다음과 같은 코드를 사용 했다.
 
 ```html
+<button id="btnDelete" onclick="doDelete();" disabled>삭제</button>
+<script>
+  document.querySelector("#btnDelete").disabled = false;
+</script>
+```
 
+- vue.js에서는 `v-if, v-else-if, v-else` 또는 `v-show` 키워드로 대처 가능 하다.
+
+> **IMPORTANT**
+>> `v-if, v-else-if, v-else`는 vue.js에서 사용하는 조건문으로 아래의 코드와 같이 조건문별 컨트롤 배치 가능<br>
+>> `v-show`는 `style="display: none"` 속성을 사용<br>
+
+```html
+<template>
+  <div>
+    <!-- v-if, v-else-if, v-else 키워드 사용 -->
+    <div v-if="userRole === 'G'">
+      <button>조회</button>
+    </div>
+    <div v-else-if="userRole === 'M'">
+      <button>조회</button>
+      <button>생성</button>
+    </div>
+    <div v-else>
+      <button>조회</button>
+      <button>생성</button>
+      <button>삭제</button>
+    </div>
+    <div>
+      <button v-if="userRole === 'A' || userRole === 'M' || userRole === 'G'">조회</button>
+      <button v-if="userRole === 'A' || userRole === 'M'">생성</button>
+      <button v-if="userRole === 'A'">생성</button>
+    </div>
+    <br />
+    <!-- v-show 키워드 사용 -->
+    <input type="radio" name="" id="ai" value="AI" v-model="favoriteField" />
+    <label for="ai">인공지능</label>
+    <input type="radio" name="" id="blockchain" value="BC" v-model="favoriteField" />
+    <label for="blockchain">블럭체인</label>
+    <input type="radio" name="" id="iot" value="IOT" v-model="favoriteField" />
+    <label for="iot">사물인터넷</label>
+    <input type="radio" name="" id="other" value="OTH" v-model="favoriteField" />
+    <label for="other">기타</label>
+    <div v-show="favoriteField === 'OTH'">
+      <input type="text" name="" id="" />
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  components: {},
+  data() {
+    return {
+      userRole: 'M', // A(admin), M(manager), G(general)
+      favoriteField: ''
+    }
+  }
+}
+</script>
 ```
 
 # 7. computed, watch
 
-- contents
+- vue.js에서는 computed와, watch 속성을 통하여 모듈내 데이터의 변환에 대해서 대처할 수 있다.
 
 > **IMPORTANT**
->> contents<br>
->> contents<br>
->> contents<br>
+>> computed
+>>
+>> - 해당 vue instance내에 정의된 데이터 값과 연관된 또다른 데이터를 정의해서 사용 가능
+>> - 함수이자 vue instance내의 또다른 데이터 이다.
+>> - *동일한 데이터가 모듈내 여러곳에서 사용될 경우 유용*하다.
+
+> **IMPORTANT**
+>> watch
+>>
+>> - vue instance에 정의된 데이터 값이 변경이 일어나는지 감시하고 변경시 지정된 함수 실행
+>> - watch에 정의된 하나의 데이터 값만 감시한다. data의 이름과 동일해야 한다.
+>> - *watch하는 하나의 데이터의 값이 변경되기 전에는 실행되지 않는*다.
 
 ```html
+<template>
+  <!-- computed -->
+  <div>
+    <input type="text" name="" id="" v-model="firstName" />
+    <input type="text" name="" id="" v-model="lastName" />
+  </div>
+  <h1>{{ getfullName }}</h1>
+  <br />
+  <label>---------------------------------------------------</label>
+  <br />
+  <div>
+    <label for="age">당신의 나이는?</label>
+    <input type="number" name="" id="age" v-model="age" />
+  </div>
+  <p>{{ age >= 20 ? '성인(직접코드)' : '미성년자(직접코드)' }}</p>
+  <p>{{ isAdult }}</p>
+  <br /><br />
 
+  <!-- watch -->
+  <div>
+    <select name="" id="" v-model="selected">
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+    </select>
+    <button v-on:click="displayHistory($event)">show history</button>
+  </div>
+</template>
+<script>
+export default {
+  components: {},
+  data() {
+    return {
+      // for computed
+      firstName: 'John',
+      lastName: 'Doe',
+      title: 'Mr.',
+      age: 0,
+      // for watch
+      fullName: '',
+      selected: '',
+      changeHistory: []
+    }
+  },
+  computed: {
+    getfullName() {
+      let returnName = this.title + ' ' + this.firstName + ', ' + this.lastName
+      returnName = returnName + '.'
+      return returnName
+    },
+    isAdult() {
+      let returnStr = null
+      returnStr = this.age >= 20 ? '성인' : '미성년자'
+      return returnStr
+    }
+  },
+  watch: {
+    firstName(newValue, oldValue) {
+      console.log(oldValue)
+      console.log(newValue)
+      this.fullName = this.title + ' ' + this.firstName + ', ' + this.lastName
+    },
+    lastName(newValue, oldValue) {
+      console.log(oldValue)
+      console.log(newValue)
+      this.fullName = this.title + ' ' + this.firstName + ', ' + this.lastName
+    },
+    selected(newValue, oldValue) {
+      console.log(`watch(selected-newValue) : ${newValue}`)
+      console.log(`watch(selected-oldValue) : ${oldValue}`)
+      this.changeHistory.push(`${oldValue} -> ${newValue}`)
+    }
+  },
+  methods: {
+    displayHistory(event) {
+      console.log(this.changeHistory)
+    }
+  }
+}
+</script>
 ```
 
 # 8. lifecycle hook
 
-- contents
+- vue 인스턴스가 생성되고 파괴될때까지의 라이프 사이클은 다음의 이미지에 잘 나타나 있다.
+
+<img src="./../../assets/images/posts/vue-intermediate/3.3_vue_lifecycle.png" width="70%" align="center"/><br>
 
 > **IMPORTANT**
->> contents<br>
->> contents<br>
->> contents<br>
+>> Vue LifeCycle
+>>
+>> - vue instance가 생성되고 나서 호출되는 `created` => 데이터의 초기화
+>> - DOM에 부착되고 나서 호출되는 `mounted` => UI에 Display 되는 함수 관련
+>> - DOM의 내용이 변경되고나서 호출되는 `update`
+>> - component가 부착해지되고나서 호출되는 `unmounted` => 데이터의 초기화 SPA임을 주의 요망
+>> - 인스턴스가 없어질때 호출되는 `destroyed` 
 
 ```html
+<template>
+  <div>
+    <div>{{ sampleData }}</div>
+    <div>
+      <label for="">태어난 도시는?</label>
+      <select name="" id="">
+        <option value="" :key="city.code" v-for="city in cities">
+          {{ city.title }}
+        </option>
+      </select>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  components: {},
+  data() {
+    return {
+      sampleData: '',
+      cities: [],
+      fnInterval: null
+    }
+  }
 
+  // data(), watch, computed, methods 정보의 준비가 끝난 상태
+  created() {
+    this.getCityList()
+  },
+
+  // 실제 DOM이 랜더링이 끝난 상태
+  mounted() {
+    this.fnInterval = window.setInterval(() => {
+      console.log('aaaa')
+    }, 1000)
+  },
+
+  // DOM이 업데이트 된 후에 호출
+  updated() {},
+
+  // 현재 컴포넌트를 빠져 나갈 때
+  unmounted() {
+    window.clearInterval(this.fnInterval)
+    this.fnInterval = null
+    this.cities = null
+  },
+
+  methods: {
+    getCityList() {
+      // 서버에 도시 목록을 요청, 가져오는데 시간이 소요
+      this.cities = [{ code: '02', title: '서울' }]
+    }
+  }
+}
+</script>
 ```
 
 # 9. component
