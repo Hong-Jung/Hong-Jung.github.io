@@ -16,7 +16,7 @@ site.categories.Bloom-Project.size | plus: site.categories.Logistics-Project.siz
         <li>
 
             <!-- Life 카테고리 -->
-            <span class="nav__sub-title">Life (<span style="color:Chartreuse;">{{ sum_life }}</span>)</span>
+            <span class="nav__sub-title">Life (<span style="color:rgb(10, 10, 10);">{{ sum_life }}</span>)</span>
             <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
             <ul>
                 <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시-->
@@ -38,7 +38,7 @@ site.categories.Bloom-Project.size | plus: site.categories.Logistics-Project.siz
 
 
             <!-- Work 카테고리 -->
-            <span class="nav__sub-title">Work (<span style="color:Chartreuse;">{{ sum_work }}</span>)</span>
+            <span class="nav__sub-title">Work (<span style="color:rgb(10, 10, 10);">{{ sum_work }}</span>)</span>
             <ul>
                 {% for category in site.categories %}
                 {% if category[0] == "maritime" %}
@@ -90,7 +90,7 @@ site.categories.Bloom-Project.size | plus: site.categories.Logistics-Project.siz
 
 
             <!-- Future 카테고리 -->
-            <span class="nav__sub-title">Future (<span style="color:Chartreuse;">{{ sum_future }}</span>)</span>
+            <span class="nav__sub-title">Future (<span style="color:rgb(10, 10, 10);">{{ sum_future }}</span>)</span>
             <ul>
                 {% for category in site.categories %}
                 {% if category[0] == "Framework-Pattern" %}
