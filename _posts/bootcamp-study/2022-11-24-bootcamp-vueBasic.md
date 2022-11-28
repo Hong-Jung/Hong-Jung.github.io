@@ -237,7 +237,7 @@ export default {
   - 참조한 라이브러리들이 컴파일되는 javascript 파일
 
 > **IMPORTANT**
->> <strong><h2>첫번째 방법 (기본 Import)</h2></strong>
+>> <strong>첫번째 방법 (기본 Import)</strong>
 >> *<u>무조건 접근하는 페이지의 경우</u>* "`app.js`"
 >>
 >> - 라우팅할 컴포넌트를 임포트하고
@@ -264,7 +264,7 @@ export default router
 ```
 
 > **IMPORTANT**
->> <strong><h2>두번째 방법 (lazy-loaded without webpackPrefetch)</h2></strong>
+>> <strong>두번째 방법 (lazy-loaded without webpackPrefetch)</strong>
 >> *<u>접속할 확률이 낮거나 사이즈가 작아서 클릭할 때마다 다운로드 받아도 상관 없는 경우</u>* "`about.js`"
 >> 
 >> - 사용할 컴포넌트를 화살표 함수로 정의
@@ -287,7 +287,7 @@ const routes = [
 ```
 
 > **IMPORTANT**
->> <strong><h2>세번째 방법 (lazy-loaded with webpackPrefetch)</h2></strong>
+>> <strong>세번째 방법 (lazy-loaded with webpackPrefetch)</strong>
 >> *<u>접속할 확률이 높거나 사이즈가 커서 미리 다운로드 받아야 하는 경우</u>* "`webpackPrefetch:true`"
 >>
 >> - 2번째 방법에서 "`webpackPrefetch:true`" 속성을 추가
@@ -326,7 +326,7 @@ const routes = [
     - 하지만, vuejs에서는 아래와 같이 변수와 vue 키워드로 다양하게 바인딩이 가능 하다.
 
 > **IMPORTANT**
->> <strong><h2>Binding</h2></strong>
+>> <strong>Binding</strong>
 >>
 >> - 문자열 바인딩은 `data() 영역에 선언된 데이터 영역의 변수`를 html영역에 `{{데이터이름}}` 형태로 바인딩
 >> - data() 영역에 `html tag가 데이터 변수`로 사용되었다면, `v-html="html변수명"(v-directive)` 사용(innterHtml로 바인딩 됨)
@@ -339,7 +339,7 @@ const routes = [
 >> - `radio` 요소의 경우 `문자열 형식과 v-model 연결`을 함
 >> - `속성`에 데이터를 바인딩할때는 `v-bind`로 할당 대신에 `:`로 사용 가능 
 
-- <strong><h2>`string`, `input`, `select`, `checkbox`, `radio`, `html` and `attribute` Binding</h2></strong>
+- <strong>`string`, `input`, `select`, `checkbox`, `radio`, `html` and `attribute` Binding</strong>
   
 ```html
 <template>
@@ -436,7 +436,7 @@ export default {
 }
 ```
 
-- <strong><h2>`List(Array)` Binding</h2></strong>
+- <strong>`List(Array)` Binding</strong>
   
 ```html
 <template>
@@ -496,7 +496,7 @@ export default {
 </script>
 ```
 
-- <strong><h2>`Class(for style)` Binding</h2></strong>
+- <strong>`Class(for style)` Binding</strong>
 
 ```html
 <template>
@@ -539,7 +539,7 @@ export default {
 </style>
 ```
 
-- <strong><h2>`Style` Binding</h2></strong>
+- <strong>`Style` Binding</strong>
 
 ```html
 <template>
@@ -584,7 +584,7 @@ export default {
       ```
 
 > **IMPORTANT**
->> <strong><h2>Event</h2></strong>
+>> <strong>Event</strong>
 >>
 >> - `@`나 `v-on` prefix를 사용하여 이벤트 리스너를 등록
 >> - 함수로 event를 인자를 전달하기 위해서는 functionName(`@event`)로 리스너를 등록해야 한다.
