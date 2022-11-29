@@ -1157,15 +1157,40 @@ export default {
 
 # 10. bootstrap
 
-- contents
+- Vuejs에서 Bootstrap을 적용하는 방법
 
 > **IMPORTANT**
->> contents<br>
->> contents<br>
->> contents<br>
+>> bootstrap install<br>
+>> import the CDN 파일<br>
+>> 사용 샘플<br>
+
+- bootstrap 최신 버전 설치
+  
+```cmd
+npm install bootstrap
+```
+
+- main.js에 CDN 추가
+
+```javascript
+import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap/dist/js/bootstrap.min.js'
+import 'bootstrap/dist/js/bootstrap.bundle'
+```
+
+- 사용 샘플
 
 ```html
-
+<template>
+  <div class="container">
+    <page-title
+      title="this is PageView."
+      class="text-left ps-2"
+      style="border-left: 3px solid red"
+    ></page-title>
+    <button class="btn btn-danger">click</button>
+  </div>
+</template>
 ```
 
 # 11. SimpleGrid
