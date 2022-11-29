@@ -1175,7 +1175,10 @@ npm install bootstrap
 ```javascript
 import 'bootstrap/dist/css/bootstrap.min.css'
 // import 'bootstrap/dist/js/bootstrap.min.js'
-import 'bootstrap/dist/js/bootstrap.bundle'
+//import 'bootstrap/dist/js/bootstrap.bundle'
+import 'bootstrap'
+// 오류 발생시 하기 명령어 터미널에서 실행
+// npm install --save @popperjs/core
 ```
 
 - 사용 샘플
