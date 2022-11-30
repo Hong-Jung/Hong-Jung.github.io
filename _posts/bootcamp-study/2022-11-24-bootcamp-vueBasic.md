@@ -1198,28 +1198,248 @@ import 'bootstrap'
 
 # 11. SimpleGrid
 
-- contents
+- 기본 그리드의 패턴에 대해서 Component화 한 그리드 패턴 샘플
 
 > **IMPORTANT**
->> contents<br>
->> contents<br>
->> contents<br>
+>>
+>> - Component 화로 Parent ↔ Child(Component)로 props 속성과 $emit(이벤트 호출) 키워드 사용
+>> - 0번째 Index에 checkbox나 radio를 사용
 
 ```html
+<!-- View Page -->
+<template>
+  <div class="container">
+    <button class="btn btn-primary me-1" @click="doSearch">조회</button>
+    <button class="btn btn-danger" @click="doDelete">삭제</button>
 
+    <simple-grid :headers="headers" :items="drinkList" :selectType="selectType"
+      checkedKey="drinkId" checkedEventName="change-item2" @change-item2="changeCheckedValue"
+    />
+  </div>
+</template>
+<script>
+import SimpleGrid from '@/components/fragments/SimpleGrid.vue'
+
+export default {
+  components: { SimpleGrid },
+  data() {
+    return {
+      selectType: 'checkbox',
+      sampleData: '',
+      headers: [
+        { title: '제품코드', key: 'drinkId' },
+        { title: '제품명', key: 'drinkName' },
+        { title: '제품가격', key: 'price' }
+      ],
+      drinkList: [],
+      checkedItems: [],
+      checkedItem: ''
+    }
+  },
+  methods: {
+    doSearch() {
+      this.drinkList = [
+        { drinkId: '1', drinkName: '코카콜라', price: 700, qty: 1 },
+        { drinkId: '2', drinkName: '오렌지주스', price: 1200, qty: 1 },
+        { drinkId: '3', drinkName: '커피', price: 500, qty: 1 },
+        { drinkId: '4', drinkName: '물', price: 700, qty: 1 },
+        { drinkId: '5', drinkName: '보리차', price: 1200, qty: 1 },
+        { drinkId: '6', drinkName: '포카리', price: 1000, qty: 1 },
+        { drinkId: '7', drinkName: '뽀로로', price: 1300, qty: 1 }
+      ]
+    },
+    doDelete() {
+      // 삭제 실행 - 삭제할 아이템에 대한 제품번호는 this.checkedItems
+    },
+    changeCheckedValue(data) {
+      console.log('선택된 아이템', data)
+      if (this.selectType === 'checkbox') {
+        this.checkedItems = data
+      } else if (this.selectType === 'radio') {
+        this.checkedItem = data
+      }
+    }
+  }
+}
+</script>
+
+```
+
+```html
+<!-- Component -->
+<template>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th v-if="selectType === 'checkbox'">
+          <input type="checkbox" class="form-check-input" @change="checkAll($event)"/>
+        </th>
+        <th v-else-if="selectType === 'radio'"></th>
+        <th :key="th.key" v-for="th in headers">{{ th.title }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr :key="i" v-for="(item, i) in items">
+        <td v-if="selectType === 'checkbox'">
+          <input type="checkbox" class="form-check-input" :value="item[checkedKey]" v-model="checkedItems" @change="doChecked"/>
+        </td>
+        <td v-else-if="selectType === 'radio'">
+          <input type="radio" class="form-check-input" :value="item[checkedKey]" v-model="checkedItem" @change="doChecked"/>
+        </td>
+        <td :key="th.key" v-for="th in headers">{{ item[th.key] }}</td>
+      </tr>
+    </tbody>
+  </table>
+</template>
+<script>
+export default {
+  components: {},
+  props: {
+    items: { type: Array, default: function () { return [] } },
+    headers: { type: Array, default: function () { return [] } },
+    selectType: { type: String, default: '' },
+    checkedKey: { type: String, default: '' },
+    checkedEventName: { type: String, default: 'change-item' }
+  },
+  data() {
+    return {
+      checkedItems: [],
+      checkedItem: ''
+    }
+  },
+  methods: {
+    doChecked() {
+      //   console.log(this.checkedItems)
+      //   this.$emit('change-item', this.checkedItems)
+      if (this.selectType === 'checkbox') {
+        this.$emit(this.checkedEventName, this.checkedItems)
+      } else if (this.selectType === 'radio') {
+        this.$emit(this.checkedEventName, this.checkedItem)
+      }
+    },
+    checkAll(event) {
+      // console.log(event.target.checked)
+      const checkedItems = []
+      if (event.target.checked) {
+        this.items.forEach((item) => {
+          checkedItems.push(item[this.checkedKey])
+        })
+      }
+
+      this.checkedItems = checkedItems
+      // console.log(this.checkedItems)
+    }
+  }
+}
+</script>
 ```
 
 # 12. Slot
 
-- contents
+- Slot은 Component의 재사용성을 높이는 방법으로 마크업(Markup)을 확장 또는 재정의 할 수 있음
+<img src="https://vuejs.org/assets/slots.dbdaf1e8.png" width="100%" align="center"/>
+<img src="https://vuejs.org/assets/named-slots.ebb7b207.png" width="100%" align="center"/>
+<img src="https://vuejs.org/assets/scoped-slots.1c6d5876.svg" width="100%" align="center"/>
 
 > **IMPORTANT**
 >> contents<br>
->> contents<br>
->> contents<br>
+>> named slot은 명시적으로 name 속성을 사용하여 여러개 사용 가능<br>
 
 ```html
+<!-- https://getbootstrap.com/docs/5.2/components/modal/#static-backdrop -->
+<template>
+  <div class="modal fade" :id="modalId" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" :aria-labelledby="`${modalId}Label`" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" :id="`${modalId}Label`">
+            <slot name="title"></slot>
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <slot name="body"></slot>
+        </div>
+        <div class="modal-footer">
+          <slot name="footer"></slot>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  components: {},
+  props: {
+    modalId: {
+      type: String,
+      default: 'myModal'
+    }
+  },
+  data() {
+    return {
+      sampleData: ''
+    }
+  }
+}
+</script>
+```
 
+```html
+<template>
+  <div>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userModal">
+      Show Modal
+    </button>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userModal2">
+      Show Modal2
+    </button>
+    
+    <slot-modal modalId="userModal">
+      <template v-slot:title>모달창 타이틀</template>
+      <template v-slot:body>
+        <div class="row gy-2">
+          <div class="col-3">
+            <label for="" class="form-label">이메일주소</label>
+          </div>
+          <div class="col-9">
+            <input type="email" class="form-control" />
+          </div>
+        </div>
+      </template>
+      <template v-slot:footer>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+        <button type="button" class="btn btn-primary">저장</button>
+      </template>
+    </slot-modal>
+
+    <slot-modal modalId="userModal2">
+      <template v-slot:title>모달창 타이틀2</template>
+      <template v-slot:body>
+        <div class="row gy-2">
+          <p>문장1</p>
+          <p>문장2</p>
+        </div>
+      </template>
+      <template v-slot:footer>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+        <button type="button" class="btn btn-primary">저장</button>
+      </template>
+    </slot-modal>
+  </div>
+</template>
+<script>
+import SlotModal from '@/components/fragments/SlotModal.vue'
+export default {
+  components: { SlotModal },
+  data() {
+    return {
+      sampleData: ''
+    }
+  }
+}
+</script>
 ```
 
 # 13. Layout Component
