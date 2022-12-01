@@ -46,24 +46,114 @@ last_modified_at: 2022-12-01
 >> - `directives: {}` 내부에 `모든 Life Cycle Hook` 요소를 사용하여 구현
 >> - Life Cycle Hook 요소의 구현 함수에 `인자 값으로 el, binding` 사용 가능
 >> - Global하게 사용 가능(main.js에 구현하며 내부/외부 코드로 가능)
-
-- custom directive
-  - v-focus와 같이 그냥 directive 키워드만 사용 방법
-  - v-focus directive에 바로 값 할당 = "color" 방법
-  - v-focus="{color:'red',text='hello!'}와 같이 바인딩 방법
-
-- 소문자만, 대문자만, 숫자만, 한국어만 등등 공통으로 사용 가능
-  - 전역 사용을 위한 설정은 main.js에 다음과 같이 선언
-    - app.mount() 전에만 하면 됨
-    - app.directive(....)
-    - 외부 파일로 빼서 작성할 수 도 있음
   
 ```html
-directives: {
-  focus: {
-    life cycle hoot 모두 가능(el, binding) {}
+<template>
+  <div>
+    <div>
+      <label for="email" class="form-label">이메일주소</label>
+      <input type="email" name="" id="email" class="form-control" v-focus />
+    </div>
+  </div>
+
+  <div v-color="color" style="height: 50px"></div>
+  <div v-demo="{ color: 'red', text: 'hello!' }"></div>
+  <div>
+    <input type="text" name="" id="" v-lowercase class="form-control" />
+  </div>
+  <div>
+    <input type="text" name="" id="" v-uppercase class="form-control" />
+  </div>
+  <div>
+    <input type="text" name="" id="" v-number class="form-control" />
+    <input type="number" name="" id="" class="form-control" />
+  </div>
+  <div>
+    <input type="text" name="" id="" v-korean class="form-control" />
+  </div>
+</template>
+<script>
+export default {
+  components: {},
+  directives: {
+    focus: {
+      mounted(el, binding) {
+        console.log(el)
+        el.focus()
+      }
+    },
+    lowercase: {
+      mounted(el) {
+        el.addEventListener('input', (event) => {
+          console.log(event.target.value)
+          event.target.value = event.target.value.toLowerCase()
+        })
+      }
+    },
+    uppercase: {
+      mounted(el) {
+        el.addEventListener('input', (event) => {
+          console.log(event.target.value)
+          event.target.value = event.target.value.toUpperCase()
+        })
+      }
+    },
+    number: {
+      mounted(el) {
+        el.addEventListener('input', (event) => {
+          console.log(event.target.value)
+          event.target.value = event.target.value.replace(/\D/g, '')
+        })
+      }
+    },
+    korean: {
+      mounted(el) {
+        el.addEventListener('input', (event) => {
+          console.log(event.target.value)
+          event.target.value = event.target.value.replace(/[^ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, '')
+        })
+      }
+    },
+    color: {
+      mounted(el, binding) {
+        console.log(binding.value)
+        el.style.backgroundColor = binding.value
+      }
+    },
+    demo: {
+      mounted(el, binding) {
+        el.innerText = binding.value.text
+        el.style.color = binding.value.color
+      }
+    }
   }
 }
+</script>
+```
+
+> **IMPORTANT**
+>> 전역 사용을 위한 설정은 main.js에 다음과 같이 선언
+>>
+>> - `app.mount() 전`에 정의
+>> - `app.directive(....)` 형식으로 구현
+>> - `외부 파일`로 작성하여 사용 가능
+>> - 각 파일에서는 전역으로 선언한 Directive 키워드 `v-focus`, `v-lowercase` 사용
+
+```javascript
+<!-- main.js에 mount() 전 directive()로 정의 -->
+app.directive('focus', {
+  mounted(el, binding) {
+    el.focus()
+  }
+})
+
+app.directive('lowercase', {
+  mounted(el) {
+    el.addEventListener('input', (event) => {
+      event.target.value = event.target.value.toLowerCase()
+    })
+  }
+})
 ```
 
 # 3. Mixins
