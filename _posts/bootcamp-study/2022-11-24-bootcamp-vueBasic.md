@@ -1444,27 +1444,157 @@ export default {
 
 # 13. Layout Component
 
-- contents
+- Component를 활용하여 Main UI의 layout을 분리할 수 있다.
 
 > **IMPORTANT**
->> contents<br>
->> contents<br>
->> contents<br>
+>> component의 이름은 반드시 2단어 이상으로 만들어야 한다.
+>>
+>> - `App.vue`에서 나누기 위한 Component를 배치 시키고 Contents 영역에 `<router-view/>` 태그를 정의한다.
+>> - `Header Component`와 `Footer Component`를 정의한다.
 
 ```html
+<!-- App.vue에서 전체 Layout를 설정하고 각 Component를 배치 시킨다. -->
+<template>
+  <header-layout />
+  <div class="container">
+    <router-view />
+  </div>
+  <footer-layout />
+</template>
+<script>
+import HeaderLayout from '@/components/layouts/HeaderLayout.vue'
+import FooterLayout from '@/components/layouts/FooterLayout.vue'
+export default {
+  components: { HeaderLayout, FooterLayout }
+}
+</script>
 
+<!-- Header Component > HeaderLayout.vue -->
+<template>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" @click="goToMenu('/')">개발자의품격</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" :class="{ active: $route.path === '/' }" aria-current="page" @click="goToMenu('/')">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" @click="goToMenu('/about')">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" @click="goToMenu('/databinding/string')">String</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" @click="goToMenu('/databinding/html')">Html</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+</template>
+<script>
+export default {
+  methods: {
+    goToMenu(path) {
+      this.$router.push({ path: path })
+    }
+  }
+}
+</script>
+
+<style>
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(128, 0, 0, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
+}
+</style>
+
+<!-- Footer Component > FooterLayout.vue -->
+<template>
+  <div class="containter">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+      <div class="col-md-4 d-flex align-items-center">
+        <span class="mb-3 mb-md-0 text-muted">&copy; 2022 Company, Inc</span>
+      </div>
+    </footer>
+  </div>
+</template>
+<script>
+export default {
+}
+</script>
 ```
 
 # 14. provide, inject
 
-- contents
+- 1단계의 부모-자식 관계의 데이터 전달의 경우가 아닌, 2단계 이상의 경우 provide, inject 키워드를 사용하여 보다 쉽게 데이터 전달 가능
 
 > **IMPORTANT**
->> contents<br>
->> contents<br>
->> contents<br>
+>> Component의 세분화에 따라 Parent Child 간의 데이터 전송에 Props와 Emit을 사용하면 효율성이 떨어짐으로 provide, inject 키워드로 손쉽게 사용 가능
+>>
+>> - provide 제공, inject 주입
+>> - 일반 Application보다는 Component 에서 사용을 권장
+
+- 일반적인 데이터 전송은 props, emit 사용
+<img src="https://vuejs.org/assets/prop-drilling.11201220.png" width="100%" align="center"/>
+
+- component간 복잡한 단계의 경우 provide, inject 사용
+<img src="https://vuejs.org/assets/provide-inject.3e0505e4.png" width="100%" align="center"/>
 
 ```html
+<!-- provide view -->
+<template>
+  <div>
+    <provide-inject />
+  </div>
+</template>
+<script>
+import ProvideInject from '@/components/fragments/ProvideInject.vue'
+
+export default {
+  components: { ProvideInject },
+  provide() {
+    return {
+      size: 5,
+      str: this.sampleData,
+      obj: this.objData
+    }
+  },
+  data() {
+    return {
+      sampleData: 'AAAAAAA',
+      objData: [
+        { id: 1, name: 'John', age: 23 },
+        { id: 2, name: 'Doe', age: 18 },
+        { id: 3, name: 'Walter', age: 32 },
+        { id: 4, name: 'Pitter', age: 42 }
+      ]
+    }
+  }
+}
+</script>
+
+<!-- inject component -->
+<template>
+  <div>
+    <p>{{ size }}</p>
+    <p>{{ str }}</p>
+    <p>{{ obj }}</p>
+  </div>
+</template>
+<script>
+export default {
+  components: {},
+  inject: ['size', 'str', 'obj']
+}
+</script>
 
 ```
 
