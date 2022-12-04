@@ -271,7 +271,7 @@ export default {
 
 # 4. Plugin
 
-- Contents
+- 코드나 기능의 컴폰넌트화의 방식중에 하나이며, 플러그인으로 사용할 함수나 모듈은 `install(app, options)`를 정의하고 사용한다.
 
 > **IMPORTANT**
 >> [Vuejs Plugin 공식 싸이트](https://v3-docs.vuejs-korea.org/guide/reusability/plugins.html#introduction)
