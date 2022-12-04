@@ -342,7 +342,7 @@ export default {
         .reduce((o, i) => {
           if (o) return o[i]
         }, options)
-        //.replace(/{\w+}/g, (match) => params[match.slice(1, -1)])
+        .replace(/{\w+}/g, (match) => params[match.slice(1, -1)])
   }
 }
 ```
@@ -352,19 +352,19 @@ export default {
 <template>
   <div>
     <h1>
-      {{ $translate(`${userInfo.lang}.welcome1`) }} {{ userInfo.name
-      }}{{ $translate(`${userInfo.lang}.welcome2`) }}
+      <!-- {{ $translate(`${userInfo.lang}.welcome1`) }} {{ userInfo.name
+      }}{{ $translate(`${userInfo.lang}.welcome2`) }} -->
     </h1>
     <h1>
-      {{ $translate(`${userInfo.lang}.welcome`, userInfo) }}
+      <!-- {{ $translate(`${userInfo.lang}.welcome`, userInfo) }} -->
     </h1>
     <h1>
-      {{ $translate(`${userInfo.lang}.welcome3`, userInfo) }}
+      <!-- {{ $translate(`${userInfo.lang}.welcome3`, userInfo) }} -->
     </h1>
-    <h1>{{ $translate(`${userInfo.lang}.hi`) }}</h1>
+    <!-- <h1>{{ $translate(`${userInfo.lang}.hi`) }}</h1> -->
     <!-- <h1>{{ $translate('ko.hi') }}</h1> -->
     <!-- <button>{{ $translate('ko.search') }}</button> -->
-    <button>{{ $translate(`${userInfo.lang}.search`) }}</button>
+    <!-- <button>{{ $translate(`${userInfo.lang}.search`) }}</button> -->
   </div>
 </template>
 <script>
