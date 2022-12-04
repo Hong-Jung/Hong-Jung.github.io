@@ -342,7 +342,7 @@ export default {
         .reduce((o, i) => {
           if (o) return o[i]
         }, options)
-        .replace(/{\w+}/g, (match) => params[match.slice(1, -1)])
+        //.replace(/{\w+}/g, (match) => params[match.slice(1, -1)])
   }
 }
 ```
