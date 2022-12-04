@@ -15,8 +15,8 @@ toc: true
 toc_sticky: false
 toc_label: "페이지 주요 목차" 
  
-date: 2022-12-02
-last_modified_at: 2022-12-02
+date: 2022-12-05
+last_modified_at: 2022-12-05
 ---
 
 # **라우터(Router) 3가지 방식** in Vuejs
