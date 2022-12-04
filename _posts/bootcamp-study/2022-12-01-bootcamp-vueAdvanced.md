@@ -160,13 +160,16 @@ app.directive('lowercase', {
 # 3. Mixins
 
 - Vue Component의 코드와 Javascript 코드를 섞어 하개의 파일과 같이 사용할 수 있다.
-- Contents
 
 > **IMPORTANT**
->> Vue.js
+>> Mixin
 >>
->> - contents
->> - contents
+>> - 여러개의 콤포넌트 간의 공통으로 사용되는 코드(로직)를 재사용할 수 있는 방법
+>> - 통상적으로 mixin 함수는 `"$" prefix`를 사용한다.
+>> - `mixin 의 함수부터 먼저 수행` 된다.(라이프 사이클 훅 메서드를 기준으로)
+>> - custom derective와 동일하게 `Global(main.js)에 등록하여 전역으로 사용`할 수 있다.
+>> - import 할때 from 키워드에서 `index.js` 파일은 기본 파일로 제외해도 된다.
+>> - `$route.path` 함수를 사용하여 component 접속 로그 기록 가능
 
 ```html
 ```
