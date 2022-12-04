@@ -347,6 +347,8 @@ export default {
 }
 ```
 
+<img src="./../../assets/images/posts/bootcamp005/plugin-1.png" width="100%" align="center"/>
+
 # 5. Vuex
 
 - Contents
