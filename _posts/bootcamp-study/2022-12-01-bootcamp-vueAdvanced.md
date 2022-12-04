@@ -160,225 +160,28 @@ app.directive('lowercase', {
 # 3. Mixins
 
 - Vue Component의 코드와 Javascript 코드를 섞어 하개의 파일과 같이 사용할 수 있다.
+- Contents
 
 > **IMPORTANT**
->> Mixin
+>> Vue.js
 >>
->> - 여러개의 콤포넌트 간의 공통으로 사용되는 코드(로직)를 재사용할 수 있는 방법
->> - 통상적으로 mixin 함수는 `"$" prefix`를 사용한다.
->> - `mixin 의 함수부터 먼저 수행` 된다.(라이프 사이클 훅 메서드를 기준으로)
->> - custom derective와 동일하게 `Global(main.js)에 등록하여 전역으로 사용`할 수 있다.
->> - import 할때 from 키워드에서 `index.js` 파일은 기본 파일로 제외해도 된다.
->> - `$route.path` 함수를 사용하여 component 접속 로그 기록 가능
+>> - contents
+>> - contents
 
 ```html
-<!-- mixin을 사용할 vue component -->
-<template>
-  <div></div>
-</template>
-<script>
-import Formater from '@/mixins/formatter.js'
-
-export default {
-  mixins: [Formater],
-  created() {
-    console.log('MixinView의 created')
-  },
-  mounted() {
-    console.log('MixinView의 mounted')
-    console.log(this.$convertDateFormat('20220601', 'YYYY-MM-DD'))
-    console.log(this.$convertDateFormat('20220601', 'MM.DD.YYYY'))
-  }
-}
-</script>
-
-<script>
-// formatter.js : mixin 시킬 코드
-export default {
-  created() {
-    console.log('formatter의 created')
-  },
-  mounted() {
-    console.log('formatter의 mounted')
-  },
-  unmounted() {},
-  methods: {
-    $convertDateFormat(d, f) {
-      let year = ''
-      let month = ''
-      let day = ''
-
-      // '20221201'
-      // Date
-      if (typeof d === 'string' && d.length === 8) {
-        year = d.substr(0, 4)
-        month = d.substr(4, 2)
-        day = d.substr(6, 2)
-      } else if (typeof d === 'object') {
-        year = d.getFullYear()
-        month = (d.getMonth() + 1).toString().padStart(2, 0)
-        day = (d.getDate() + 1).toString().padStart(2, 0)
-      }
-
-      // f - 'YYYY-MM-DD', 'MM-DD-YYYY'
-      return f.replace('YYYY', year).replace('MM', month).replace('DD', day)
-    }
-  }
-}
-</script>
-```
-
-> **IMPORTANT**
->> [Axios 공식 사이트](https://axios-http.com/kr/docs/intro)
->>
->> - 브라우저와 node.js에서 사용할 수 있는 Promise 기반 HTTP 클라이언트 라이브러리
->> - main.js에 Global 사용을 위하여 등록하여 사용할 수 있다.
-
-```javascript
-import axios from 'axios'
-
-axios.defaults.baseURL = 'http://localhost:3000'
-axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
-axios.defaults.headers['Access-Control-Allow-Origin'] = '*'
-
-export default {
-  methods: {
-    async $get(url) {
-      return (
-        await axios.get(url).catch((e) => {
-          console.log(e)
-        })
-      ).data
-    },
-    async $post(url, data) {
-      return await axios.post(url, data).catch((e) => {
-        console.log(e)
-      })
-    },
-    async $put(url, data) {
-      return await axios.put(url, data).catch((e) => {
-        console.log(e)
-      })
-    },
-    async $delete(url) {
-      return await axios.delete(url).catch((e) => {
-        console.log(e)
-      })
-    }
-  }
-}
 ```
 
 # 4. Plugin
 
-- 코드나 기능의 컴폰넌트화의 방식중에 하나이며, 플러그인으로 사용할 함수나 모듈은 `install(app, options)`를 정의하고 사용한다.
+- Contents
 
 > **IMPORTANT**
->> [Vuejs Plugin 공식 싸이트](https://v3-docs.vuejs-korea.org/guide/reusability/plugins.html#introduction)
+>> Vue.js
 >>
->> - 여러 Component에서 공통으로 사용할 수 있는 공통의 함수를 미리 정의해두고 플로그인처럼 바로 사용할 수 있다
->> - Global Plugin으로 사용하기 위해서는 다음의 샘플코드처럼 필수 사항을 준수해야 한다.
+>> - contents
+>> - contents
 
-```javascript
-// main.js
-import { createApp } from 'vue'
-const app = createApp({})
-app.use(myPlugin, {
-  // 선택적인 옵션
-})
-
-// myPlugin.js
-const myPlugin = {
-  install(app, options) {
-    // 앱 환경설정
-  }
-}
-```
-
-- 다음은 i18n(Internationalization)에 대한 plugin sample 코드 이다
-  
-```javascript
-// main.js
-import i18nPlugin from './plugins/i18n'
-import en from './i18n/en'
-import ko from './i18n/ko'
-
-const i18nStrings = { en, ko }
-app.use(i18nPlugin, i18nStrings)
-
-// en.js
-const i18nEN = {
-  hi: 'Hello',
-  search: 'Search',
-  save: 'Save',
-  welcome: 'Welcome, {name}',
-  welcome1: 'Welcome, ',
-  welcome2: ''
-}
-
-export default i18nEN
-
-// ko.js
-const i18nEN = {
-  hi: '안녕하세요',
-  search: '조회',
-  save: '저장',
-  welcome: '환영합니다. {name}님.',
-  welcome1: '환영합니다.',
-  welcome2: '님',
-  welcome3: '환영합니다. {name}님({email}).'
-}
-
-export default i18nEN
-
-// i18n.js
-/* eslint-disable */
-export default {
-  install: (app, options) => {
-    app.config.globalProperties.$translate = (key, params = {}) =>
-      // en.hi => ['en','hi']
-      key
-        .split('.')
-        .reduce((o, i) => {
-          if (o) return o[i]
-        }, options)
-        .replace(/{\w+}/g, (match) => params[match.slice(1, -1)])
-  }
-}
-
-// PluginView.vue
-<template>
-  <div>
-    <h1>
-      {{ $translate(`${userInfo.lang}.welcome1`) }} {{ userInfo.name
-      }}{{ $translate(`${userInfo.lang}.welcome2`) }}
-    </h1>
-    <h1>
-      {{ $translate(`${userInfo.lang}.welcome`, userInfo) }}
-    </h1>
-    <h1>
-      {{ $translate(`${userInfo.lang}.welcome3`, userInfo) }}
-    </h1>
-    <h1>{{ $translate(`${userInfo.lang}.hi`) }}</h1>
-    <!-- <h1>{{ $translate('ko.hi') }}</h1> -->
-    <!-- <button>{{ $translate('ko.search') }}</button> -->
-    <button>{{ $translate(`${userInfo.lang}.search`) }}</button>
-  </div>
-</template>
-<script>
-export default {
-  components: {},
-  data() {
-    return {
-      userInfo: {
-        name: 'John Doe',
-        email: 'john@gmail.com',
-        lang: 'ko'
-      }
-    }
-  }
-}
-</script>
+```html
 ```
 
 # 5. Vuex
