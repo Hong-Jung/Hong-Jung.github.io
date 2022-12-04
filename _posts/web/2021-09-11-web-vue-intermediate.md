@@ -19,33 +19,44 @@ last_modified_at: 2021-10-03
 ---
 
 ## 1. 강의 Agenda
+
 ### 1.1 개발환경 구성
 
 ## 2. Todo App - 프로젝트 소개 및 구성
+
 ### 2.1 To-do App 소개
 
 ## 3. Todo App - 프로젝트 구현
+
 ### 3.1 콤포넌트 설계 및 구현
+
 ### 3.2 index.html CDN 추가
-  * Viewport : ```<meta name="viewport" content="width=device-width, initial-scale=1.0">``` / [Responsive Web Design Viewport](https://www.w3schools.com/css/css_rwd_viewport.asp)
+
+* Viewport : ```<meta name="viewport" content="width=device-width, initial-scale=1.0">``` / [Responsive Web Design Viewport](https://www.w3schools.com/css/css_rwd_viewport.asp)
   * 파비콘 : [Favicon & App Icon Generator](https://www.favicon-generator.org/)
   * awesome icon : [Font Awesome](https://fontawesome.com/v5.15/icons?d=gallery&p=2)
   * google font ubuntu : [Google Fonts](https://fonts.google.com/specimen/Ubuntu#standard-styles)
+
 ### 3.3 component 구현
-  * TodoHeader
+
+* TodoHeader
   * TodoInput
-    - localstorage mdn(Mozilla Developer Network) : [Window.localStorage - Web API](https://developer.mozilla.org/ko/docs/Web/API/Window/localStorage)
-    - splice() API mdn(Mozilla Developer Network) : [Array.prototype.splice() - JavaScript](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
-    - 폰트 어썸 링크 : [Font Awesome](https://fontawesome.com/)
-    - <img src="../../assets/images/posts/vue-intermediate/3.3_fontawesome.png" width="60%" height="30%" title="Font Awesome" alt="Font Awesome"/>
-    - vue lifecycle
-    - <img src="../../assets/images/posts/vue-intermediate/3.3_vue_lifecycle.png" width="60%" height="30%" title="Vue Life Cycle" alt="Vue Life Cycle"/>
+  * localstorage mdn(Mozilla Developer Network) : [Window.localStorage - Web API](https://developer.mozilla.org/ko/docs/Web/API/Window/localStorage)
+  * splice() API mdn(Mozilla Developer Network) : [Array.prototype.splice() - JavaScript](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/splice)
+  * 폰트 어썸 링크 : [Font Awesome](https://fontawesome.com/)
+  * <img src="../../assets/images/posts/vue-intermediate/3.3_fontawesome.png" width="60%" height="30%" title="Font Awesome" alt="Font Awesome"/>
+  * vue lifecycle
+  * <img src="../../assets/images/posts/vue-intermediate/3.3_vue_lifecycle.png" width="60%" height="30%" title="Vue Life Cycle" alt="Vue Life Cycle"/>
 
 ## 4. Todo App - 애플리케이션 구조 개선하기
+
 ### 4.1 기존 애플리케이션
-  * <img src="../../assets/images/posts/vue-intermediate/4.1_as-is.png" width="60%" height="30%" title="기존 구조" alt="기존 구조"/>
+
+* <img src="../../assets/images/posts/vue-intermediate/4.1_as-is.png" width="60%" height="30%" title="기존 구조" alt="기존 구조"/>
+
 ### 4.2 변경 애플리케이션
-  * <img src="../../assets/images/posts/vue-intermediate/4.2_to-be.png" width="60%" height="30%" title="변경 구조" alt="변경 구조"/>
+
+* <img src="../../assets/images/posts/vue-intermediate/4.2_to-be.png" width="60%" height="30%" title="변경 구조" alt="변경 구조"/>
 
 ## 5. Todo App - 사용자 경험 개선
   * 모달 컴포넌트 적용 : [모달 컴포넌트](https://kr.vuejs.org/v2/examples/modal.html)

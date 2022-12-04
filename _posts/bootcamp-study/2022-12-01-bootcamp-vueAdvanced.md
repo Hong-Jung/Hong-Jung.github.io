@@ -345,8 +345,10 @@ export default {
         .replace(/{\w+}/g, (match) => params[match.slice(1, -1)])
   }
 }
+```
 
-// PluginView.vue
+```html
+<!-- PluginView.vue -->
 <template>
   <div>
     <h1>
