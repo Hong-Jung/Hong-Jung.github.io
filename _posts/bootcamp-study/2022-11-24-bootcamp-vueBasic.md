@@ -1342,7 +1342,6 @@ export default {
 <img src="https://vuejs.org/assets/scoped-slots.1c6d5876.svg" width="100%" align="center"/>
 
 > **IMPORTANT**
->> contents<br>
 >> named slot은 명시적으로 name 속성을 사용하여 여러개 사용 가능<br>
 
 ```html
