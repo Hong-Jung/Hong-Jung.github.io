@@ -11,7 +11,7 @@ categories:
 tags:
   - [Blog, bootcamp, 개발자의품격, Storage]
 
-toc: true
+toc: false
 toc_sticky: false
 toc_label: "페이지 주요 목차" 
  
