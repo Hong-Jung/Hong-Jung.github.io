@@ -358,6 +358,8 @@ export default {
 ```command
 npm i vuex-persistedstate --legacy-peer-deps
 npm i vue-cookies --legacy-peer-deps
+
+npm config set legacy-peer-deps=true --location=project
 ```
 
 > **IMPORTANT**
@@ -682,15 +684,167 @@ export default {
 
 # 6. Composition API
 
-- Contents
+- 코드의 그룹화를 위한 option api 에 대응하는 개념으로 어플리케이션이 거대해짐에 유지보수 및 코드 가독성을 높이기 위한 vue 3.0 주요 특장점이다.
+
+<img src="https://vuejs.org/assets/composition-api-after.e3f2c350.png" width="90%" align="center"/><br/>
 
 > **IMPORTANT**
->> Vue.js
+>> [Composition API 공식 참고 사이트](https://vuejs.org/guide/extras/composition-api-faq.html)
 >>
->> - contents
->> - contents
+>> - `setup`에 정의하면서 `reactive`, `ref` 키워드로 반응형(two-way, 데이터 변경과 유사)으로 사용가능.(기본 data() {}에는 반응형이다)
+>> - setup 함수내에 정의하며(import, return 필수), reactive와 ref 키워드 사용법이 있다.
+>> - `reactive` : reactive는 `state.xxx` 로 접근, object, array만 가능
+>> - `ref` : ref는 `state.value.xxx` 로 접근, object, array, string, number 모두 가능
+>> - 외부 함수로 정의하고자 할때는 반드시 return 하면서 `torefs`(복수, `toref` 단수) 함수를 사용해야 한다. refs 또은 ref 사용시 `xxx.value` 사용필요
+>> - mixin과 같이 공통 composition 파일을 만들어 사용(mixin과 구분 필요)
+>> - <u>composition은 내가 필요한 함수만</u> / <u>mixin는 전체 무조건</u>
 
 ```html
+<!-- 기본 data, computed 사용 샘플 -->
+<template>
+  <div>
+    <h2>calculator</h2>
+    <div>
+      <input type="text" v-model.number="num1" v-on:click="plusNumber" />
+      <span>+</span>
+      <input type="text" v-model.number="num2" v-on:click="plusNumber" />
+      <span>=</span>
+      <span>{{ result }}</span>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      num1: 0,
+      num2: 0
+    }
+  },
+  computed: {
+    result() {
+      return this.num1 + this.num2
+    }
+  }
+}
+</script>
+```
+
+```html
+<!-- Composition > Reactive 사용 샘플  -->
+<template>
+  <div>
+    <h2>calculator</h2>
+    <div>
+      <input type="text" v-model.number="state.num1" v-on:keyup="plusNumber2" />
+      <span>+</span>
+      <input type="text" v-model.number="state.num2" v-on:keyup="plusNumber2" />
+      <span>=</span>
+      <span>{{ state.result }}</span>
+    </div>
+  </div>
+</template>
+<script>
+import { reactive } from 'vue'
+
+export default {
+  // Composition API
+  setup() {
+    const state = reactive({
+      num1: 0,
+      num2: 0,
+      result: 0
+    })
+
+    function plusNumber2() {
+      state.result = state.num1 + state.num2
+    }
+
+    return { state, plusNumber2 }
+  }
+}
+</script>
+```
+
+```html
+<!-- Composition > Ref 사용 샘플  -->
+<template>
+  <div>
+    <h2>calculator</h2>
+    <div>
+      <input type="text" v-model.number="state.num1" v-on:keyup="plusNumber2" />
+      <span>+</span>
+      <input type="text" v-model.number="state.num2" v-on:keyup="plusNumber2" />
+      <span>=</span>
+      <span>{{ state.result }}</span>
+    </div>
+  </div>
+</template>
+<script>
+import { ref } from 'vue'
+
+export default {
+  // Composition API > ref
+  setup() {
+    const state = ref({
+      num1: 0,
+      num2: 0,
+      result: 0
+    })
+
+    function plusNumber2() {
+      state.value.result = state.value.num1 + state.value.num2
+    }
+
+    return { state, plusNumber2 }
+  }
+}
+</script>
+```
+
+```javascript
+// Composition > External Component(js, 공통화) 사용 샘플
+// api/common.js
+import { ref, computed, toRefs } from 'vue'
+
+function plusNumber2() {
+  const state = ref({
+    num1: 0,
+    num2: 0,
+    result: computed(() => state.value.num1 + state.value.num2)
+  })
+
+  return toRefs(state.value)
+}
+
+export { plusNumber2 }
+```
+
+```html
+// Composition > External Component(js, 공통화) 사용 샘플
+<template>
+  <div>
+    <h2>calculator</h2>
+    <div>
+      <input type="text" v-model.number="num1" />
+      <span>+</span>
+      <input type="text" v-model.number="num2" />
+      <span>=</span>
+      <span>{{ result }}</span>
+    </div>
+  </div>
+</template>
+<script>
+import { plusNumber2 } from '@/api/common'
+
+export default {
+  // Composition API > ref
+  setup() {
+    const { num1, num2, result } = plusNumber2()
+    return { num1, num2, result }
+  }
+}
+</script>
 ```
 
 # 7. Kakao Login API
