@@ -313,7 +313,8 @@ const i18nEN = {
   save: 'Save',
   welcome: 'Welcome, {name}',
   welcome1: 'Welcome, ',
-  welcome2: ''
+  welcome2: '',
+  welcome3: 'Welcome. {name}({email}).'
 }
 
 export default i18nEN
@@ -351,15 +352,332 @@ export default {
 
 # 5. Vuex
 
-- Contents
+- Vuex는 모든 컴포넌트의 중앙 집중식 저장소 기능을 제공하며, Vuex에 저장된 데이터는 쉽게 바꿀 수 없으며 특정 함수(mutations, actions)를 통해서만 변경이 가능하고 변경 상태를 관리할 수 있다.
+- `vuex-persistedstate`와 `vue-cookies` plugin 설치시 문제 발생시 다음의 명령어로 설치 
+
+```command
+npm i vuex-persistedstate --legacy-peer-deps
+npm i vue-cookies --legacy-peer-deps
+```
 
 > **IMPORTANT**
->> Vue.js
+>> [Vue.js Vuex 국문 참고 사이트](https://v3-docs.vuejs-korea.org/guide/scaling-up/state-management.html)<br/>
+>> [Vue.js Vuex 영문 참고 사이트](https://vuex.vuejs.org/)
 >>
->> - contents
->> - contents
+>> - state : 데이터 저장소 (`this.$store.state.xxx`)
+>> - getters : Store를 위한 computed(값의 변경을 즉시 알 수 있음) / 변수와 같이 사용될 수 있다. (`this.$store.getters.xxx`)
+>> - mutations : 상태(state)를 변경시킬 수 있는 유일한 방법(함수) (`this.$store.commit('mutation name', parameter)`)
+>> - actions : 정의된 함수에서는 mutations에 정의한 함수를 커밋(commit)시켜 state를 변경, 비동기 처리가 가능(DB 작업에 가능 많이 사용) (`this.$store.dispatch('action name', parameter)`)
+>> - modules : store로 관리할 파일이나 저장소가 많아질 경우 모듈화하여 참조 사용 (`참조당하는 모듈에서는 반드시 namespaced:true 옵션 설정하고, 참조하는 모듈에서는 반드시 modules: { 참조키값: 참조모듈}) 정의 필요 / 실제 참조하여 사용하는 모듈에서는 '참조모듈/함수,변수명'('todo/dodosCount')형식으로 사용 필요`)
+>> - 상태값 영구 관리를 위한 `persistedstate` 방법 : `'vue-persistedstate'` 참조 및 설치, `plugin` 정의
+>> - 상태값 설정 시간만큼 관리를 위한 `cookie` 방법 : `'vue-cookies'` 참조 및 설치, `VueCookies` 접근
+
+<img src="https://vuex.vuejs.org/vuex.png" width="90%" align="center"/>
+
+```javascript
+// store > index.js
+import { createStore } from 'vuex'
+import { todo } from './todo' // 모듈화를 위한 todo 참조
+import { user } from './user' // 모듈화를 위한 user 참조
+import persistedstate from 'vuex-persistedstate' // 상태값 영구 보존을 위한 플로그인 참조
+
+export default createStore({
+  modules: {
+    todo: todo,
+    user: user
+  },
+  plugins: [persistedstate({ paths: ['todo.todos'] })] // 영구 사용을 위해서는 반드시 지정되어야 함
+})
+```
+
+```javascript
+// todo.js for persistedstate(영구 상태값 저장을 위함)
+export const todo = {
+  // 중앙 데이터 저장소
+  namespaced: true,
+  state() {
+    return {
+      todos: [
+        { id: 1, title: 'todo 1', done: true },
+        { id: 2, title: 'todo 2', done: false },
+        { id: 3, title: 'todo 3', done: false }
+      ]
+    }
+  },
+  // Store를 위한 computed라고 생각하면 됨.
+  getters: {
+    todosCount(state) {
+      return state.todos.length
+    },
+    doneTodosCount(state) {
+      return state.todos.filter((todo) => todo.done).length
+    },
+    notDoneTodosCount(state) {
+      return state.todos.filter((todo) => !todo.done).length
+    }
+  },
+  // 상태(state)를 변경시킬 수 있는 유일한 방법(함수)
+  mutations: {
+    add(state, item) {
+      state.todos.push(item)
+    },
+    remove(state, id) {
+      state.todos = state.todos.filter((todo) => todo.id !== id)
+    },
+    doneYN(state, doneStatus) {
+      state.todos.filter((todo) => todo.id === doneStatus.id)[0].done =
+        doneStatus.done
+    }
+  },
+  // mutations 하고 비슷한데,
+  // actions에 정의된 함수에서는 결국은 mutations에 정의한 함수를 커밋(commit)시켜서 state를 변경
+  // 비동기 처리가 가능
+  actions: {
+    add({ commit }, item) {
+      // const {commit, state} = context
+      // context.commit, context.state
+
+      // 서버랑 통신. fetch, axios
+      commit('add', item)
+    }
+    // add2: async ({ commit }, item) => {
+    //   await fetch('', {})
+    // }
+  }
+}
+```
+
+```javascript
+// user.js for cookie 사용을 위함
+import VueCookies from 'vue-cookies'
+
+export const user = {
+  // 중앙 데이터 저장소
+  namespaced: true,
+  state() {
+    return {
+      userInfo: {
+        name: '',
+        email: '',
+        phone: '',
+        lang: ''
+      }
+    }
+  },
+  // Store를 위한 computed라고 생각하면 됨.
+  getters: {
+    isLogin(state) {
+      if (VueCookies.get('userInfo')) {
+        return true
+      } else {
+        return false
+      }
+    },
+    isKakaoLogin() {
+      if (window.Kakao.Auth.getAccessToken()) {
+        return true
+      } else {
+        return false
+      }
+    }
+  },
+  // 상태(state)를 변경시킬 수 있는 유일한 방법(함수)
+  mutations: {
+    setUserInfo(state, userInfo) {
+      console.log(userInfo)
+      state.userInfo = userInfo
+      VueCookies.set('userInfo', userInfo, '30s')
+    },
+    clearUserInfo(state) {
+      state.userInfo = {}
+      VueCookies.remove('userInfo')
+    },
+    getUserInfo(state) {
+      if (VueCookies.get('userInfo')) {
+        return state.userInfo
+      } else {
+        return {}
+      }
+    }
+  },
+  actions: {}
+}
+```
 
 ```html
+// TodoView.vue
+<template>
+  <div>
+    <div>{{ todos }}</div>
+    <div>할일 목록 전체수 : {{ todosCount }}</div>
+    <div>완료 목록 수 : {{ doneTodosCount }}</div>
+    <div>미완료 목록 수 : {{ notDoneTodosCount }}</div>
+
+    <div>
+      <label for="todo" class="form-label">할일</label>
+      <input type="text" name="" id="todo" class="form-control" v-model="todo" />
+      <button class="btn btn-primary" v-on:click="addItem">추가(mutation)</button>
+      <button class="btn btn-primary" @click="addItem2">추가(action)</button>
+    </div>
+
+    <div>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Todo ID</th>
+            <th>할일</th>
+            <th>완료여부</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-bind:key="todo.id" v-for="todo in todos">
+            <td>{{ todo.id }}</td>
+            <td>{{ todo.title }}</td>
+            <td>
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckChecked"
+                  v-bind:checked="todo.done"
+                  v-on:change="doneYN(todo.id, $event)"
+                />
+              </div>
+            </td>
+            <td><button class="btn btn-danger btn-sm" v-on:click="removeItem(todo.id)">삭제</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  components: {},
+  data() {
+    return {
+      todo: ''
+    }
+  },
+  computed: {
+    // namespace 사용으로 지정된 modules에 정의된 store 오브젝트 접근법
+    todos() {
+      return this.$store.state.todo.todos
+    },
+    todosCount() {
+      return this.$store.getters['todo/todosCount']
+    },
+    doneTodosCount() {
+      return this.$store.getters['todo/doneTodosCount']
+    },
+    notDoneTodosCount() {
+      return this.$store.getters['todo/notDoneTodosCount']
+    }
+    // state나 module 없이 바로 사용하는 경우 다음과 같은 코드로 작성
+    // ,
+    // todos() {
+    //   return this.$store.state.todos
+    // },
+    // todosCount() {
+    //   return this.$store.getters.todosCount
+    // },
+    // doneTodosCount() {
+    //   return this.$store.getters.doneTodosCount
+    // },
+    // notDoneTodosCount() {
+    //   return this.$store.getters.notDoneTodosCount
+    // }
+  },
+  methods: {
+    // module 사용하는 코드 샘플
+    addItem() {
+      this.$store.commit('todo/add', { id: 4, title: this.todo, done: false })
+    },
+    removeItem(id) {
+      this.$store.commit('todo/remove', id)
+    },
+    doneYN(id, event) {
+      this.$store.commit('todo/doneYN', { id: id, done: !event.target.checked })
+    },
+    addItem2() {
+      this.$store.dispatch('todo/add', { id: 4, title: this.todo, done: false })
+    }
+
+    //state나 module 없이 바로 사용하는 경우
+    // addItem() {
+    //   this.$store.commit('add', { id: 4, title: this.todo, done: false })
+    // },
+    // removeItem(id) {
+    //   this.$store.commit('remove', id)
+    // },
+    // doneYN(id, event) {
+    //   this.$store.commit('doneYN', { id: id, done: event.target.checked })
+    // }
+  }
+}
+</script>
+```
+
+```html
+<!-- LoginView.vue -->
+<template>
+  <main class="form-signin w-100 m-auto">
+    <div>
+      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+      <div class="form-floating">
+        <input
+          type="email"
+          class="form-control"
+          id="floatingInput"
+          placeholder="name@example.com"
+        />
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div class="form-floating">
+        <input
+          type="password"
+          class="form-control"
+          id="floatingPassword"
+          placeholder="Password"
+        />
+        <label for="floatingPassword">Password</label>
+      </div>
+
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me" /> Remember me
+        </label>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" @click="login">
+        Sign in
+      </button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
+    </div>
+  </main>
+</template>
+<script>
+export default {
+  components: {},
+  data() {
+    return {
+      sampleData: ''
+    }
+  },
+  methods: {
+    login() {
+      this.$store.commit('user/setUserInfo', {
+        name: 'John Doe',
+        email: 'john@gmail.com',
+        phone: '010-0000-0000',
+        lang: 'ko'
+      })
+    }
+  }
+}
+</script>
 ```
 
 # 6. Composition API
