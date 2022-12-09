@@ -849,41 +849,263 @@ export default {
 
 # 7. Kakao Login API
 
-- Contents
+- 카카오에서 제공하는 인증 API로 다음과 같은 몇가지 주요 사항 존재
+  - 카카오개발자센터 / 내 어플리케이션 / 애플리케이션 추가
+  - JavaScript 키를 Vue에서 사용
+  - 플랫폼
+    - 웹 플랫폼 등록 / http://localhost:8080 입력(테스트를 위함이며, 런칭을 위해서는 신청 및 검수 필요)
+    - Redirect URI 등록 / 활성화 설정 On, Redirect URI 설정
+  - 동의 항목
+    - 인증을 위하여 사용할 인증 항목에 대한 동의(필수, 선택) 선택 및 설정
+    - ID 컬럼 참고
 
 > **IMPORTANT**
->> Vue.js
+>> [카카오 로그인 공식 싸이트](https://developers.kakao.com/docs/latest/ko/kakaologin/common)
 >>
->> - contents
->> - contents
+>> - 카카오 로그인 API 사용시 필수 사항
+>> - 카카오 개발자 센터에서 API 설정, index.html(public) CDN 추가, main.js에 키값 추가, user store 정의, 로그인 인증 및 상태 확인 코드 작성
 
 ```html
+<!-- public > index.html > CDN -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+```
+
+```javascript
+<!-- main.js seceret key -->
+window.Kakao.init('05fd4f355c7ac022161c6196df1acbe1')
+
+<!-- user.js store -->
+// Store를 위한 computed라고 생각하면 됨.
+  getters: {
+    isKakaoLogin() {
+      if (window.Kakao.Auth.getAccessToken()) {
+        return true
+      } else {
+        return false
+      }
+    }
+  }
+```
+
+```html
+<!-- kakaoLoginView.vue auth -->
+<template>
+  <div>
+    <a id="custom-login-btn" @click="kakaoLogin">
+      <img src="//k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222" alt="카카오 로그인 버튼" />
+    </a>
+    <button class="btn btn-danger" @click="kakaoLogout">카카오 로그아웃</button>
+  </div>
+</template>
+<script>
+export default {
+  methods: {
+    kakaoLogin() {
+      window.Kakao.Auth.login({
+        scope: 'profile_nickname, account_email, gender',
+        success: this.getKakaoAccount,
+        fail: function (err) {
+          alert(JSON.stringify(err))
+        }
+      })
+    },
+    getKakaoAccount(authObj) {
+      console.log(authObj)
+      window.Kakao.API.request({
+        url: '/v2/user/me',
+        success: (res) => {
+          const kakaoAccount = res.kakao_account
+          console.log('kakaoAccount', kakaoAccount)
+          const nickname = kakaoAccount.profile.nickname
+          const email = kakaoAccount.email
+          const gender = kakaoAccount.gender
+
+          this.$router.push({ path: '/login/main' })
+        }
+      })
+    },
+    kakaoLogout() {
+      if (!window.Kakao.Auth.getAccessToken()) {
+        console.log('로그인 하지 않았습니다.')
+        return
+      }
+
+      window.Kakao.Auth.logout((res) => {
+        // 로그아웃
+        console.log('access token', window.Kakao.Auth.getAccessToken())
+        console.log('logout', res)
+      })
+    }
+  }
+}
+</script>
+```
+
+```html
+<!-- 일반페이지 로그인 확인 -->
+<template>
+  <div>{{ isLogin }}</div>
+</template>
+<script>
+export default {
+  computed: {
+    isLogin() {
+      return this.$store.getters['user/isKakaoLogin']
+    }
+  }
+  mounted() {
+    console.log('access token', window.Kakao.Auth.getAccessToken())
+  }
+}
+</script>
 ```
 
 # 8. Naver Login API
 
-- Contents
+- 네이버에서 제공하는 인증 API로 다음과 같은 몇가지 주요 사항 존재
+  - 네이버개발자센터 / 어플리케이션 / 애플리케이션 등록
+  - 어플리케이션 정보 / Client ID가 인증 키 값, 관리자 ID 등록
+  - 사용 API 선택, 환경은 PC 웹선택
+  - 서비스 URL 및 Callback URL 등록
 
 > **IMPORTANT**
->> Vue.js
+>> [네이버 로그인 공식 싸이트](https://developers.naver.com/products/login/api/api.md)
 >>
->> - contents
->> - contents
+>> - 카카오 로그인 API 사용시 필수 사항
+>> - 네이버 개발자 센터에서 API 등록 및 설정, index.html(public) CDN 추가, 로그인 인증 및 상태 확인 코드 작성
 
 ```html
+<!-- CDN -->
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
+```
+
+```html
+<template>
+  <div>
+    <div id="naverIdLogin">
+      <a id="naverIdLogin_loginButton" href="#" role="button"
+        ><img src="https://static.nid.naver.com/oauth/big_g.PNG" width="320"
+      /></a>
+    </div>
+    <button class="btn btn-danger" @click="naverLogout($event)">
+      로그아웃
+    </button>
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      email: '',
+      naverLogin: null
+    }
+  }
+  mounted() {
+    this.naverLogin = new window.naver.LoginWithNaverId({
+      clientId: 'aaiqLtDt9WeEHl5ZSpgi',
+      callbackUrl: 'http://localhost:8080/login/naver',
+      isPopup: true,
+      loginButton: { color: 'green', type: 3, height: 60 }
+    })
+    /* (4) 네아로 로그인 정보를 초기화하기 위하여 init을 호출 */
+    this.naverLogin.init()
+
+    /* (4-1) 임의의 링크를 설정해줄 필요가 있는 경우 */
+    // $("#gnbLogin").attr("href", naverLogin.generateAuthorizeUrl());
+
+    /* (5) 현재 로그인 상태를 확인 */
+    this.naverLogin.getLoginStatus((status) => {
+      if (status) {
+        /* (6) 로그인 상태가 "true" 인 경우 로그인 버튼을 없애고 사용자 정보를 출력합니다. */
+        // setLoginStatus();
+        console.log(this.naverLogin.user.getEmail())
+        console.log(this.naverLogin.user.getNickName())
+        console.log(this.naverLogin.user.getGender())
+        this.email = this.naverLogin.user.getEmail()
+      }
+    })
+  },
+  unmounted() {},
+  methods: {
+    naverLogout(event) {
+      event.preventDefault()
+      this.naverLogin.logout()
+    }
+  }
+}
+</script>
 ```
 
 # 9. Daum Post Number API
 
-- Contents
+- Daum에서 제공하는 우편번호 검색 API
 
 > **IMPORTANT**
->> Vue.js
+>> [Daum Post API 공식 싸이트](https://postcode.map.daum.net/guide)
 >>
->> - contents
->> - contents
+>> - CDN 추가
+>> - window.daum.Postcode callback 함수로 구현
 
 ```html
+<template>
+  <div class="row">
+    <div class="col-lg-3 col-md-5">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="우편번호" aria-label="우편번호" aria-describedby="postcode" v-model="zonecode" readonly/>
+        <button class="btn btn-outline-secondary" id="postcode" v-on:click="openPostcode">검색</button>
+      </div>
+    </div>
+    <div class="col-12">
+      <input type="text" class="form-control" v-model="roadAddress" placeholder="주소" readonly />
+      <input type="text" class="form-control" v-model="detailAddress" placeholder="상세주소" />
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      zonecode: '',
+      roadAddress: '',
+      detailAddress: ''
+    }
+  },
+  created() {
+    // daum 객체가 없다면 스크립트에 추가 합니다.
+    if (!window.daum) {
+      this.loadScript()
+    }
+  },
+  methods: {
+    loadScript() {
+      // document에 script CDN 추가 됩니다.
+      const script = document.createElement('script')
+      script.src = '//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js'
+      document.head.appendChild(script)
+    },
+    openPostcode() {
+      new window.daum.Postcode({
+        oncomplete: (data) => {
+          // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+          // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+          console.log(data)
+          this.zonecode = data.zonecode
+          this.roadAddress = data.roadAddress
+        }
+      }).open()
+    }
+    // 카카오페이
+    // https://developers.kakao.com/docs/latest/ko/kakaopay/common
+    // https://developers.kakao.com/docs/latest/ko/kakaopay/ready
+    // https://developers.kakao.com/docs/latest/ko/kakaopay/approve
+    // https://developers.kakao.com/docs/latest/ko/kakaopay/cancel
+    // https://developers.kakao.com/docs/latest/ko/kakaopay/ready-vbank
+    // https://developers.kakao.com/docs/latest/ko/kakaopay/approve-vbank
+    // https://developers.kakao.com/docs/latest/ko/kakaopay/ready-escrow
+    // https://developers.kakao.com/docs/latest/ko/kakaopay/approve-escrow
+  }
+}
+</script>
 ```
 
 # 10. Kakao Map API
