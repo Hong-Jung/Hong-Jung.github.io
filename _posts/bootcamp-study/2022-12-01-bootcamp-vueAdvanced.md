@@ -854,7 +854,7 @@ export default {
   - JavaScript 키를 Vue에서 사용
   - 플랫폼
     - 웹 플랫폼 등록 / http://localhost:8080 입력(테스트를 위함이며, 런칭을 위해서는 신청 및 검수 필요)
-    - Redirect URI 등록 / 활성화 설정 On, Redirect URI 설정
+    - `Redirect URI` 등록 / 활성화 설정 `On`, Redirect URI 설정
   - 동의 항목
     - 인증을 위하여 사용할 인증 항목에 대한 동의(필수, 선택) 선택 및 설정
     - ID 컬럼 참고
@@ -965,8 +965,8 @@ export default {
 - 네이버에서 제공하는 인증 API로 다음과 같은 몇가지 주요 사항 존재
   - 네이버개발자센터 / 어플리케이션 / 애플리케이션 등록
   - 어플리케이션 정보 / Client ID가 인증 키 값, 관리자 ID 등록
-  - 사용 API 선택, 환경은 PC 웹선택
-  - 서비스 URL 및 Callback URL 등록
+  - 사용 API 선택, 환경은 PC `웹`선택
+  - `서비스 URL` 및 `Callback URL` 등록
 
 > **IMPORTANT**
 >> [네이버 로그인 공식 싸이트](https://developers.naver.com/products/login/api/api.md)
@@ -1044,7 +1044,7 @@ export default {
 >> [Daum Post API 공식 싸이트](https://postcode.map.daum.net/guide)
 >>
 >> - CDN 추가
->> - window.daum.Postcode callback 함수로 구현
+>> - `window.daum.Postcode` callback 함수로 구현
 
 ```html
 <template>
@@ -1151,7 +1151,6 @@ export default {
       script.src =
         '//dapi.kakao.com/v2/maps/sdk.js?appkey=32e3b91d5934929c13ad33973ce62178&autoload=false'
       script.onload = () => window.kakao.maps.load(this.loadMap)
-
       document.head.appendChild(script)
     },
     loadMap() {
@@ -1161,7 +1160,7 @@ export default {
         center: new window.kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표.
         level: 3 // 지도의 레벨(확대, 축소 정도)
       }
-
+      
       this.map = new window.kakao.maps.Map(container, options) // 지도 생성 및 객체 리턴
       this.loadMaker()
     },
