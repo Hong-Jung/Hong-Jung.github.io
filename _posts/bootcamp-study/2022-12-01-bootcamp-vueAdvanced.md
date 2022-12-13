@@ -27,7 +27,8 @@ last_modified_at: 2022-12-01
 - [8. Naver Login API](#8-naver-login-api)
 - [9. Daum Post Number API](#9-daum-post-number-api)
 - [10. Kakao Map API](#10-kakao-map-api)
-- [11. 참고](#11-참고)
+- [11. Vue Favorite Component](#11-vue-favorite-component)
+- [12. 참고](#12-참고)
 
 # 1. Vuejs Advanced
 
@@ -1181,7 +1182,447 @@ export default {
 </script>
 ```
 
-# 11. 참고
+# 11. Vue Favorite Component
+
+- `Vue-Fontawesome`은 무료(유료) 아이콘 콤포넌트
+
+> **IMPORTANT**
+>> [Fontawesome 공식 싸이트](https://fontawesome.com/)
+>>
+>> - [npm fontawesome](https://www.npmjs.com/package/font-awesome)
+>> - [Fontawesome npm installation](https://fontawesome.com/docs/web/use-with/vue/)
+>> - [Globaly Guide in main.js](https://fontawesome.com/docs/web/use-with/vue/add-icons)
+>> - 전체 아이콘을 할꺼번에 추가해서 사용하는 부분은 지양해야 한다. 이유는 로드 부하로 인하여 비용이 증가할 수 있다. 그러므로 프로젝트별 사용할 아이콘을 명시적으로 선언해서 사용하길 권장 한다.
+>> - [Fontawesome CDN](https://cdnjs.com/libraries/font-awesome)
+
+```javascript
+// main.js > globaly
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faUserSecret, faUserClock } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+library.add(faUserSecret)
+library.add(faUserClock)
+
+app.component('font-awesome-icon', FontAwesomeIcon)
+```
+
+```html
+<template>
+  <div>
+    <font-awesome-icon icon="user-secret" />
+    <font-awesome-icon icon="user-clock" />
+    <i class="fa-solid fa-envelope"></i>
+  </div>
+</template>
+<script>
+export default {
+}
+</script>
+```
+
+- `FullCalendar는` 일정관리를 위한 칼렌다 콤포넌트
+
+> **IMPORTANT**
+>> [FullCalendar 공식 싸이트](https://fullcalendar.io/)
+>>
+>> - npm을 이용하여 vue3용 콤포넌트 설치 ([vue fullcalendar doc](https://fullcalendar.io/docs/vue))
+>> - `Then install any additional FullCalendar plugins like "@fullcalendar/daygrid"`
+>> - 보통 특정 화면에서만 사용함으로 Globaly로 사용하지 않으며, 특정 페이지 콤포넌트에서만 사용 한다.
+
+```html
+<template>
+  <FullCalendar :options="calendarOptions" />
+</template>
+
+<script>
+import '@fullcalendar/core/vdom' // solves problem with Vite
+import FullCalendar from '@fullcalendar/vue3'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import timeGridPlugin from '@fullcalendar/timegrid'
+import interactionPlugin from '@fullcalendar/interaction'
+
+export default {
+  components: { FullCalendar },
+  data() {
+    return {
+      calendarOptions: {
+        plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+        initialView: 'dayGridMonth',
+        dateClick: this.handleDateClick,
+        events: [
+          { title: 'event 1', date: '2022-05-28' },
+          {
+            title: 'event 2',
+            start: '2022-06-02T10:30:00',
+            end: '2022-06-04T11:30:00'
+          }
+        ],
+        headerToolbar: {
+          left: 'dayGridMonth,timeGridWeek,timeGridDay',
+          center: 'title',
+          right: 'prevYear,prev,next,nextYear'
+        }
+      }
+    }
+  },
+  methods: {
+    handleDateClick(arg) {
+      console.log(arg)
+    }
+  }
+}
+</script>
+```
+
+- `Sweetalert2`은 자바스크립트 기반의 `Sweetalert를` Vue 버전으로 출시한 대표적인 다이얼로그 창을 위한 콤포넌트
+
+> **IMPORTANT**
+>> [vue-sweetalert2 공식 싸이트](https://avil13.github.io/vue-sweetalert2/)
+>>
+>> - [vue-sweetalert2 npm 공식 싸이트](https://www.npmjs.com/package/vue-sweetalert2)
+>> - [vue-sweetalert2 doc](https://sweetalert2.github.io/)
+>> - Globaly로 사용하기 추천
+>> - `Swal.fire({...})`의 코드는 기존의 Sweetalert과 동일
+
+```javascript
+// main.js
+import VueSweetalert2 from 'vue-sweetalert2'
+import 'sweetalert2/dist/sweetalert2.min.css'
+
+app.use(VueSweetalert2)
+```
+
+```html
+<template>
+  <button @click="showAlert">Hello world</button>
+</template>
+
+<script>
+export default {
+  methods: {
+    showAlert() {
+      // Use sweetalert2
+      //   this.$swal('Any fool can use a computer')
+      //   this.$swal('The Internet?', 'That thing is still around?', 'info')
+
+      this.$swal({
+        title: '정말 삭제하시겠습니까?',
+        text: '삭제된 데이터는 복구할 수 없습니다!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '네, 삭제하겠습니다!',
+        cancelButtonText: '취소'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // 삭제 로직 구현
+          this.$swal(
+            '삭제되었습니다!',
+            '선택한 데이터가 정상적으로 삭제되었습니다.',
+            'success'
+          )
+        }
+      })
+    }
+  }
+}
+</script>
+```
+
+- `Vue Loading Overlay`는 화면 로딩에 대한 처리를 위한 컴포넌트
+
+> **IMPORTANT**
+>> [Loading Overlay NPM 공식 싸이트](https://www.npmjs.com/package/vue-loading-overlay)
+>>
+>> - Globaly 설치하여 전역으로 사용
+
+```javascript
+// main.js for globaly use
+import VueLoading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
+
+app.use(VueLoading)
+```
+
+```html
+<template>
+  <div>
+    <button @click="doSearch">조회</button>
+  </div>
+</template>
+<script>
+export default {
+  components: {},
+  data() {
+    return {
+      sampleData: ''
+    }
+  },
+  methods: {
+    doSearch() {
+      const loader = this.$loading.show()
+      // simulate AJAX
+      setTimeout(() => {
+        loader.hide()
+      }, 5000)
+    }
+  }
+}
+</script>
+```
+
+- `Vue Good Table Next`는 `Vue Good Table의 Vue 3 버전`으로 테이블 요소에 대한 컴포넌트
+
+> **IMPORTANT**
+>> [Vue Good Table Next 공식 싸이트](https://borisflesch.github.io/vue-good-table-next/)
+>>
+>> - [NPM 공식 싸이트](https://www.npmjs.com/package/vue-good-table-next)
+>> - Globaly 사용을 위하여 main.js에 참조 및 사용 속성 설정
+
+```javascript
+import VueGoodTablePlugin from 'vue-good-table-next'
+import 'vue-good-table-next/dist/vue-good-table-next.css'
+
+app.use(VueGoodTablePlugin)
+```
+
+```html
+<template>
+  <div>
+    <vue-good-table
+      :columns="columns"
+      :rows="rows"
+      :line-numbers="true"
+      :row-style-class="rowStyleClassFn"
+      v-on:row-click="onRowClick"
+      :search-options="{
+        enabled: true,
+        trigger: 'enter',
+        placeholder: 'Search this table'
+      }"
+      :sort-options="{
+        enabled: true,
+        multipleColumns: true,
+        initialSortBy: [
+          { field: 'name', type: 'asc' },
+          { field: 'age', type: 'desc' }
+        ]
+      }"
+      :pagination-options="{
+        enabled: true,
+        mode: 'pages',
+        perPage: 2,
+        perPageDropdownEnabled: true
+      }"
+    >
+      <template #table-actions>
+        <button class="btn btn-info btn-sm">엑셀저장</button>
+      </template>
+    </vue-good-table>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'my-component',
+  data() {
+    return {
+      columns: [
+        {
+          label: 'Name',
+          field: 'name'
+        },
+        {
+          label: 'Age',
+          field: 'age',
+          type: 'number'
+        },
+        {
+          label: 'Created On',
+          field: 'createdAt',
+          type: 'date',
+          dateInputFormat: 'yyyy-MM-dd',
+          dateOutputFormat: 'MMM do yy'
+        },
+        {
+          label: 'Percent',
+          field: 'score',
+          type: 'percentage'
+        }
+      ],
+      rows: [
+        { id: 1, name: 'John', age: 20, createdAt: '', score: 0.03343 },
+        { id: 2, name: 'Jane', age: 24, createdAt: '2011-10-31', score: 0.03343 },
+        { id: 3, name: 'Susan', age: 16, createdAt: '2011-10-30', score: 0.03343 },
+        { id: 4, name: 'Chris', age: 55, createdAt: '2011-10-11', score: 0.03343 },
+        { id: 5, name: 'Dan', age: 40, createdAt: '2011-10-21', score: 0.03343 },
+        { id: 6, name: 'John', age: 20, createdAt: '2011-10-31', score: 0.03343 }
+      ]
+    }
+  },
+  methods: {
+    rowStyleClassFn(row) {
+      return row.age > 18 ? 'green' : 'red'
+    },
+    onRowClick(params) {
+      console.log(params)
+    }
+  }
+}
+</script>
+
+<style>
+.green {
+  background-color: green;
+}
+.red {
+  background-color: red;
+}
+</style>
+```
+
+- `Vue ApexCharts`는 Vue 3를 지원하는 챠트 컴포넌트
+
+> **IMPORTANT**
+>> [Vue ApexChart 공식 싸이트](https://apexcharts.com/)
+>>
+>> - [NPM 공식 싸이트](https://www.npmjs.com/package/vue3-apexcharts)
+>> - globaly 사용을 위하여 main.js에 참조 및 사용 설정
+>> - chart의 경우 component화하여 많이 사용
+
+```javascript
+// main.js for globaly use
+import VueApexCharts from 'vue3-apexcharts'
+
+app.use(VueApexCharts)
+```
+
+```html
+<!-- BarChar.vue Component -->
+<template>
+  <apexchart type="bar" :width="width" :height="height" :options="chartOptions" :series="series"/>
+</template>
+<script>
+export default {
+  components: {},
+  props: {
+    width: {
+      type: String,
+      default: '100%'
+    },
+    height: {
+      type: String,
+      default: '100%'
+    },
+    title: {
+      type: String,
+      default: ''
+    },
+    legendPosition: {
+      type: String,
+      default: 'bottom'
+    },
+    series: {
+      type: Array,
+      default: function () {
+        return []
+      }
+    },
+    categories: {
+      type: Array,
+      default: function () {
+        return []
+      }
+    }
+  },
+  data() {
+    return {
+      chartOptions: {
+        plotOptions: {
+          bar: {
+            // borderRadius: 4,
+            horizontal: true, //false의 경우 Column Chart로 표시 됨
+            dataLabels: {
+              position: 'top'
+            }
+          }
+        },
+        // stroke: {
+        //   width: 1,
+        //   colors: ['#000000']
+        // },
+        xaxis: {
+          categories: []
+        },
+        legend: {
+          show: true,
+          position: this.legendPosition
+        },
+        title: {
+          text: this.title
+        }
+      }
+    }
+  },
+  setup() {},
+  created() {},
+  mounted() {
+    this.chartOptions.xaxis.categories = this.categories
+  },
+  unmounted() {},
+  methods: {}
+}
+</script>
+```
+
+```html
+<!-- BarChartView.vue for use component -->
+<template>
+  <div>
+    <bar-chart
+      height="400px"
+      :series="bar.series"
+      :categories="bar.categories"
+      title="Bar차트 타이틀"
+      legendPosition="right"
+    />
+  </div>
+</template>
+<script>
+import BarChart from '@/components/charts/BarChart.vue'
+export default {
+  components: {
+    'bar-chart': BarChart
+  },
+  data() {
+    return {
+      bar: {
+        series: [
+          {
+            name: '매출',
+            data: [30, 40, 45, 50, 49, 60, 70, 91]
+          },
+          {
+            name: '매입',
+            data: [20, 30, 35, 40, 39, 50, 70, 91]
+          }
+        ],
+        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+      }
+    }
+  },
+  setup() {},
+  created() {},
+  mounted() {},
+  unmounted() {},
+  methods: {}
+}
+</script>
+```
+
+# 12. 참고
 
 - [개발자의 품격 youtube](https://www.youtube.com/c/%EA%B0%9C%EB%B0%9C%EC%9E%90%EC%9D%98%ED%92%88%EA%B2%A9)
 - [MDN Site](https://developer.mozilla.org/ko/)
