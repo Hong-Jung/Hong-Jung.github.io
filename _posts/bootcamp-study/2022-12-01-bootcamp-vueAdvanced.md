@@ -1622,6 +1622,79 @@ export default {
 </script>
 ```
 
+- `Excel` Export 관련 컴포넌트
+
+> **IMPORTANT**
+>> [NPM exceljs](https://www.npmjs.com/package/exceljs)
+>> [NPM file-saver](https://www.npmjs.com/package/file-saver)
+>>
+>> - ...
+>> - ...
+>> - ...
+
+```javascript
+// package.json
+"exceljs": "^4.3.0",
+"file-saver": "^2.0.5",
+
+// mixin > index.js
+import ExcelJS from 'exceljs'
+import { saveAs } from 'file-saver'
+
+async $excelFromTable(header = [], rows = [], fileName = 'excel', option = {}) {
+  /* eslint-disable */
+  header = header.filter((h) => h.title && h.key)
+
+  const wb = new ExcelJS.Workbook()
+  const ws = wb.addWorksheet()
+  ws.addTable({
+    name: 'myTable',
+    ref: 'A1',
+    headerRow: true,
+    columns: header.map((h) => ({
+      name: h.title
+    })),
+    rows: rows.map((r) => header.map((h) => r[h.key])),
+    ...option
+  })
+
+  saveAs(new Blob([await wb.xlsx.writeBuffer()]), `${fileName}.xlsx`)
+}
+```
+
+```html
+<!-- 사용하는 코드 샘플 -->
+<template>
+  <div class="mt-3">
+    <button class="btn btn-secondary me-1" @click="downloadExcel">Excel</button>
+  </div>
+</template>
+<script>
+export default {
+  components: {},
+  data() {
+    return {
+      headers: [
+        { title: 'Name', key: 'name' },
+        { title: 'Company', key: 'company' },
+        { title: 'Email', key: 'email' },
+        { title: 'Phone', key: 'phone' },
+        { title: 'Address', key: 'addres' },
+        { title: 'Gender', key: 'gender' } //화면에는 안보이지만 Excel 출력시 추가로 들어가는 데이터
+      ],
+      customers: [],
+      searchName: ''
+    }
+  },
+  methods: {
+    downloadExcel() {
+      this.$excelFromTable(this.headers, this.customers, 'customers', {})
+    }
+  }
+}
+</script>
+```
+
 # 12. 참고
 
 - [개발자의 품격 youtube](https://www.youtube.com/c/%EA%B0%9C%EB%B0%9C%EC%9E%90%EC%9D%98%ED%92%88%EA%B2%A9)
