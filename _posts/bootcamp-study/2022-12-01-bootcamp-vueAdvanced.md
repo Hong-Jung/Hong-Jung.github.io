@@ -28,7 +28,8 @@ last_modified_at: 2022-12-01
 - [9. Daum Post Number API](#9-daum-post-number-api)
 - [10. Kakao Map API](#10-kakao-map-api)
 - [11. Vue Favorite Component](#11-vue-favorite-component)
-- [12. 참고](#12-참고)
+- [12. Build (Deploy)](#12-build-deploy)
+- [13. 참고](#13-참고)
 
 # 1. Vuejs Advanced
 
@@ -1189,11 +1190,10 @@ export default {
 > **IMPORTANT**
 >> [Fontawesome 공식 싸이트](https://fontawesome.com/)
 >>
->> - [npm fontawesome](https://www.npmjs.com/package/font-awesome)
->> - [Fontawesome npm installation](https://fontawesome.com/docs/web/use-with/vue/)
+>> - [Fontawesome npm installation](https://fontawesome.com/docs/web/use-with/vue/) / 전체 설치 필요
 >> - [Globaly Guide in main.js](https://fontawesome.com/docs/web/use-with/vue/add-icons)
 >> - 전체 아이콘을 할꺼번에 추가해서 사용하는 부분은 지양해야 한다. 이유는 로드 부하로 인하여 비용이 증가할 수 있다. 그러므로 프로젝트별 사용할 아이콘을 명시적으로 선언해서 사용하길 권장 한다.
->> - [Fontawesome CDN](https://cdnjs.com/libraries/font-awesome)
+>> - [Fontawesome CDN](https://cdnjs.com/libraries/font-awesome) / 지양
 
 ```javascript
 // main.js > globaly
@@ -1695,7 +1695,20 @@ export default {
 </script>
 ```
 
-# 12. 참고
+# 12. Build (Deploy)
+
+- 배포를 위하여 스태틱(Static) 파일로 컴파일 (즉, 서버와 같은 레파리토리에 개발된 소스를 빌드 후 배포)
+- vue 코드는 javascript 파일로, style 코드는 css 파일로 자동으로 빌드
+
+> **IMPORTANT**
+>> [build vue 공식 싸이트](https://vuejs.org/guide/quick-start.html#creating-a-vue-application)
+>>
+>> - 빌드할 프로젝트에서 `'npm run build'` 이후 `dist` 폴더에 배포됨
+>> - router에서 webpackChunkName의 이름으로 js 빌드 파일이 만들어짐 (아닌 파일은 app.xxx.js 파일로 생성)
+>> - css 파일은 컴포넌트(vue 파일)에서 스타일 코드가 존재한다면 webpackChunkName의 이름으로 css 빌드 파일 생성
+>> - 최종 서버에는 `dist` 폴더만 업로드
+
+# 13. 참고
 
 - [개발자의 품격 youtube](https://www.youtube.com/c/%EA%B0%9C%EB%B0%9C%EC%9E%90%EC%9D%98%ED%92%88%EA%B2%A9)
 - [MDN Site](https://developer.mozilla.org/ko/)
