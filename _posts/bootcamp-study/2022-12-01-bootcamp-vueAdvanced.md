@@ -1628,9 +1628,8 @@ export default {
 >> [NPM exceljs](https://www.npmjs.com/package/exceljs)
 >> [NPM file-saver](https://www.npmjs.com/package/file-saver)
 >>
->> - ...
->> - ...
->> - ...
+>> - excel export 콤포넌트인 `exceljs`
+>> - 파일 저장을 위한 콤포넌트인 `file-saver`
 
 ```javascript
 // package.json
