@@ -1,5 +1,5 @@
 ---
-title:  "Node.js"
+title:  "Nodejs"
 excerpt: "개발자의품격"
 comments: true
 header:
@@ -20,7 +20,7 @@ last_modified_at: 2022-12-18
 - [1. Node.js](#1-nodejs)
 - [2. Node.js 란?](#2-nodejs-란)
 - [3. 자바스크립트 실행 및 모듈](#3-자바스크립트-실행-및-모듈)
-- [13. 참고](#13-참고)
+- [참고](#참고)
 
 # 1. Node.js
 
@@ -89,6 +89,6 @@ console.log(minus(7, 2));
 console.log(defaultNum);
 ```
 
-# 13. 참고
+# 참고
 
 - [개발자의 품격 youtube](https://www.youtube.com/c/%EA%B0%9C%EB%B0%9C%EC%9E%90%EC%9D%98%ED%92%88%EA%B2%A9)
