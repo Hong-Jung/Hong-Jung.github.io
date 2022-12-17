@@ -17,12 +17,12 @@ date: 2022-12-18
 last_modified_at: 2022-12-18
 ---
 
-- [1. Node.js](#1-nodejs)
+- [1. Node.js 개요](#1-nodejs-개요)
 - [2. Node.js 란?](#2-nodejs-란)
 - [3. 자바스크립트 실행 및 모듈](#3-자바스크립트-실행-및-모듈)
 - [참고](#참고)
 
-# 1. Node.js
+# 1. Node.js 개요
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/2560px-Node.js_logo.svg.png" width="100%" align="center"/>
 
