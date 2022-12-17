@@ -7,7 +7,7 @@ header:
 categories:
   - bootcamp
 tags:
-  - [Blog, bootcamp, 개발자의품격, Vue]
+  - [Blog, bootcamp, 개발자의품격, nodejs]
 
 toc: true
 toc_sticky: false
@@ -210,4 +210,3 @@ console.log(defaultNum);
 # 13. 참고
 
 - [개발자의 품격 youtube](https://www.youtube.com/c/%EA%B0%9C%EB%B0%9C%EC%9E%90%EC%9D%98%ED%92%88%EA%B2%A9)
-- 
