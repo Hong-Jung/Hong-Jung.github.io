@@ -521,4 +521,29 @@ console.log(data2);
 
 # 참고
 
+- MySql 설치 명령어 모음
+
+> **IMPORTANT**
+>> [MySql 공식 싸이트](https://www.mysql.com/)
+>>
+>> - 무료 오픈소스 RDBMS이며, 다음의 중요한 명령어 참고
+>> - brew list // 설치된 목록 조회
+>> - brew services start mysql // mysql 서비스 시작
+>> - brew services stop mysql / mysql 서비스 종료
+>> - mysql_secure_installation // 초기 설정
+>>
+>>> - 간단한 비밀번호
+>>> - anonymous user 제거
+>>> - remotely disallow 
+>>> - test database 제거
+>>> - 변경된 권한 테이블에 적용
+>>
+>> - mysql -h localhost -u root -p // -h 접속주소, -u 접속 사용자
+>> - mysql> status // utf8mb4 확인
+>> - mysql> exit // 종료
+>> - Workbench 설치
+>>
+>>> - <https://dev.mysql.com/downloads/workbench/>
+>>> - mysql와 연동되어 명령어들을 수행할 수 있는 IDE
+
 - [개발자의 품격 youtube](https://www.youtube.com/c/%EA%B0%9C%EB%B0%9C%EC%9E%90%EC%9D%98%ED%92%88%EA%B2%A9)
