@@ -1694,6 +1694,15 @@ export default {
 </script>
 ```
 
+- Heroicons (<https://heroicons.com/>)
+- Chart.JS (<https://www.chartjs.org/>)
+- Element Plus (<https://element-plus.org/>)
+- Vue 3 Popper (<https://valgeirb.github.io/vue3-popper/>)
+- Vue Draggable Component (<https://www.npmjs.com/package/vuedraggable>)
+- Vue 3 Google Maps (<https://www.npmjs.com/package/vue3-google-map>)
+- Vue Color Picker (<https://www.npmjs.com/package/@caohenghu/vue-colorpicker>)
+- Vue 3 Perfect Scrollbar (<https://www.npmjs.com/package/vue3-perfect-scrollbar>)
+
 # 12. Build (Deploy)
 
 - 배포를 위하여 스태틱(Static) 파일로 컴파일 (즉, 서버와 같은 레파리토리에 개발된 소스를 빌드 후 배포)
