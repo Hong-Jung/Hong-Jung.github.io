@@ -19,7 +19,6 @@ last_modified_at: 2022-12-18
 
 - [1. Node.js](#1-nodejs)
 - [2. Node.js 란?](#2-nodejs-란)
-- [3. 자바스크립트 실행 및 모듈](#3-자바스크립트-실행-및-모듈)
 - [4. 내장 모듈](#4-내장-모듈)
 - [5. Express](#5-express)
 - [6. My SQL 연동](#6-my-sql-연동)
@@ -50,6 +49,51 @@ last_modified_at: 2022-12-18
 >> - 자바스크립트는 블로킹(blocking) 방식의 언어이라 node.js도 블로킹(blocking) IO 방식이다. 하지만 논블러킹(non blocking)으로 비동기 방식도 지원한다. 
 >> - node.js의 특징은 싱글 스레드이고 이다. 하지만 이러한 약점을 극복하기위해 논블로킹 사용
 >> - 또다른 특징은 이벤트 루프(libuv)를 통하여 논블러킹을 지원하고 처리할 함수 목록을 스케줄링 한다
+
+- node 초기화 및 package.json 파일 생성 방법
+
+  - ```command
+    npm init
+
+    D:\GitHub\web\web\bootcamp5_study\node>npm init
+    package name: (node) node_study
+    version: (1.0.0)
+    description: desc.
+    entry point: (01_helloworld.js)
+    test command:
+    git repository:
+    keywords:
+    author:
+    license: (ISC)
+    About to write to D:\GitHub\web\web\bootcamp5_study\node\package.json:
+
+    {
+      "name": "node_study",
+      "version": "1.0.0",
+      "description": "desc.",
+      "main": "01_helloworld.js",
+      "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "author": "",
+      "license": "ISC"
+    }
+
+    Is this OK? (yes) yes
+    ```
+
+- Express 설치 방법
+
+- ```command
+  npm install express
+
+  D:\GitHub\web\web\bootcamp5_study\node>npm install express
+
+  added 57 packages, and audited 58 packages in 4s
+  7 packages are looking for funding
+    run `npm fund` for details
+  found 0 vulnerabilities
+  ```
   
 # 3. 자바스크립트 실행 및 모듈
 
@@ -425,24 +469,127 @@ console.log(data2);
 
 # 5. Express
 
-- 내용
+- Node.js를 위한 빠르고 개방적인 간결한 웹 프레임워크
+- BacnEnd 서버(API)를 구성하기 위한 오픈소스 기반의 프레임워크
 
 > **IMPORTANT**
->> 타이틀
+>> Express는 JavaScript로 작성되고 Node.js 런타임 환경에서 구동되는 인기 있는 웹 프레임워크
 >>
->> - 컨텐츠
+>> - [Express NPM](https://www.npmjs.com/package/express)
+>> - [Express 공식 싸이트](https://expressjs.com/)
+>> - [MDN Express 공식 싸이트](https://developer.mozilla.org/ko/docs/Learn/Server-side/Express_Nodejs)
+>> - 라우터로 인터프리터 방식으로 해석함(위에서 아래로)
+>> - post 방식은 body > raw > json 형식으로 전송 { "param": {"id":3, "name": "walter", "email": "mail@mail.com" } }
+>> - client -> server : body에 데이터보낼때 아래 옵션 필요
+>>
+>>> - `app.use(express.json({ limit: "50mb", }));`
 
-```html
+```command
+<!-- https://www.npmjs.com/package/express -->
+>> npm i express
 ```
+
+```javascript
+// express
+const express = require("express");
+const app = express();
+const port = 3000;
+
+// 선언하지 않으면 오류 발생
+app.use(
+  express.json({
+    limit: "50mb", // 최대 50메가
+  })
+);
+
+app.listen(port, () => {
+  console.log("서버가 포트 3000번으로 시작되었습니다.");
+});
+
+// 라우터 (주소+http method)
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
+// http://localhost:3000/customers get
+app.get("/customers", (req, res) => {
+  // db에 있는 고객 정보를 조회하고 클라이언트로 응답
+  const customers = [
+    { name: "John Doe", email: "john@gmail.com" },
+    { name: "Jane Doe", email: "jane@gmail.com" },
+  ];
+  res.send(customers);
+});
+
+app.get("/customer/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  console.log("id", id);
+  // db에 있는 고객 정보를 조회하고 클라이언트로 응답
+  const customers = [
+    { id: 1, name: "John Doe", email: "john@gmail.com" },
+    { id: 2, name: "Jane Doe", email: "jane@gmail.com" },
+  ];
+
+  const customer = customers.filter((c) => c.id === id);
+  if (customer.length > 0) res.status(200).send(customer[0]);
+  else {
+    res.status(401).send({ msg: "존재 하지 않는 ID 입니다." });
+  }
+});
+
+app.post("/customer", (req, res) => {
+  console.log(req.body.param);
+
+  // 데이터베이스에 저장 코드
+
+  res.send("Ok");
+});
+```
+
+<img src="./../../assets/images/posts/bootcamp005/node_express_1.png" width="100%" align="center"/>
+<br/><br/>
+<img src="./../../assets/images/posts/bootcamp005/node_express_2.png" width="100%" align="center"/>
 
 # 6. My SQL 연동
 
-- 내용
+- MySQL은 세계에서 가장 많이 쓰이는 오픈 소스의 관계형 데이터베이스 관리 시스템이다
 
 > **IMPORTANT**
->> 타이틀
+>> Mac OS 설치 / [MySql 공식 싸이트](https://www.mysql.com/)
 >>
->> - 컨텐츠
+>> - 무료 오픈소스 RDBMS이며, 다음의 중요한 명령어 참고
+>> - brew list // 설치된 목록 조회
+>> - brew services start mysql // mysql 서비스 시작
+>> - brew services stop mysql / mysql 서비스 종료
+>> - mysql_secure_installation // 초기 설정
+>>
+>>> - 간단한 비밀번호
+>>> - anonymous user 제거
+>>> - remotely disallow 
+>>> - test database 제거
+>>> - 변경된 권한 테이블에 적용
+>>
+>> - mysql -h localhost -u root -p // -h 접속주소, -u 접속 사용자
+>> - mysql> status // utf8mb4 확인
+>> - mysql> exit // 종료
+>> - Workbench 설치
+>>
+>>> - <https://dev.mysql.com/downloads/workbench/>
+>>> - mysql와 연동되어 명령어들을 수행할 수 있는 IDE
+
+> **IMPORTANT**
+>> Window OS 설치 / [MySql 공식 싸이트](https://www.mysql.com/)
+>>
+>> - 공식 다운로드 사이트 <https://www.mysql.com/downloads/>
+>> - ‘Developer Default’ 선택으로 계속해서 설치
+>> - 설치 완료 후 MySQL Workbench가 자동으로 실행 
+>> - MySQL Command Line Client로 질의어 가능
+>> - services를 통하여 MySql 서비스를 시작, 중단, 자동, 수동 설정 가
+
+```command
+<!-- https://www.npmjs.com/package/mysql -->
+>> npm i mysql
+```
 
 ```html
 ```
