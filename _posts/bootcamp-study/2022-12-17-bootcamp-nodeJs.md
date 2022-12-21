@@ -623,9 +623,151 @@ connection.query(
 connection.end();
 ```
 
+```javascript
+// query script 모음
+module.exports = {
+  productList: `select * from customers`,
+  categoryList: `select * from product_category`,
+  categoryDetail: `select * from product_category where product_category_id = ?`,
+  categoryInsert: `insert into product_category set ?`,
+  // insert into product_category set category_name='', category_description='', use_yn=''
+  categoryUpdate: `update product_category set ? where product_category_id = ?`,
+  categoryDelete: `delete from product_category where product_category_id = ?`,
+};
+```
+
 - 추천하는 방법으로는 connection pool을 만들고 만들 pool을 활용한다.
-- .env 환경변수 선언 위함
-  - npm install dotenv
+  
+```javascript
+// mysql 쿼리 실행을 위한 helper 함수
+const mysql = require("mysql");
+const sql = require("./sql");
+
+const pool = mysql.createPool({
+  host: "127.0.0.1",
+  port: 3306,
+  user: "dev",
+  password: "1234",
+  database: "dev",
+  connectionLimit: 10,
+});
+
+const query = async (alias, values) => {
+  return new Promise((resolve, reject) => {
+    pool.query(sql[alias], values, (error, results) => {
+      if (error) {
+        console.log(error);
+        reject(error);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+};
+```
+
+```javascript
+// 실제 사용 샘플
+const express = require("express");
+const app = express();
+const port = 3000;
+require("dotenv").config({ path: "mysql/.env" });
+const mysql = require("./mysql");
+
+app.use(
+  express.json({
+    limit: "50mb",
+  })
+);
+
+app.listen(port, () => {
+  console.log("서버가 포트 3000번으로 시작 했습니다.");
+});
+
+// (get) http://localhost:3000/api/products
+app.get("/api/products", async (req, res) => {
+  const productList = await mysql.query("productList");
+  res.status(200).send(productList);
+});
+
+// (get) http://localhost:3000/api/categories
+app.get("/api/categories", async (req, res) => {
+  const categoryList = await mysql.query("categoryList");
+  res.status(200).send(categoryList);
+});
+
+// (get) http://localhost:3000/api/category/4
+app.get("/api/category/:product_category_id", async (req, res) => {
+  const product_category_id = req.params.product_category_id;
+  const categoryList = await mysql.query("categoryDetail", product_category_id);
+  res.status(200).send(categoryList);
+});
+
+// (post) http://localhost:3000/api/category
+app.post("/api/category", async (req, res) => {
+  const result = await mysql.query("categoryInsert", req.body.param);
+  res.status(200).send(result);
+});
+
+// (put) http://localhost:3000/api/category/8
+app.put("/api/category/:product_category_id", async (req, res) => {
+  const product_category_id = req.params.product_category_id;
+  const result = await mysql.query("categoryUpdate", [
+    req.body.param,
+    product_category_id,
+  ]);
+  res.status(200).send(result);
+});
+
+// (delete) http://localhost:3000/api/category/:product_category_id
+app.delete("/api/category/:product_category_id", async (req, res) => {
+  const product_category_id = req.params.product_category_id;
+  const result = await mysql.query("categoryDelete", product_category_id);
+  res.status(200).send(result);
+});
+```
+
+> **IMPORTANT**
+>> `.env`
+>>
+>> - 환경변수를 만들어서 사용할 수 있도록 도와주며, 숨기고 싶은 정보를 위함
+>> - `.gitignore` 파일에 `.env` 등을 명시하여 repogitory에 등록되지 않는다.
+>> - npm을 통한 설치 `npm install dotenv`
+>> - 개발시는 .env.test, 라이브시는 .env.prod 로 구분하여 사용, package.json > script 영역에 다음과 같이 구분하여 사용
+>>
+>>> - `npm install cross-env` 설치
+>>> - "test": "cross-env NODE_ENV=test node 13_app_mysql.js"
+>>> - "prod": "cross-env NODE_ENV=prod node 13_app_mysql.js"
+>>> - app.get("env"); //NODE_ENV=test의 값인 'test or prod'를 가지고 온다.
+>>> - require("dotenv").config({ path: `mysql/.env.${app.get("env")}` }); 와 같이 원하는 env 파일을 읽을 수 있다.
+
+```javascript
+// .env 파일
+MYSQL_HOST = 127.0.0.1
+MYSQL_PORT = 3306
+MYSQL_USERNAME = dev
+MYSQL_PASSWORD = 1234
+MYSQL_DB = dev
+MYSQL_LIMIT = 10
+```
+
+```javascript
+// mysql 쿼리 실행을 위한 helper 함수의 pool 정의 부분이 env 파일 참조로 변경
+const pool = mysql.createPool({
+  host: process.env.MYSQL_HOST,
+  port: process.env.MYSQL_PORT,
+  user: process.env.MYSQL_USERNAME,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DB,
+  connectionLimit: process.env.MYSQL_LIMIT,
+});
+```
+
+```javascript
+// 실제 사용 샘플에 다름의 env 파일 내용 추가하는 코드 추가
+const envValue = app.get("env"); //NODE_ENV=test의 값인 'test or prod'를 가지고 온다.
+require("dotenv").config({ path: `mysql/.env.${app.get("env")}` });
+```
 
 # 7. Express 라우터
 
