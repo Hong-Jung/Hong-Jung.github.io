@@ -105,6 +105,8 @@ last_modified_at: 2022-12-18
 >> - `node 01_helloworld`와 같이 node 패키지를 사용하여 cli 환경에서 실행 가능
 >> - `module.export = {}`의 형식으로 export하기 위한 함수 정의
 >> - export 된 함수를 `const { xx, yy } = require()` 함수를 사용하여 import하여 사용
+>> - [02_calculator.js - Github SourceCode](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/02_calculator.js)
+>> - [03_module.js - Github SourceCode](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/03_module.js)
 
 ```javascript
 // 02_calculator.js
@@ -155,6 +157,7 @@ console.log(defaultNum);
 >> - console.table(arr) // 테이블 형태의 로그
 >> - console.dir(obj, {depth:1, color:true}) // 객체 깊이별로 확인
 >> - console.time("동일한 레이블") ~~ console.timeEnd("동일한 레이블") // 함수의 시간 소요 확인
+>> - [04_console.js - Github SourceCode](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/04_console.js)
 
 ```javascript
 const fs = require("fs"); // filesystem
@@ -209,6 +212,7 @@ console.timeEnd("func 1");
 >> - setTimeout() // 밀리세컨트 이 후 한번 실행
 >> - setInterval(), clearInterval() // 밀리세컨트 이 후 반복해서 실행
 >> - setImmediate() // 시간없이 callback 함수만 작성, 이 후 모든 코드 먼저 실행 후 실행 됨
+>> - [05_timers.js - Github SourceCode](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/05_timers.js)
 
 ```javascript
 const timeout = setTimeout(() => {
@@ -237,8 +241,7 @@ console.log("setImmediate 보다 먼저 실행 됩니다.");
 >>
 >> - 전역 객체가 아님으로 require로 import 후 사용 가능
 >> - 특정 이벤트 발생시 마다 이벤트 캐취를 위한 리스너 등록 후 사용 가능
->> - 
->> - 
+>> - [06_process.js - Github SourceCode](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/06_process.js)
 
 ```javascript
 const process = require("process");
@@ -262,6 +265,7 @@ console.log("2. 콘솔에 출력되는 두 번째 메시지");
 >>
 >> - 전역 객체가 아님으로 require로 import 후 사용 가능
 >> - 운영체제의 정보 확인
+>> - [07_os.js - Github SourceCode](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/07_os.js)
 
 ```javascript
 const os = require("os");
@@ -278,6 +282,7 @@ console.log(os.tmpdir()); // 임시 파일 저장 경로
 >>
 >> - 전역 객체가 아님으로 require로 import 후 사용 가능
 >> - 경로에 대한 전반적인 정보
+>> - [08_path.js - Github SourceCode](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/08_path.js)
 
 ```javascript
 const path = require("path");
@@ -321,6 +326,7 @@ console.log(path.join("/home", "user", "dir", "file.txt"));
 >>
 >> - 전역 객체임으로 바로 사용 가능
 >> - URL 관련한 오브젝트
+>> - [09_url.js - Github SourceCode](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/09_url.js)
 
 ```javascript
 const myURL = new URL(
@@ -356,6 +362,7 @@ console.log(myURL2.searchParams.toString());
 >>
 >> - 전역 객체가 아님으로 require로 import 후 사용 가능
 >> - URL 관련한 오브젝트
+>> - [10_crypto.js - Github SourceCode](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/10_crypto.js)
 
 ```javascript
 const crypto = require("crypto");
@@ -432,6 +439,7 @@ const getCryptoPassword = (plainPassword, salt) => {
 >>
 >> - 전역 객체가 아님으로 require로 import 후 사용 가능
 >> - 파일 시스템 관련 객체, 동기/비동기 함수가 함께 존재
+>> - [11_fs.js - Github SourceCode](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/11_fs.js)
 
 ```javascript
 const fs = require("fs");
@@ -483,6 +491,8 @@ console.log(data2);
 >> - client -> server : body에 데이터보낼때 아래 옵션 필요
 >>
 >>> - `app.use(express.json({ limit: "50mb", }));`
+>>
+>> - [12_app.js - Github SourceCode](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/12_app.js)
 
 ```command
 <!-- https://www.npmjs.com/package/express -->
@@ -585,6 +595,10 @@ app.post("/customer", (req, res) => {
 >> - 설치 완료 후 MySQL Workbench가 자동으로 실행 
 >> - MySQL Command Line Client로 질의어 가능
 >> - services를 통하여 MySql 서비스를 시작, 중단, 자동, 수동 설정 가
+>> - [기본 연결 샘플 connection_sample.js - Github SourceCode](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/mysql/connection_sample.js)
+>> - [MySQL Helper index.js - Github SourceCode](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/mysql/index.js)
+>> - [MySQL QueryScript sql.js - Github SourceCode](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/mysql/sql.js)
+>> - [MySQL 실제 사용 13_app_mysql.js - Github SourceCode](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/13_app_mysql.js)
 
 - 반드시 스키마 권한 설정이 필요하다
   - users and privileges > add account
@@ -740,6 +754,10 @@ app.delete("/api/category/:product_category_id", async (req, res) => {
 >>> - "prod": "cross-env NODE_ENV=prod node 13_app_mysql.js"
 >>> - app.get("env"); //NODE_ENV=test의 값인 'test or prod'를 가지고 온다.
 >>> - require("dotenv").config({ path: `mysql/.env.${app.get("env")}` }); 와 같이 원하는 env 파일을 읽을 수 있다.
+>>
+>> - [package.json - Github SourceCode](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/package.json)
+>> - [.env.prod - Github SourceCode](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/mysql/.env.prod)
+>> - [실제 사용 사례 13_app_mysql.js - Github SourceCode](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/13_app_mysql.js)
 
 ```javascript
 // .env 파일
@@ -771,26 +789,67 @@ require("dotenv").config({ path: `mysql/.env.${app.get("env")}` });
 
 # 7. Express 라우터
 
-- 내용
+- [Express 라우터 공식 싸이트](https://expressjs.com/en/guide/routing.html)
 
 > **IMPORTANT**
->> 타이틀
+>> Express 프레임워크에서 제공하는 라우터
 >>
->> - 컨텐츠
+>> - 라우터에서 정규식을 사용가능
+>> - 수 많은 라우터를 위하여 `express.Router()`를 사용하요 모듈별 분리 가능
+>> - [라우터에서 정규식 사용 샘플](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/14_route.js)
+>> - [라우터를 모듈별로 구분한 샘플 1](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/routes/category.js)
+>> - [라우터를 모듈별로 구분한 샘플 2](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/routes/product.js)
+>> - [모듈별로 구분된 라이터를 관리하는 프록시 샘플 2](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/15_app_route_module.js)
 
-```html
+```javascript
+// 라우팅 프록시 역할
+const express = require("express");
+require("dotenv").config({ path: "mysql/.env.test" });
+const categoryRoute = require("./routes/category");
+const app = express();
+
+app.listen(3000, () => {
+  console.log("서버가 포트 3000번으로 시작 되었습니다.");
+});
+
+app.use("/api/product", productRoute);
+app.use("/api/category", categoryRoute);
+```
+
+```javascript
+// category 라우터
+const express = require("express");
+const router = express.Router();
+const mysql = require("../mysql");
+
+router.get("/:product_category_id", async (req, res) => {
+  const product_category_id = req.params.product_category_id;
+  const categoryList = await mysql.query("categoryDetail", product_category_id);
+  res.send(categoryList);
+  // res.send(categoryList[0]);
+});
+
+// 이하생략...
+
+module.exports = router;
 ```
 
 # 8. 정적 파일 처리
 
-- 내용
+- 서버의 정적 파일 Display를 위한 방
 
 > **IMPORTANT**
->> 타이틀
+>> 서버에서 정적 파일(이미지, 첨부 파일 등등..)을 클라언트로 Display(다운로드)하기 위한 함수
+>> [Express Static 공식 싸이트](https://expressjs.com/en/starter/static-files.html)
 >>
->> - 컨텐츠
+>> - `express.static(root, [options])` 함수 사용
+>> - [static 파일 사용 샘플 github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/16_static.js)
 
-```html
+```javascript
+// http://localhost:3000/images/router-1.png
+app.use(express.static("public"));
+// http://localhost:3000/thisIsStaticRootName/images/router-1.png
+app.use("/thisIsStaticRootName", express.static("public"));
 ```
 
 # 9. 파일 업로드
