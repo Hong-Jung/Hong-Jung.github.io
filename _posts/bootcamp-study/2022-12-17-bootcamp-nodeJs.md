@@ -586,13 +586,46 @@ app.post("/customer", (req, res) => {
 >> - MySQL Command Line Client로 질의어 가능
 >> - services를 통하여 MySql 서비스를 시작, 중단, 자동, 수동 설정 가
 
+- 반드시 스키마 권한 설정이 필요하다
+  - users and privileges > add account
+  - login tab > standard authendication type으로 나머지 정보 입력
+  - schema privileges tab
+    - add entry > selected schema 선택 > 추가할 스키마 선택
+    - select all 선택하여 모든 권한 부여
+  
 ```command
 <!-- https://www.npmjs.com/package/mysql -->
 >> npm i mysql
 ```
 
-```html
+```javascript
+// mysql > index.js
+// 가장 기본적인 연결 및 쿼리 샘플
+var mysql = require("mysql");
+var connection = mysql.createConnection({
+  host: "127.0.0.1",
+  port: 3306,
+  user: "dev",
+  password: "1234",
+  database: "dev",
+});
+
+connection.connect();
+
+connection.query(
+  "SELECT * FROM dev.customers;",
+  function (error, results, fields) {
+    if (error) throw error;
+    console.log(results);
+  }
+);
+
+connection.end();
 ```
+
+- 추천하는 방법으로는 connection pool을 만들고 만들 pool을 활용한다.
+- .env 환경변수 선언 위함
+  - npm install dotenv
 
 # 7. Express 라우터
 
