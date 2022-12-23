@@ -24,7 +24,7 @@ last_modified_at: 2022-12-18
 - [6. My SQL 연동](#6-my-sql-연동)
 - [7. Express 라우터](#7-express-라우터)
 - [8. 정적 파일 처리](#8-정적-파일-처리)
-- [9. 파일 업로드](#9-파일-업로드)
+- [9. 파일 업로드(Multer)](#9-파일-업로드multer)
 - [10. 엑셀 업로드 및 파싱](#10-엑셀-업로드-및-파싱)
 - [11. HTTP 응답 로그 관리](#11-http-응답-로그-관리)
 - [12. 개발자 로그 관리](#12-개발자-로그-관리)
@@ -852,17 +852,17 @@ app.use(express.static("public"));
 app.use("/thisIsStaticRootName", express.static("public"));
 ```
 
-# 9. 파일 업로드
+# 9. 파일 업로드(Multer)
 
-- 내용
+- Multer는 주로 파일 업로드에 사용되는 multipart/form-data를 처리하기 위한 node.js 미들웨어
 
 > **IMPORTANT**
->> 타이틀
+>> [Multer NPM 싸이트](https://www.npmjs.com/package/multer)
+>> [Multer 한국어 Document](https://github.com/expressjs/multer/blob/master/doc/README-ko.md)
 >>
->> - 컨텐츠
-
-```html
-```
+>> - `multer`, `path를` 이용
+>> - `multer.diskStorage()` 정의한 후 `multer.single or multer.array` 함수 사용
+>> - [Multer 사용 샘플 코드 Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/17_multer.js)
 
 # 10. 엑셀 업로드 및 파싱
 
