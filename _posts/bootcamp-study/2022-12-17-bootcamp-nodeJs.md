@@ -864,6 +864,8 @@ app.use("/thisIsStaticRootName", express.static("public"));
 >> - `multer.diskStorage()` 정의한 후 `multer.single or multer.array` 함수 사용
 >> - [Multer 사용 샘플 코드 Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/17_multer.js)
 
+<img src="./../../assets/images/posts/bootcamp005/node_multer_1.png" width="100%" align="center"/>
+
 # 10. 엑셀 업로드 및 파싱
 
 - 내용
