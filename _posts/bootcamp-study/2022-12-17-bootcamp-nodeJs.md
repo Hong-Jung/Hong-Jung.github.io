@@ -868,15 +868,32 @@ app.use("/thisIsStaticRootName", express.static("public"));
 
 # 10. 엑셀 업로드 및 파싱
 
-- 내용
+- 거의 모든 스프레드시트에서 유용한 데이터를 추출하고 레거시 및 최신 소프트웨어에서 모두 작동하는 새 스프레드시트를 생성하기 위한 실전 테스트를 거친 오픈 소스 솔루션을 제공
 
 > **IMPORTANT**
->> 타이틀
+>> [XLSX NPM 싸이트](https://www.npmjs.com/package/xlsx)
 >>
->> - 컨텐츠
+>> - 가장많이 사용하는 excel 모듈이며, frendend에서 업로드한 excel을 backend에서 파싱하여 json 형태로 다시 frontend에 return -> frontend에서 엑셀 데이터 확인 후 backend api 호출하여 최종 데이터 저장
+>> - [xlsx npm 사용 샘플 코드 github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/18_xlsx_upload.js)
 
-```html
+```command
+npm install xlsx // xlsx 모듈 설치
 ```
+
+```javascript
+app.post('/api/xlsx', upload.single('xlsx'), async (req, res) => {
+  console.log(req.file)
+
+  const workbook = xlsx.readFile(req.file.path)
+  const firstSheetName = workbook.SheetNames[0]
+  const firstSheet = workbook.Sheets[firstSheetName]
+  const firstSheetJson = xlsx.utils.sheet_to_json(firstSheet)
+
+  res.status(200).send(firstSheetJson)
+})
+```
+
+<img src="./../../assets/images/posts/bootcamp005/node_xlsx_1.png" width="100%" align="center"/>
 
 # 11. HTTP 응답 로그 관리
 
