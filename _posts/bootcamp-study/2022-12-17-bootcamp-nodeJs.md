@@ -28,6 +28,12 @@ last_modified_at: 2022-12-18
 - [10. 엑셀 업로드 및 파싱](#10-엑셀-업로드-및-파싱)
 - [11. HTTP 응답 로그 관리](#11-http-응답-로그-관리)
 - [12. 개발자 로그 관리](#12-개발자-로그-관리)
+- [13. Email 발송](#13-email-발송)
+- [14 파일 다운로드](#14-파일-다운로드)
+- [15. Express 로그인 세션](#15-express-로그인-세션)
+- [16. 작업 스케줄 / 결과 메일 송부](#16-작업-스케줄--결과-메일-송부)
+- [17. 크롤링(인프런, 잡코리아)](#17-크롤링인프런-잡코리아)
+- [18. Excel](#18-excel)
 - [참고](#참고)
 
 # 1. Node.js
@@ -897,26 +903,151 @@ app.post('/api/xlsx', upload.single('xlsx'), async (req, res) => {
 
 # 11. HTTP 응답 로그 관리
 
-- 내용
+- nodejs에서 사용되는 로그(HTTP) 관리를 위한 미들웨어
+- 특히나 HTTP Request에 대해서 집중적으로 로그를 다양하게 기록할 수 있음으로 좋은 시스템 로그 모듈로 사용 가능
 
 > **IMPORTANT**
->> 타이틀
+>> [morgan NPM 공식 싸이트](https://www.npmjs.com/package/morgan)
+>> [rotating-file-stream NPM 공식 싸이트](https://www.npmjs.com/package/rotating-file-stream)
 >>
->> - 컨텐츠
+>> - 2가지 핵심 npm 설치가 필요
+>>
+>>> - `npm install rotating-file-stream`
+>>> - `npm install morgan`
+>>
+>> - [morgan using sample github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/19_morgan.js)
 
-```html
+```javascript
+app.use(
+  morgan('combined', {
+    stream: accessLogStream,
+    skip: (req, res) => {
+      // 비정상적인 응답인 경우는 로그를 기록하지 않음. 에러인 경우만 로그 기록
+      return res.statusCode < 400; 
+    },
+  }),
+);
 ```
 
 # 12. 개발자 로그 관리
 
-- 내용
+- 개발자 필요에 의해서 로그 관리를 할 수 있는 미들웨어로 여러가지 다양한 옵션들을 제공
+- 개발 환경 변수와 함께사용하여 develope, product 구분하여 로그 처리 가능
 
 > **IMPORTANT**
->> 타이틀
+>> [winston NPM 공식 싸이트](https://www.npmjs.com/package/winston?activeTab=readme)
+>> [winston-daily-rotate-file NPM 공식 싸이트](https://www.npmjs.com/package/winston-daily-rotate-file)
 >>
->> - 컨텐츠
+>> - 2가지 핵심 npm 설치 필요
+>>
+>>> - `npm install winston`
+>>> - `npm install winston-daily-rotate-file`
+>>> - `npm i app-root-path`
+>>
+>> - [winston logger using sample github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/winston/logger.js)
+>> - [winston app using sample github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/20_winston.js)
 
-```html
+# 13. Email 발송
+
+- 일반적인 Email 발송
+- 일정 이벤트를 Email로 발송
+
+> **IMPORTANT**
+>> [link site](https://google.com)
+>>
+>> - contenst
+>>
+>>> - `npm install rotating-file-stream`
+>>
+>> - [sample github](https://google.com)
+
+```javascript
+```
+
+# 14 파일 다운로드
+
+- contents
+
+> **IMPORTANT**
+>> [link site](https://google.com)
+>>
+>> - contenst
+>>
+>>> - `npm install rotating-file-stream`
+>>
+>> - [sample github](https://google.com)
+
+```javascript
+```
+
+# 15. Express 로그인 세션
+
+- contents
+
+> **IMPORTANT**
+>> [link site](https://google.com)
+>>
+>> - contenst
+>>
+>>> - `npm install rotating-file-stream`
+>>
+>> - [sample github](https://google.com)
+
+```javascript
+```
+
+# 16. 작업 스케줄 / 결과 메일 송부
+
+- 배치성 작업 스케줄
+- 작업 결과 메일로 송부
+
+> **IMPORTANT**
+>> [link site](https://google.com)
+>>
+>> - contenst
+>>
+>>> - `npm install rotating-file-stream`
+>>
+>> - [sample github](https://google.com)
+
+```javascript
+```
+
+# 17. 크롤링(인프런, 잡코리아)
+
+- 인트런 크롤링
+- 잡코리아 크롤링
+
+> **IMPORTANT**
+>> [link site](https://google.com)
+>>
+>> - contenst
+>>
+>>> - `npm install rotating-file-stream`
+>>
+>> - [sample github](https://google.com)
+
+```javascript
+```
+
+# 18. Excel
+
+- Excel 읽은 후 내용 변경하여 새로운 파일로 생성
+- DB 데이터로 엑셀 파일 생성
+- DB 읽고 엑셀 파일로 다운로드
+- DB 읽고 엑셀 파일 첨부하여 메일 송부
+- 스타일 적용
+
+> **IMPORTANT**
+>> [link site](https://google.com)
+>>
+>> - contenst
+>>
+>>> - `npm install rotating-file-stream`
+>>
+>> - [sample github](https://google.com)
+
+```javascript
 ```
 
 # 참고
