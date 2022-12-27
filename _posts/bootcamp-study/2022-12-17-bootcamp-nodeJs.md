@@ -1021,33 +1021,44 @@ try {
 
 # 15. Express 로그인 세션
 
-- contents
+- HTTP 통신
+  - 비 연결지향(Connectionless) - 클라이언트에서 서버로 요청(request), 서버가 요청에 대한 응답(response)을 클라이언트로 보내고 난 후 연결이 종료
+  - 상태정보유지를 안함(Stateless) - 통신 이후 바로 연결이 종료되기 때문에 서버는 클라이언트의 상태를 알 수 없
+- 로그인-클라이언트와 서버간의 로그인 상태를 유지
+  - 세션, 쿠키를 사용
+- 절차
+  - 클라이언트에서 로그인
+  - 서버가 이 로그인 유효한지 검증하고, 맞다면 응답헤더에 쿠키정보를 넣어서 보내요. 이게 클라이언트 쿠키에 저장됨
+  - 클라이언트가 서버에 요청할 때 마다 쿠키 정보를 같이 헤더에 넣어서 보내는 거예요.
+  - s.id 혹은 sessionid
+- 세션 - 브라우저가 종료되기 전까지 클라이언트의 요청을 유지하게 해주는 기술
+- 세션 정보를 expess-session로 관리
 
 > **IMPORTANT**
->> [link site](https://google.com)
+>> [express-session NPM](https://www.npmjs.com/package/express-session)
+>> [cookie-parset](https://www.npmjs.com/package/cookie-parser)
 >>
 >> - contenst
 >>
->>> - `npm install rotating-file-stream`
+>>> - `npm i express-session` 세션에 대한 핸들링 가능
+>>> - `npm i cookie-parser` 클라이언트측의 cookie를 서버측에서도 사용 가능
+>>> - `app.all('*', (req, res, next) => {...코드; next();})`와 같이 모든 api 호출전 all 함수가 호출되며 내부 로직 수행 후 다음 api 호출을 위하여 `next` 함수 호출
 >>
->> - [sample github](https://google.com)
+>> - [session sample github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/24_app_session.js)
 
 ```javascript
+const sess = {
+  secret: 'secret key',
+  resave: false, // 세션에 변경사항이 없어도 항상 다시 저장할지에 대한 여부
+  saveUninitialized: true, // 초기화되지 않은 세션을 저장소에 강제로 저장할지에 대한 여부
+  cookie: {
+    httpOnly: false, // document.cookie 하면 쿠키 정보를 볼 수 없음
+    secure: false, //true - https
+    maxAge: 1000 * 60 * 60, // 쿠키가 유지되는 시간
+  },
+};
+app.use(session(sess));
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # 16. 작업 스케줄 / 결과 메일 송부
 
