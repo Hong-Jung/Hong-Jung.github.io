@@ -953,31 +953,70 @@ app.use(
 - 일정 이벤트를 Email로 발송
 
 > **IMPORTANT**
->> [link site](https://google.com)
+>> [nodemailer NPM](https://www.npmjs.com/package/nodemailer)
+>> [ics NPM](https://www.npmjs.com/package/ics)
 >>
->> - contenst
+>> - nodemailer를 통하여 mail handling, ics를 통하여 canlendar handling 가능
+>> - nodemailer
 >>
->>> - `npm install rotating-file-stream`
+>>> - 다른 모듈에 의존성이 없음
+>>> - 유니코드 지원 (영어, 한국어, 중국어등등 지원)
+>>> - 파일 첨부 가능, 메일 본문에 plain text, html 사용 가능
+>>> - Oauth2 가능하며, SMTP 연결을 위한 프록시 사용 가능
+>>> - `npm i nodemailer` 통하여 npm 패키지 설치
+>>> - [nodemailer index sample github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/nodemailer/index.js)
+>>> - [nodemailer sample github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/21_nodemailer.js)
+>>> - [nodemailer-sendgrid github](https://github.com/nodemailer/nodemailer-sendgrid)
 >>
->> - [sample github](https://google.com)
+>> - ics
+>>
+>>> - iCalendar로 일정(모임) 정보를 생성하여 첨부 파일형태로 메일 전송 가능
+>>> - `npm i ics` 통하여 npm 패키지 설치
+>>> - [ics sample github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/22_ics.js)
 
 ```javascript
+// nodemailer > .env
+GOOGLE_MAIL=jh3010@gmail.com
+GOOGLE_PASSWORD_FOR_WINDOWS=xxxxxxx
+GOOGLE_PASSWORD_FOR_MAC=xxxxxxx
 ```
+
+<img src="./../../assets/images/posts/bootcamp005/node_nodemailer_1.png" width="100%" align="center"/><br/><br/>
+<img src="./../../assets/images/posts/bootcamp005/node_nodemailer_2.png" width="100%" align="center"/>
 
 # 14 파일 다운로드
 
-- contents
+- 클라이언트측에서 서버측의 파일을 다운로드
 
 > **IMPORTANT**
->> [link site](https://google.com)
+>> [mine NPM](https://www.npmjs.com/package/mine)
 >>
->> - contenst
+>> - 파일형식을 알기위해서 mime npm 설치해야 하며, express에서는 코드 한줄로 파일 전송 가능
 >>
->>> - `npm install rotating-file-stream`
+>>> - `npm i mime`, express를 사용할 경우 mime 설치 필요 없음
 >>
->> - [sample github](https://google.com)
+>> - [file download sample github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/23_app_file_download.js)
 
 ```javascript
+try {
+  if (fs.existsSync(file)) {
+    // express를 사용하지 않고 전송하는 샘플 코드
+    const mimetype = mime.getType(file);
+    const filename = path.basename(file);
+    res.setHeader("Content-disposition", "attachment; filename=" + filename); // 다운로드 되는 파일명
+    res.setHeader("Content-Type", mimetype); // 파일 형식 지정
+    const filestream = fs.createReadStream(file);
+    filestream.pipe(res);
+
+    // express 사용하여 전송하는 샘플 코드
+    res.download(file);
+  } else {
+    res.send("요청한 파일이 존재하지 않습니다.");
+  }
+} catch (e) {
+  console.log(e);
+  res.send("파일을 다운로드 하는 중 에러가 발생했습니다.");
+}
 ```
 
 # 15. Express 로그인 세션
@@ -995,6 +1034,20 @@ app.use(
 
 ```javascript
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # 16. 작업 스케줄 / 결과 메일 송부
 
