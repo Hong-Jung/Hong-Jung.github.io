@@ -1043,6 +1043,7 @@ try {
 >>> - `npm i express-session` 세션에 대한 핸들링 가능
 >>> - `npm i cookie-parser` 클라이언트측의 cookie를 서버측에서도 사용 가능
 >>> - `app.all('*', (req, res, next) => {...코드; next();})`와 같이 모든 api 호출전 all 함수가 호출되며 내부 로직 수행 후 다음 api 호출을 위하여 `next` 함수 호출
+>>> - app.all()은 인터프리터 방식이라 로그인없이 접근하는 함수의 경우 앞으로
 >>
 >> - [session sample github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/24_app_session.js)
 
