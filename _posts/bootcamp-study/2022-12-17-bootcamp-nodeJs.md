@@ -1064,16 +1064,22 @@ app.use(session(sess));
 # 16. 작업 스케줄 / 결과 메일 송부
 
 - 배치성 작업 스케줄
+  - `node-cron`
+    - node-cron 모듈은 GNU crontab을 기반으로 하는 node.js용 순수 JavaScript의 작은 작업 스케줄러이며, 이 모듈을 사용하면 crontab 구문을 사용하여 node.js에서 작업 예약 가능
 - 작업 결과 메일로 송부
+  - 클라이언트에서 스케줄 설정 후 strat/stop API를 호출
+  - MySQL 연동된 결과를 메일로 생성하여 발송
 
 > **IMPORTANT**
->> [link site](https://google.com)
+>> [node-cron NPM](https://www.npmjs.com/package/node-cron)
 >>
->> - contenst
+>> - crontab 구문 사용가능한 스케줄
 >>
->>> - `npm install rotating-file-stream`
+>>> - `npm i node-cron`
+>>> - `npm i uuid`
 >>
->> - [sample github](https://google.com)
+>> - [batch job sample code github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/25_job_scheduler.js)
+>> - [batch job start/stop nodemailer sample code github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/26_node_cron_nodemailer.js)
 
 ```javascript
 ```
@@ -1084,16 +1090,17 @@ app.use(session(sess));
 - 잡코리아 크롤링
 
 > **IMPORTANT**
->> [link site](https://google.com)
+>> [axios](https://www.npmjs.com/package/axios)
+>> [cheerio](https://www.npmjs.com/package/cheerio)
 >>
->> - contenst
+>> - 특정 사이트를 크롤링하기 위해서 axios를 통하여 페이지 document 요소를 가지고, cheerio를 통하여 모든 element에 접근하여 원하는 정보를 수집
 >>
->>> - `npm install rotating-file-stream`
+>>> - `npm i axios`
+>>> - `npm i cheerio`
 >>
->> - [sample github](https://google.com)
+>> - [inflearn crawling sample github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/27_crawling_inflearn.js)
+>> - [job korea crawling sample github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/28_crawling_jobkorea.js)
 
-```javascript
-```
 
 # 18. Excel
 
