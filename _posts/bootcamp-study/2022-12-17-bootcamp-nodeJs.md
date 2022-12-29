@@ -1101,7 +1101,6 @@ app.use(session(sess));
 >> - [inflearn crawling sample github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/27_crawling_inflearn.js)
 >> - [job korea crawling sample github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/28_crawling_jobkorea.js)
 
-
 # 18. Excel
 
 - Excel 읽은 후 내용 변경하여 새로운 파일로 생성
@@ -1111,16 +1110,19 @@ app.use(session(sess));
 - 스타일 적용
 
 > **IMPORTANT**
->> [link site](https://google.com)
+>> [XLSX NPM 싸이트](https://www.npmjs.com/package/xlsx)
+>> [xlsx-js-style NPM 싸이트](https://www.npmjs.com/package/xlsx-js-style)
 >>
->> - contenst
+>> - 엑셀을 활용한 다양한 구현 방법 샘플코드
 >>
->>> - `npm install rotating-file-stream`
+>>> - `npm install xlsx`
+>>> - `npm install xlsx-js-style` xlsx를 포함하고 있음으로 xlsx 설치 필요 없음
 >>
->> - [sample github](https://google.com)
-
-```javascript
-```
+>> - [Excel 파일 읽고 변경하여 새로운 파일로 생성하는 Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/29_xlsx_read_write.js)
+>> - [DB 데이터를 바탕으로 엑셀 파일 생성 Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/30_db_read_xlsx_write.js)
+>> - [DB에서 데이터 읽고 생성된 엑셀 파일 다운로 Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/31_xlsx_download.js)
+>> - [DB에서 데이터 읽고 생성된 엑셀 파일 메일로 첨부하여 발송 Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/32_xlsx_nodemailer.js)
+>> - [엑셀 스타일 적용 Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/33_xlsx_style.js)
 
 # 참고
 
