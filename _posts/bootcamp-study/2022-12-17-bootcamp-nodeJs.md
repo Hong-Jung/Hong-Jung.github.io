@@ -600,7 +600,7 @@ app.post("/customer", (req, res) => {
 >> - ‘Developer Default’ 선택으로 계속해서 설치
 >> - 설치 완료 후 MySQL Workbench가 자동으로 실행 
 >> - MySQL Command Line Client로 질의어 가능
->> - services를 통하여 MySql 서비스를 시작, 중단, 자동, 수동 설정 가
+>> - services를 통하여 MySql 서비스를 시작, 중단, 자동, 수동 설정 가능
 >> - [기본 연결 샘플 connection_sample.js - Github SourceCode](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/mysql/connection_sample.js)
 >> - [MySQL Helper index.js - Github SourceCode](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/mysql/index.js)
 >> - [MySQL QueryScript sql.js - Github SourceCode](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/mysql/sql.js)
