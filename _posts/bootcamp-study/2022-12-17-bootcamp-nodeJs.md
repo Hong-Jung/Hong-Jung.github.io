@@ -34,6 +34,15 @@ last_modified_at: 2022-12-18
 - [16. 작업 스케줄 / 결과 메일 송부](#16-작업-스케줄--결과-메일-송부)
 - [17. 크롤링(인프런, 잡코리아)](#17-크롤링인프런-잡코리아)
 - [18. Excel](#18-excel)
+- [19. CORS](#19-cors)
+- [20. Sequelize](#20-sequelize)
+- [21. MongoDB \& Mongoose](#21-mongodb--mongoose)
+- [22. WebSocket](#22-websocket)
+- [23. forever](#23-forever)
+- [24. Cluster](#24-cluster)
+- [25. pm2](#25-pm2)
+- [26. API Server Configuration](#26-api-server-configuration)
+- [27. Useful Node Modules](#27-useful-node-modules)
 - [참고](#참고)
 
 # 1. Node.js
@@ -1123,6 +1132,212 @@ app.use(session(sess));
 >> - [DB에서 데이터 읽고 생성된 엑셀 파일 다운로 Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/31_xlsx_download.js)
 >> - [DB에서 데이터 읽고 생성된 엑셀 파일 메일로 첨부하여 발송 Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/32_xlsx_nodemailer.js)
 >> - [엑셀 스타일 적용 Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/33_xlsx_style.js)
+
+# 19. CORS
+
+- [CORS(Cross-Origin Resource Sharing, 교차 출처 자원 공유)](https://ko.wikipedia.org/wiki/%EA%B5%90%EC%B0%A8_%EC%B6%9C%EC%B2%98_%EB%A6%AC%EC%86%8C%EC%8A%A4_%EA%B3%B5%EC%9C%A0)
+  - `웹 애플리케이션`은 자신의 출처와 `동일한 리소스만 불러올 수 있으며`, 다른 출처의 리소스를 불러오려면 그 출처에서 올바른 CORS 헤더를 포함한 응답을 반환해야 한다. 이는 시스템 수준에서 타 도메인 간 자원 호출을 승인하거나 차단하는 것을 결정하는 것이다.
+  - `CORS`는 웹페이지상에서 자바스크립트를 이용하여 `XHR(XMLHttpRequest)`을 `다른 도메인으로 발생 시킬 수 있도록` 해주는 기능을 가지고 있고 XHR 기반 cross-origin HTTP 요청을 이용하여 자원을 공유해야 하는 브라우저와 서버 간의 안전한 교차 출처 요청 및 데이터 전송을 지원한다.
+- [SOP(Same-Origin Policy, 동일 출처 정)](https://ko.wikipedia.org/wiki/%EB%8F%99%EC%9D%BC-%EC%B6%9C%EC%B2%98_%EC%A0%95%EC%B1%85)
+  - `자바스크립트 엔진 표준 스펙의 보안 규칙`으로 `하나의 출처(Origin)에서 로드된 자원(문서나 스크립트)이 호스트나 프로토콜, 포트번호가 일치하지 않는 자원과 상호작용 하지 못하도록 요청 발생을 제한`하고, `동일 출처(Same Origin)에서만 접근`이 가능한 정책
+  - 두 URL의 `Port(명시한 경우)`, `Protocol`, `Host`가 모두 같아야 Same Origin 'scheme/host/port 튜플(tuple)' 혹은 그냥 `tuple`이라고 하기도 한다.
+
+> **IMPORTANT**
+>> CORS(Cross-Origin Resource Sharing) & SOP(Same-Origin Policy)
+>>
+>> - 웹 어플리케이션에서 보안상의 이유로 동일 URL에서(즉, 신뢰할 수 있는)만 서로 데이터 교환이 가능
+>>
+>>> - Origin : <http://localhost:3000> (http:프로토콜, localhost:호스트, 3000:포트)
+>>
+>> - Origin이 다른경우 잠재적인 보안 위협이 있을 수 있음으로, 다른 Origin 리소스를 가져올 수 없다.(기본 정책)
+>> - Static Web Server와 API Server가 다른경우, 또는 아예 다른 도메인을 가진 시스템에서 API Server로 접근
+>> - [CORS Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/34_cors.js)
+>> - [CORS FROM HTML Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/34_cors_from.html)
+>> - [CORS FROM Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/34_cors_from.js)
+
+```javascript
+// 기본적으로 모든 라우터에 적용
+const corsOptions = {
+  origin: "http://localhost:8080", // 허용할 origin 설정
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+
+// 특정 라우터에만 적용
+const corsOptionsExternal = {
+  origin: "http://localhost:8081",
+  optionsSuccessStatus: 200,
+};
+
+app.get("/api/products", cors(corsOptionsExternal), (req, res) => {
+  res.send("제품 정보");
+});
+```
+
+# 20. Sequelize
+
+- 시퀄라이즈(Sequelize)는 데이터베이스(Database) 작업을 쉽게 할 수 있도록 도와주는 ORM 패키지
+- ORM(Object-Relational Mapping)은 자바스크립트 객체와 관계형 데이터베이스를 서로 연결해주는 도구
+  - 모든 데이터 테이블을 오브젝트(object)로 파단하여 쿼리문 없이 객체간 관계를 기반으로 데이터 조작 가능
+
+> **IMPORTANT**
+>> [sequealize NPM 싸이트](https://www.npmjs.com/package/sequelize)<br/>
+>> [sequealize homgpage](https://sequelize.org/)<br/>
+>> [mysql2 NPM 싸이트](https://www.npmjs.com/package/mysql2)<br/>
+>> [mysql2 homepage](https://github.com/sidorares/node-mysql2#readme)<br/>
+>> [sequelize-cli NPM 싸이트](https://www.npmjs.com/package/sequelize-cli)<br/>
+>> [sequelize-cli homepage](https://github.com/sequelize/cli)
+>>
+>> - MySQL, MariaDB, MS SQL 등과 같은 RDBMS 데이터베이스를 위한 promise 기반의 Node.js ORM 도구
+>>
+>>> - `[npm install sequelize]` node.js ORM tool
+>>> - `npm install mysql2` 간략 설명
+>>> - `sudo npm install -g sequelize-cli` 간략 설명
+>>> - `sequelize init`로 초기화 (다음의 폴더와 기본 파일이 자동으로 생성)
+>>>
+>>>> - `config` 폴더 : mysql과 연결 정보 관리 (mysql > .env 파일을 이용가능)
+>>>> - `models` 폴더 : mysql 테이블과 연동하기 위한 모델 정보가 위치하는 폴더
+>>>
+>>> - sequelize-cli로 모델 정보 생성 및 초기화
+>>>
+>>>> - `sequelize-cli model:generate --name product_category --attributes product_category_id:integer, category_name:string, category_description:string, use-yn:string`을 통하여 `models>categories.js` 파일 생성
+>>>> - `timestamp: false`로 createdAt, updatedAt 컬럼이 없음으로 사용하지 않음으로 정의 필요
+>>>> - `product_category.init({...})`에 하기와 같이 어트리뷰트를 상세하게 정의 가능
+>>>> - model의 class 명은 물리 테이블(product_category)의 명칭과 일치화 시킴
+>>>>
+>>>> - ```javascript
+>>>>   // type, primaryKey, allowNull, unique, defaultValue, autoincreament
+>>>>   product_category_id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, }, 
+>>>>   category_name: { type: DataTypes.STRING, allowNull: false },
+>>>>   category_description: DataTypes.STRING,
+>>>>   use_yn: { type: DataTypes.STRING, defaultValue: "Y" },
+>>>>   ```
+>>>>
+>>>> - `tableName: 'product_category'`와 같이 물리 테이블의 명칭과 일치화 시킴
+>>>
+>> - [sequelize Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/35_sequelize.js)
+>> - [config > config.json  Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/config/config.json)
+>> - [models > index.js Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/models/index.js)
+>> - [models > product_category.js Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/models/product_category.js)
+
+# 21. MongoDB & Mongoose
+
+- contents
+
+> **IMPORTANT**
+>> [XXX NPM 싸이트](https://google.com)
+>>
+>> - 대략적인 개요 설명
+>>
+>>> - `npm install xxx` 간략 설명
+>>
+>> - [XXX Sample Github](http://google.com)
+
+```javascript
+// sample code
+```
+
+# 22. WebSocket
+
+- contents
+
+> **IMPORTANT**
+>> [XXX NPM 싸이트](https://google.com)
+>>
+>> - 대략적인 개요 설명
+>>
+>>> - `npm install xxx` 간략 설명
+>>
+>> - [XXX Sample Github](http://google.com)
+
+```javascript
+// sample code
+```
+
+# 23. forever
+
+- contents
+
+> **IMPORTANT**
+>> [XXX NPM 싸이트](https://google.com)
+>>
+>> - 대략적인 개요 설명
+>>
+>>> - `npm install xxx` 간략 설명
+>>
+>> - [XXX Sample Github](http://google.com)
+
+```javascript
+// sam
+```
+
+# 24. Cluster
+
+- contents
+
+> **IMPORTANT**
+>> [XXX NPM 싸이트](https://google.com)
+>>
+>> - 대략적인 개요 설명
+>>
+>>> - `npm install xxx` 간략 설명
+>>
+>> - [XXX Sample Github](http://google.com)
+
+```javascript
+// sam
+```
+
+# 25. pm2
+
+- contents
+
+> **IMPORTANT**
+>> [XXX NPM 싸이트](https://google.com)
+>>
+>> - 대략적인 개요 설명
+>>
+>>> - `npm install xxx` 간략 설명
+>>
+>> - [XXX Sample Github](http://google.com)
+
+```javascript
+// sam
+```
+
+# 26. API Server Configuration
+
+- contents
+
+> **IMPORTANT**
+>> [XXX NPM 싸이트](https://google.com)
+>>
+>> - 대략적인 개요 설명
+>>
+>>> - `npm install xxx` 간략 설명
+>>
+>> - [XXX Sample Github](http://google.com)
+
+```javascript
+// sam
+```
+
+# 27. Useful Node Modules
+
+- contents
+
+> **IMPORTANT**
+>> [XXX NPM 싸이트](https://google.com)
+>>
+>> - 대략적인 개요 설명
+>>
+>>> - `npm install xxx` 간략 설명
+>>
+>> - [XXX Sample Github](http://google.com)
+
+```javascript
+// sam
+```
 
 # 참고
 
