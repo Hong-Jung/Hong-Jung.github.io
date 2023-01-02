@@ -1222,7 +1222,56 @@ app.get("/api/products", cors(corsOptionsExternal), (req, res) => {
 
 # 21. MongoDB & Mongoose
 
-- contents
+- 몽고DB(MongoDB)는 크로스 플랫폼 `도큐먼트 지향 데이터베이스` 시스템이다.
+- `NoSQL` 데이터베이스로 분류되는 몽고DB는 `JSON`과 같은 동적 스키마형 도큐먼트들(몽고DB는 이러한 포맷을 `BSON`이라고 함)을 선호함에 따라 전통적인 테이블 기반 `관계형 데이터베이스 구조를 사용하지 않는다`. 이로써 특정한 종류의 애플리케이션을 더 쉽고 더 빠르게 데이터 통합을 가능케 한다.
+- 장점
+  - 비동기 드라이버를 사용
+    - 현재 JDBC의 경우 동기 드라이버만 존재해 블러킹 포인트가 된다.
+  - RDB와 개념이 유사해, 쿼리 변환기가 있을 만큼 개념적으로 어색하지 않음 (사용법도 유사함)
+  - RDB에 비해 성능이 100배 이상 빠름 (별도의 캐시 솔루션이 필요없음)
+  - 스키마 관리가 필요 없음
+  - 성숙기에 접어들어 운용, 개발, 유틸리티에 부족함이 없음
+    - Cassandra, Couchbase, Mongodb의 경우 대규모 트래픽, 데이터 저장, fail-over, fault-tolerance에 다양한 대안이 마련 되어 있는 상황
+    - redis과 비교해도 충분히 안정권에 들어온 상태
+  - 샤드 추가가 간편
+    - 다른 NoSQL 처럼 리밸런싱은 불가능하지만, 그럼에도 적정 수치때 샤드를 추가해준다면 장점은 충분히 누릴 수 있음
+    - 샤드 : 부하 분산을 위해 다수의 데이터베이스에 데이터를 분산 저장하는 기법
+- 단점
+  - 복잡한 쿼리를 사용할 수 없음 (join 구문 사용 불가)
+  - 메모리 사용량이 큰 편 (메모리 부족시 성능 저하)
+  - 데이터 일관성이 보장되지 않음
+    - ACID(원자성, 일관성, 고립성, 지속성) 도입 베타 릴리즈 진행 중
+    - ACID : 데이터베이스 트랜잭션이 안전하게 수행된다는 것을 보장하기 위한 성질을 가리키는 약어
+
+<img src="./../../assets/images/posts/bootcamp005/node_mongodb_1.jpg" width="100%" align="center"/>
+<br/><br/>
+<img src="./../../assets/images/posts/bootcamp005/node_mongodb_2.jpg" width="100%" align="center"/>
+<br/><br/>
+<img src="./../../assets/images/posts/bootcamp005/node_mongodb_3.jpg" width="100%" align="center"/>
+<br/><br/>
+
+> **IMPORTANT**
+>> [MongoDB 싸이트](https://www.mongodb.com/home)
+>>
+>> - 몽고DB는 크로스 플랫폼 도큐먼트 지향 데이터베이스 시스템이다. NoSQL 데이터베이스로 분류되는 몽고DB는 JSON과 같은 동적 스키마형 도큐먼트들을 선호함에 따라 전통적인 테이블 기반 관계형 데이터베이스 구조의 사용을 지양한다.
+>>
+>>> - `brew services start mongodb-community` // 서비스 시작
+>>> - `brew services stop mongodb-community` // 서비스 종료
+>>> - `brew services list` // brew 서비스 목록 조회
+>>> - `mongosh` or `mongo` // shell 접속
+>>>
+>>>> - `use admin` // admin 사용자로 전환
+>>>> - `db.createUser({user:"root",pwd:"1234",roles:[{"root"}]})` 사용자 생성
+>>>
+>>> - `mongod --config /opt/homebrew/etc/mongod.conf` // mongod.conf 파일 위치
+>>>
+>>>> - `sesurity: authorization: enabled`를 추가하여 인증 활성화
+>>>
+>>> - `mongosh admin -u root -p 1234` // mongo [데이터베이스이름] -u [사용자이름] -p [비밀번호]
+>>
+>> - [Compass Download](https://www.mongodb.com/try/download/compass)
+
+- MongoDB 연결 및 기본적인 CRUD 수행
 
 > **IMPORTANT**
 >> [XXX NPM 싸이트](https://google.com)
@@ -1232,10 +1281,6 @@ app.get("/api/products", cors(corsOptionsExternal), (req, res) => {
 >>> - `npm install xxx` 간략 설명
 >>
 >> - [XXX Sample Github](http://google.com)
-
-```javascript
-// sample code
-```
 
 # 22. WebSocket
 
