@@ -1274,17 +1274,37 @@ app.get("/api/products", cors(corsOptionsExternal), (req, res) => {
 - MongoDB 연결 및 기본적인 CRUD 수행
 
 > **IMPORTANT**
->> [XXX NPM 싸이트](https://google.com)
+>> [mongodb NPM 싸이트](https://www.npmjs.com/package/mongodb)
 >>
->> - 대략적인 개요 설명
+>> - sequelize와 유사하게 ORM 형식으로 CRUD 사용 가능
 >>
->>> - `npm install xxx` 간략 설명
+>>> - `npm install mongodb`를 통하여 npm 등록
+>>> - [homepage](https://github.com/mongodb/node-mongodb-native)
 >>
->> - [XXX Sample Github](http://google.com)
+>> - [mongoDB Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/36_app_mongodb.js)
+
+```javascript
+// 하기와 같은 패턴의 경우 함수를 무조건 실행부터 함
+(function() {
+  함수코드
+ })();
+```
 
 # 22. WebSocket
 
-- contents
+- 클라이언트와 서버간의 양방향 통신
+- 웹 소켓 이전의 통신 방법 : [HTTP(HyperText Transfer Protocol)](https://ko.wikipedia.org/wiki/HTTP)
+  - Client > HTTP Request 통하여 서버로 요청을 전송
+  - Server > HTTP Response 통하여 클라이언트로 응답을 전송
+  - `클라이언트 요청 없이는 서버는 클라이언트로 데이터를 전송할 수 없음`
+    - 그래서 서버쪽에 데이터가 변경되어도 클라이언트가 서버로 요청을 보내지 않는 이상 변경된 데이터가 클라이언트에 반영되지 않음
+    - Ex) 실시간 주식 (클라이언트 Javascript로 setInterval() 함수를 사용하여 주기적으로 서버에 요청을 보냄)
+- [웹소켓(Web Socket)](https://ko.wikipedia.org/wiki/%EC%9B%B9%EC%86%8C%EC%BC%93)
+  - 하나의 [TCP(Transmission Control Protocol)](https://ko.wikipedia.org/wiki/%EC%A0%84%EC%86%A1_%EC%A0%9C%EC%96%B4_%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C) 접속에 전이중(양방향) 통신 채널을 제공하는 컴퓨터 통신 프로토콜로 클라이언트와 서버간의 양방향 통신이 가능.(Client <> Server 소켓 연결을 유지하여 언제든지 쌍방 통신 가능)
+- HTTP 통신
+  - <img src="./../../assets/images/posts/bootcamp005/node_websocket_http_1.png" width="100%" align="center"/>
+- Socket 통신
+  - <img src="./../../assets/images/posts/bootcamp005/node_websocket_socket_1.png" width="100%" align="center"/>
 
 > **IMPORTANT**
 >> [XXX NPM 싸이트](https://google.com)
