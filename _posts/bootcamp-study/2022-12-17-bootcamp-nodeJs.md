@@ -1274,14 +1274,20 @@ app.get("/api/products", cors(corsOptionsExternal), (req, res) => {
 - MongoDB 연결 및 기본적인 CRUD 수행
 
 > **IMPORTANT**
->> [mongodb NPM 싸이트](https://www.npmjs.com/package/mongodb)
+>> [mongodb NPM 싸이트](https://www.npmjs.com/package/mongodb)<br/>
+>> [mongoose NPM 싸이트](https://www.npmjs.com/package/mongoose)
 >>
 >> - sequelize와 유사하게 ORM 형식으로 CRUD 사용 가능
 >>
 >>> - `npm install mongodb`를 통하여 npm 등록
->>> - [homepage](https://github.com/mongodb/node-mongodb-native)
+>>> - [mongodb homepage](https://github.com/mongodb/node-mongodb-native)
+>>> - `npm install mongoose`를 통하여 npm 등록
+>>> - [mongoose homepage](https://mongoosejs.com/)
 >>
 >> - [mongoDB Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/36_app_mongodb.js)
+>> - [mongoose index Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/mongoose/index.js)
+>> - [mongoose customer(schemas) Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/mongoose/schemas/customer.js)
+>> - [mongoose Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/37_app_mongoose.js)
 
 ```javascript
 // 하기와 같은 패턴의 경우 함수를 무조건 실행부터 함
@@ -1307,51 +1313,80 @@ app.get("/api/products", cors(corsOptionsExternal), (req, res) => {
   - <img src="./../../assets/images/posts/bootcamp005/node_websocket_socket_1.png" width="100%" align="center"/>
 
 > **IMPORTANT**
->> [XXX NPM 싸이트](https://google.com)
+>> [socket.io NPM 싸이트](https://www.npmjs.com/package/socket.io)
+>> [homepage](https://github.com/socketio/socket.io#readme)
 >>
->> - 대략적인 개요 설명
+>> - 클라이언트, 서버가 TCP 통신을 가능하게하는 패키지
 >>
->>> - `npm install xxx` 간략 설명
+>>> - `npm install socket.io` socket.io 패키지 설치
+>>> - [socket.io cdn 설치 싸이트](https://socket.io/docs/v4/client-installation/)
 >>
->> - [XXX Sample Github](http://google.com)
+>> - [Server Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/38_websocket.js)
+>> - [Server-Client Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/38_websocket_client.js)
+>> - [Client(html) Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/38_websocket_client.html)
 
 ```javascript
-// sample code
+const io = new Server(httpServer, {
+  cors: {
+    origin: "http://localhost:8080",
+    methods: ["GET", "POST"],
+  },
+});
+
+io.on("connection", (socket) => {
+  socket.on("disconnect", () => {
+    // 클라이언트가 접속을 종료했을 때
+  });
+
+  socket.on("cleint2server", (data) => {
+    console.log(data);
+
+    // 접속된 모든 클라이언트에게 msg를 전송
+    io.emit("event_name", msg);
+
+    // 메시지를 전송한 클라이언트에게만 전송
+    socket.emit("event_name", msg); 
+
+    // 메시지를 전송한 클라이언트를 제외한 나머지 모두에게 전송
+    socket.broadcast.emit("event_name", msg); 
+
+    // 지정된(socket_id) 특정 클라이언트에게만 메시지 전송
+    io.to(socket_id).emit("event_name", msg); 
+  });
+});
 ```
 
 # 23. forever
 
-- contents
+- script 파일을 무중단 실행(백그라운드)하는 node.js package
 
 > **IMPORTANT**
->> [XXX NPM 싸이트](https://google.com)
+>> [forever NPM 싸이트](https://www.npmjs.com/package/forever)<br/>
+>> [forever homepage](https://github.com/foreversd/forever#readme)
 >>
->> - 대략적인 개요 설명
+>> - node.js 앱을 실행시키거나 비정상 종료되었을 때 재실행을 시켜주는 관리도구
 >>
->>> - `npm install xxx` 간략 설명
+>>> - `npm i forever` forever 패키지 설
 >>
->> - [XXX Sample Github](http://google.com)
+>> - [forever Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/39_forever.js)
 
 ```javascript
-// sam
+forever start 39_forever.js // 'start' 명령으로 node 파일 실행
+forever stop 39_forever.js // 'stop' 명령으로 node 파일 중지
+forever list // 'list' 명령으로 실행중인 파일(프로세스) 목록 조
 ```
 
 # 24. Cluster
 
-- contents
+- Node.js 싱글 스레드로 동작하고, 단일 CPU 코어에서만 실행
+- cluster를 사용하면 서버 자원을 모두 사용하면서, Node.js 멀티스레드로 동작되는 것 처럼 병렬처리 할 수 있게 됨
 
 > **IMPORTANT**
->> [XXX NPM 싸이트](https://google.com)
+>> 내장 함수로 별도의 npm 설치 필요 없음
 >>
->> - 대략적인 개요 설명
+>> - H/W 자원을 효율적으로 사용(싱글스레드 > 멀티스레드)
 >>
->>> - `npm install xxx` 간략 설명
->>
->> - [XXX Sample Github](http://google.com)
-
-```javascript
-// sam
-```
+>> - [cluster Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/40_cluster.js)
 
 # 25. pm2
 
