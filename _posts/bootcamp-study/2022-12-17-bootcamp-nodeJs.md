@@ -1037,8 +1037,9 @@ try {
   - 세션, 쿠키를 사용
 - 절차
   - 클라이언트에서 로그인
-  - 서버가 이 로그인 유효한지 검증하고, 맞다면 응답헤더에 쿠키정보를 넣어서 보내요. 이게 클라이언트 쿠키에 저장됨
-  - 클라이언트가 서버에 요청할 때 마다 쿠키 정보를 같이 헤더에 넣어서 보내는 거예요.
+  - 서버가 이 로그인이 유효한지 검증하고, 맞다면 응답헤더에 쿠키정보를 넣어서 클라이언트로 송부
+  - 수신한 서버의 응답중 세션을 위한 인증값을 클라이언트 쿠키에 저장됨
+  - 클라이언트가 서버에 요청할 때 마다 쿠키 정보를 같이 헤더에 넣어서 송부
   - s.id 혹은 sessionid
 - 세션 - 브라우저가 종료되기 전까지 클라이언트의 요청을 유지하게 해주는 기술
 - 세션 정보를 expess-session로 관리
@@ -1046,8 +1047,6 @@ try {
 > **IMPORTANT**
 >> [express-session NPM](https://www.npmjs.com/package/express-session)
 >> [cookie-parset](https://www.npmjs.com/package/cookie-parser)
->>
->> - contenst
 >>
 >>> - `npm i express-session` 세션에 대한 핸들링 가능
 >>> - `npm i cookie-parser` 클라이언트측의 cookie를 서버측에서도 사용 가능
@@ -1390,46 +1389,82 @@ forever list // 'list' 명령으로 실행중인 파일(프로세스) 목록 조
 
 # 25. pm2
 
-- contents
+- Node.js 어플리케이션을 쉽게 관리할 수 있게 해주는 `Process Manager`이다. `Node.js 어플리케이션을 cluster mode 로 실행`시킨다거나, 메모리가 넘친다거나, 오류로 인해 프로세스가 종료되는 등의 상황에 직면했을 때 각각의 상황을 사용자가 모두 신경 써서 처리해줄 수도 있지만, 너무 복잡하고 신경 써야 할 일들이 많아진다.
+- `PM2 is a daemon process manager that will help you manage and keep your application online. Getting started with PM2 is straightforward, it is offered as a simple and intuitive CLI, installable via NPM.`
 
 > **IMPORTANT**
->> [XXX NPM 싸이트](https://google.com)
+>> [PM2 NPM 싸이트](hhttps://www.npmjs.com/package/pm2)<br/>
+>> [homepage](https://pm2.keymetrics.io/)
 >>
->> - 대략적인 개요 설명
+>> - Node.js 어플리케이션 실행을 관리할 수 있는 프로세스 관리자, 설정된 값을 기준으로 자동으로 clustering 가능
 >>
->>> - `npm install xxx` 간략 설명
+>>> - `sudo npm install -g pm2` pm2 패키지 등록
+>>> - `pm2 list` : 목록 조회
+>>> - `pm2 delete [file name or id or pid]` : [file name or id or pid] 삭제
+>>> - `pm2 delete all` : 모든 프로세스 삭제
+>>> - `pm2 start [file name]` : [file name] 실행
+>>> - `pm2 stop [file name or id or pid]` : [file name or id or pid] 중단
+>>> - `pm2 logs` : 로그 확인
+>>> - `pm2 monit` : 모니터링 대쉬보드
+>>> - `pm2 start [file name] -i 4` : cpu 4개 지정해서 cluster화 해서 실행
+>>> - `pm2 scale [file name or id or pid] +3` : 기존 [file name or id or pid]에 cpu 추가
 >>
->> - [XXX Sample Github](http://google.com)
-
-```javascript
-// sam
-```
+>> - [PM2 Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/41_pm2.js)
 
 # 26. API Server Configuration
 
-- contents
+- API 서버에 접근하기 위해서는 접근키(Access Key)를 발급받아 인증 후 특정 API를 사용할 수 있도록 한다.
+- uuid-apikey를 발급받을 수 있는 UI와 데이터베이스(Database)를 개발하여 함께 사용하면 유용하다.
 
 > **IMPORTANT**
->> [XXX NPM 싸이트](https://google.com)
+>> [uuid-apikey NPM 싸이트](https://www.npmjs.com/package/uuid-apikey)<br/>
+>> [uuid-apikey homepage](https://github.com/chronosis/uuid-apikey#readme)
 >>
->> - 대략적인 개요 설명
+>> - uuid-apikey로 access key를 발급받고 발급받은 키를 데이터베이스(Database)에 저장하여 관리도 가능
+>> - access key가 유효하지 않은 접근의 경우 거부하여 API Server를 구성할 수 있다.
 >>
->>> - `npm install xxx` 간략 설명
+>>> - `npm i uuid-apikey` access key 생성을 위한 npm 설치
 >>
->> - [XXX Sample Github](http://google.com)
+>> - [API Server Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/42_api_server.js)
 
 ```javascript
-// sam
+const uuidAPIKey = require("uuid-apikey");
+// console.log(uuidAPIKey.create());
+// {
+//     apiKey: 'MKW83V4-V9N40AF-Q026AC2-PPETNWA',
+//     uuid: 'a4f881ec-da6a-4029-b804-6530b59daaf1'
+// }
+
+const accessKey = {
+  apiKey: "MKW83V4-V9N40AF-Q026AC2-PPETNWA",
+  uuid: "a4f881ec-da6a-4029-b804-6530b59daaf1",
+};
+
+app.get("/api/:apikey/categories", async (req, res) => {
+  const apikey = req.params.apikey;
+  if (apikey === accessKey.apiKey) {
+    if (uuidAPIKey.toUUID(apikey) === accessKey.uuid) {
+      const categoryList = await mysql.query("categoryList");
+      res.send(categoryList);
+    } else {
+      res.send("apikey가 정상적이지 않습니다.");
+    }
+  } else {
+    res.send("apikey가 존재하지 않습니다.");
+  }
+});
 ```
+
+<img src="./../../assets/images/posts/bootcamp005/node_api_server_1.png" width="100%" align="center"/>
 
 # 27. Useful Node Modules
 
 - contents
 
 > **IMPORTANT**
->> [XXX NPM 싸이트](https://google.com)
+>> [xxx NPM 싸이트](https://www.npmjs.com/package/uuid-apikey)
 >>
->> - 대략적인 개요 설명
+>> - content
 >>
 >>> - `npm install xxx` 간략 설명
 >>
