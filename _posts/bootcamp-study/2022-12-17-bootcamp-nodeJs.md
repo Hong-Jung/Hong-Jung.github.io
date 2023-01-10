@@ -1415,6 +1415,7 @@ forever list // 'list' 명령으로 실행중인 파일(프로세스) 목록 조
 
 - API 서버에 접근하기 위해서는 접근키(Access Key)를 발급받아 인증 후 특정 API를 사용할 수 있도록 한다.
 - uuid-apikey를 발급받을 수 있는 UI와 데이터베이스(Database)를 개발하여 함께 사용하면 유용하다.
+- 외부에서 API에 접근하는 용도로 사용과 기존의 API 서버와 분리를 권장한다.
 
 > **IMPORTANT**
 >> [uuid-apikey NPM 싸이트](https://www.npmjs.com/package/uuid-apikey)<br/>
