@@ -29,7 +29,62 @@ last_modified_at: 2022-10-03
 
 # Vuejs
 
-- Vuejs 관련
+- vscode, nodejs, npm, 
+  - vscode.modules : vetur, prettier, vue 3 snippets
+
+- vue cli 설치, vue 프로젝트 생성 3가지 방법
+  - npm install -g @vue/cli
+  - sudo npm install -g @vue/cli
+  - vue create [프로젝트이름]
+    - default, manually, vue 프로젝트 매니저(vue ui)
+
+- 추가 라이브러리 설치
+  - vue router 설치
+    - vue add router
+    - Lazy Load -> 라우팅시 페이지 접속시마다 로딩
+    - Prefetch -> 사전에 모든 페이지 로딩
+    - vue.config.js -> prefetch 전역 설정
+
+- vue component 기본
+  - 기본구조
+  - User Snippet 설정
+    - vue.json에 코드 스니펫 템플릿 추가(인터넷 검색하면 많이 나옴)
+  - 데이터 바인딩 기본
+    - {{문자열}}, v-html, v-model(two-way, value에 할당), textarea는 반드시 v-model로 바인딩 필요
+    - select(v-model:value와 연결), checkbox(v-model:checked와 연결), radio(v-model:checked와 연결), html의 속성앞에 'v-bind:'를 넣으면 연결 가능
+
+- 코드 포맷터와 충돌나는 부분을 해소하기 위해서 아래와 같이 prettierrc, package.json, jsconfig.json 등을 수정 한다.
+
+```json
+// .prettierrc
+{
+    "semi": false,
+    "bracketSpacing": true,
+    "singleQuote": true,
+    "useTabs": false,
+    "trailingComma": "none",
+    "printWidth": 80
+}
+```
+
+```json
+// package.json
+"rules": {
+  "space-before-function-paren": "off"
+}
+```
+
+```json
+// jsconfig.json
+"jsx": "preserve",
+
+// webpackPrefetch:true
+```
+  
+- Vue Project Folder Structure & Describe
+<img src="./../../assets/images/posts/bootcamp005/vue_folder_structure.png" width="100%" align="center"/>
+
+- [`개발생산성과 품질향상을 위한 Vuejs 개발 방안` 문서](./../../assets/images/posts/bootcamp005/개발생산성과_품질향상을_위한_Vue_js_개발_방안.pdf)
 
 # Nodejs
 
