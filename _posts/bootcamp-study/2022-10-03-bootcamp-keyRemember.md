@@ -33,7 +33,7 @@ last_modified_at: 2022-10-03
 
 # Nodejs
 
-- Nodejs 관련
+- WebServer Configuration
 
 # SQL
 

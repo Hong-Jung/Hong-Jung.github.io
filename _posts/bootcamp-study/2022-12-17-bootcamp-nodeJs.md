@@ -1460,19 +1460,44 @@ app.get("/api/:apikey/categories", async (req, res) => {
 
 # 27. Useful Node Modules
 
-- contents
+- validator : 유효성 검사
+- moment : 날짜 관련
+- dayjs : moment의 light 버전
+- fs-extra : fs(file system) 패키지의 확장판
 
 > **IMPORTANT**
->> [xxx NPM 싸이트](https://www.npmjs.com/package/uuid-apikey)
+>> [validator NPM 싸이트](https://www.npmjs.com/package/validator)
 >>
->> - content
+>>> - [validator homepage](https://github.com/validatorjs/validator.js)
 >>
->>> - `npm install xxx` 간략 설명
+>> [moment NPM 싸이트](https://www.npmjs.com/package/moment)
 >>
->> - [XXX Sample Github](http://google.com)
+>>> - [moment homepage](https://momentjs.com/)
+>>
+>> [dayjs NPM 싸이트](https://www.npmjs.com/package/dayjs)
+>>
+>>> - [dayjs homepage](https://day.js.org/)
+>>> - [Day.js - fast 2kB alternative to Moment.js with the same modern API](https://day.js.org/)
+>>
+>> [fs-extra NPM 싸이트](https://www.npmjs.com/package/fs-extra)
+>>
+>>> - [fs-extra homepage](https://github.com/jprichardson/node-fs-extra)
+>>
+>> npm install command
+>>>
+>>> - `npm i validator` validator npm 등록
+>>> - `npm i moment` moment npm 등록
+>>> - `npm i dayjs` dayjs npm 등록
+>>> - `npm i fs-extra` fs-extra npm 등록
+>>
+>> - [validator, moment, fx-extra Code Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/43_useful_module.js)
 
 ```javascript
-// sam
+// validation CDN
+<script type="text/javascript" src="validator.min.js"></script>
+<script type="text/javascript">
+  validator.isEmail('foo@bar.com'); //=> true
+</script>
 ```
 
 # 참고
