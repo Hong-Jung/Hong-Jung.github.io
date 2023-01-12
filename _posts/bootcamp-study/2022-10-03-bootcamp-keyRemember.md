@@ -55,6 +55,14 @@ last_modified_at: 2022-10-03
 
 - 코드 포맷터와 충돌나는 부분을 해소하기 위해서 아래와 같이 prettierrc, package.json, jsconfig.json 등을 수정 한다.
 
+- npm install error 관련
+  - eslint-plugin 관련 resolve dependency 문제 발생시 아래의 코드 실행
+  <img src="./../../assets/images/posts/bootcamp005/keyremember_npm_1.png" width="100%" align="center"/>
+
+  - ```command
+    npm config set legacy-peer-deps=true --location=project
+    ```
+
 ```json
 // .prettierrc
 {
