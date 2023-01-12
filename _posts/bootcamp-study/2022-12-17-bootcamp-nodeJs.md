@@ -1365,7 +1365,7 @@ io.on("connection", (socket) => {
 >>
 >> - node.js 앱을 실행시키거나 비정상 종료되었을 때 재실행을 시켜주는 관리도구
 >>
->>> - `npm i forever` forever 패키지 설
+>>> - `npm i forever` forever 패키지 설치
 >>
 >> - [forever Sample Github](https://github.com/LabofDev/web/blob/main/bootcamp5_origin/node/39_forever.js)
 
