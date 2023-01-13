@@ -29,6 +29,53 @@ last_modified_at: 2022-10-03
 
 # Vuejs
 
+> **IMPORTANT**
+>> Vue 초기 설치를 위한 순서 및 참고 사항
+>>
+>> - vue 버전을 확인
+>>
+>>> - `vue --version`
+>>>
+>> - vue 최신 버전을 설치
+>>
+>>> - `npm install -g @vue/cli`
+>>>
+>> - vue 프로젝트를 생성
+>>
+>>> - `vue create vuetify-admin-template`
+>>>
+>> - VS CODE로 생성된 프로젝트를 오픈하고 실행
+>>
+>>> - `npm run serve`
+>>>
+>> - vue-router_ 설치
+>>
+>>> - `npm i -S vue-router`
+
+- 코드 포맷터와 충돌나는 부분을 해소하기 위해서
+  
+```json
+//* .prettierrc
+{
+    "semi": false,
+    "bracketSpacing": true,
+    "singleQuote": true,
+    "useTabs": false,
+    "trailingComma": "none",
+    "printWidth": 80
+}
+
+//* package.json
+"rules": {
+  "space-before-function-paren": "off"
+}
+
+//* jsconfig.json
+"jsx": "preserve",
+
+// webpackPrefetch:true
+```
+
 - vscode, nodejs, npm, 
   - vscode.modules : vetur, prettier, vue 3 snippets
 
@@ -59,35 +106,13 @@ last_modified_at: 2022-10-03
   - eslint-plugin 관련 resolve dependency 문제 발생시 아래의 코드 실행
   <img src="./../../assets/images/posts/bootcamp005/keyremember_npm_1.png" width="100%" align="center"/>
 
+- npm run serve error 관련
+  - `./node_modules/bootstrap/dist/js/bootstrap.esm.js` error
+    - `npm install --save @popperjs/core` 명령어 실행
+
   - ```command
     npm config set legacy-peer-deps=true --location=project
     ```
-
-```json
-// .prettierrc
-{
-    "semi": false,
-    "bracketSpacing": true,
-    "singleQuote": true,
-    "useTabs": false,
-    "trailingComma": "none",
-    "printWidth": 80
-}
-```
-
-```json
-// package.json
-"rules": {
-  "space-before-function-paren": "off"
-}
-```
-
-```json
-// jsconfig.json
-"jsx": "preserve",
-
-// webpackPrefetch:true
-```
   
 - Vue Project Folder Structure & Describe
 <img src="./../../assets/images/posts/bootcamp005/vue_folder_structure.png" width="100%" align="center"/>
