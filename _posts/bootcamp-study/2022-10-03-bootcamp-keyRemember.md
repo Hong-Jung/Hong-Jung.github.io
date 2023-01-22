@@ -119,6 +119,23 @@ last_modified_at: 2022-10-03
 
 - [`개발생산성과 품질향상을 위한 Vuejs 개발 방안` 문서](./../../assets/images/posts/bootcamp005/개발생산성과_품질향상을_위한_Vue_js_개발_방안.pdf)
 
+- UI to UI 페이지 이동시 데이터 전송 방법
+  - get 방식
+  - post 방식
+- UI to Server(API) 데이터 전송 방법
+  - get 방식
+    - Client Call
+      - URL뒤에 `/:product_id`의 형태로 호출
+    - Server Get API
+      - `const product_id = req.params.product_id;`와 같은 패턴으로 파라메터 인식
+  - post 방식
+    - Client Call
+      - `this.productList = await this.$get('/api/product/searchByName', { params: { name: this.searchName } })`
+      - 반드시 `params` 키워드로 전달해야 함
+    - Server Post API
+      - `const productList = await mysql.query('productListByName', '%${req.query.name}%'');`
+      - `req.query` 키워드로 파라메터 사용
+
 # Nodejs
 
 - WebServer Configuration
